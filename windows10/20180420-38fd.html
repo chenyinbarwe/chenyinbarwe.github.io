@@ -7,13 +7,17 @@
 
     
 
-    <title>temp | 晚来天欲雪 能饮一杯无</title>
+    <title>win10下给目录右键菜单添加cmd入口 | 晚来天欲雪 能饮一杯无</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="你是否厌倦了在cmd中切换工作路径？现在教你设置在图形界面中通过右键菜单直接以某个目录作为工作路径即，在目录的右键菜单中添加“进入cmd”选项核心方法，还是修改注册表~~~
+Ⅰ.打开注册表，路径栏搜索HKEY_CLASSES_ROOT\Folder\shell
+Ⅱ.右键shell新建项，名称为cmd">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="temp"/>
+    <meta property="og:title" content="win10下给目录右键菜单添加cmd入口"/>
     <meta property="og:site_name" content="Hexo"/>
 
     
@@ -97,6 +101,20 @@
             <div>
     <ul class="side-nav indigo darken-1" id="main-menu">
         
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://p33k8pinb.bkt.clouddn.com/18-3-8/42928697.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Barwe</p>
+                        <p class="desc">流浪的皮皮虾</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
 
         
             <li class="no-padding">
@@ -155,8 +173,56 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/barwe/">
-                    barwe <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/data-processing/">
+                    data-processing <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/algorithms/">
+                    algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/database-op/">
+                    database-op <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/deep-learning/">
+                    deep-learning <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/statistics/">
+                    statistics <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/windows10/">
+                    windows10 <span class="right">5</span></a>
                 </a>
             </li>
 
@@ -192,7 +258,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/barwe/">barwe</a>
+    <a class="breadcrumb" href="/categories/windows10/">windows10</a>
 
 
         
@@ -209,12 +275,12 @@
             <div class="article-title">
                 
     
-        <h1>temp</h1>
+        <h1>win10下给目录右键菜单添加cmd入口</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-07-30T11:43:55.000Z"><a href="/barwe/cjk89si8e0000f0ubbmy2jsb7.html">2018-07-30</a></time>
+            <time class="pink-link-context" datetime="2018-04-20T03:44:43.000Z"><a href="/windows10/20180420-38fd.html">2018-04-20</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -229,9 +295,33 @@
 
 
             <div class="entry pink-link-context">
-                
-                
+                <p>你是否厌倦了在cmd中切换工作路径？<br>现在教你设置在图形界面中通过右键菜单直接以某个目录作为工作路径<br>即，在目录的右键菜单中添加“进入cmd”选项<br>核心方法，还是修改注册表~~~</p>
+<p>Ⅰ.打开注册表，路径栏搜索<strong>HKEY_CLASSES_ROOT\Folder\shell</strong></p>
+<p>Ⅱ.右键<strong>shell</strong>新建<strong>项</strong>，名称为<strong>cmdPrompt</strong><br><span style="color:red">实际上这个名字可以随便取</span>，这就意味着我们可以添加多个项<br><img src="http://p33k8pinb.bkt.clouddn.com/18-4-20/35089862.jpg" alt=""><br>新建完成如下：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-4-20/73456749.jpg" alt=""></p>
+<p>Ⅲ.双击<strong>cmdPrompt</strong>下右侧的<strong>名称</strong>设置值，该字符串用于显示在右键菜单上，所以可以取个响亮的名字，比如“在cmd中打开”<br><img src="http://p33k8pinb.bkt.clouddn.com/18-4-20/32232029.jpg" alt=""></p>
+<p>Ⅳ.右键<strong>cmdPrompt</strong>新建<strong>项</strong>，名称为<strong>command</strong><br><img src="http://p33k8pinb.bkt.clouddn.com/18-4-20/91034896.jpg" alt=""></p>
+<p>Ⅴ.双击<strong>command</strong>下右侧的<strong>名称</strong>设置值，值为<strong>cmd.exe /k cd %1</strong></p>
+<blockquote>
+<p>/k 表示执行后面的命令并保留终端</p>
+</blockquote>
+<p><img src="http://p33k8pinb.bkt.clouddn.com/18-4-20/2107162.jpg" alt=""></p>
+<p>Ⅵ.保存退出即可</p>
+<p>最终效果如下：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-4-20/20081696.jpg" alt=""></p>
 
+                
+<p class="pink-link-context">
+    <a href="/windows10/20180420-f8ae.html" rel="next" title="win10下在右键菜单中添加获取管理员权限入口">
+    Prev: win10下在右键菜单中添加获取管理员权限入口
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/windows10/20180420-6264.html" rel="next" title="win10下隐藏资源管理器中六大用户文件夹">
+    Next: win10下隐藏资源管理器中六大用户文件夹
+  </a>
+</p>
 
 
             </div>
@@ -259,6 +349,56 @@
 
     </main>
     <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址（测试友情链接）</a>
+                
+            </div>
+            
+        </div>
+    </div>
     
 
     <div class="footer-copyright pink-link-context">
@@ -360,6 +500,9 @@
             });
             $('.indicator').addClass('pink lighten-2');
 
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
             
 
             // 搜索功能

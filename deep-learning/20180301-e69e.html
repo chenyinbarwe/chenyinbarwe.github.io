@@ -7,13 +7,19 @@
 
     
 
-    <title>Archives | 晚来天欲雪 能饮一杯无</title>
+    <title>tensorflow-基于TFRecord加载图像数据 | 晚来天欲雪 能饮一杯无</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="什么是TFRecord文件？将一组图像数据和它们对应的标签存在一个二进制文件里，这个文件就是TFRecord文件
+创建自定义的牙骨项目数据加载器
+核心步骤：
+
+声明一个用于生成TFRecord文件的writerwith tf.python_io,TFRecordWriter(tfr_fp) as w">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="tensorflow-基于TFRecord加载图像数据"/>
     <meta property="og:site_name" content="Hexo"/>
 
     
@@ -247,196 +253,102 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">Current page(Archives)</span>
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/deep-learning/">deep-learning</a>
+
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>tensorflow-基于TFRecord加载图像数据</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2018
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/python/20180730-5f87.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-30T14:21:29.000Z">2018-07-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-warnings
-                            </a>
-                        
-                            <a href="/python/20180730-ee75.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-30T14:19:04.000Z">2018-07-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python之飘逸的format格式化字符串控制
-                            </a>
-                        
-                            <a href="/python/20180728-42ac.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-28T02:14:54.000Z">2018-07-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-时间模块
-                            </a>
-                        
-                            <a href="/python/20180724-1605.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-24T08:17:07.000Z">2018-07-24</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-logging入门版
-                            </a>
-                        
-                            <a href="/python/20180723-77b1.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-23T08:42:35.000Z">2018-07-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-getpass
-                            </a>
-                        
-                            <a href="/database-op/20180718-3284.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-18T04:23:32.000Z">2018-07-18</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                mysql的删除语法DROP TRUNCATE DELETE
-                            </a>
-                        
-                            <a href="/deep-learning/20180717-601f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-17T02:39:40.000Z">2018-07-17</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                玻尔兹曼机和受限玻尔兹曼机
-                            </a>
-                        
-                            <a href="/statistics/20180716-beb2.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-16T12:39:31.000Z">2018-07-16</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                统计模型估计-噪音对比估计NCE
-                            </a>
-                        
-                            <a href="/python/20180423-48b5.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-23T05:32:55.000Z">2018-04-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python从requirements.txt安装包
-                            </a>
-                        
-                            <a href="/windows10/20180420-f8ae.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T05:32:11.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下在右键菜单中添加获取管理员权限入口
-                            </a>
-                        
-                            <a href="/windows10/20180420-38fd.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T03:44:43.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下给目录右键菜单添加cmd入口
-                            </a>
-                        
-                            <a href="/windows10/20180420-6264.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T03:30:45.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下隐藏资源管理器中六大用户文件夹
-                            </a>
-                        
-                            <a href="/windows10/20180420-1a3f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T02:52:45.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下使用doskey在cmd中建立类似于linux中alias的宏
-                            </a>
-                        
-                            <a href="/algorithms/20180313-6ba0.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-13T02:18:46.000Z">2018-03-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                动态规划-钢材切割经典问题分析
-                            </a>
-                        
-                            <a href="/statistics/20180312-2d85.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-12T13:46:24.000Z">2018-03-12</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                三大相关系数 Pearson Kendall Spearman
-                            </a>
-                        
-                            <a href="/statistics/20180312-62c1.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-12T12:44:27.000Z">2018-03-12</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                参数模型和非参数模型
-                            </a>
-                        
-                            <a href="/data-processing/20180308-ca22.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-08T15:51:29.000Z">2018-03-08</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python-pandas模块-加载数据
-                            </a>
-                        
-                            <a href="/data-processing/20180307-3057.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-07T08:06:12.000Z">2018-03-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python-pandas模块-Series类和DataFrame类
-                            </a>
-                        
-                            <a href="/statistics/20180306-c444.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-06T05:06:22.000Z">2018-03-06</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                回归模型结果度量指标
-                            </a>
-                        
-                            <a href="/statistics/20180302-90e6.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-02T03:51:02.000Z">2018-03-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                聚类结果度量指标
-                            </a>
-                        
-                            <a href="/deep-learning/20180301-e69e.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-01T03:16:52.000Z">2018-03-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-基于TFRecord加载图像数据
-                            </a>
-                        
-                            <a href="/statistics/20180228-5746.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-28T12:41:44.000Z">2018-02-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                假设检验原理2-卡方检验
-                            </a>
-                        
-                            <a href="/statistics/20180228-4b70.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-28T06:36:35.000Z">2018-02-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                假设检验原理1-t检验和F检验
-                            </a>
-                        
-                            <a href="/python/20180201-ffef.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-01T01:34:18.000Z">2018-02-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python自用进度条
-                            </a>
-                        
-                            <a href="/deep-learning/20180126-f29a.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-26T03:18:29.000Z">2018-01-26</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-基于队列和多线程加载数据
-                            </a>
-                        
-                            <a href="/windows10/20180125-f59f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-25T15:28:48.000Z">2018-01-25</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10系统将C盘的用户文件夹迁移至D盘
-                            </a>
-                        
-                            <a href="/deep-learning/20180125-ff54.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-25T13:23:42.000Z">2018-01-25</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-计算资源控制
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
+            </div>
+            <time class="pink-link-context" datetime="2018-03-01T03:16:52.000Z"><a href="/deep-learning/20180301-e69e.html">2018-03-01</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#什么是TFRecord文件？"><span class="section table-of-contents-text">什么是TFRecord文件？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#创建"><span class="section table-of-contents-text">创建</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#使用"><span class="section table-of-contents-text">使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-老规矩，先定义队列"><span class="section table-of-contents-text">1.老规矩，先定义队列</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-定义读取TFRecord文件的阅读器"><span class="section table-of-contents-text">2.定义读取TFRecord文件的阅读器</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-用这个reader读取TFRecord文件的文件名队列得到序列化的样例："><span class="section table-of-contents-text">3.用这个reader读取TFRecord文件的文件名队列得到序列化的样例：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-从样例中解析出图像数据和图像标签"><span class="section table-of-contents-text">4.从样例中解析出图像数据和图像标签</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5-从二进制数据中解码图像"><span class="section table-of-contents-text">5.从二进制数据中解码图像</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-千万别忘了在session中开启线程，被坑傻了"><span class="section table-of-contents-text">6.千万别忘了在session中开启线程，被坑傻了</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="什么是TFRecord文件？"><a href="#什么是TFRecord文件？" class="headerlink" title="什么是TFRecord文件？"></a>什么是TFRecord文件？</h1><p>将<strong>一组</strong>图像数据和它们对应的标签存在一个二进制文件里，这个文件就是TFRecord文件</p>
+<h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><p>自定义的牙骨项目<a href="https://github.com/barwe/practise/blob/master/TFRecordFileBuilder.py" target="_blank" rel="noopener">数据加载器</a></p>
+<p>核心步骤：</p>
+<ol>
+<li><p>声明一个用于生成TFRecord文件的writer<br><code>with tf.python_io,TFRecordWriter(tfr_fp) as writer: …<br># tfr_fp是生成文件路径</code></p>
+</li>
+<li><p>获取图像的二进制数据：例如 <code>PIL::Image</code> 对象 <code>img</code> 可以使用 <code>img.tobytes()</code> 获取二进制信息</p>
+</li>
+<li>然后套用tensorflow提供的API：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-3-1/42164280.jpg" alt=""></li>
+</ol>
+<p>红色下划线为关键API<br>A：标识图像标签的key，加载TFRecord文件的时候会用到<br>B：注意类型对应：图像标签为int类型，图像内容为bytes类型<br>形参 <code>value</code> 的值注意加 <code>[]</code></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="1-老规矩，先定义队列"><a href="#1-老规矩，先定义队列" class="headerlink" title="1.老规矩，先定义队列"></a>1.老规矩，先定义队列</h2><pre><code>q = tf.train.string_input_producer([tfr_fp])
+
+这里传入的是 `[tfr_fp]` ，代表建立的实际上是一个文件名队列
+</code></pre><h2 id="2-定义读取TFRecord文件的阅读器"><a href="#2-定义读取TFRecord文件的阅读器" class="headerlink" title="2.定义读取TFRecord文件的阅读器"></a>2.定义读取TFRecord文件的<strong>阅读器</strong></h2><pre><code>reader = tf.TFRecordReader()
+</code></pre><h2 id="3-用这个reader读取TFRecord文件的文件名队列得到序列化的样例："><a href="#3-用这个reader读取TFRecord文件的文件名队列得到序列化的样例：" class="headerlink" title="3.用这个reader读取TFRecord文件的文件名队列得到序列化的样例："></a>3.用这个reader读取TFRecord文件的文件名队列得到序列化的样例：</h2><pre><code>_, serialized_example = reader.read(q)
+</code></pre><h2 id="4-从样例中解析出图像数据和图像标签"><a href="#4-从样例中解析出图像数据和图像标签" class="headerlink" title="4.从样例中解析出图像数据和图像标签"></a>4.从样例中解析出图像数据和图像标签</h2><pre><code>features = tf.parse_single_example(
+    serialized_example,
+    features = {
+        &apos;label&apos;: tf.FixedLenFeature([], tf.int64),
+        &apos;img_raw&apos;: tf.FixedLenFeature([], tf.string)
+    }
+)
+</code></pre><h2 id="5-从二进制数据中解码图像"><a href="#5-从二进制数据中解码图像" class="headerlink" title="5.从二进制数据中解码图像"></a>5.从二进制数据中解码图像</h2><pre><code>img = tf.decode_raw(features[&apos;img_raw&apos;], tf.uint8)
+img = tf.reshape(img, SHAPE)
+</code></pre><h2 id="6-千万别忘了在session中开启线程，被坑傻了"><a href="#6-千万别忘了在session中开启线程，被坑傻了" class="headerlink" title="6.千万别忘了在session中开启线程，被坑傻了"></a>6.千万别忘了在session中开启线程，被坑傻了</h2><p><a href="http://barwe.top/deep-learning/2018-01-26/20180126111829/#start_queue" target="_blank" rel="noopener">传送门</a></p>
+
+                
+<p class="pink-link-context">
+    <a href="/statistics/20180302-90e6.html" rel="next" title="聚类结果度量指标">
+    Prev: 聚类结果度量指标
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/statistics/20180228-5746.html" rel="next" title="假设检验原理2-卡方检验">
+    Next: 假设检验原理2-卡方检验
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>

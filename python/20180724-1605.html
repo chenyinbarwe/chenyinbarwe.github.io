@@ -1,0 +1,736 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>python内建模块-logging入门版 | 晚来天欲雪 能饮一杯无</title>
+    <meta name="author" content="John Doe">
+    
+    <meta name="description" content="Python版本：Python 3.7
+logging基础教程日志指的是一些软件运行时我们记录下的事件的发生轨迹。软件的开发者在他们的代码里加入日志调用来查看哪些事件跟随着软件的运行发生了。一个事件通过一条描述性的消息进行记录，这条消息可以选择性地包括各种各样的数据（例如这些数据可能描述了某个事件在">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="python内建模块-logging入门版"/>
+    <meta property="og:site_name" content="Hexo"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Hexo</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            Home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            Archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            Reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            About
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://p33k8pinb.bkt.clouddn.com/18-3-8/42928697.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Barwe</p>
+                        <p class="desc">流浪的皮皮虾</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    About
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/data-processing/">
+                    data-processing <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/algorithms/">
+                    algorithms <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/database-op/">
+                    database-op <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/deep-learning/">
+                    deep-learning <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/statistics/">
+                    statistics <span class="right">7</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/windows10/">
+                    windows10 <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/python/">python</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>python内建模块-logging入门版</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-07-24T08:17:07.000Z"><a href="/python/20180724-1605.html">2018-07-24</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#logging基础教程"><span class="section table-of-contents-text">logging基础教程</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#什么时候使用日志？"><span class="section table-of-contents-text">什么时候使用日志？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#一个简单的例子"><span class="section table-of-contents-text">一个简单的例子</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#将日志写入到文件"><span class="section table-of-contents-text">将日志写入到文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#多个模块的日志信息"><span class="section table-of-contents-text">多个模块的日志信息</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#记录变化的数据"><span class="section table-of-contents-text">记录变化的数据</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#改变消息显示的格式"><span class="section table-of-contents-text">改变消息显示的格式</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#在消息中显示时间"><span class="section table-of-contents-text">在消息中显示时间</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#小结"><span class="section table-of-contents-text">小结</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>Python版本：Python 3.7</p>
+<h1 id="logging基础教程"><a href="#logging基础教程" class="headerlink" title="logging基础教程"></a>logging基础教程</h1><p>日志指的是一些软件运行时我们记录下的事件的发生轨迹。软件的开发者在他们的代码里加入日志调用来查看哪些事件跟随着软件的运行发生了。一个事件通过一条描述性的消息进行记录，这条消息可以选择性地包括各种各样的数据（例如这些数据可能描述了某个事件在不同时刻的差异等）。事件也是开发者归咎错误等级的重要手段，这也叫做<strong>严重等级（日志等级）</strong>。</p>
+<h2 id="什么时候使用日志？"><a href="#什么时候使用日志？" class="headerlink" title="什么时候使用日志？"></a>什么时候使用日志？</h2><p>日志模块提供了一些简单便利的函数以实现简单的日志功能，他们是<code>debug()</code>, <code>info()</code>, <code>warning()</code>, <code>error()</code>,和<code>critical()</code>。什么时候使用什么等级的日志函数见下表：</p>
+<table>
+<thead>
+<tr>
+<th>你想要执行的任务</th>
+<th>该任务最适合的工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命令行脚本或程序简单地将输出显示到控制台</td>
+<td>报告在程序正常运行期间发生的事件，例如状态监控、断层调查</td>
+</tr>
+<tr>
+<td>报告在程序正常运行期间发生的事件，例如状态监控、断层调查</td>
+<td><code>logging.info()</code>（或者以诊断为目的获取更加详细的输入的<code>logging.debug()</code></td>
+</tr>
+<tr>
+<td>对一个特定的程序运行时产生的事件发出警告</td>
+<td>使用库函数<code>warnings.warn()</code>，警告是可以避免的，应该修改程序代码以消除这样的警告<br><code>logging.warning()</code>，当我们对这样的情况不能作出任何修改而且警告必须被保存下来时就需要使用这个函数</td>
+</tr>
+<tr>
+<td>将特定程序运行时产生的事件报告为错误</td>
+<td>抛出异常即可</td>
+</tr>
+<tr>
+<td>不抛出异常而报告一个错误（例如长期运行的服务器需要<strong>错误处理器</strong>）</td>
+<td><code>logging.error()</code><br> <code>logging.exception()</code><br><code>logging.critical()</code></td>
+</tr>
+</tbody>
+</table>
+<p>默认的等级是<code>logging.WARNING</code>，这意味着只有当前等级以及大于当前等级的事件才会被跟踪，除非额外配置日志处理器的行为。</p>
+<p>被跟踪的事件可以通过不同的方式进行处理，处理跟踪事件最简单的方式是把它们打印在控制台上。而另外一种常见的方式是把它们写入磁盘文件。</p>
+<h2 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h2><p>一个非常简单地例子如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.warning(<span class="string">'Watch out!'</span>) <span class="comment"># 将会打印信息到控制台</span></span><br><span class="line">logging.info(<span class="string">'I told you so'</span>) <span class="comment"># 将不会打印任何东西</span></span><br></pre></td></tr></table></figure>
+<p>如果你将这些语句写入脚本并且运行它，你将看到：</p>
+<pre>WARNING:root:Watch out!</pre>
+
+<p>当打印到控制台时，<code>INFO</code>信息并没有出现，原因是默认的严重等级是<code>WARNING</code>。我们看到的打印消息实际上包含了严重等级以及调用日志函数时提供的描述信息，比如”Watch out!”。别担心打印消息中的’root’部分，我们接下来将会对其进行解释。实际的输出结果可以灵活地定制格式以满足各自的需要；格式的定制也将在后面部分进行介绍。</p>
+<h2 id="将日志写入到文件"><a href="#将日志写入到文件" class="headerlink" title="将日志写入到文件"></a>将日志写入到文件</h2><p>一种非常典型的情景就是在文件中记录日志事件，我们接下来详细说说这种情况。确保接下来的语句在一个新打开的Python解释器中运行，千万不要使用上一部分的环境，否则你可能得到与我们不一样的结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(filename=<span class="string">'example.log'</span>, level=logging.DEBUG)</span><br><span class="line">logging.debug(<span class="string">'This message should go to the log file'</span>)</span><br><span class="line">logging.info(<span class="string">'So should this'</span>)</span><br><span class="line">logging.warning(<span class="string">'And this, too'</span>)</span><br></pre></td></tr></table></figure>
+<p>现在如果我们打开文件看看里面有什么，我们会发现以下日志信息：</p>
+<pre>
+DEBUG:root:This message should go to the log file
+INFO:root:So should this
+WARNING:root:And this, too
+</pre>
+
+<p>这个例子也展示了你应该如何设置日志的<strong>等级</strong>，这个等级将作为是否跟踪事件的阀门。在这个例子中因为我们将阀门设置为了<code>DEBUG</code>，所有的信息都将被打印出来。</p>
+<p>如果你想在命令行选项参数里设置日志等级，请使用如下格式：</p>
+<pre>--log=INFO</pre>
+
+<p>你也可以通过变量 <em>loglevel</em> 获取<code>--log</code>参数传递的值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getattr(logging, loglevel.upper())</span><br></pre></td></tr></table></figure>
+<p>获取你想要传递给<code>basicConfig()</code>的 <em>level</em> 参数的值，检查以下用户从命令行传入的参数是否合法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设loglevel一定是从命令行参数获取的字符串，后台自动将其转换为大写的形式，</span></span><br><span class="line"><span class="comment"># 这样用户就可以在命令行中指定 --log=DEBUG 或者 --log=debug</span></span><br><span class="line">numeric_level = getattr(logging, loglevel.upper(), <span class="keyword">None</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> isinstance(numeric_level, int):</span><br><span class="line">	<span class="keyword">raise</span> ValueError(<span class="string">'Invalid log level: %s'</span> % loglevel)</span><br><span class="line">logging.basicConfig(level=numeric_level, ...)</span><br></pre></td></tr></table></figure>
+<p>调用<code>basicConfig()</code>应该在调用<code>debug()</code>, <code>info()</code>等方法之前。这种方式被有意设计成一次性的配置，只有第一次配置发挥作用，接下来再进行子参数的配置将起不到任何作用。</p>
+<p>如果你多次运行上面的脚本，来自连续运行脚本的日志信息都将被添加到文件 <em>example.log</em> 中。如果你想要每个程序运行时都使用全新的日志文件而不是记住之前的日志信息，你可以指定 <em>fielmode</em> 参数，我们修改上面对<code>basicConfig()</code>的调用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logging.basicConfig(</span><br><span class="line">	filename=<span class="string">'example.log'</span>, </span><br><span class="line">	filename=<span class="string">'w'</span>, </span><br><span class="line">	level=logging.DEBUG</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>输出将和以前一样，但是日志文件将不再是<strong>末尾添加</strong>模式，先前运行的日志信息已经丢失。</p>
+<h2 id="多个模块的日志信息"><a href="#多个模块的日志信息" class="headerlink" title="多个模块的日志信息"></a>多个模块的日志信息</h2><p>如果你的程序是由多个模块组成的，这里有个例子展示你该如何在多个模块中组织的你的日志记录：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># myapp.py</span></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> mylib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	logging.basicConfig(filename=<span class="string">'myapp.log'</span>, level=logging.INFO)</span><br><span class="line">	logging.info(<span class="string">'Started'</span>)</span><br><span class="line">	mylib.do_something()</span><br><span class="line">	logging.info(<span class="string">'Finished'</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mylib.py</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_something</span><span class="params">()</span>:</span></span><br><span class="line">	logging.info(<span class="string">'Doing something'</span>)</span><br></pre></td></tr></table></figure>
+<p>如果你运行 <em>myapp.py</em>，你将在 <em>myapp.log</em> 中看到如下内容：</p>
+<pre>
+INFO:root:Started
+INFO:root:Doing something
+INFO:root:Finished
+</pre>
+
+<p>见心之所想实在是一件鼓舞人心的事情。你可以使用<em>myapp.py</em>中的方法将这种模式推广到更复杂的多模块程序中去。需要注意的是，仅仅通过这种简单的方式你并不能根据日志文件的内容来判断日志信息来自哪一个模块，除非借助于消息描述本身。如果你想要跟踪你的日志消息的源位置，你需要放下这个基础教程去看看<a href="https://docs.python.org/2.7/howto/logging.html#logging-advanced-tutorial" target="_blank" rel="noopener">高级日志教程</a></p>
+<h2 id="记录变化的数据"><a href="#记录变化的数据" class="headerlink" title="记录变化的数据"></a>记录变化的数据</h2><p>为事件的描述信息使用<strong>格式化字符串</strong>并将变量作为参数传递给日志函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.warning(<span class="string">'%s before you %s'</span>, <span class="string">'look'</span>, <span class="string">'leap!'</span>)</span><br></pre></td></tr></table></figure>
+<p>将会显示：</p>
+<pre>WARNING:root:Look before you leap!</pre>
+
+<p>正如你所看到的，将变量中的信息合并到日志描述信息中可以使用老式的%风格的格式化字符串。事实上，格式化字符串是向后兼容的，也就是说，你也可以使用<code>str.format()</code>或者<code>string,Template</code>。这些新的格式化字符串也被支持，这里不做详细探讨。</p>
+<h2 id="改变消息显示的格式"><a href="#改变消息显示的格式" class="headerlink" title="改变消息显示的格式"></a>改变消息显示的格式</h2><p>为了改变用于显示的消息的格式，你需要指定你想用的格式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(</span><br><span class="line">	format=<span class="string">'%(levelname)s:%(message)s'</span>, </span><br><span class="line">	level=logging.DEBUG</span><br><span class="line">)</span><br><span class="line">logging.debug(<span class="string">'This message should appear on the console'</span>)</span><br><span class="line">logging.info(<span class="string">'So should this'</span>)</span><br><span class="line">logging.warning(<span class="string">'And this, too'</span>)</span><br></pre></td></tr></table></figure>
+<p>将打印：</p>
+<pre>
+DEBUG:This message should appear on the console
+INFO:So should this
+WARNING:And this, too
+</pre>
+
+<p>注意在前面出现的’root’在这里又出现了。对于控制格式的字符串的设置可以参见<a href="https://docs.python.org/2.7/library/logging.html#logrecord-attributes" target="_blank" rel="noopener">文档</a>。如果只是简单的使用日志，你只需要指定 <em>levelname</em>（日志等级），<em>message</em>（事件描述，可以包含变量）以及当事件发生时需要在哪里显示消息，这部分将在接下来详细介绍。</p>
+<h2 id="在消息中显示时间"><a href="#在消息中显示时间" class="headerlink" title="在消息中显示时间"></a>在消息中显示时间</h2><p>如果需要在日志消息中显示时间，你需要在<strong>格式化字符串</strong>中放置 ‘%(asctime)s’：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(format=<span class="string">'%(asctime)s %(message)s'</span>)</span><br><span class="line">logging.warning(<span class="string">'is when this event was logged.'</span>)</span><br></pre></td></tr></table></figure>
+<p>将打印如下消息：</p>
+<pre>2010-12-12 11:41:42,612 is when this event was logged.</pre>
+
+<p>上面这种默认时间显示格式被称之为 ISO8601。如果你想要更加自由的控制时间格式，请提供一个 <em>datefmt</em> 参数给 <code>basicConfig</code> ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(</span><br><span class="line">	format=<span class="string">'%(asctime)s %(message)s'</span>, </span><br><span class="line">	datefmt=<span class="string">'%m/%d/%Y %I:%M:%S %p'</span></span><br><span class="line">)</span><br><span class="line">logging.warning(<span class="string">'is when this event was logged.'</span>)</span><br></pre></td></tr></table></figure>
+<p>将打印如下消息：</p>
+<pre>12/12/2010 11:46:36 AM is when this event was logged.</pre>
+
+<p><em>datefmt</em> 的格式控制原理与 <code>time.strftime()</code> 相同。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>上面的作为基础教程，应该能够使你开始将日志功能添加到自己的代码中。事实上，logging包还提供了许多更为丰富的内容，如果你想更加熟练的应用日志功能，你需要花一点时间阅读<a href="https://docs.python.org/2.7/howto/logging.html#advanced-logging-tutorial" target="_blank" rel="noopener">高级教程(英)</a>。</p>
+<p>如果你对日志功能的需求十分简单，你可以阅读上面的例子，将简单的日志记录融入到自己的代码中去。如果遇到任何问题或者对某些东西不太理解欢迎光临<a href="https://groups.google.com/group/comp.lang.python" target="_blank" rel="noopener">论坛</a>。</p>
+<p>如果你看过了高级教程，也可以读读 <a href="https://docs.python.org/2.7/howto/logging-cookbook.html#logging-cookbook" target="_blank" rel="noopener">Logging Cookbook</a>。</p>
+<p>注注注：本文手撸自<a href="https://docs.python.org/2.7/howto/logging.html#basic-logging-tutorial" target="_blank" rel="noopener">官方文档</a></p>
+<p style="font-size:16px;margin:0">Author: Barwe(YinChen)<br>Email: <a href="mailto:chenyinbarwe@qq.com" target="_blank" rel="noopener">chenyinbarwe@qq.com</a></p>
+                
+<p class="pink-link-context">
+    <a href="/python/20180728-42ac.html" rel="next" title="python内建模块-时间模块">
+    Prev: python内建模块-时间模块
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/python/20180723-77b1.html" rel="next" title="python内建模块-getpass">
+    Next: python内建模块-getpass
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">Social</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">Links</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址（测试友情链接）</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

@@ -7,13 +7,16 @@
 
     
 
-    <title>Archives | 晚来天欲雪 能饮一杯无</title>
+    <title>回归模型结果度量指标 | 晚来天欲雪 能饮一杯无</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="回归模型因为预测值连续，很难用‘准确度’这类指标去衡量回归模型评估方法主要有：
+MAE (Mean Absolute Error, 平均绝对误差)sklearn API: from sklearn.metrics import mean_absolute_errorformula:MAE = mea">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="回归模型结果度量指标"/>
     <meta property="og:site_name" content="Hexo"/>
 
     
@@ -247,196 +250,93 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">Current page(Archives)</span>
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/statistics/">statistics</a>
+
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>回归模型结果度量指标</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2018
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/python/20180730-5f87.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-30T14:21:29.000Z">2018-07-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-warnings
-                            </a>
-                        
-                            <a href="/python/20180730-ee75.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-30T14:19:04.000Z">2018-07-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python之飘逸的format格式化字符串控制
-                            </a>
-                        
-                            <a href="/python/20180728-42ac.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-28T02:14:54.000Z">2018-07-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-时间模块
-                            </a>
-                        
-                            <a href="/python/20180724-1605.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-24T08:17:07.000Z">2018-07-24</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-logging入门版
-                            </a>
-                        
-                            <a href="/python/20180723-77b1.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-23T08:42:35.000Z">2018-07-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-getpass
-                            </a>
-                        
-                            <a href="/database-op/20180718-3284.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-18T04:23:32.000Z">2018-07-18</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                mysql的删除语法DROP TRUNCATE DELETE
-                            </a>
-                        
-                            <a href="/deep-learning/20180717-601f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-17T02:39:40.000Z">2018-07-17</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                玻尔兹曼机和受限玻尔兹曼机
-                            </a>
-                        
-                            <a href="/statistics/20180716-beb2.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-16T12:39:31.000Z">2018-07-16</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                统计模型估计-噪音对比估计NCE
-                            </a>
-                        
-                            <a href="/python/20180423-48b5.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-23T05:32:55.000Z">2018-04-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python从requirements.txt安装包
-                            </a>
-                        
-                            <a href="/windows10/20180420-f8ae.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T05:32:11.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下在右键菜单中添加获取管理员权限入口
-                            </a>
-                        
-                            <a href="/windows10/20180420-38fd.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T03:44:43.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下给目录右键菜单添加cmd入口
-                            </a>
-                        
-                            <a href="/windows10/20180420-6264.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T03:30:45.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下隐藏资源管理器中六大用户文件夹
-                            </a>
-                        
-                            <a href="/windows10/20180420-1a3f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T02:52:45.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下使用doskey在cmd中建立类似于linux中alias的宏
-                            </a>
-                        
-                            <a href="/algorithms/20180313-6ba0.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-13T02:18:46.000Z">2018-03-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                动态规划-钢材切割经典问题分析
-                            </a>
-                        
-                            <a href="/statistics/20180312-2d85.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-12T13:46:24.000Z">2018-03-12</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                三大相关系数 Pearson Kendall Spearman
-                            </a>
-                        
-                            <a href="/statistics/20180312-62c1.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-12T12:44:27.000Z">2018-03-12</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                参数模型和非参数模型
-                            </a>
-                        
-                            <a href="/data-processing/20180308-ca22.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-08T15:51:29.000Z">2018-03-08</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python-pandas模块-加载数据
-                            </a>
-                        
-                            <a href="/data-processing/20180307-3057.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-07T08:06:12.000Z">2018-03-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python-pandas模块-Series类和DataFrame类
-                            </a>
-                        
-                            <a href="/statistics/20180306-c444.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-06T05:06:22.000Z">2018-03-06</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                回归模型结果度量指标
-                            </a>
-                        
-                            <a href="/statistics/20180302-90e6.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-02T03:51:02.000Z">2018-03-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                聚类结果度量指标
-                            </a>
-                        
-                            <a href="/deep-learning/20180301-e69e.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-01T03:16:52.000Z">2018-03-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-基于TFRecord加载图像数据
-                            </a>
-                        
-                            <a href="/statistics/20180228-5746.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-28T12:41:44.000Z">2018-02-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                假设检验原理2-卡方检验
-                            </a>
-                        
-                            <a href="/statistics/20180228-4b70.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-28T06:36:35.000Z">2018-02-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                假设检验原理1-t检验和F检验
-                            </a>
-                        
-                            <a href="/python/20180201-ffef.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-01T01:34:18.000Z">2018-02-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python自用进度条
-                            </a>
-                        
-                            <a href="/deep-learning/20180126-f29a.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-26T03:18:29.000Z">2018-01-26</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-基于队列和多线程加载数据
-                            </a>
-                        
-                            <a href="/windows10/20180125-f59f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-25T15:28:48.000Z">2018-01-25</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10系统将C盘的用户文件夹迁移至D盘
-                            </a>
-                        
-                            <a href="/deep-learning/20180125-ff54.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-25T13:23:42.000Z">2018-01-25</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-计算资源控制
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
+            </div>
+            <time class="pink-link-context" datetime="2018-03-06T05:06:22.000Z"><a href="/statistics/20180306-c444.html">2018-03-06</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#MAE-Mean-Absolute-Error-平均绝对误差"><span class="section table-of-contents-text">MAE (Mean Absolute Error, 平均绝对误差)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#MSE-Mean-Squre-Error-均方误差"><span class="section table-of-contents-text">MSE (Mean Squre Error, 均方误差)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#RMSE-Rooted-Mean-Square-Error-均方根误差"><span class="section table-of-contents-text">RMSE (Rooted Mean Square Error, 均方根误差)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#R2-R-Squared"><span class="section table-of-contents-text">R2 (R-Squared)</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>回归模型因为预测值连续，很难用‘准确度’这类指标去衡量<br>回归模型评估方法主要有：</p>
+<h1 id="MAE-Mean-Absolute-Error-平均绝对误差"><a href="#MAE-Mean-Absolute-Error-平均绝对误差" class="headerlink" title="MAE (Mean Absolute Error, 平均绝对误差)"></a>MAE (Mean Absolute Error, 平均绝对误差)</h1><p>sklearn API: <code>from sklearn.metrics import mean_absolute_error</code><br>formula:<br><span style="font-size:20px">MAE = mean ( | f<sub>i</sub> - y<sub>i</sub> | , i = 1 … n )</span></p>
+<p>这个很矬，一般不用！</p>
+<hr>
+<h1 id="MSE-Mean-Squre-Error-均方误差"><a href="#MSE-Mean-Squre-Error-均方误差" class="headerlink" title="MSE (Mean Squre Error, 均方误差)"></a>MSE (Mean Squre Error, 均方误差)</h1><p>sklearn API: <code>from sklearn.metrics import mean_squared_error</code><br>formula:<br><span style="font-size:20px">MAE = mean ( ( f<sub>i</sub> - y<sub>i</sub> ) <sup style="font-size:16px">2</sup> , i = 1 … n )</span></p>
+<p>这个很流行！</p>
+<hr>
+<h1 id="RMSE-Rooted-Mean-Square-Error-均方根误差"><a href="#RMSE-Rooted-Mean-Square-Error-均方根误差" class="headerlink" title="RMSE (Rooted Mean Square Error, 均方根误差)"></a>RMSE (Rooted Mean Square Error, 均方根误差)</h1><p>formula:<br><span style="font-size:20px">RMSE = sqrt ( MSE )</span></p>
+<p>与上面的MSE没有区别，一般使用MSE即可！<br><strong>注意</strong>：如果是在迭代过程中作为loss函数，需要合理选择MSE/RMSE</p>
+<hr>
+<h1 id="R2-R-Squared"><a href="#R2-R-Squared" class="headerlink" title="R2 (R-Squared)"></a>R<sup>2</sup> (R-Squared)</h1><p>sklearn API: <code>from sklearn.metrics import r2_score</code><br>formula:<br><span style="font-size:20px">R<sup>2</sup> = 1 - sum( (yPred<sub>i</sub>-yTrue<sub>i</sub>)<sup style="font-size:16px">2</sup> ) / sum( (yTrue<sub>i</sub>-yTrueMean<sub>i</sub>)<sup style="font-size:16px">2</sup> )</span></p>
+<p>将预测值与只使用均值的情况进行比较</p>
+<ul>
+<li>当 yPred<sub>i</sub> = yTrueMean 时，R<sup>2</sup> = 0 → 完全不沾边，还不如使用均值</li>
+<li>当 yPred<sub>i</sub> = yTrue 时，R<sup>2</sup> = 1 → 完全匹配（实际上应该是达不到的）</li>
+<li>据说 R<sup>2</sup> 值一般在 0 到 1 之间，尚未亲身验证</li>
+</ul>
+
+                
+<p class="pink-link-context">
+    <a href="/data-processing/20180307-3057.html" rel="next" title="python-pandas模块-Series类和DataFrame类">
+    Prev: python-pandas模块-Series类和DataFrame类
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/statistics/20180302-90e6.html" rel="next" title="聚类结果度量指标">
+    Next: 聚类结果度量指标
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>

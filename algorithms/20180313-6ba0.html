@@ -7,13 +7,20 @@
 
     
 
-    <title>Archives | 晚来天欲雪 能饮一杯无</title>
+    <title>动态规划-钢材切割经典问题分析 | 晚来天欲雪 能饮一杯无</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="钢条切割问题
+什么时候用动态规划?动态规划（Dynamic Programming）问题的显著特征：
+
+最优子结构（optimal substructure）
+
+如果一个问题的解结构包含其子问题的最优解，称此问题具有最优子结构问题。如上的钢条切割问题，长度为n的钢条显然存在最优解，而且最优解一定可以">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="动态规划-钢材切割经典问题分析"/>
     <meta property="og:site_name" content="Hexo"/>
 
     
@@ -247,196 +254,100 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">Current page(Archives)</span>
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/algorithms/">algorithms</a>
+
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>动态规划-钢材切割经典问题分析</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2018
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/python/20180730-5f87.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-30T14:21:29.000Z">2018-07-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-warnings
-                            </a>
-                        
-                            <a href="/python/20180730-ee75.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-30T14:19:04.000Z">2018-07-30</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python之飘逸的format格式化字符串控制
-                            </a>
-                        
-                            <a href="/python/20180728-42ac.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-28T02:14:54.000Z">2018-07-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-时间模块
-                            </a>
-                        
-                            <a href="/python/20180724-1605.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-24T08:17:07.000Z">2018-07-24</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-logging入门版
-                            </a>
-                        
-                            <a href="/python/20180723-77b1.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-23T08:42:35.000Z">2018-07-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python内建模块-getpass
-                            </a>
-                        
-                            <a href="/database-op/20180718-3284.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-18T04:23:32.000Z">2018-07-18</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                mysql的删除语法DROP TRUNCATE DELETE
-                            </a>
-                        
-                            <a href="/deep-learning/20180717-601f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-17T02:39:40.000Z">2018-07-17</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                玻尔兹曼机和受限玻尔兹曼机
-                            </a>
-                        
-                            <a href="/statistics/20180716-beb2.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-07-16T12:39:31.000Z">2018-07-16</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                统计模型估计-噪音对比估计NCE
-                            </a>
-                        
-                            <a href="/python/20180423-48b5.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-23T05:32:55.000Z">2018-04-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python从requirements.txt安装包
-                            </a>
-                        
-                            <a href="/windows10/20180420-f8ae.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T05:32:11.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下在右键菜单中添加获取管理员权限入口
-                            </a>
-                        
-                            <a href="/windows10/20180420-38fd.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T03:44:43.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下给目录右键菜单添加cmd入口
-                            </a>
-                        
-                            <a href="/windows10/20180420-6264.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T03:30:45.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下隐藏资源管理器中六大用户文件夹
-                            </a>
-                        
-                            <a href="/windows10/20180420-1a3f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-04-20T02:52:45.000Z">2018-04-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10下使用doskey在cmd中建立类似于linux中alias的宏
-                            </a>
-                        
-                            <a href="/algorithms/20180313-6ba0.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-13T02:18:46.000Z">2018-03-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                动态规划-钢材切割经典问题分析
-                            </a>
-                        
-                            <a href="/statistics/20180312-2d85.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-12T13:46:24.000Z">2018-03-12</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                三大相关系数 Pearson Kendall Spearman
-                            </a>
-                        
-                            <a href="/statistics/20180312-62c1.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-12T12:44:27.000Z">2018-03-12</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                参数模型和非参数模型
-                            </a>
-                        
-                            <a href="/data-processing/20180308-ca22.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-08T15:51:29.000Z">2018-03-08</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python-pandas模块-加载数据
-                            </a>
-                        
-                            <a href="/data-processing/20180307-3057.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-07T08:06:12.000Z">2018-03-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python-pandas模块-Series类和DataFrame类
-                            </a>
-                        
-                            <a href="/statistics/20180306-c444.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-06T05:06:22.000Z">2018-03-06</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                回归模型结果度量指标
-                            </a>
-                        
-                            <a href="/statistics/20180302-90e6.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-02T03:51:02.000Z">2018-03-02</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                聚类结果度量指标
-                            </a>
-                        
-                            <a href="/deep-learning/20180301-e69e.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-03-01T03:16:52.000Z">2018-03-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-基于TFRecord加载图像数据
-                            </a>
-                        
-                            <a href="/statistics/20180228-5746.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-28T12:41:44.000Z">2018-02-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                假设检验原理2-卡方检验
-                            </a>
-                        
-                            <a href="/statistics/20180228-4b70.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-28T06:36:35.000Z">2018-02-28</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                假设检验原理1-t检验和F检验
-                            </a>
-                        
-                            <a href="/python/20180201-ffef.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-02-01T01:34:18.000Z">2018-02-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                python自用进度条
-                            </a>
-                        
-                            <a href="/deep-learning/20180126-f29a.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-26T03:18:29.000Z">2018-01-26</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-基于队列和多线程加载数据
-                            </a>
-                        
-                            <a href="/windows10/20180125-f59f.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-25T15:28:48.000Z">2018-01-25</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                win10系统将C盘的用户文件夹迁移至D盘
-                            </a>
-                        
-                            <a href="/deep-learning/20180125-ff54.html" class="collection-item grey-text text-darken-1">
-                                <time datetime="2018-01-25T13:23:42.000Z">2018-01-25</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                tensorflow-计算资源控制
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
+            </div>
+            <time class="pink-link-context" datetime="2018-03-13T02:18:46.000Z"><a href="/algorithms/20180313-6ba0.html">2018-03-13</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#钢条切割问题"><span class="section table-of-contents-text">钢条切割问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#什么时候用动态规划"><span class="section table-of-contents-text">什么时候用动态规划?</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#动态规划的经典模型"><span class="section table-of-contents-text">动态规划的经典模型</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#线性模型"><span class="section table-of-contents-text">线性模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#区间模型"><span class="section table-of-contents-text">区间模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#背包模型"><span class="section table-of-contents-text">背包模型</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="钢条切割问题"><a href="#钢条切割问题" class="headerlink" title="钢条切割问题"></a>钢条切割问题</h1><p><img src="http://p33k8pinb.bkt.clouddn.com/18-3-13/48270209.jpg" alt=""></p>
+<h1 id="什么时候用动态规划"><a href="#什么时候用动态规划" class="headerlink" title="什么时候用动态规划?"></a>什么时候用动态规划?</h1><p>动态规划（Dynamic Programming）问题的显著特征：</p>
+<ol>
+<li><strong>最优子结构</strong>（optimal substructure）</li>
+</ol>
+<p><span style="color:red;">如果一个问题的解结构包含其子问题的最优解，称此问题具有最优子结构问题。</span>如上的钢条切割问题，长度为n的钢条显然存在最优解，而且最优解一定可以分为两组，假设为i和n-i，那么长度分别为i和n-i的钢条显然也存在最优解，而且可以对这两种钢条独立求解（对长度分别为i和n-i的钢条求解完全是另外的不同的问题）。当然，这里还存在另外一种情况，长度为n的钢条不一定非要切割才能产生最优解，事实上当p<sub>n</sub>足够大时最优解发生在不切割时，因此需要取<strong>不切割</strong>和<strong>切割成两组</strong>中较大的那个值。事实上所谓的<strong>切割成两组</strong>可能存在不止一种切法：长度为n的钢条存在n-1种切法。因此实际上的递归式可以写为：</p>
+<p style="font-size:20px;margin-left:100px"><b>r<sub>n</sub> = max{p<sub>n</sub>, r<sub>1</sub>＋r<sub>n-1</sub>, r<sub>2</sub>＋r<sub>n-2</sub>, …, r<sub>n-1</sub>＋r<sub>1</sub>}</b>, 共n项</p>
+
+<p>考虑到重复元素，可进一步精简为：[n/2]表示取整</p>
+<p style="font-size:20px;margin-left:100px"><b>r<sub>n</sub> = max{p<sub>n</sub>, r<sub>1</sub>＋r<sub>n-1</sub>, r<sub>2</sub>＋r<sub>n-2</sub>, …, r<sub>[n/2]</sub>＋r<sub>n-[n/2]</sub>}</b>, 共1+[n/2]项</p>
+
+<ol start="2">
+<li><strong>重叠子问题</strong>（overlapping subproblems） </li>
+</ol>
+<p>当根据递归式<strong>自顶向底</strong>进行计算时，如果不运用任何技巧（如备忘录），将会浪费大量的资源重复计算相同的子问题，很明显这些子问题是重叠的。递归本来就需要额外的空间对中间状态进行存储，如果还要浪费大量时间重复计算重叠子问题，大大的不划算。解决重叠子问题大概有两种方法：</p>
+<pre><code>1. **备忘录**：自顶向下计算时将中间结果存下来，下次遇到时直接查询即可。备忘录解决了重叠子问题的计算。
+2. **自底向顶计算**：这个就厉害了，连递归栈也省略了。利用递推式从最小的同类问题开始计算，你会发现意外的惊喜。在钢条切割问题中最简单的同类问题不外乎r&lt;sub&gt;0&lt;/sub&gt;=0或者r&lt;sub&gt;1&lt;/sub&gt;=p&lt;sub&gt;1&lt;/sub&gt;。
+</code></pre><blockquote>
+<p>java中可以使用 <code>Arrays.stream(ARRAY).max().getAsInt()</code> 获取最大值</p>
+</blockquote>
+<h1 id="动态规划的经典模型"><a href="#动态规划的经典模型" class="headerlink" title="动态规划的经典模型"></a>动态规划的经典模型</h1><h2 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h2><p>状态的排布呈线性：？？</p>
+<div style="font-size:18px;font-family:楷体;padding:20px">【例题】在一个夜黑风高的晚上，有n（n &lt;= 50）个小朋友在桥的这边，现在他们需要过桥，但是由于桥很窄，每次只允许不大于两人通过，他们只有一个手电筒，所以每次过桥的两个人需要把手电筒带回来，i号小朋友过桥的时间为T[i]，两个人过桥的总时间为二者中时间长者。问所有小朋友过桥的总时间最短是多少。</div>
+
+
+<h2 id="区间模型"><a href="#区间模型" class="headerlink" title="区间模型"></a>区间模型</h2><h2 id="背包模型"><a href="#背包模型" class="headerlink" title="背包模型"></a>背包模型</h2>
+                
+<p class="pink-link-context">
+    <a href="/windows10/20180420-1a3f.html" rel="next" title="win10下使用doskey在cmd中建立类似于linux中alias的宏">
+    Prev: win10下使用doskey在cmd中建立类似于linux中alias的宏
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/statistics/20180312-2d85.html" rel="next" title="三大相关系数 Pearson Kendall Spearman">
+    Next: 三大相关系数 Pearson Kendall Spearman
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
