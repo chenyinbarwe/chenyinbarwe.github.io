@@ -7,7 +7,7 @@
 
     
 
-    <title>tensorflow-基于队列和多线程加载数据 | 晚来天欲雪 能饮一杯无</title>
+    <title>tensorflow-基于队列和多线程加载数据 | CY的博客</title>
     <meta name="author" content="John Doe">
     
     <meta name="description" content="建立如下的文件 fileslist.csv注：建议采用csv格式，第一列是图像路径，第二列是标签（建议标签预处理成数字），分隔符为 ,
@@ -19,14 +19,14 @@ with open(&amp;apos;fileslist.cs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <meta property="og:title" content="tensorflow-基于队列和多线程加载数据"/>
-    <meta property="og:site_name" content="Hexo"/>
+    <meta property="og:site_name" content="Barwe"/>
 
     
     <meta property="og:image" content=""/>
     
 
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Barwe" type="application/atom+xml">
     <link rel="stylesheet" href="/css/lib/materialize.min.css">
     <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
@@ -41,13 +41,13 @@ with open(&amp;apos;fileslist.cs">
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="indigo">
+    <nav class="blue-grey">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
         </a>
         <div class="">
-            <a href="/" class="brand-logo hide-on-med-and-down">Hexo</a>
+            <a href="/" class="brand-logo hide-on-med-and-down">Barwe</a>
             <ul class="right hide-on-med-and-down">
                 
                     <li>
@@ -174,8 +174,8 @@ with open(&amp;apos;fileslist.cs">
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/data-processing/">
-                    data-processing <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/algorithms/">
+                    algorithms <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -190,16 +190,8 @@ with open(&amp;apos;fileslist.cs">
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/algorithms/">
-                    algorithms <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">7</span></a>
+                <a class="no-padding" href="/categories/data-processing/">
+                    data-processing <span class="right">2</span></a>
                 </a>
             </li>
 
@@ -208,6 +200,14 @@ with open(&amp;apos;fileslist.cs">
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/deep-learning/">
                     deep-learning <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">7</span></a>
                 </a>
             </li>
 
@@ -253,7 +253,7 @@ with open(&amp;apos;fileslist.cs">
     <main>
         <div class="container main-container">
     <nav class="page-nav hide-on-small-only">
-    <div class="nav-wrapper indigo">
+    <div class="nav-wrapper blue-grey">
         <span class="breadcrumb">Current page(Categories)</span>
         
             
@@ -422,27 +422,26 @@ img_path, img_label = tf.decode_csv(item, [[&apos;&apos;],[1]], field_delim=&apo
   </div>
 
     </main>
-    <footer class="page-footer indigo darken-1">
+    <footer class="page-footer blue-grey darken-1">
     
-    <div class="footer-container container">
-        <div class="row">
-            
-            <div class="social-group col m4 s12">
-                <h5 class="white-text">Social</h5>
-                
-                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
-                        <i class="fa fa-2x fa-weibo"></i>
-                    </a>
-                
-                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
-                        <i class="fa fa-2x fa-github"></i>
-                    </a>
-                
-                    <a class="social-link" href="/atom.xml" target="_blank">
-                        <i class="fa fa-2x fa-rss"></i>
-                    </a>
-                
-                
+		<div class="footer-container container">
+			<div class="row">
+			
+				
+					<div class="social-group col m4 s12">
+						<h5 class="white-text">Social</h5>
+						
+							<a class="social-link" href="http://weibo.com/dangercy1314" target="_blank">
+								<i class="fa fa-2x fa-weibo"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+							<a class="social-link" href="https://github.com/barwe" target="_blank">
+								<i class="fa fa-2x fa-github"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+						
     <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
     </script>
     <div class="site-visitors-container white-text">
@@ -458,29 +457,22 @@ img_path, img_label = tf.decode_csv(item, [[&apos;&apos;],[1]], field_delim=&apo
     </div>
 
 
-            </div>
-            
+					</div>
+				
 
-            
-            <div class="col m8 s12">
-                <h5 class="white-text">Links</h5>
-                
-                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
-                
-                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址（测试友情链接）</a>
-                
-            </div>
-            
-        </div>
-    </div>
+				
+					<div class="col m8 s12">
+						<h5 class="white-text">Links</h5>
+						
+							<a class="social-link" href="http://barwe.top" target="_blank">原博客地址</a>
+						
+							<a class="social-link" href="https://github.com/raytaylorlin/hexo-theme-raytaylorism" target="_blank">模板Github地址</a>
+						
+					</div>
+				
+			</div>
+		</div>
     
-
-    <div class="footer-copyright pink-link-context">
-        <div class="container">
-            © 2016 example.com, All rights reserved.
-            <p class="right" style="margin-top: 0;">Blog powered by <a href="https://hexo.io">Hexo</a> | Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
-        </div>
-    </div>
 </footer>
 
 
@@ -576,7 +568,7 @@ img_path, img_label = tf.decode_csv(item, [[&apos;&apos;],[1]], field_delim=&apo
 
             
             // 添加new标签
-            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            $('').append('<span class="new badge pink"></span>');
             
 
             // 搜索功能
@@ -703,15 +695,6 @@ img_path, img_label = tf.decode_csv(item, [[&apos;&apos;],[1]], field_delim=&apo
 
 
 
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-<script type="text/javascript" async
-  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
 
 
