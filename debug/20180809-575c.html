@@ -7,18 +7,18 @@
 
     
 
-    <title>win10系统将C盘的用户文件夹迁移至D盘 | CY的博客</title>
+    <title>python读取json文件时书写的语法差异可能会良成大bug | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="一、win10默认禁用管理员账户：1、打开“计算机管理”：① 右键“我的电脑”- 管理
-② cmd - 键入“计算机管理”- 打开
-2、激活管理员账户：@ 右键“计算机管理（本地）&amp;gt;系统工具&amp;gt;本地用户和组&amp;gt;用户&amp;gt;Administrator”选择属性
-@ 去掉“账户已禁用”的对">
+    <meta name="description" content="对于较多参数的程序我们可以通过命令行进行参数传入，也可以定义额外的配置文件。
+这里我使用json格式的文件作为额外的配置文件。
+json.decoder.JSONDecodeError使用json文件作为配置文件时如果涉及到列表（list）类型，最后一个元素后面千万不能加逗号。
+即 [&amp;quot;a">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="win10系统将C盘的用户文件夹迁移至D盘"/>
+    <meta property="og:title" content="python读取json文件时书写的语法差异可能会良成大bug"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -253,7 +253,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/windows10/">windows10</a>
+    <a class="breadcrumb" href="/categories/debug/">debug</a>
 
 
         
@@ -270,12 +270,12 @@
             <div class="article-title">
                 
     
-        <h1>win10系统将C盘的用户文件夹迁移至D盘</h1>
+        <h1>python读取json文件时书写的语法差异可能会良成大bug</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-01-25T15:28:48.000Z"><a href="/windows10/20180125-f59f.html">2018-01-25</a></time>
+            <time class="pink-link-context" datetime="2018-08-09T15:12:32.000Z"><a href="/debug/20180809-575c.html">2018-08-09</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -285,28 +285,38 @@
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、win10默认禁用管理员账户："><span class="section table-of-contents-text">一、win10默认禁用管理员账户：</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1、打开“计算机管理”："><span class="section table-of-contents-text">1、打开“计算机管理”：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2、激活管理员账户："><span class="section table-of-contents-text">2、激活管理员账户：</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、切换至管理员"><span class="section table-of-contents-text">二、切换至管理员</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1、注销当前用户，切换至Administrator用户"><span class="section table-of-contents-text">1、注销当前用户，切换至Administrator用户</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ"><span class="section table-of-contents-text">2、打开cmd，执行 robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！"><span class="section table-of-contents-text">3、可能需要安装文件解锁工具 LockHunter：程序接口位于右键菜单中！</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面"><span class="section table-of-contents-text">4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q"><span class="section table-of-contents-text">5、删除”C:\Users\USERNAME”：cmd中执行 rmdir &quot;C:\Users\USERNAME&quot; /S /Q</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot"><span class="section table-of-contents-text">6、建立软连接：cmd中执行 mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;</span></a></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#json-decoder-JSONDecodeError"><span class="section table-of-contents-text">json.decoder.JSONDecodeError</span></a></li></ol>
 </div>
 
 
             <div class="entry pink-link-context">
-                <h1 id="一、win10默认禁用管理员账户："><a href="#一、win10默认禁用管理员账户：" class="headerlink" title="一、win10默认禁用管理员账户："></a>一、win10默认禁用管理员账户：</h1><h2 id="1、打开“计算机管理”："><a href="#1、打开“计算机管理”：" class="headerlink" title="1、打开“计算机管理”："></a>1、打开“计算机管理”：</h2><p>① 右键“我的电脑”- 管理</p>
-<p>② cmd - 键入“计算机管理”- 打开</p>
-<h2 id="2、激活管理员账户："><a href="#2、激活管理员账户：" class="headerlink" title="2、激活管理员账户："></a>2、激活管理员账户：</h2><p>@ 右键<strong>“计算机管理（本地）&gt;系统工具&gt;本地用户和组&gt;用户&gt;Administrator”</strong>选择<strong>属性</strong></p>
-<p>@ 去掉“账户已禁用”的对勾</p>
-<h1 id="二、切换至管理员"><a href="#二、切换至管理员" class="headerlink" title="二、切换至管理员"></a>二、切换至管理员</h1><h2 id="1、注销当前用户，切换至Administrator用户"><a href="#1、注销当前用户，切换至Administrator用户" class="headerlink" title="1、注销当前用户，切换至Administrator用户"></a>1、注销当前用户，切换至Administrator用户</h2><h2 id="2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ"><a href="#2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ" class="headerlink" title="2、打开cmd，执行 robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ"></a>2、打开cmd，执行 <code>robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ</code></h2><h2 id="3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！"><a href="#3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！" class="headerlink" title="3、可能需要安装文件解锁工具 LockHunter：程序接口位于右键菜单中！"></a>3、可能需要安装文件解锁工具 <em>LockHunter</em>：程序接口位于右键菜单中！</h2><h2 id="4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面"><a href="#4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面" class="headerlink" title="4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面"></a>4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面</h2><h2 id="5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q"><a href="#5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q" class="headerlink" title="5、删除”C:\Users\USERNAME”：cmd中执行 rmdir &quot;C:\Users\USERNAME&quot; /S /Q"></a>5、删除”C:\Users\USERNAME”：cmd中执行 <code>rmdir &quot;C:\Users\USERNAME&quot; /S /Q</code></h2><h2 id="6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot"><a href="#6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot" class="headerlink" title="6、建立软连接：cmd中执行 mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;"></a>6、建立软连接：cmd中执行 <code>mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;</code></h2>
+                <p>对于较多参数的程序我们可以通过命令行进行参数传入，也可以定义额外的配置文件。</p>
+<p>这里我使用json格式的文件作为额外的配置文件。</p>
+<h1 id="json-decoder-JSONDecodeError"><a href="#json-decoder-JSONDecodeError" class="headerlink" title="json.decoder.JSONDecodeError"></a>json.decoder.JSONDecodeError</h1><p>使用json文件作为配置文件时如果涉及到列表（list）类型，最后一个元素后面千万不能加逗号。</p>
+<p>即 <code>[&quot;a&quot;]</code> 是正确的，<code>[&quot;a&quot;, ]</code> 是不正确的。这个规则适用于所有json文件。</p>
+<p>加逗号将报错如下：</p>
+<pre>
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "......\lib\json\__init__.py", line 268, in load
+    parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "......\lib\json\__init__.py", line 319, in loads
+    return _default_decoder.decode(s)
+  File "......\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "......\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 16 column 9 (char 491)
+</module></stdin></pre>
+
+<p>其中 <code>raise JSONDecodeError(&quot;Expecting value&quot;, s, err.value) from None</code> 应该是指，json解析函数认为逗号后面应该还有元素，因此尝试去解析后面的元素，结果却什么也没得到，抛出 <code>json.decoder.JSONDecodeError</code> 错误，告诉你这里本该有值的（”Expecting value: …”）。模块作者有可能受到了其他语言习惯的影响？</p>
+
                 
-<p class="pink-link-context">
-    <a href="/deep-learning/20180126-f29a.html" rel="next" title="tensorflow-基于队列和多线程加载数据">
-    Prev: tensorflow-基于队列和多线程加载数据
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/deep-learning/20180125-ff54.html" rel="next" title="tensorflow-计算资源控制">
-    Next: tensorflow-计算资源控制
+    <a href="/python/20180730-5f87.html" rel="next" title="python内建模块-warnings">
+    Next: python内建模块-warnings
   </a>
 </p>
 

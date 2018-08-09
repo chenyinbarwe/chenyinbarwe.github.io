@@ -7,18 +7,13 @@
 
     
 
-    <title>win10系统将C盘的用户文件夹迁移至D盘 | CY的博客</title>
+    <title>debug | CY的博客</title>
     <meta name="author" content="John Doe">
-    
-    <meta name="description" content="一、win10默认禁用管理员账户：1、打开“计算机管理”：① 右键“我的电脑”- 管理
-② cmd - 键入“计算机管理”- 打开
-2、激活管理员账户：@ 右键“计算机管理（本地）&amp;gt;系统工具&amp;gt;本地用户和组&amp;gt;用户&amp;gt;Administrator”选择属性
-@ 去掉“账户已禁用”的对">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="win10系统将C盘的用户文件夹迁移至D盘"/>
+    
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -246,80 +241,30 @@
 
     <main>
         <div class="container main-container">
-    <nav class="page-nav hide-on-small-only">
+    
+
+<nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue-grey">
         <span class="breadcrumb">Current page(Categories)</span>
         
-            
-    
-    
-    <a class="breadcrumb" href="/categories/windows10/">windows10</a>
-
 
         
-
+            <a class="breadcrumb" href="/categories/debug/">debug</a>
         
     </div>
 </nav>
 
-<article>
-    <div class="card">
-        <div class="card-content">
-            
-
-            <div class="article-title">
-                
-    
-        <h1>win10系统将C盘的用户文件夹迁移至D盘</h1>
-    
 
 
-            </div>
-            <time class="pink-link-context" datetime="2018-01-25T15:28:48.000Z"><a href="/windows10/20180125-f59f.html">2018-01-25</a></time>
-
-            <span id="busuanzi_container_page_pv" class="read-times-container">
-    <i class="fa fa-eye"></i>
-    <span id="busuanzi_value_page_pv"></span>
-</span>
-
-            
-
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、win10默认禁用管理员账户："><span class="section table-of-contents-text">一、win10默认禁用管理员账户：</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1、打开“计算机管理”："><span class="section table-of-contents-text">1、打开“计算机管理”：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2、激活管理员账户："><span class="section table-of-contents-text">2、激活管理员账户：</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、切换至管理员"><span class="section table-of-contents-text">二、切换至管理员</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1、注销当前用户，切换至Administrator用户"><span class="section table-of-contents-text">1、注销当前用户，切换至Administrator用户</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ"><span class="section table-of-contents-text">2、打开cmd，执行 robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！"><span class="section table-of-contents-text">3、可能需要安装文件解锁工具 LockHunter：程序接口位于右键菜单中！</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面"><span class="section table-of-contents-text">4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q"><span class="section table-of-contents-text">5、删除”C:\Users\USERNAME”：cmd中执行 rmdir &quot;C:\Users\USERNAME&quot; /S /Q</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot"><span class="section table-of-contents-text">6、建立软连接：cmd中执行 mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;</span></a></li></ol></li></ol>
-</div>
-
-
-            <div class="entry pink-link-context">
-                <h1 id="一、win10默认禁用管理员账户："><a href="#一、win10默认禁用管理员账户：" class="headerlink" title="一、win10默认禁用管理员账户："></a>一、win10默认禁用管理员账户：</h1><h2 id="1、打开“计算机管理”："><a href="#1、打开“计算机管理”：" class="headerlink" title="1、打开“计算机管理”："></a>1、打开“计算机管理”：</h2><p>① 右键“我的电脑”- 管理</p>
-<p>② cmd - 键入“计算机管理”- 打开</p>
-<h2 id="2、激活管理员账户："><a href="#2、激活管理员账户：" class="headerlink" title="2、激活管理员账户："></a>2、激活管理员账户：</h2><p>@ 右键<strong>“计算机管理（本地）&gt;系统工具&gt;本地用户和组&gt;用户&gt;Administrator”</strong>选择<strong>属性</strong></p>
-<p>@ 去掉“账户已禁用”的对勾</p>
-<h1 id="二、切换至管理员"><a href="#二、切换至管理员" class="headerlink" title="二、切换至管理员"></a>二、切换至管理员</h1><h2 id="1、注销当前用户，切换至Administrator用户"><a href="#1、注销当前用户，切换至Administrator用户" class="headerlink" title="1、注销当前用户，切换至Administrator用户"></a>1、注销当前用户，切换至Administrator用户</h2><h2 id="2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ"><a href="#2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ" class="headerlink" title="2、打开cmd，执行 robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ"></a>2、打开cmd，执行 <code>robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ</code></h2><h2 id="3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！"><a href="#3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！" class="headerlink" title="3、可能需要安装文件解锁工具 LockHunter：程序接口位于右键菜单中！"></a>3、可能需要安装文件解锁工具 <em>LockHunter</em>：程序接口位于右键菜单中！</h2><h2 id="4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面"><a href="#4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面" class="headerlink" title="4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面"></a>4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面</h2><h2 id="5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q"><a href="#5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q" class="headerlink" title="5、删除”C:\Users\USERNAME”：cmd中执行 rmdir &quot;C:\Users\USERNAME&quot; /S /Q"></a>5、删除”C:\Users\USERNAME”：cmd中执行 <code>rmdir &quot;C:\Users\USERNAME&quot; /S /Q</code></h2><h2 id="6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot"><a href="#6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot" class="headerlink" title="6、建立软连接：cmd中执行 mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;"></a>6、建立软连接：cmd中执行 <code>mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;</code></h2>
-                
-<p class="pink-link-context">
-    <a href="/deep-learning/20180126-f29a.html" rel="next" title="tensorflow-基于队列和多线程加载数据">
-    Prev: tensorflow-基于队列和多线程加载数据
-  </a>
-</p>
-
-
-
-<p class="pink-link-context">
-    <a href="/deep-learning/20180125-ff54.html" rel="next" title="tensorflow-计算资源控制">
-    Next: tensorflow-计算资源控制
-  </a>
-</p>
-
-
-            </div>
-			
-        </div>
+    <div class="collection mt-0">
+        
+            <a href="/debug/20180809-575c.html" class="collection-item grey-text text-darken-1">
+                <time datetime="2018-08-09T15:12:32.000Z">2018-08-09</time>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                python读取json文件时书写的语法差异可能会良成大bug
+            </a>
+        
     </div>
-</article>
-
-
-
-
 
 
 </div>
