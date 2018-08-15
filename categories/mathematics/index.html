@@ -7,19 +7,13 @@
 
     
 
-    <title>三大相关系数 Pearson Kendall Spearman | CY的博客</title>
+    <title>mathematics | CY的博客</title>
     <meta name="author" content="John Doe">
-    
-    <meta name="description" content="简单区分一下三大相关系数：
-Pearson积矩相关系数r度量两变量间的线性相关关系，用r表示，定义为两变量协方差与标准差积的商（公式网上有的是。。）。
-
-高斯采样：因为公式要用到方差和均值，而已方差和均值作为参数的分布显而易见是高斯分布，因此两变量都要求从高斯分布采样
-成对采样：因为需要计算协方差矩">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="三大相关系数 Pearson Kendall Spearman"/>
+    
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -263,106 +257,30 @@ Pearson积矩相关系数r度量两变量间的线性相关关系，用r表示�
 
     <main>
         <div class="container main-container">
-    <nav class="page-nav hide-on-small-only">
+    
+
+<nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue-grey">
         <span class="breadcrumb">Current page(Categories)</span>
         
-            
-    
-    
-    <a class="breadcrumb" href="/categories/statistics/">statistics</a>
-
 
         
-
+            <a class="breadcrumb" href="/categories/mathematics/">mathematics</a>
         
     </div>
 </nav>
 
-<article>
-    <div class="card">
-        <div class="card-content">
-            
-
-            <div class="article-title">
-                
-    
-        <h1>三大相关系数 Pearson Kendall Spearman</h1>
-    
 
 
-            </div>
-            <time class="pink-link-context" datetime="2018-03-12T13:46:24.000Z"><a href="/statistics/20180312-2d85.html">2018-03-12</a></time>
-
-            <span id="busuanzi_container_page_pv" class="read-times-container">
-    <i class="fa fa-eye"></i>
-    <span id="busuanzi_value_page_pv"></span>
-</span>
-
-            
-
-            <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Pearson积矩相关系数r"><span class="section table-of-contents-text">Pearson积矩相关系数r</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Spearman秩相关系数ρ"><span class="section table-of-contents-text">Spearman秩相关系数ρ</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Kendall等级相关系数τ"><span class="section table-of-contents-text">Kendall等级相关系数τ</span></a></li></ol>
-</div>
-
-
-            <div class="entry pink-link-context">
-                <p>简单区分一下三大相关系数：</p>
-<h1 id="Pearson积矩相关系数r"><a href="#Pearson积矩相关系数r" class="headerlink" title="Pearson积矩相关系数r"></a>Pearson积矩相关系数r</h1><p>度量两变量间的<strong>线性相关</strong>关系，用r表示，定义为两变量<strong>协方差与标准差积的商</strong>（公式网上有的是。。）。</p>
-<ul>
-<li>高斯采样：因为公式要用到<strong>方差</strong>和<strong>均值</strong>，而已方差和均值作为参数的分布显而易见是高斯分布，因此两变量都要求从高斯分布采样</li>
-<li>成对采样：因为需要计算协方差矩阵（方阵）</li>
-<li>线性相关：各变量的离散值趋势大致呈直线，计算的是两条近似直线间的差异程度</li>
-<li>显然计算Pearson距离属于<strong>参数统计方法</strong></li>
-<li>而且以上条件较强，实际应用时难度较大</li>
-</ul>
-<h1 id="Spearman秩相关系数ρ"><a href="#Spearman秩相关系数ρ" class="headerlink" title="Spearman秩相关系数ρ"></a>Spearman秩相关系数ρ</h1><p>度量两个变量之间关系的强弱</p>
-<ul>
-<li><p>非参数统计方法：因为不需要假设总体的分布</p>
-<ul>
-<li>只要两变量间具有单调的函数关系，则两变量<strong>完全Spearman相关</strong></li>
-</ul>
-</li>
-<li><p>通常被认为是排列后的Pearson相关系数：参与Spearman系数计算的实际上是原始数据的<strong>等级值</strong>：</p>
-<ul>
-<li>一般原始数据是<strong>能排序</strong>且<strong>不重复</strong>的数据</li>
-<li>对于重复数据另外处理</li>
-</ul>
-</li>
-<li><p>很明显处理的是两列数据</p>
-</li>
-</ul>
-<p>计算公式<br><img src="http://p33k8pinb.bkt.clouddn.com/18-3-12/97151703.jpg" alt=""></p>
-<p>下表清晰定义了d<sub>i</sub><sup>2</sup>的求法：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-3-12/15520407.jpg" alt=""></p>
-<p><a href="http://blog.csdn.net/liuyuan_jq/article/details/52542211" target="_blank" rel="noopener">参考博客</a></p>
-<h1 id="Kendall等级相关系数τ"><a href="#Kendall等级相关系数τ" class="headerlink" title="Kendall等级相关系数τ"></a>Kendall等级相关系数τ</h1><p>略</p>
-<p><a href="http://blog.sciencenet.cn/blog-801621-688307.html" target="_blank" rel="noopener">参考</a></p>
-
-                
-<p class="pink-link-context">
-    <a href="/algorithms/20180313-6ba0.html" rel="next" title="动态规划-钢材切割经典问题分析">
-    Prev: 动态规划-钢材切割经典问题分析
-  </a>
-</p>
-
-
-
-<p class="pink-link-context">
-    <a href="/statistics/20180312-62c1.html" rel="next" title="参数模型和非参数模型">
-    Next: 参数模型和非参数模型
-  </a>
-</p>
-
-
-            </div>
-			
-        </div>
+    <div class="collection mt-0">
+        
+            <a href="/mathematics/20180815-dbe6.html" class="collection-item grey-text text-darken-1">
+                <time datetime="2018-08-15T03:05:10.000Z">2018-08-15</time>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                线性代数-逆矩阵的存在条件
+            </a>
+        
     </div>
-</article>
-
-
-
-
 
 
 </div>
