@@ -7,13 +7,18 @@
 
     
 
-    <title>CY的博客</title>
+    <title>什么是鸡尾酒排序？ | CY的博客</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="鸡尾酒排序本质上就是双向冒泡排序
+
+冒泡排序（Bubble Sort）元素分为已经排序的元素和待排序的元素，每轮排序之增加一个已经排序的元素。
+每轮排序都要从数组中待排序的那一端进行相邻元素的逐个比较，比较的结果是减少一个待排序元素，因此最多的比较次数将会是 (n-1)+…+1, 时间复杂度为 o(">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="什么是鸡尾酒排序？"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -248,67 +253,88 @@
 
 
     <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue-grey">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/algorithms/">algorithms</a>
+
+
         
 
-<div class="slider">
-    <ul class="slides">
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
     
-       <li>
-           <a href="/">
-               <img class="slider-image" src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/sliders/dxbyz1-1883x500.jpg">
-               <div class="caption center-align">
-                 <h4  style="color:#1E90FF !important"  >
-					This is our HUST!
-				</h4>
-                 <h5 style="color:#1E90FF !important"
-				 class="light grey-text text-lighten-3">
-					Here&#39;s our youth!
-				</h5>
-               </div>
-           </a>
-       </li>
+        <h1>什么是鸡尾酒排序？</h1>
     
-       <li>
-           <a href="/">
-               <img class="slider-image" src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/sliders/dxbyz2-1883x500.jpg">
-               <div class="caption center-align">
-                 <h4  style="color:#1E90FF !important"  >
-					This is our HUST!
-				</h4>
-                 <h5 style="color:#1E90FF !important"
-				 class="light grey-text text-lighten-3">
-					Here&#39;s our youth!
-				</h5>
-               </div>
-           </a>
-       </li>
-    
-       <li>
-           <a href="/">
-               <img class="slider-image" src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/sliders/gzbyz-1833x500.jpg">
-               <div class="caption right-align">
-                 <h4  style="color:#1E90FF !important"  >
-					This is our ESSYZ!
-				</h4>
-                 <h5 style="color:#1E90FF !important"
-				 class="light grey-text text-lighten-3">
-					Here&#39;s our youth!
-				</h5>
-               </div>
-           </a>
-       </li>
-    
-   </ul>
- </div>
 
 
+            </div>
+            <time class="pink-link-context" datetime="2018-08-14T08:52:21.000Z"><a href="/algorithms/20180814-6125.html">2018-08-14</a></time>
 
-<div style="background:gray; padding:40px 0" class="container main-container">
-	<div style="margin-left: 5em">
-		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=530 height=86 
-		src="//music.163.com/outchain/player?type=2&id=410161333&auto=1&height=66"></iframe>
-	</div>
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#冒泡排序（Bubble-Sort）"><span class="section table-of-contents-text">冒泡排序（Bubble Sort）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#鸡尾酒排序（Cocktail-Sort）"><span class="section table-of-contents-text">鸡尾酒排序（Cocktail Sort）</span></a></li></ol>
 </div>
+
+
+            <div class="entry pink-link-context">
+                <p>鸡尾酒排序本质上就是<strong>双向冒泡排序</strong></p>
+<hr>
+<h1 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h1><p>元素分为<strong>已经排序</strong>的元素和<strong>待排序</strong>的元素，每轮排序之增加一个<strong>已经排序的元素</strong>。</p>
+<p>每轮排序都要从数组中<strong>待排序</strong>的那一端进行相邻元素的逐个比较，比较的结果是<strong>减少一个待排序元素</strong>，因此最多的比较次数将会是 (n-1)+…+1, 时间复杂度为 o(n^2)。</p>
+<p>对于大部分有序的数组将会产生大量没有必要的比较，即当一轮比较不产生交换时说明已经全部有序，因此需要设置一个变量标识是否全部有序及时退出循环。</p>
+<hr>
+<h1 id="鸡尾酒排序（Cocktail-Sort）"><a href="#鸡尾酒排序（Cocktail-Sort）" class="headerlink" title="鸡尾酒排序（Cocktail Sort）"></a>鸡尾酒排序（Cocktail Sort）</h1><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/its/jiweijiu-sort.gif" alt=""></p>
+<p>经典的冒泡排序实际上是单向的，而鸡尾酒排序是双向的。</p>
+<p>但是，在鸡尾酒排序中每一轮只能在待排序元素中确定一个最大值或者最小值，在最坏情况下它并不能减少比较次数，<strong>它的时间复杂度和空间复杂度与经典的冒泡算法相同</strong>，只是在大部分有序时可能少于经典冒泡排序的比较次数。</p>
+<p>在大部分元素无序时两种排序半斤八两。</p>
+
+                
+<p class="pink-link-context">
+    <a href="/uncategorized/20180815-f82e.html" rel="next" title="test">
+    Prev: test
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/network/20180814-5f47.html" rel="next" title="TCP数据包结构及TCP建立连接时的三次握手">
+    Next: TCP数据包结构及TCP建立连接时的三次握手
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
 
 </div>
 

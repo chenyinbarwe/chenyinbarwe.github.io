@@ -160,8 +160,16 @@ json.decoder.JSONDecodeError使用json文件作为配置文件时如果涉及到
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/debug/">
-                    debug <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/algorithms/">
+                    algorithms <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/database-op/">
+                    database-op <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -176,6 +184,14 @@ json.decoder.JSONDecodeError使用json文件作为配置文件时如果涉及到
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/debug/">
+                    debug <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/data-processing/">
                     data-processing <span class="right">2</span></a>
                 </a>
@@ -184,16 +200,8 @@ json.decoder.JSONDecodeError使用json文件作为配置文件时如果涉及到
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/algorithms/">
-                    algorithms <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/database-op/">
-                    database-op <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -312,6 +320,12 @@ json.decoder.JSONDecodeError: Expecting value: line 16 column 9 (char 491)
 <p>其中 <code>raise JSONDecodeError(&quot;Expecting value&quot;, s, err.value) from None</code> 应该是指，json解析函数认为逗号后面应该还有元素，因此尝试去解析后面的元素，结果却什么也没得到，抛出 <code>json.decoder.JSONDecodeError</code> 错误，告诉你这里本该有值的（”Expecting value: …”）。模块作者有可能受到了其他语言习惯的影响？</p>
 
                 
+<p class="pink-link-context">
+    <a href="/network/20180814-5f47.html" rel="next" title="TCP数据包结构及TCP建立连接时的三次握手">
+    Prev: TCP数据包结构及TCP建立连接时的三次握手
+  </a>
+</p>
+
 
 
 <p class="pink-link-context">
@@ -611,6 +625,15 @@ json.decoder.JSONDecodeError: Expecting value: line 16 column 9 (char 491)
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65955364" charset="UTF-8"></script>
 
 
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
 
 
