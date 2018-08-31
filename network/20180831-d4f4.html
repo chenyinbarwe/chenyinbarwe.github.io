@@ -7,18 +7,22 @@
 
     
 
-    <title>python之飘逸的format格式化字符串控制 | CY的博客</title>
+    <title>国科大校园网访问IPv6资源 | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="标志性符号 {:}
-传参
-通过{}内的索引取值
- &amp;#39;{}-{}&amp;#39;.format(111,222) &amp;lt;=&amp;gt; ‘111-222’ &amp;#39;{0}-{1}&amp;#39;.format(111,222) &amp;lt;=&amp;gt; ‘111-222’ &amp;#39;{1}-{0}&amp;#39;.f">
+    <meta name="description" content="国科大校园网访问IPv6资源不需要登录（即不进行流量统计），具体设置方法如下：
+1、 查询IPv6的DNS服务器地址：这里是官网给出介绍页面&amp;gt;&amp;gt;&amp;gt;
+
+查询到的DNS服务器地址为：2401:ec00:5:50::6666
+2、 本地配置
+打开网络和共享中心，选择以太网：
+
+选择属性：">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="python之飘逸的format格式化字符串控制"/>
+    <meta property="og:title" content="国科大校园网访问IPv6资源"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -269,7 +273,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/python/">python</a>
+    <a class="breadcrumb" href="/categories/network/">network</a>
 
 
         
@@ -286,12 +290,12 @@
             <div class="article-title">
                 
     
-        <h1>python之飘逸的format格式化字符串控制</h1>
+        <h1>国科大校园网访问IPv6资源</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-07-30T14:19:04.000Z"><a href="/python/20180730-ee75.html">2018-07-30</a></time>
+            <time class="pink-link-context" datetime="2018-08-31T13:55:44.000Z"><a href="/network/20180831-d4f4.html">2018-08-31</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -301,71 +305,33 @@
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#传参"><span class="section table-of-contents-text">传参</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#格式控制-（借助于：）"><span class="section table-of-contents-text">格式控制 {:}（借助于：）</span></a></li></ol>
+    
 </div>
 
 
             <div class="entry pink-link-context">
-                <p>标志性符号 <code>{:}</code></p>
-<h1 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h1><ol>
-<li><p>通过<code>{}</code>内的<strong>索引</strong>取值</p>
-<p> <code>&#39;{}-{}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{0}-{1}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{1}-{0}&#39;.format(111,222)</code> &lt;=&gt; ‘222-111’<br> <code>&#39;{0}-{1}-{0}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222-111’</p>
-</li>
-</ol>
-<ol>
-<li><p>通过<code>{}</code>内的<strong>关键字</strong>取值</p>
-<p> <code>&#39;{one}-{two}&#39;.format(one=111,two=222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{two}-{one}&#39;.format(one=111,two=222)</code> &lt;=&gt; ‘222-111’</p>
-</li>
-<li><p>传入<strong>对象</strong></p>
-<p> <code>&#39;{specific_obj.attr1}-{specific_obj.attr2}&#39;.format(specific_obj)</code></p>
-</li>
-<li><p>传入<strong>序列</strong>（元组，列表，…）</p>
-<p> L = [111,222]<br> P = [333,444]</p>
-<p> <code>&#39;{0[0]}-{0[1]}&#39;.format(L)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{0[1]}-{0[0]}&#39;.format(L)</code> &lt;=&gt; ‘222-111’</p>
-<p> <code>&#39;{0[0]}-{1[1]}&#39;.format(L,P)</code> &lt;=&gt; ‘111-444’</p>
-</li>
-</ol>
-<h1 id="格式控制-（借助于：）"><a href="#格式控制-（借助于：）" class="headerlink" title="格式控制 {:}（借助于：）"></a>格式控制 <code>{:}</code>（借助于<code>：</code>）</h1><ol>
-<li><p><strong>填充</strong></p>
-<p> <code>&#39;{:w&gt;8}&#39;.format(1314)</code> &lt;=&gt; ‘wwww1314’</p>
-<blockquote>
-<p>: 格式控制必须字符<br>w 是填充符，必须为单字符，可以不指定，默认为空格，例如 {:&gt;8}<br><span>&gt;</span> 左对齐，相应地’&lt;’为右对齐, ‘^’为居中对齐<br>8 域宽</p>
-</blockquote>
-</li>
-<li><p><strong>浮点数精度</strong></p>
-<p> <code>&#39;{:.2f}&#39;.format(1.2345)</code> &lt;=&gt; ‘1.23’</p>
-<blockquote>
-<p>.2 代表保留两位小数，而不是两位有效数字</p>
-</blockquote>
-<p> <code>&#39;{:.{}f}&#39;.format(1.2345, 3)</code> &lt;=&gt; ‘1.234’</p>
-<blockquote>
-<p>{}可以嵌套使用！！</p>
-</blockquote>
-<p> <code>&#39;{k:.2f}.format(1.2345)</code> &lt;=&gt; ‘1.23’</p>
-<blockquote>
-<p>配合关键字使用</p>
-</blockquote>
-</li>
-<li><p><strong>进制转换</strong></p>
-<p> <code>{:b}</code>: 二进制<br> <code>{:d}</code>: 十进制<br> <code>{:o}</code>: 八进制<br> <code>{:x}</code>: 十六进制</p>
-</li>
-<li><p><strong>数字分隔符</strong></p>
-<p> <code>{:,}.format(1234567)</code> &lt;=&gt; ‘1,234,567’</p>
-</li>
-</ol>
+                <p>国科大校园网访问IPv6资源不需要登录（即不进行流量统计），具体设置方法如下：</p>
+<p>1、 查询IPv6的DNS服务器地址：<a href="http://inc.ucas.ac.cn/home/info/77fbcffa-5c86-4f36-a1b6-3f41ac4df2e4/dc0460de-214b-47a9-84e4-d8429c61d9d5" target="_blank" rel="noopener">这里是官网给出介绍页面&gt;&gt;&gt;</a></p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_215755.png" alt="官网介绍"></p>
+<p>查询到的DNS服务器地址为：<code>2401:ec00:5:50::6666</code></p>
+<p>2、 本地配置</p>
+<p>打开网络和共享中心，选择<strong>以太网</strong>：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_220741.png" alt="网络和共享中心"></p>
+<p>选择<strong>属性</strong>：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_221007.png" alt="以太网"></p>
+<p>选择<strong>Internet协议版本6（TCP/IPv6）</strong>的对钩启用IPv6，双击<strong>Internet协议版本6（TCP/IPv6）</strong>设置DNS服务器</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_221158.png" alt="以太网属性"></p>
+<p>将上面查询到的DNS服务器地址写入后<strong>确定</strong>即可：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_221515.png" alt="写入DNS地址"></p>
+<p>完成上述设置就可以1080p欣赏youtube的zhangzhe视频了哈哈哈</p>
+<p>感谢我的室友何睿乔同学 ~</p>
 
                 
-<p class="pink-link-context">
-    <a href="/python/20180730-5f87.html" rel="next" title="python内建模块-warnings">
-    Prev: python内建模块-warnings
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/python/20180728-42ac.html" rel="next" title="python内建模块-时间模块">
-    Next: python内建模块-时间模块
+    <a href="/mathematics/20180815-dbe6.html" rel="next" title="线性代数-逆矩阵的存在条件">
+    Next: 线性代数-逆矩阵的存在条件
   </a>
 </p>
 
