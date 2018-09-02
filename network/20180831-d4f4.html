@@ -7,18 +7,24 @@
 
     
 
-    <title>tensorflow-基于队列和多线程加载数据 | CY的博客</title>
+    <title>国科大校园网访问IPv6资源 | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="建立如下的文件 fileslist.csv注：建议采用csv格式，第一列是图像路径，第二列是标签（建议标签预处理成数字），分隔符为 ,
+    <meta name="description" content="国科大校园网访问IPv6资源设置方法如下：
+1、 查询IPv6的DNS服务器地址：这里是官网给出介绍页面&amp;gt;&amp;gt;&amp;gt;
 
-将 fileslist.csv 按行加载到python内置列表，假设为 imgNames# python
-with open(&amp;apos;fileslist.cs">
+查询到的DNS服务器地址为：2401:ec00:5:50::6666
+2、 本地配置
+打开网络和共享中心，选择以太网：
+
+选择属性：
+
+选择Internet协议版本6（">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="tensorflow-基于队列和多线程加载数据"/>
+    <meta property="og:title" content="国科大校园网访问IPv6资源"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -269,7 +275,7 @@ with open(&amp;apos;fileslist.cs">
             
     
     
-    <a class="breadcrumb" href="/categories/deep-learning/">deep-learning</a>
+    <a class="breadcrumb" href="/categories/network/">network</a>
 
 
         
@@ -286,12 +292,12 @@ with open(&amp;apos;fileslist.cs">
             <div class="article-title">
                 
     
-        <h1>tensorflow-基于队列和多线程加载数据</h1>
+        <h1>国科大校园网访问IPv6资源</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-01-26T03:18:29.000Z"><a href="/deep-learning/20180126-f29a.html">2018-01-26</a></time>
+            <time class="pink-link-context" datetime="2018-08-31T13:55:44.000Z"><a href="/network/20180831-d4f4.html">2018-08-31</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -301,109 +307,31 @@ with open(&amp;apos;fileslist.cs">
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#建立如下的文件-fileslist-csv"><span class="section table-of-contents-text">建立如下的文件 fileslist.csv</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#将-fileslist-csv-按行加载到python内置列表，假设为-imgNames"><span class="section table-of-contents-text">将 fileslist.csv 按行加载到python内置列表，假设为 imgNames</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#建立文件名队列"><span class="section table-of-contents-text">建立文件名队列</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#建队"><span class="section table-of-contents-text">建队</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#出队"><span class="section table-of-contents-text">出队</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#单个记录-item-数据标准化：根据图像-路径字符串-解析出-数组"><span class="section table-of-contents-text">单个记录(item)数据标准化：根据图像 路径字符串 解析出 数组</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#对记录-item-解码得到路径-img-path-和标签-img-label"><span class="section table-of-contents-text">对记录 item 解码得到路径 img_path 和标签 img_label</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#解析-img-path-的内容"><span class="section table-of-contents-text">解析 img_path 的内容</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#对图像内容字符串-img-str-进行解析，获取图像的数字信息"><span class="section table-of-contents-text">对图像内容字符串 img_str 进行解析，获取图像的数字信息</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）"><span class="section table-of-contents-text">由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取批次数据（batch-subset）"><span class="section table-of-contents-text">获取批次数据（batch subset）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Session里面如何使用开启队列？"><span class="section table-of-contents-text">Session里面如何使用开启队列？</span></a></li></ol>
+    
 </div>
 
 
             <div class="entry pink-link-context">
-                <h1 id="建立如下的文件-fileslist-csv"><a href="#建立如下的文件-fileslist-csv" class="headerlink" title="建立如下的文件 fileslist.csv"></a>建立如下的文件 <code>fileslist.csv</code></h1><p><img src="http://p33k8pinb.bkt.clouddn.com/18-1-26/36410313.jpg" alt=""><br><br><strong>注</strong>：建议采用<a href="https://baike.baidu.com/item/CSV/10739" target="_blank" rel="noopener">csv格式</a>，第一列是图像路径，第二列是标签（建议标签预处理成数字），分隔符为 <code>,</code></p>
-<hr>
-<h1 id="将-fileslist-csv-按行加载到python内置列表，假设为-imgNames"><a href="#将-fileslist-csv-按行加载到python内置列表，假设为-imgNames" class="headerlink" title="将 fileslist.csv 按行加载到python内置列表，假设为 imgNames"></a>将 <code>fileslist.csv</code> 按行加载到python内置列表，假设为 <code>imgNames</code></h1><pre><code># python
-with open(&apos;fileslist.csv&apos;,&apos;r&apos;) as fin:
-    imgNames = fin.read().strip().split(&apos;\n&apos;)
-</code></pre><hr>
-<h1 id="建立文件名队列"><a href="#建立文件名队列" class="headerlink" title="建立文件名队列"></a>建立文件名队列</h1><h2 id="建队"><a href="#建队" class="headerlink" title="建队"></a>建队</h2><pre><code>#python
-fn_queue = tf.train.string_input_producer(imgNames)
-#Other opt-parameters
-#    num_epochs: 读取文件一次为一个epoch，默认无限次读取
-#    shuffle: 读取文件时是否乱序
-#    seed: 当shuffle为True时设置随机数种子(可选)
-#    capacity: 队列容量，默认为32(很显然需要大于batch-size)
-#    share_name, name, cancel_op
-</code></pre><h2 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h2><pre><code>#python
-item = fn_queue.dequeue()
-</code></pre><p><strong>注</strong>：    <br></p>
-<ol>
-<li>出队的只是一个符号(参考tensorflow计算图的概念)，真正的值要在Session中获取<br></li>
-<li>此时 <code>item</code> 相当于 <code>fileslist.csv</code> 中的一行（一个记录），每个记录具有相同的形式！<br></li>
-<li>显然 <code>item</code> 不是标准形式，还需要在后面进行进一步加工</li>
-</ol>
-<hr>
-<h1 id="单个记录-item-数据标准化：根据图像-路径字符串-解析出-数组"><a href="#单个记录-item-数据标准化：根据图像-路径字符串-解析出-数组" class="headerlink" title="单个记录(item)数据标准化：根据图像 路径字符串 解析出 数组"></a>单个记录(<code>item</code>)数据标准化：根据图像 <em>路径字符串</em> 解析出 <em>数组</em></h1><h2 id="对记录-item-解码得到路径-img-path-和标签-img-label"><a href="#对记录-item-解码得到路径-img-path-和标签-img-label" class="headerlink" title="对记录 item 解码得到路径 img_path 和标签 img_label"></a>对记录 <code>item</code> 解码得到路径 <code>img_path</code> 和标签 <code>img_label</code></h2><pre><code>#python
-img_path, img_label = tf.decode_csv(item, [[&apos;&apos;],[1]], field_delim=&apos;,&apos;)
-</code></pre><p><em>参数解释</em></p>
-<ul>
-<li><code>records</code> : 必须参数，字符串类型的张量，这里就是 <code>fn_queue</code> 出队的结果 <code>item</code></li>
-<li><code>record_defaults</code> : 必须参数，指定返回值的类型(这里返回值类型的定义很有意思~~)<br>这里直观返回值类型为 <code>str, int</code> , 因此形参赋值 <code>[[&#39;&#39;], [1]]</code> (惊奇)<br>第一个 <code>[]</code> 内可以是任意 <code>str</code> 对象，第二个 <code>[]</code> 内可以是任意 <code>int</code> 对象</li>
-<li><code>field_delim</code> : 建议显示声明，csv文件列间分隔符，默认为 <code>,</code></li>
-<li><code>use_quote_delim</code> : unknown, unimportant</li>
-<li><code>name</code></li>
-<li><code>na_value</code> : NA/NaN格式选择，没啥用</li>
-</ul>
-<h2 id="解析-img-path-的内容"><a href="#解析-img-path-的内容" class="headerlink" title="解析 img_path 的内容"></a>解析 <code>img_path</code> 的内容</h2><pre><code>img_str = tf.read_file(img_path)
-</code></pre><p><img src="http://p33k8pinb.bkt.clouddn.com/18-1-26/54604707.jpg" style="width:30px;margin:0;display:inline-block"><br><span style="display:inline-block;position:relative;top:-55px;left:40px"><code>img_dtr</code> 实际上还是一个字符串，与包含<strong>文件名内容</strong>的 <code>img_path</code> 不同,<br><code>img_str</code> 包含的是<strong>文件内容</strong><span></span></span></p>
-<h2 id="对图像内容字符串-img-str-进行解析，获取图像的数字信息"><a href="#对图像内容字符串-img-str-进行解析，获取图像的数字信息" class="headerlink" title="对图像内容字符串 img_str 进行解析，获取图像的数字信息"></a>对图像内容字符串 <code>img_str</code> 进行解析，获取图像的<strong>数字</strong>信息</h2><pre><code>img_data = tf.image.decode_jpeg(img_str, channels=3)
-</code></pre><p><em>参数解释</em></p>
-<ul>
-<li><code>content</code> : 必须，字符串张量，此处为 <code>img_str</code></li>
-<li><code>channels=0</code> ： <span style="color:red">必须指定</span>，常见图像通道数可能取值有 1, 3, 4</li>
-<li><code>ratio=1</code></li>
-<li><code>fancy_upscaling=True</code></li>
-<li><code>try_recover_truncated=False</code></li>
-<li><code>acceptable_fraction=1</code></li>
-<li><code>dct_method=&#39;&#39;</code></li>
-<li><code>name=None</code></li>
-</ul>
-<h2 id="由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）"><a href="#由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）" class="headerlink" title="由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）"></a>由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）</h2><pre><code>img_array = tf.image.resize_images(img_data, [HEIGHT， WIDTH])
-</code></pre><p><em>可选参数</em></p>
-<ul>
-<li><code>method=ResizeMethod.BILINEAR</code> : 变形方法</li>
-<li><code>align_corners=False</code></li>
-</ul>
-<p><img src="http://p33k8pinb.bkt.clouddn.com/18-1-26/54604707.jpg" style="width:30px;margin:0;display:inline-block"><br><span style="display:inline-block;position:relative;top:-55px;left:40px">此处图片的尺寸应写为[高，宽], 即<strong>行</strong>作为数组的第一维度<br><span></span></span></p>
-<hr>
-<h1 id="获取批次数据（batch-subset）"><a href="#获取批次数据（batch-subset）" class="headerlink" title="获取批次数据（batch subset）"></a>获取批次数据（batch subset）</h1><pre><code>images, labels = tf.train.shuffle_batch([img_array, img_label], 
-                                        batch_size=8, 
-                                        capacity=100, 
-                                        min_after_dequeue=20)
-</code></pre><p><em>完整参数解释</em></p>
-<ul>
-<li><code>tensors</code> : 必须，待打包的记录列表，此处为 <code>[img_array, img_label]</code><br>因为 <code>img_array</code> 和 <code>img_label</code> 在这里都只是个符号，也就不难理解上述赋值了~</li>
-<li><code>batch_size</code> : 必须，与训练过程的 <code>batch_size</code> 相同<br>因此在使用队列训练模型时，<code>batch_size</code>需要作为超参进行预赋值</li>
-<li><code>capacity</code> : 建议，队列容量<br>注意这里的队列与前面的<strong>文件名队列</strong>不同</li>
-<li><code>min_after_dequeue</code> : 建议，每次出队后队列中剩余的记录<br>此参数可用来衡量shuffle水平，剩余记录数量越大，shuffle程度越高</li>
-<li><code>num_threads=1</code> ： 可选，入队线程数，通常情况下1个就够用了</li>
-<li><code>seed=None</code> : 可选，设置shuffle随机种子</li>
-<li><code>enqueue_many=False</code> : 可选，一个记录一个记录的入队还是多个一起入队</li>
-<li><code>shapes=None</code></li>
-<li><code>allow_smaller_final_batch=False</code> : 当每个epoch最后一个batch数目不足时是否允许灵活调整batch大小</li>
-<li><code>share_name=None</code> : 多个Session共用数据加载队列时使用，一般用不上</li>
-<li><code>name=None</code></li>
-</ul>
-<hr>
-<p><br><br>然而，以上都是在定义队列加载的<strong>图</strong> 。。。</p>
-<h1 id="Session里面如何使用开启队列？"><a href="#Session里面如何使用开启队列？" class="headerlink" title="Session里面如何使用开启队列？"></a><span id="start_queue">Session里面如何使用开启队列？</span></h1><pre><code>with tf.Session(...) as sess:
-    coord = tf.train.Coordinator()
-    threads = tf.train.start_queue_runners(sess=sess, coord=coord)
-    sess.run(tf.global_variables_initializer())
-    X, y = sess.run([images, labels])
-    利用feed_dict传入X,y进行训练...
-    coord.request_stop()
-    coord.join(threads=threads)
-</code></pre><hr>
-<p style="font-size:16px;margin:0">Author: Barwe(YinChen)<br>Email: <a href="mailto:995488247@qq.com" target="_blank" rel="noopener">995488247@qq.com</a><br>本文地址: <a href="http://barwe.top/deep-learning/2018-01-26/20180126111829/" target="_blank" rel="noopener">http://barwe.top/deep-learning/2018-01-26/20180126111829/</a></p>
+                <p>国科大校园网访问IPv6资源设置方法如下：</p>
+<p>1、 查询IPv6的DNS服务器地址：<a href="http://inc.ucas.ac.cn/home/info/77fbcffa-5c86-4f36-a1b6-3f41ac4df2e4/dc0460de-214b-47a9-84e4-d8429c61d9d5" target="_blank" rel="noopener">这里是官网给出介绍页面&gt;&gt;&gt;</a></p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_215755.png" alt="官网介绍"></p>
+<p>查询到的DNS服务器地址为：<code>2401:ec00:5:50::6666</code></p>
+<p>2、 本地配置</p>
+<p>打开网络和共享中心，选择<strong>以太网</strong>：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_220741.png" alt="网络和共享中心"></p>
+<p>选择<strong>属性</strong>：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_221007.png" alt="以太网"></p>
+<p>选择<strong>Internet协议版本6（TCP/IPv6）</strong>的对钩启用IPv6，双击<strong>Internet协议版本6（TCP/IPv6）</strong>设置DNS服务器</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_221158.png" alt="以太网属性"></p>
+<p>将上面查询到的DNS服务器地址写入后<strong>确定</strong>即可：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2018-08-31_221515.png" alt="写入DNS地址"></p>
+
                 
-<p class="pink-link-context">
-    <a href="/python/20180201-ffef.html" rel="next" title="python自用进度条">
-    Prev: python自用进度条
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/windows10/20180125-f59f.html" rel="next" title="win10系统将C盘的用户文件夹迁移至D盘">
-    Next: win10系统将C盘的用户文件夹迁移至D盘
+    <a href="/mathematics/20180815-dbe6.html" rel="next" title="线性代数-逆矩阵的存在条件">
+    Next: 线性代数-逆矩阵的存在条件
   </a>
 </p>
 
