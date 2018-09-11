@@ -7,19 +7,19 @@
 
     
 
-    <title>python自用进度条 | CY的博客</title>
+    <title>BeautifulSoup速查API | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="自定义一个简单的进度条，并没有考虑性能怎么样。。。
-import sys
-
-def process_bar(i, n, pref_str=&amp;apos;&amp;apos;, suff_str=&amp;apos;&amp;apos;, char=&amp;apos;=&amp;apos;, num_chars=100):
-    &amp;apo">
+    <meta name="description" content="创建、查看导入BeautifulSoup：
+1from bs4 import BeautifulSoup
+创建BeautifulSoup对象：
+1.传入字符串: html是源代码文本字符串。如
+123import requestshtml = requests.get(URL, headers=HE">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="python自用进度条"/>
+    <meta property="og:title" content="BeautifulSoup速查API"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -270,7 +270,7 @@ def process_bar(i, n, pref_str=&amp;apos;&amp;apos;, suff_str=&amp;apos;&amp;apo
             
     
     
-    <a class="breadcrumb" href="/categories/python/">python</a>
+    <a class="breadcrumb" href="/categories/network/">network</a>
 
 
         
@@ -287,12 +287,12 @@ def process_bar(i, n, pref_str=&amp;apos;&amp;apos;, suff_str=&amp;apos;&amp;apo
             <div class="article-title">
                 
     
-        <h1>python自用进度条</h1>
+        <h1>BeautifulSoup速查API</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-02-01T01:34:18.000Z"><a href="/python/20180201-ffef.html">2018-02-01</a></time>
+            <time class="pink-link-context" datetime="2018-09-11T00:04:01.000Z"><a href="/network/20180911-ef0f.html">2018-09-11</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -300,47 +300,116 @@ def process_bar(i, n, pref_str=&amp;apos;&amp;apos;, suff_str=&amp;apos;&amp;apo
 </span>
 
             
+    <div class="tags-row">
+        
+            <a href="/tags/手册/" class="chip pink lighten-1">手册</a>
+        
+    </div>
+
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#创建、查看"><span class="section table-of-contents-text">创建、查看</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四大对象"><span class="section table-of-contents-text">四大对象</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#遍历文档树"><span class="section table-of-contents-text">遍历文档树</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-标签对象的属性"><span class="section table-of-contents-text">1.标签对象的属性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-标签对象的方法"><span class="section table-of-contents-text">2.标签对象的方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-find簇方法"><span class="section table-of-contents-text">(1) find簇方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#find-all-name-attrs-recursive-text-kwargs"><span class="section table-of-contents-text">find_all( name , attrs , recursive , text , **kwargs )</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#find-name-attrs-recursive-text-kwargs"><span class="section table-of-contents-text">find( name , attrs , recursive , text , **kwargs )</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#find-parents-…-or-find-parent-…"><span class="section table-of-contents-text">find_parents(…) or find_parent(…)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#find-previous-siblings-…-or-find-previous-sibling-…"><span class="section table-of-contents-text">find_previous_siblings(…) or find_previous_sibling(…)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#find-next-siblings-…-or-find-next-sibling-…"><span class="section table-of-contents-text">find_next_siblings(…) or find_next_sibling(…)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#find-all-previous-…-or-find-previous-…"><span class="section table-of-contents-text">find_all_previous(…) or find_previous(…)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#find-all-next-…-or-find-next-…"><span class="section table-of-contents-text">find_all_next(…) or find_next(…)</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-select方法"><span class="section table-of-contents-text">(2) select方法</span></a></li></ol></li></ol></li></ol>
 </div>
 
 
             <div class="entry pink-link-context">
-                <p>自定义一个简单的进度条，并没有考虑性能怎么样。。。</p>
-<pre><code>import sys
-
-def process_bar(i, n, pref_str=&apos;&apos;, suff_str=&apos;&apos;, char=&apos;=&apos;, num_chars=100):
-    &apos;&apos;&apos;
-    :param i: 计数器,从1开始
-    :param n: 计数器最大值
-    :param char: 进度条符号
-    :param pref_str: 进度条前置字符串
-    :param suff_str: 进度条后置字符串
-    &apos;&apos;&apos;
-    num = i * num_chars // n
-    pre = char * num
-    pro = &apos;&gt;&apos; + &apos; &apos; * (num_chars - 1 - num) if num - num_chars else &apos;&apos;
-    numerator = &apos; &apos; * (len(str(n)) - len(str(i))) + str(i)
-    if num - num_chars:
-        sys.stdout.write(&quot;%s|%s/%d|%s%s|%s%%|%s\r&quot; % (
-        pref_str, numerator, n, pre, pro, &apos; &apos; + str(num * 100 // num_chars), suff_str))
-    else:
-        sys.stdout.write(&quot;%s|%s/%d|%s%s|%s%%|%s\n&quot; % (pref_str, numerator, n, pre, pro, 100, suff_str))
-</code></pre><p><img src="http://p33k8pinb.bkt.clouddn.com/18-1-26/54604707.jpg" style="width:30px;margin:0;display:inline-block"><br><span style="display:inline-block;position:relative;top:-55px;left:40px"> <code>i</code> 取值从 <code>0</code> 到 <code>n-1</code> ，符合 <code>range</code> 函数习惯<br><span></span></span></p>
+                <h1 id="创建、查看"><a href="#创建、查看" class="headerlink" title="创建、查看"></a>创建、查看</h1><p>导入<strong>BeautifulSoup</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br></pre></td></tr></table></figure>
+<p>创建<strong>BeautifulSoup对象</strong>：</p>
+<p>1.传入<strong>字符串</strong>: html是源代码文本字符串。如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">html = requests.get(URL, headers=HEADERS, cookies=COOKIES).text</span><br><span class="line">bsobj = BeautifulSoup(html, <span class="string">'lxml'</span>)</span><br></pre></td></tr></table></figure>
+<p>2.传入<strong>本地文件对象</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bsobj = BeautifulSoup(open(LOCAL_FILE))</span><br></pre></td></tr></table></figure>
+<p>格式化打印<strong>BeautifulSoup对象</strong>内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print( bsobj.prettify() )</span><br></pre></td></tr></table></figure>
+<hr>
+<p><br></p>
+<h1 id="四大对象"><a href="#四大对象" class="headerlink" title="四大对象"></a>四大对象</h1><ul>
+<li><code>bs4.element.Tag</code>: 标签，具有 <code>name</code> 属性（标签名）和 <code>attrs</code>属性 （标签的属性字典）：如 <code>bsobj.title</code> 或者下文的 <code>SOME_TAG</code>;</li>
+<li><code>bs4.element.NavigableString</code>: 标签内的字符串，通过 <code>SOME_TAG.string</code> 访问；</li>
+<li><code>bs4.BeautifulSoup</code>: BeautifulSoup对象，即<code>bsobj</code>，相当于内容是<strong>html</strong>标签的一个tag，<code>name</code>值为<code>[document]</code>;</li>
+<li><code>bs4.element.Comment</code>: 注释掉的内容，容易与<strong>NavigableString</strong>混淆</li>
+</ul>
+<hr>
+<p><br></p>
+<h1 id="遍历文档树"><a href="#遍历文档树" class="headerlink" title="遍历文档树"></a>遍历文档树</h1><p><br></p>
+<h2 id="1-标签对象的属性"><a href="#1-标签对象的属性" class="headerlink" title="1.标签对象的属性"></a>1.标签对象的属性</h2><p>遍历标签的直接子节点，返回列表：<code>SOME_TAG.contents</code></p>
+<p>遍历标签的直接子节点，返回<strong>listiterator对象</strong>：<code>SOME_TAG.children</code></p>
+<p>遍历标签的所有子孙节点，返回<strong>listiterator对象</strong>：<code>SOME_TAG.descendants</code></p>
+<p>标签内的字符串<strong>只有一个时</strong>获取这个字符串：<code>SOME_TAG.string</code></p>
+<p>标签内的字符串<strong>有很多个时</strong>获取这些字符串：<code>SOME_TAG.strings</code></p>
+<p>标签内的字符串<strong>有很多个时</strong>获取这些字符串并去掉其中的空白部分：<code>SOME_TAG.striped_strings</code></p>
+<p>父节点(还是一个tag对象)：<code>SOME_TAG.parent</code></p>
+<p>全部父节点，返回<strong>generator</strong>：<code>SOME_TAG.parents</code></p>
+<p>兄弟节点：<code>SOME_TAG.previous_sibling</code> 或 <code>SOME_TAG.next_sibling</code></p>
+<p>全部兄弟节点：<code>SOME_TAG.previous_siblings</code> 或 <code>SOME_TAG.next_siblings</code></p>
+<p>前后节点：<code>SOME_TAG.previous_element</code> 或 <code>SOME_TAG.next_element</code></p>
+<p>全部前后节点：<code>SOME_TAG.previous_elements</code> 或 <code>SOME_TAG.next_elements</code></p>
+<p><br></p>
+<h2 id="2-标签对象的方法"><a href="#2-标签对象的方法" class="headerlink" title="2.标签对象的方法"></a>2.标签对象的方法</h2><h3 id="1-find簇方法"><a href="#1-find簇方法" class="headerlink" title="(1) find簇方法"></a>(1) find簇方法</h3><h4 id="find-all-name-attrs-recursive-text-kwargs"><a href="#find-all-name-attrs-recursive-text-kwargs" class="headerlink" title="find_all( name , attrs , recursive , text , **kwargs )"></a><span style="color:red">find_all( name , attrs , recursive , text , **kwargs )</span></h4><p>在<strong>直接子节点/所有子孙节点</strong>中搜索，返回一个tag对象的列表</p>
+<p>● 形参<strong>name</strong>限制搜索的html标签范围<br>可以是：</p>
+<ul>
+<li>直接指定标签，如 <code>name=&#39;title&#39;</code>限制为title标签；</li>
+<li>正则表达式，如 <code>name=re.compile(r&#39;^b&#39;)</code> 限制为所有以b开头的标签;</li>
+<li>标签的列表，如 <code>name=[&#39;a&#39;,&#39;p&#39;]</code>限制为a标签和p标签；</li>
+<li>布尔值True，<code>name=True</code>将返回所有<strong>子孙</strong>标签；</li>
+<li>一个<strong>特定规则的函数</strong>：形参为<strong>SOME_TAG</strong>，返回布尔值，如下：</li>
+</ul>
+<p>这个函数接受一个SOME_TAG，判断它是否具有class属性并且没有id属性：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">has_class_but_no_id</span><span class="params">(tag)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> tag.has_attr(<span class="string">'class'</span>) <span class="keyword">and</span> <span class="keyword">not</span> tag.has_attr(<span class="string">'id'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>● 形参<strong>attrs</strong>对name限定的标签进行属性上的过滤</p>
+<p>实际上为一个<strong>html属性字典</strong>，如 <code>attrs={&#39;class&#39;:&#39;goodslist&#39;, &#39;id&#39;: &#39;gold&#39;}</code></p>
+<p>● 形参<strong>recursive</strong>为布尔值</p>
+<p>True（默认）表示搜索<strong>子孙节点</strong>，False表示只搜索<strong>直接子节点</strong></p>
+<p>● 形参<strong>text</strong>对标签内的字符串内容进行限制以达到过滤目的</p>
+<p>与形参<strong>name</strong>相似，可以传入字符串、正则表达式、字符串列表、布尔值、特定规则的函数</p>
+<p><strong>NavigableString</strong>和<strong>Comment</strong>都在text参数过滤的范围内</p>
+<p>● <strong>kwargs</strong>中常用关键字参数</p>
+<ol>
+<li><strong>非内置的过滤形参</strong>会被解析为属性值过滤行为</li>
+</ol>
+<p>上面的<code>attrs={&#39;class&#39;:&#39;goodslist&#39;, &#39;id&#39;: &#39;gold&#39;}</code>还可以写做 <code>class_=&#39;goodslist&#39;, id=&#39;gold&#39;</code></p>
+<p>并不是所有html属性都可以这样写的，比如 <code>data-*</code> 属性，因为不符合python变量命名规范</p>
+<p>我觉得还是用attrs字典比较靠谱！！！</p>
+<ol start="2">
+<li><strong>limit</strong>关键字限制搜索结果的数量，当达到指定数量时即停止搜索，避免在文档树十分庞大时拖慢程序速度</li>
+</ol>
+<h4 id="find-name-attrs-recursive-text-kwargs"><a href="#find-name-attrs-recursive-text-kwargs" class="headerlink" title="find( name , attrs , recursive , text , **kwargs )"></a><span style="color:red">find( name , attrs , recursive , text , **kwargs )</span></h4><p>在<strong>直接子节点/所有子孙节点</strong>中搜索，只返回找到的第一个结果</p>
+<h4 id="find-parents-…-or-find-parent-…"><a href="#find-parents-…-or-find-parent-…" class="headerlink" title="find_parents(…) or find_parent(…)"></a><span style="color:red">find_parents(…)</span> or <span style="color:red">find_parent(…)</span></h4><p>通过 <code>.parents</code> 或者 <code>.parent</code> 对<strong>父节点</strong>进行遍历</p>
+<h4 id="find-previous-siblings-…-or-find-previous-sibling-…"><a href="#find-previous-siblings-…-or-find-previous-sibling-…" class="headerlink" title="find_previous_siblings(…) or find_previous_sibling(…)"></a><span style="color:red">find_previous_siblings(…)</span> or <span style="color:red">find_previous_sibling(…)</span></h4><p>通过 <code>.previous_siblings</code> 或者 <code>.previous_sibling</code> 对<strong>前文兄弟节点</strong>进行遍历</p>
+<h4 id="find-next-siblings-…-or-find-next-sibling-…"><a href="#find-next-siblings-…-or-find-next-sibling-…" class="headerlink" title="find_next_siblings(…) or find_next_sibling(…)"></a><span style="color:red">find_next_siblings(…)</span> or <span style="color:red">find_next_sibling(…)</span></h4><p>通过 <code>.next_siblings</code> 或者 <code>.next_sibling</code> 对<strong>后文兄弟节点</strong>进行遍历</p>
+<h4 id="find-all-previous-…-or-find-previous-…"><a href="#find-all-previous-…-or-find-previous-…" class="headerlink" title="find_all_previous(…) or find_previous(…)"></a><span style="color:red">find_all_previous(…)</span> or <span style="color:red">find_previous(…)</span></h4><p>通过 <code>.previous_elements</code> 或者 <code>.previous_element</code> 对<strong>前文所有节点</strong>进行遍历</p>
+<h4 id="find-all-next-…-or-find-next-…"><a href="#find-all-next-…-or-find-next-…" class="headerlink" title="find_all_next(…) or find_next(…)"></a><span style="color:red">find_all_next(…)</span> or <span style="color:red">find_next(…)</span></h4><p>通过 <code>.next_elements</code> 或者 <code>.next_element</code> 对<strong>所有后文节点</strong>进行遍历</p>
+<h3 id="2-select方法"><a href="#2-select方法" class="headerlink" title="(2) select方法"></a>(2) select方法</h3><p>遵循CSS标签选择器的语法规则</p>
+<p>select方法通过一定的规则构造查询字符串，而find类方法则是通过关键字参数传入信息</p>
+<ul>
+<li>通过<strong>标签名</strong>查找，返回tag列表，如 <code>SOME_TAG.select(&#39;title&#39;)</code></li>
+<li>通过<strong>class名</strong>查找，返回tag列表，如 <code>SOME_TAG.select(&#39;.goodslist&#39;)</code></li>
+<li>通过<strong>id名</strong>查找，返回tag列表，如 <code>SOME_TAG.select(&#39;#gold&#39;)</code></li>
+</ul>
+<p>上述基本规则可以进行组合：</p>
+<ul>
+<li>满足标签从属关系的查找(使用<code>&gt;</code>)：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOME_TAG.select(<span class="string">'head &gt; title'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>标签、类名、id名联合查找(1)：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOME_TAG.select(<span class="string">'table .goodslist #gold'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>标签、类名、id名联合查找(2)：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOME_TAG.select(<span class="string">'table[class="goodslist",id="gold"]'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>标签从属、类名、id名联合查找：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOME_TAG.select(<span class="string">'div[class="containor"] &gt; table[id="gold"]'</span>)</span><br></pre></td></tr></table></figure>
 
                 
-<p class="pink-link-context">
-    <a href="/statistics/20180228-4b70.html" rel="next" title="假设检验原理1-t检验和F检验">
-    Prev: 假设检验原理1-t检验和F检验
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/deep-learning/20180126-f29a.html" rel="next" title="tensorflow-基于队列和多线程加载数据">
-    Next: tensorflow-基于队列和多线程加载数据
+    <a href="/network/20180831-d4f4.html" rel="next" title="国科大校园网访问IPv6资源">
+    Next: 国科大校园网访问IPv6资源
   </a>
 </p>
 
