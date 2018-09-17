@@ -7,18 +7,18 @@
 
     
 
-    <title>线性代数-逆矩阵的存在条件 | CY的博客</title>
+    <title>python闭包之我见 | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="我们现在要求解一个线性方程组：
-$$ A{\cdot}x=b $$
-其中$A{\in}R^{m{\times}n}$是一个已知矩阵，$x{\in}R^{n{\times}1}$是一个n维未知列向量，$b{\in}R^{m{\times}1}$是一个m维已知列向量。
-按照矩阵×向量的定义，A中的每一行">
+    <meta name="description" content="什么是闭包（Closure）？
+先看看wiki百科是怎么解释的：
+
+In programming languages, a closure(also lexical closure or function closure) is a technique for implementing lexica">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="线性代数-逆矩阵的存在条件"/>
+    <meta property="og:title" content="python闭包之我见"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -269,7 +269,7 @@ $$ A{\cdot}x=b $$
             
     
     
-    <a class="breadcrumb" href="/categories/mathematics/">mathematics</a>
+    <a class="breadcrumb" href="/categories/python/">python</a>
 
 
         
@@ -286,12 +286,12 @@ $$ A{\cdot}x=b $$
             <div class="article-title">
                 
     
-        <h1>线性代数-逆矩阵的存在条件</h1>
+        <h1>python闭包之我见</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-08-15T03:05:10.000Z"><a href="/mathematics/20180815-dbe6.html">2018-08-15</a></time>
+            <time class="pink-link-context" datetime="2018-09-12T05:59:59.000Z"><a href="/python/20180912-a712.html">2018-09-12</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -301,67 +301,47 @@ $$ A{\cdot}x=b $$
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#A-1-的存在条件分析"><span class="section table-of-contents-text">$A^{-1}$的存在条件分析</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#与点的运动关联"><span class="section table-of-contents-text">与点的运动关联</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#关于A的形式讨论"><span class="section table-of-contents-text">关于A的形式讨论</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#唯一解问题"><span class="section table-of-contents-text">唯一解问题</span></a></li></ol></li></ol>
+    
 </div>
 
 
             <div class="entry pink-link-context">
-                <p>我们现在要求解一个线性方程组：</p>
-<p>$$ A{\cdot}x=b $$</p>
-<p>其中$A{\in}R^{m{\times}n}$是一个<strong>已知</strong>矩阵，$x{\in}R^{n{\times}1}$是一个n维<strong>未知</strong>列向量，$b{\in}R^{m{\times}1}$是一个m维<strong>已知</strong>列向量。</p>
-<p>按照<strong>矩阵×向量</strong>的定义，A中的每一行和b中的每一个对应元素形成约束，即b中对应元素都是由A中对应行向量和x运算（內积）而来。</p>
-<p>上式的本质还是 $ A_{i,:}{\cdot}x=b_i $</p>
-<p>定义<strong>单位矩阵</strong>$I_n{\in}R^{n{\times}n}$使得对任意的$x{\in}R^n$都有</p>
-<p>$$ I_n{\cdot}x=x $$</p>
-<p>定义<strong>逆矩阵</strong>$A^{-1}$:</p>
-<p>$$ A^{-1}{\cdot}A=I_n $$</p>
-<p>这样就可以得到$A{\cdot}x=b$的解为：</p>
-<p>$$ x=A^{-1}{\cdot}b $$</p>
-<p>那么重点来了，我们怎么求定义的$A^{-1}$？换句话说，$A^{-1}$什么时候存在？（毕竟如果不存在我们期望的这个$A^{-1}$的话怎么求都是徒劳的）因此我们需要对$A^{-1}$的存在条件进行分析。</p>
-<h1 id="A-1-的存在条件分析"><a href="#A-1-的存在条件分析" class="headerlink" title="$A^{-1}$的存在条件分析"></a>$A^{-1}$的存在条件分析</h1><p>对于方程组$A{\cdot}x=b$，如果$A^{-1}$存在，那么$x$具有唯一解且这个解为$x=A^{-1}{\cdot}b$。</p>
-<p>但是我们的b向量是在$R^m$空间任意取的，对于某些b向量实际实际上<strong>可能不存在解</strong>，而对另一些b向量则<strong>可能存在无穷多的解</strong>。那么是否存在一些$b$向量使得x存在<strong>不止一个但是又是有限个解</strong>呢？答案是不存在的，因为假设向量$x_1$和向量$x_2$是方程组$A{\cdot}x=b$的解，那么向量${\alpha}{\cdot}x_1+(1-{\alpha}){\cdot}x_2$（$\alpha$是任意实数）一定是方程组$A{\cdot}x=b$的解！</p>
-<h2 id="与点的运动关联"><a href="#与点的运动关联" class="headerlink" title="与点的运动关联"></a>与点的运动关联</h2><p>从<strong>空间路径</strong>的角度考虑方程组的解的可能个数：</p>
-<p>$A{\in}R^{m{\times}n}$，即A是一个m行n列的矩阵，A的列向量都是$R^m$空间里的向量，向量b也是$R^m$空间里的一个向量。</p>
-<p>我们可以这样想，现在有一个$R^m$空间，它应该有m个坐标轴（直角坐标系），A的每一个列向量在这个坐标系里面实际上都指明了一个方向。</p>
-<p>下图是一个例子：</p>
-<p>$$<br>\begin{pmatrix}A_{1,1} &amp; … &amp; A_{1,n} \\ … &amp; … &amp; … \\ A_{m,1} &amp; … &amp; A_{m,n} \\ \end{pmatrix}<br>{\cdot}<br>\begin{pmatrix}x_1 \\ … \\ x_n \\ \end{pmatrix}<br>=\begin{pmatrix}b_1 \\ … \\ b_m \\ \end{pmatrix}<br>$$</p>
-<p>注意</p>
-<p>$$<br>\begin{pmatrix}b_1 \\ … \\ b_m \\ \end{pmatrix}=<br>\begin{pmatrix}<br>    A_{1,1}{\cdot}x_1+…+A_{1,n}{\cdot}x_n \\<br>    … \\<br>    A_{m,1}{\cdot}x_1+…+A_{m,n}{\cdot}x_n \\<br>\end{pmatrix}=<br>x_1{\cdot}\begin{pmatrix}A_{1,1} \\ … \\ A_{m,1} \\ \end{pmatrix}+…+<br>x_n{\cdot}\begin{pmatrix}A_{1,n} \\ … \\ A_{m,n} \\ \end{pmatrix}<br>$$</p>
-<p>其中A的某个行向量$A_{i,:}$将控制向量b的某个分量$b_i$，而A的列向量$A_{:,j}$的对应分量将分别影响向量b的分量$b_j$（这里的<strong>M影响N</strong>意味着M是N的一部分，<strong>M决定N</strong>表示在其他因素不变的情况下N完全可以由M推导出来！）。有趣的是，A的列向量在影响向量b的分量时都是乘以了某一个常数（x对应的分量），这可以看做是<strong>对A的列向量在其本来的方向上进行缩放</strong>。</p>
-<p>根据上面这种解释，A的所有列向量对b的影响的<strong>和</strong>（与x的內积）实际上就决定了向量b，即等效完成了A的行向量对向量b分量的控制过程。</p>
-<p>上面提到，我们在$R_m$空间里建立了直角坐标系，A的所有列向量和向量b也位于这个空间中。从<strong>空间轨迹</strong>角度我们可以这样思考：</p>
-<p><strong>O</strong>是$R_m$空间直角坐标系的原点，它首先沿着$A_{:,1}$列向量所指方向运动，运动距离是$x_1{\cdot}|A_{:,1}|$，然后沿着$A_{:,2}$列向量所指方向运动……以此类推，最终到达了向量b表示的<strong>B</strong>点。</p>
-<p>换个角度看，上述过程实际上就是在对A的列向量进行<strong>线性组合</strong>，使之结果等价于b。</p>
-<h2 id="关于A的形式讨论"><a href="#关于A的形式讨论" class="headerlink" title="关于A的形式讨论"></a>关于A的形式讨论</h2><p>在这里我们发现可以对A进行一些特殊处理，我们让A的列向量仅仅表示方向而不参与点的运动距离计算，距离计算将仅仅依赖于x的分量值，因此我们对A的列向量<strong>单位化</strong>（使其<strong>模</strong>为1），当然这不是必须的。</p>
-<p>我们对A的一些可能情况进行讨论：假设我们将A的n个列向量沿$R_m$空间的坐标轴进行正交分解</p>
+                <p><strong>什么是闭包（Closure）？</strong></p>
+<p>先看看wiki百科是怎么解释的：</p>
+<blockquote>
+<p>In programming languages, a closure(also lexical closure or function closure) is a technique for implementing lexically scoped name binding in a language with first-class functions. Operationally, a closure is a record storing a function together with an environment. The environment is a mapping associating each free variable of the function (variables that are used locally, but defined in an enclosing scope) with the value or reference to which the name was bound when the closure was created. A closure (unlike a plain function) allows the function to access those captured variables through the closure’s copies of their values or references, even when the function is invoked outside their scope.</p>
+</blockquote>
+<p>之我见：我们一般说起将<strong>属性</strong>和<strong>方法</strong>进行封装就会想到<strong>类</strong>。<strong>闭包</strong>的作用类似于<strong>类</strong>，只是它的<strong>专能性</strong>似乎更强。</p>
+<p>用栗子来解释<strong>闭包</strong>为什么会和<strong>类</strong>相似：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">closure_def</span><span class="params">(x)</span>:</span></span><br><span class="line">    y = <span class="number">1</span></span><br><span class="line">    z = <span class="number">2</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fn</span><span class="params">()</span>:</span></span><br><span class="line">        print((x+y)*z)</span><br><span class="line">    <span class="keyword">return</span> fn</span><br></pre></td></tr></table></figure>
+<p>对于上面这个简单的栗子，我们发现以下几个特点：</p>
 <ol>
-<li><p>当n&lt;m时（即列向量个数少于列向量的维度数，A的列数少于行数，A是<strong>瘦矩阵</strong>）：我们只知道一维空间最少只需要一个非零向量就可以通过线性变换覆盖整个空间，二维平面最少需要两个<strong>线性无关</strong>的向量才能通过线性组合覆盖整个平面，三维空间至少需要三个<strong>线性无关</strong>的向量才能通过线性组合覆盖整个三维空间。A最多也就只能有n个线性无关的列向量，因此A的列向量的<strong>生成子空间</strong>根本不可能覆盖整个$R_m$空间，结果就是，对于那些在A列向量生成子空间外的向量b，没有办法通过对A的列向量进行线性组合来等效。<block style="color:red">结论：A列向量的<strong>生成子空间的有效维度</strong>少于A列向量的维度时，对于部分向量b，x无解。</block></p>
-</li>
-<li><p>当n=m时（即列向量的个数等于列向量的维度数，A的列数等于行数，A是<strong>方阵</strong>）：从第一点我们可以推断，当且仅当A的列向量线性无关时其列向量的<strong>生成子空间</strong>才能覆盖A的<strong>列向量空间</strong>，此时对于任意的$b{\in}R^{m{\times}1}$都能够找到一组x使得原点运动到<strong>B</strong>点。<block style="color:red">结论：A列向量的<strong>生成子空间的有效维度</strong>等于A列向量的维度时，对于任意的$b{\in}R^{m{\times}1}$都有唯一的x解。</block></p>
-</li>
-<li><p>当n&gt;m时（即列向量的个数大于列向量的维度数，A的列数等于行数，A是<strong>胖矩阵</strong>）：注意A的列向量在$R_m$空间中，所以这一组n个列向量中只能找到一组或多组不超过m个列向量的向量组线性无关，剩余列向量一定能被这组里的部分列向量所表示。有了这些列向量的参与，分解方式瞬间变为无数种，如下图(${\alpha}{\in}(0,180^{\circ})$)：</p>
-</li>
+<li><code>y</code> 和 <code>z</code> 是函数 <code>closure_def</code> 作用域下的<strong>局部变量</strong></li>
+<li>函数 <code>fn</code> 定义在 函数 <code>closure_def</code> 的内部，同时它将直接调用 <code>y</code> 和 <code>z</code> </li>
+<li>函数 <code>closure_def</code>返回的是函数 <code>fn</code> 的引用</li>
 </ol>
-<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/math/2018-08-15_150357.png" alt=""></p>
-<h2 id="唯一解问题"><a href="#唯一解问题" class="headerlink" title="唯一解问题"></a>唯一解问题</h2><p>因为我们定义的$A^{-1}$（如果存在）是通过A唯一确定的，基于$A^{-1}$我们求得的$x=A^{-1}{\cdot}b$也应是唯一解。</p>
-<p>这就是说，当x有唯一解时我们就可以找到这样一个$A^{-1}$。</p>
-<p>从上面的讨论中我们可以知道，当且仅当A的列向量的个数等于列向量的维度且线性无关时，即<strong>A是方阵</strong>且<strong>A的列向量线性无关</strong>时，x将有唯一解。</p>
-<p>于是乎我们得到结论：只有矩阵A是方阵且列向量线性无关时才存在$A^{-1}$。</p>
-<p><strong>奇异矩阵（方阵）</strong>：Singular Matrix，列向量相关的方阵</p>
-<p>于是乎，只有<strong>非奇异矩（方）阵</strong>才存在$A^{-1}$。</p>
+<p>我们获取一个<strong>闭包</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">closure_1 = closure_def(<span class="number">4</span>)</span><br><span class="line">closure_1()</span><br><span class="line"><span class="comment">#输出结果为 10</span></span><br></pre></td></tr></table></figure>
+<p>上述的 <code>closure_1</code> 就是传说中的<strong>闭包</strong>。因此，<strong>闭包本质上还是一个函数</strong>,我们通过 <code>closure_1()</code> 调用这个函数后将会输出结果10.</p>
+<p>其实到这里我还是没弄清楚<strong>闭包</strong>与<strong>类</strong>到底相似在哪里。但是，这里有个很有意思的东西：我们通过 <code>closure_def(4)</code> 调用了闭包定义函数后，该函数内的局部变量（<code>y</code>和<code>z</code>)应该就失效了，但是函数<code>fn</code>实际上却被我们保存了下来（在<code>closure_1</code>中)。然而，这个<code>closure_1</code>需要使用<code>y</code>和<code>z</code>，按照我们前面的逻辑，这两个变量已经失效了，这就产生了一个十分尴尬的问题。</p>
+<p>真实情况并非这样，<code>y</code>和<code>z</code>变量明显还存在于内存中，并且它们与这个<code>fn</code>函数绑定在一起了。这就是闭包的特性：将<code>y</code>和<code>z</code>这两个变量和函数<code>fn</code>绑定在一起，就好比<strong>类</strong>中将<strong>属性</strong>与<strong>方法</strong>绑定一样。</p>
+<p>在python中，<strong>函数</strong>同基本数据类型一样同属于<strong>一级类对象</strong>，函数名就是这个一级类实例的引用。对于闭包，函数需要用到的变量值实际上存在于其中，我们可以这样访问这些变量：</p>
+<ul>
+<li><code>.__closure__</code> 返回一组存有变量值的cell对象</li>
+<li><code>.__closure__[0].cell_centents</code> 将获取相应变量的值</li>
+</ul>
+<p>从上面我们发现，闭包就是将<strong>一组</strong>变量和<strong>一个</strong>函数进行封装，如下所示：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/20180912182056.png" alt=""></p>
+<p>我们保存的只有<span style="color:blue">蓝色框框</span>部分，但是<span style="color:blue">蓝色框框</span>需要使用<span style="color:red">红色框框</span>内的变量，闭包就将这两个框框进行封装。<span style="color:orange">橙色框框</span>返回闭包中的那个主函数。</p>
+<p>而且，<strong>当我们只是对一个函数进行简单的封装（修饰）时，使用闭包将更加优雅</strong>。</p>
+<p>闭包的一个重要应用就是python的装饰器（Decorator），且等下回之我见。</p>
 
                 
-<p class="pink-link-context">
-    <a href="/network/20180831-d4f4.html" rel="next" title="国科大校园网访问IPv6资源">
-    Prev: 国科大校园网访问IPv6资源
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/algorithms/20180814-6125.html" rel="next" title="什么是鸡尾酒排序？">
-    Next: 什么是鸡尾酒排序？
+    <a href="/network/20180911-ef0f.html" rel="next" title="BeautifulSoup速查API">
+    Next: BeautifulSoup速查API
   </a>
 </p>
 
