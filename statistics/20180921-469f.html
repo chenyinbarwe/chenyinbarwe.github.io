@@ -7,13 +7,19 @@
 
     
 
-    <title>statistics | CY的博客</title>
+    <title>参数估计点估计（矩估计、极大似然估计） | CY的博客</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="参数估计参数估计作为一个名词短语，实际含义指的是估计参数，意为估计总体分布参数。事实上我们能观测到的数据成为样本，所以参数估计的内容就是通过样本对总体分布的某些指标/参数进行估计。
+参数估计分为点估计和区间估计。
+其中点估计主要包含矩估计、极大似然估计。
+
+矩估计基于矩的概念对总体分布的均值μ和方差">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="参数估计点估计（矩估计、极大似然估计）"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -265,78 +271,140 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue-grey">
         <span class="breadcrumb">Current page(Categories)</span>
         
+            
+    
+    
+    <a class="breadcrumb" href="/categories/statistics/">statistics</a>
+
 
         
-            <a class="breadcrumb" href="/categories/statistics/">statistics</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>参数估计点估计（矩估计、极大似然估计）</h1>
+    
 
 
-    <div class="collection mt-0">
-        
-            <a href="/statistics/20180928-e722.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-09-28T07:04:50.000Z">2018-09-28</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                UCAS生物统计与实验设计-估计量选择的三个原则
-            </a>
-        
-            <a href="/statistics/20180921-469f.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-09-21T05:45:24.000Z">2018-09-21</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                参数估计点估计（矩估计、极大似然估计）
-            </a>
-        
-            <a href="/statistics/20180716-beb2.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-07-16T12:39:31.000Z">2018-07-16</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                统计模型估计-噪音对比估计NCE
-            </a>
-        
-            <a href="/statistics/20180312-2d85.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-12T13:46:24.000Z">2018-03-12</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                三大相关系数 Pearson Kendall Spearman
-            </a>
-        
-            <a href="/statistics/20180312-62c1.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-12T12:44:27.000Z">2018-03-12</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                参数模型和非参数模型
-            </a>
-        
-            <a href="/statistics/20180306-c444.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-06T05:06:22.000Z">2018-03-06</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                回归模型结果度量指标
-            </a>
-        
-            <a href="/statistics/20180302-90e6.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-02T03:51:02.000Z">2018-03-02</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                聚类结果度量指标
-            </a>
-        
-            <a href="/statistics/20180228-5746.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-02-28T12:41:44.000Z">2018-02-28</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                假设检验原理2-卡方检验
-            </a>
-        
-            <a href="/statistics/20180228-4b70.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-02-28T06:36:35.000Z">2018-02-28</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                假设检验原理1-t检验和F检验
-            </a>
-        
+            </div>
+            <time class="pink-link-context" datetime="2018-09-21T05:45:24.000Z"><a href="/statistics/20180921-469f.html">2018-09-21</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#参数估计"><span class="section table-of-contents-text">参数估计</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#矩估计"><span class="section table-of-contents-text">矩估计</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#矩"><span class="section table-of-contents-text">矩</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#矩估计-1"><span class="section table-of-contents-text">矩估计</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#极大似然估计"><span class="section table-of-contents-text">极大似然估计</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#构造似然函数"><span class="section table-of-contents-text">构造似然函数</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#求解似然函数"><span class="section table-of-contents-text">求解似然函数</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#贝叶斯估计"><span class="section table-of-contents-text">贝叶斯估计</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h1><p><strong>参数估计</strong>作为一个名词短语，实际含义指的是<span style="color:red">估计参数</span>，意为<span style="color:red">估计<i>总体分布</i>参数</span>。事实上我们能观测到的数据成为<strong>样本</strong>，所以<strong>参数估计</strong>的内容就是<span style="color:blue">通过样本对总体分布的某些指标/参数进行估计</span>。</p>
+<p><strong>参数估计</strong>分为<strong>点估计</strong>和<strong>区间估计</strong>。</p>
+<p>其中<strong>点估计</strong>主要包含<strong>矩估计</strong>、<strong>极大似然估计</strong>。</p>
+<hr>
+<h1 id="矩估计"><a href="#矩估计" class="headerlink" title="矩估计"></a>矩估计</h1><p>基于<strong>矩</strong>的概念对<strong>总体分布</strong>的<strong>均值μ</strong>和<strong>方差σ</strong>进行估计，总体分布的其他参数通过μ和σ进行推断。</p>
+<p>我们不需要知道总体分布的分布形式就可以进行矩估计，但是当总体分布已知时矩估计却没有彻底利用已知信息，显然不是一种较好的估计方法。</p>
+<h2 id="矩"><a href="#矩" class="headerlink" title="矩"></a>矩</h2><p>随机变量<strong>X</strong>的期望是<strong>E[X]</strong></p>
+<blockquote>
+<p>令k是自然数，a为任意实数：<br>期望$E[(X-a)^k]$称为<strong>随机变量X对<span style="color:green">实数a</span>的k阶<span style="color:green">中心</span>矩</strong>，<br>期望$E[X^k]$称为<strong>随机变量X的k阶<span style="color:green">原点</span>矩</strong>。</p>
+</blockquote>
+<h2 id="矩估计-1"><a href="#矩估计-1" class="headerlink" title="矩估计"></a>矩估计</h2><p>矩估计基于<strong>总体的k阶矩等于样本的k阶矩</strong>，即<strong>假设样本的期望和方差与总体的期望与方差相同</strong>。</p>
+<p>为什么呢？这里引用一个不加证明的专业说法：</p>
+<blockquote>
+<p>样本的k阶原点矩$\frac{1}{n}\sum_{i=1}^nX_i^k$<span style="color:red">依概率收敛于</span>总体的k阶原点矩$\mu_k$<br>同理，样本矩的连续函数也将依概率收敛于总体矩的连续函数</p>
+</blockquote>
+<p>什么叫<strong>依概率收敛</strong>？</p>
+<blockquote>
+<p>$X_n$依概率收敛于$X$，记做$X_n\xrightarrow{P}X$，表示：对$\forall\epsilon&gt;0$，当$n{\rightarrow}{\infty}$时，$P(|X_n-X|\leqslant\epsilon)\rightarrow1$。</p>
+</blockquote>
+<p>定义式如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>样本</th>
+<th>总体</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对$\overline{X}$的k阶中心矩</td>
+<td>$\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^k$</td>
+<td>$E[(X-E[X])^k]$</td>
+</tr>
+<tr>
+<td>k阶原点矩</td>
+<td>$\frac{1}{n}\sum_{i=1}^nX_i^k$</td>
+<td>$E[X^k]$</td>
+</tr>
+</tbody>
+</table>
+<p>基于<strong>一阶样本原点矩</strong>推测<strong>总体期望</strong>：</p>
+<p>$$EX=E[X]\approx\frac{1}{n}\sum_{i=1}^{n}X_i=\overline{X}$$</p>
+<p>基于<strong>二阶样本中心矩</strong>推测<strong>总体方差</strong>：</p>
+<p>$$DX=D[X]\approx\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^2$$</p>
+<p>通过上式我们发现，因为在估计期望和方差的过程中并未涉及到总体分布的形式，因此上述估计式实际上是通用的。</p>
+<hr>
+<h1 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h1><p>使用极大似然估计，总体的分布形式一定要已知，不然没法进行计算。</p>
+<p>极大似然估计基于<strong>极大似然原理</strong>：概率更大的事件在一次观测中更容易出现。</p>
+<p>因此，我们求的是<strong>使当前样本出现概率最大</strong>的那组参数。</p>
+<p>我们要想求出这个/这组参数，就必须先构建一个/一组方程。</p>
+<p>通常这个/这组方程由某个<strong>函数求导/求偏导</strong>得出，这个函数就叫做<strong>似然函数</strong>，常记做 $L(\theta)$。</p>
+<h2 id="构造似然函数"><a href="#构造似然函数" class="headerlink" title="构造似然函数"></a>构造似然函数</h2><p>1.离散型随机变量：$P(X=x)=p(x;\theta)$</p>
+<p>联合概率 $ L(\theta)=\prod_{i=1}^{n}(x_i;\theta)=p(x_1;\theta)p(x_2;\theta){\cdots}p(x_n;\theta) $</p>
+<p>2.连续性随机变量：$P(X=x)=\int_{-\infty}^{x}f(t;\theta)dt$</p>
+<p>联合概率密度 $ L(\theta)=\prod_{i=1}^{n}f(x_i;\theta)=f(x_1;\theta)f(x_2;\theta){\cdots}f(x_n;\theta) $</p>
+<h2 id="求解似然函数"><a href="#求解似然函数" class="headerlink" title="求解似然函数"></a>求解似然函数</h2><p>取对数 -&gt; 求导/求偏导 -&gt; 求解得到<strong>驻点</strong></p>
+<p>对于一般属于<strong>指数分布族</strong>的分布形式（正态分布、泊松分布、伯努利分布…），令导函数为0的点（<strong>驻点</strong>）一般都是极值点，但是也有奇葩特例。</p>
+<hr>
+<h1 id="贝叶斯估计"><a href="#贝叶斯估计" class="headerlink" title="贝叶斯估计"></a>贝叶斯估计</h1><p>这里只简述贝叶斯估计的思想。</p>
+<p>最大似然估计将参数θ看做一个<strong>确定变量</strong>，而贝叶斯估计将参数θ看做一个服从一定先验分布的<strong>随机变量</strong>。</p>
+<p>我们期望通过p(x|θ)求出后验概率p(θ|x)，同时p(θ|x)在真实的θ处有一个<strong>峰</strong>，于是乎我们就求得了真正的θ，耶耶耶</p>
+<p>搬运个更加直观的图：</p>
+<p><img src="https://img-blog.csdn.net/20170606223618992" alt=""></p>
+
+                
+<p class="pink-link-context">
+    <a href="/statistics/20180928-e722.html" rel="next" title="UCAS生物统计与实验设计-估计量选择的三个原则">
+    Prev: UCAS生物统计与实验设计-估计量选择的三个原则
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/python/20180912-a712.html" rel="next" title="python闭包之我见">
+    Next: python闭包之我见
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
     </div>
+</article>
+
+
+
+
 
 
 </div>

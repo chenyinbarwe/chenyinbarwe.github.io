@@ -7,13 +7,17 @@
 
     
 
-    <title>statistics | CY的博客</title>
+    <title>UCAS生物统计与实验设计-估计量选择的三个原则 | CY的博客</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="我们需要通过样本的数据对总体分布的参数进行估计，使用的估计量可以是最原始的随机变量X，也可以是由随机变量X推导出的其他估计量，例如样本期望EX、样本方差DX等。
+我们在估计总体分布的参数例如$\mu$或者$\sigma$时，实际上可以构建多个估计量对该总体参数进行估计。
+我们需要从中选择最好的估计量">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="UCAS生物统计与实验设计-估计量选择的三个原则"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -265,78 +269,93 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue-grey">
         <span class="breadcrumb">Current page(Categories)</span>
         
+            
+    
+    
+    <a class="breadcrumb" href="/categories/statistics/">statistics</a>
+
 
         
-            <a class="breadcrumb" href="/categories/statistics/">statistics</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>UCAS生物统计与实验设计-估计量选择的三个原则</h1>
+    
 
 
-    <div class="collection mt-0">
+            </div>
+            <time class="pink-link-context" datetime="2018-09-28T07:04:50.000Z"><a href="/statistics/20180928-e722.html">2018-09-28</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
         
-            <a href="/statistics/20180928-e722.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-09-28T07:04:50.000Z">2018-09-28</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                UCAS生物统计与实验设计-估计量选择的三个原则
-            </a>
-        
-            <a href="/statistics/20180921-469f.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-09-21T05:45:24.000Z">2018-09-21</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                参数估计点估计（矩估计、极大似然估计）
-            </a>
-        
-            <a href="/statistics/20180716-beb2.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-07-16T12:39:31.000Z">2018-07-16</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                统计模型估计-噪音对比估计NCE
-            </a>
-        
-            <a href="/statistics/20180312-2d85.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-12T13:46:24.000Z">2018-03-12</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                三大相关系数 Pearson Kendall Spearman
-            </a>
-        
-            <a href="/statistics/20180312-62c1.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-12T12:44:27.000Z">2018-03-12</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                参数模型和非参数模型
-            </a>
-        
-            <a href="/statistics/20180306-c444.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-06T05:06:22.000Z">2018-03-06</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                回归模型结果度量指标
-            </a>
-        
-            <a href="/statistics/20180302-90e6.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-03-02T03:51:02.000Z">2018-03-02</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                聚类结果度量指标
-            </a>
-        
-            <a href="/statistics/20180228-5746.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-02-28T12:41:44.000Z">2018-02-28</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                假设检验原理2-卡方检验
-            </a>
-        
-            <a href="/statistics/20180228-4b70.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-02-28T06:36:35.000Z">2018-02-28</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                假设检验原理1-t检验和F检验
-            </a>
+            <a href="/tags/UCAS/" class="chip pink lighten-1">UCAS</a>
         
     </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-无偏性"><span class="section table-of-contents-text">1.无偏性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2"><span class="section table-of-contents-text">2.</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>我们需要通过样本的数据对总体分布的参数进行估计，使用的估计量可以是最原始的<strong>随机变量X</strong>，也可以是由随机变量X推导出的其他估计量，例如<strong>样本期望EX</strong>、<strong>样本方差DX</strong>等。</p>
+<p>我们在估计总体分布的参数例如$\mu$或者$\sigma$时，实际上可以构建多个估计量对该总体参数进行估计。</p>
+<p>我们需要从中选择最好的估计量。下面是三个选择标准：</p>
+<h1 id="1-无偏性"><a href="#1-无偏性" class="headerlink" title="1.无偏性"></a>1.无偏性</h1><p><strong>定义</strong>：<span style="color:red">估计量的期望存在</span>且<span style="color:red">估计量的期望等于待估参数</span>，此时这个<strong>估计量</strong>是相应<strong>待估参数</strong>的无偏估计。</p>
+<p><strong>要点</strong>：</p>
+<ol>
+<li>无偏估计的关键是<strong>待估参数就是估计量的期望</strong>；</li>
+<li>无偏估计的实际意义是<strong>无系统误差</strong>；</li>
+<li>不管总体是什么分布，当样本的期望存在时，样本的期望总是总体期望的无偏估计</li>
+</ol>
+<p>对于<strong>有偏估计</strong>，我们要进行<strong>无偏化</strong>处理：推导出样本估计量的期望表达式并与总体待估参数进行比较。</p>
+<h1 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h1>
+                
+<p class="pink-link-context">
+    <a href="/骚诗/20181001-8e93.html" rel="next" title="梦回环 京伶">
+    Prev: 梦回环 京伶
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/statistics/20180921-469f.html" rel="next" title="参数估计点估计（矩估计、极大似然估计）">
+    Next: 参数估计点估计（矩估计、极大似然估计）
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
