@@ -15,8 +15,7 @@
 理论上样本取自于符合正态分布的总体
 要求组内样本的方差相等（称为方差齐性）
 
-单样本均数的t检验适用情况：只有一组数据X(均值为 μ 可计算)，总体均值 μ0 已知。求样本与总体有无差别
-检验假设：原假设： μ = μ0备">
+单样本均数的t检验适用情况：只有一个样本 $X$（或者称为一组数据）且其均值为 $\mu$ 可计算，总体均值 $\mu_0$ 已知。求样本与总体">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -163,24 +162,8 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/statistics/">
-                    statistics <span class="right">9</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/algorithms/">
                     algorithms <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/data-processing/">
-                    data-processing <span class="right">2</span></a>
                 </a>
             </li>
 
@@ -195,16 +178,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/debug/">
-                    debug <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/data-processing/">
+                    data-processing <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
+                <a class="no-padding" href="/categories/debug/">
+                    debug <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -227,8 +210,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/statistics/">
+                    statistics <span class="right">9</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">1</span></a>
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
@@ -322,11 +321,11 @@
 <li>理论上样本取自于符合<strong>正态分布</strong>的总体</li>
 <li>要求组内样本的方差相等（称为<strong>方差齐性</strong>）</li>
 </ol>
-<h1 id="单样本均数的t检验"><a href="#单样本均数的t检验" class="headerlink" title="单样本均数的t检验"></a>单样本均数的t检验</h1><p><strong>适用情况</strong>：只有一组数据X(均值为 <code>μ</code> 可计算)，总体均值 <code>μ0</code> 已知。求样本与总体有无差别</p>
-<p><strong>检验假设</strong>：<br>原假设： μ = μ<sub>0</sub><br>备择假设：<br>μ ≠ μ<sub>0</sub>，双侧时<br>μ &gt; μ<sub>0</sub> 或者 μ &lt; μ0<sub>0</sub> ，单侧时</p>
+<h1 id="单样本均数的t检验"><a href="#单样本均数的t检验" class="headerlink" title="单样本均数的t检验"></a>单样本均数的t检验</h1><p><strong>适用情况</strong>：只有一个样本 $X$（或者称为一组数据）且其均值为 $\mu$ 可计算，总体均值 $\mu_0$ 已知。求样本与总体有无差别</p>
+<p><strong>检验假设</strong>：<br>原假设： $\mu=\mu_0$<br>备择假设：<br>$\bullet$ $\mu\ne\mu_0$，双尾检验<br>$\bullet$ $\mu&gt;\mu_0$ 或者 $\mu&lt;\mu_0$，单尾检验</p>
 <p><strong>计算检验统计量</strong>：</p>
 <ol>
-<li><code>S</code> 是样本标准差，<code>v</code> 是自由度，可计算出 <code>t</code> 值<br><img src="http://p33k8pinb.bkt.clouddn.com/18-2-28/52542272.jpg" alt=""></li>
+<li>通过<strong>样本均值$\bar{X}$</strong>、<strong>总体期望$\mu_0$</strong>：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-2-28/52542272.jpg" alt=""></li>
 <li>查 <a href="https://www.cnblogs.com/emanlee/archive/2008/10/25/1319520.html" target="_blank" rel="noopener">t检验临界值表</a> 比较 t 值计算 P 值：当 P &gt; α 时接受原假设，否则拒绝原假设</li>
 </ol>
 <h1 id="配对样本均数的t检验"><a href="#配对样本均数的t检验" class="headerlink" title="配对样本均数的t检验"></a>配对样本均数的t检验</h1><p><strong>适用情况</strong>：两组数据形成对子，因此样本数相同。控制影响实验的无关变量。<br>优点：减少个体差异对实验的影响<br>缺点：数据成对处理</p>
