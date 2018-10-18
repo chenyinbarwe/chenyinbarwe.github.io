@@ -7,13 +7,17 @@
 
     
 
-    <title>Page 4 | CY的博客</title>
+    <title>假设检验-显著性假设检验 | CY的博客</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！
+1. 单样本平均数$\bar{x}$的差异显著性检验这里指的实际上是一个样本（的平均数）和总体（的平均数）间的差异显著性，因为我们只有一个样本，这就要求总体参数（这里是均值）已知，这通常是一个理论值、经验值或者期望值。
+(1)">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="假设检验-显著性假设检验"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -264,303 +268,132 @@
 
 
     <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue-grey">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/statistics/">statistics</a>
+
+
         
 
-	<div class="slider">
-		<ul class="slides">
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>假设检验-显著性假设检验</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-10-18T07:35:04.000Z"><a href="/statistics/20181018-327a.html">2018-10-18</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/UCAS生物统计与实验设计/" class="chip pink lighten-1">UCAS生物统计与实验设计</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-单样本平均数-bar-x-的差异显著性检验"><span class="section table-of-contents-text">1. 单样本平均数$\bar{x}$的差异显著性检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-大样本（n≥30）的均数检验"><span class="section table-of-contents-text">(1). 大样本（n≥30）的均数检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#a-总体方差-sigma-2-已知时"><span class="section table-of-contents-text">a. 总体方差$\sigma^2$已知时</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#b-总体方差-sigma-2-未知时"><span class="section table-of-contents-text">b. 总体方差$\sigma^2$未知时</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-小样本（n-lt-30）的均数检验"><span class="section table-of-contents-text">(2). 小样本（n&lt;30）的均数检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#a-总体方差-sigma-2-已知时-1"><span class="section table-of-contents-text">a. 总体方差$\sigma^2$已知时</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#b-总体方差-sigma-2-未知时-1"><span class="section table-of-contents-text">b. 总体方差$\sigma^2$未知时</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验"><span class="section table-of-contents-text">2. 两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验"><span class="section table-of-contents-text">(1). 两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#a-如果两个样本的方差-sigma-1-和-sigma-2-已知"><span class="section table-of-contents-text">a. 如果两个样本的方差$\sigma^1$和$\sigma^2$已知</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#b-如果两个样本的方差-sigma-1-和-sigma-2-未知"><span class="section table-of-contents-text">b. 如果两个样本的方差$\sigma^1$和$\sigma^2$未知</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验"><span class="section table-of-contents-text">(2). 两个小样本（$n_1\le30$且$n_2\le30$）的均数检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#A-配对样本均数的t检验"><span class="section table-of-contents-text">A. 配对样本均数的t检验</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#B-独立样本均数的t检验"><span class="section table-of-contents-text">B. 独立样本均数的t检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#a-当两样本方差相同或者假设相同时"><span class="section table-of-contents-text">(a). 当两样本方差相同或者假设相同时</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#b-经过F检验两样本方差不同时"><span class="section table-of-contents-text">(b). 经过F检验两样本方差不同时</span></a></li></ol></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！</p>
+<h1 id="1-单样本平均数-bar-x-的差异显著性检验"><a href="#1-单样本平均数-bar-x-的差异显著性检验" class="headerlink" title="1. 单样本平均数$\bar{x}$的差异显著性检验"></a>1. <strong>单样本平均数$\bar{x}$的差异显著性检验</strong></h1><p>这里指的实际上是一个样本（的平均数）和总体（的平均数）间的差异显著性，因为我们只有一个样本，这就要求总体参数（这里是均值）已知，这通常是一个理论值、经验值或者期望值。</p>
+<h2 id="1-大样本（n≥30）的均数检验"><a href="#1-大样本（n≥30）的均数检验" class="headerlink" title="(1). 大样本（n≥30）的均数检验"></a>(1). <strong>大样本（n≥30）的均数检验</strong></h2><p><strong>大样本</strong>通常指的是n≥30，此时<strong>样本的均值</strong>将服从于<strong>正态分布</strong>，我们可以将其标准化为<strong>标准正态分布</strong>，进而使用<strong>u检验</strong>进行假设检验。</p>
+<h3 id="a-总体方差-sigma-2-已知时"><a href="#a-总体方差-sigma-2-已知时" class="headerlink" title="a. 总体方差$\sigma^2$已知时"></a>a. <strong>总体方差$\sigma^2$已知时</strong></h3><p>总体方差$\sigma^2$已知时直接计算相应的u值：</p>
+<p>$$\sigma_{\bar{x}}=\sqrt{\frac{\sigma^2}{n}}=\frac{\sigma}{\sqrt{n}}$$</p>
+<p>$$u=\frac{\bar{x}-\mu_0}{\sigma_{\bar{x}}}=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}{\sim}N(0,1)$$</p>
+<p>式中$\bar{x}$是<strong>样本均值</strong>，$\mu_0$是<strong>总体均值</strong>，$\sigma$是<strong>总体方差</strong>，$n$是<strong>样本容量</strong>。</p>
+<h3 id="b-总体方差-sigma-2-未知时"><a href="#b-总体方差-sigma-2-未知时" class="headerlink" title="b. 总体方差$\sigma^2$未知时"></a>b. <strong>总体方差$\sigma^2$未知时</strong></h3><p>在<strong>大样本</strong>的条件下直接用<strong>样本方差$s^2$</strong>代替<strong>总体方差$\sigma^2$</strong>，计算u值的方法同上：</p>
+<p>$$s_{\bar{x}}=\sqrt{\frac{s^2}{n}}=\frac{s}{\sqrt{n}}$$</p>
+<p>$$u=\frac{\bar{x}-\mu_0}{s_{\bar{x}}}=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}{\sim}N(0,1)$$</p>
+<p>样本方差$s^2$的计算：</p>
+<p>$$s^2=\frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\bar{x})^2}$$</p>
+<h2 id="2-小样本（n-lt-30）的均数检验"><a href="#2-小样本（n-lt-30）的均数检验" class="headerlink" title="(2). 小样本（n&lt;30）的均数检验"></a>(2). <strong>小样本（n&lt;30）的均数检验</strong></h2><p>小样本只能使用<strong>t检验</strong>，此时我们要求的是<strong>t值</strong>而不是u值。</p>
+<p>小样本的方差$s^2$与总体的方差$\sigma^2$往往差距较大。</p>
+<p>t检验时查临界值表依据的是自由度<strong>df</strong>，这个值通常是n-1。</p>
+<h3 id="a-总体方差-sigma-2-已知时-1"><a href="#a-总体方差-sigma-2-已知时-1" class="headerlink" title="a. 总体方差$\sigma^2$已知时"></a>a. <strong>总体方差$\sigma^2$已知时</strong></h3><p>$$\sigma_{\bar{x}}=\sqrt{\frac{\sigma^2}{n}}=\frac{\sigma}{\sqrt{n}}$$</p>
+<p>$$t=\frac{\bar{x}-\mu_0}{\sigma_{\bar{x}}}=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}{\sim}t(n-1)$$</p>
+<h3 id="b-总体方差-sigma-2-未知时-1"><a href="#b-总体方差-sigma-2-未知时-1" class="headerlink" title="b. 总体方差$\sigma^2$未知时"></a>b. <strong>总体方差$\sigma^2$未知时</strong></h3><p>$$s_{\bar{x}}=\sqrt{\frac{s^2}{n}}=\frac{s}{\sqrt{n}}$$</p>
+<p>$$t=\frac{\bar{x}-\mu_0}{s_{\bar{x}}}=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}{\sim}t(n-1)$$</p>
+<hr>
+<h1 id="2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验"><a href="#2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验" class="headerlink" title="2. 两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验"></a>2. <strong>两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验</strong></h1><h2 id="1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验"><a href="#1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验" class="headerlink" title="(1). 两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验"></a>(1). <strong>两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验</strong></h2><p>当两个样本都是<strong>大样本</strong>时，与单样本检验类似，仍可以使用<strong>u检验</strong>。</p>
+<h3 id="a-如果两个样本的方差-sigma-1-和-sigma-2-已知"><a href="#a-如果两个样本的方差-sigma-1-和-sigma-2-已知" class="headerlink" title="a. 如果两个样本的方差$\sigma^1$和$\sigma^2$已知"></a>a. <strong>如果两个样本的方差$\sigma^1$和$\sigma^2$已知</strong></h3><p>$$\sigma_{\bar{x_1}-\bar{x_2}}=\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$$</p>
+<p>$$u=\frac{\bar{x_1}-\bar{x_2}}{\sigma_{\bar{x_1}-\bar{x_2}}}{\sim}N(0,1)$$</p>
+<h3 id="b-如果两个样本的方差-sigma-1-和-sigma-2-未知"><a href="#b-如果两个样本的方差-sigma-1-和-sigma-2-未知" class="headerlink" title="b. 如果两个样本的方差$\sigma^1$和$\sigma^2$未知"></a>b. <strong>如果两个样本的方差$\sigma^1$和$\sigma^2$未知</strong></h3><p>使用$s_{\bar{x_1}-\bar{x_2}}$来代替$\sigma_{\bar{x_1}-\bar{x_2}}$:</p>
+<p>$$s_{\bar{x_1}-\bar{x_2}}=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$</p>
+<p>$$u=\frac{\bar{x_1}-\bar{x_2}}{s_{\bar{x_1}-\bar{x_2}}}{\sim}N(0,1)$$</p>
+<h2 id="2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验"><a href="#2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验" class="headerlink" title="(2). 两个小样本（$n_1\le30$且$n_2\le30$）的均数检验"></a>(2). <strong>两个小样本（$n_1\le30$且$n_2\le30$）的均数检验</strong></h2><p>小样本使用t检验。</p>
+<p>按照实验设计的不同，两个样本可以是<strong>独立样本</strong>，也可以是<strong>配对样本</strong>。</p>
+<h3 id="A-配对样本均数的t检验"><a href="#A-配对样本均数的t检验" class="headerlink" title="A. 配对样本均数的t检验"></a><strong>A. 配对样本均数的t检验</strong></h3><p>此时两组数据将形成对子，因此两个样本的样本容量是一样的，即$n_1=n_2$。</p>
+<p>配对可以减少<strong>个体差异</strong>对实验的影响，但是也会增加数据处理的复杂度。</p>
+<p>配对情况通常有以下三类：</p>
+<ol>
+<li>两个相似个体组成一对进行不同的实验处理：此时并没有完全消除个体差异的影响。</li>
+<li>同一个个体同时进行两种不同的处理：处理的空间位置不同。</li>
+<li>同一个个体先后进行两种不同的处理：不同时间个体的状态可能不同。</li>
+</ol>
+<p>简单理解就是：第一类使用相似的两个个体，第二类同时使用同一个个体不同的部位，第三类先后使用同一个体相同的部位。</p>
+<p>计算过程如下：</p>
+<p>$$d_i=x_i-y_i$$</p>
+<p>$$\bar{d}=\frac1n\sum_{i=1}^{n}d_i$$</p>
+<p>$$s_d^2=\frac{1}{n-1}\sum_{i=1}^{n}(d_i-\bar{d})^2$$</p>
+<p>$$t=\frac{\bar{d}}{s_d/\sqrt{n}}$$</p>
+<p>$$df=n-1$$</p>
+<p>查<strong>t检验临界值表</strong>时注意使用df值而不是n值。</p>
+<h3 id="B-独立样本均数的t检验"><a href="#B-独立样本均数的t检验" class="headerlink" title="B. 独立样本均数的t检验"></a><strong>B. 独立样本均数的t检验</strong></h3><p>对于独立样本不存在配对情况，因此$n_1$和$n_2$往往不同。</p>
+<p>两独立样本对应的<strong>总体方差</strong>可能不同，因此：</p>
+<h4 id="a-当两样本方差相同或者假设相同时"><a href="#a-当两样本方差相同或者假设相同时" class="headerlink" title="(a). 当两样本方差相同或者假设相同时"></a><strong>(a). 当两样本方差相同或者假设相同时</strong></h4><p>此时计算自由度$v=n_1+n_2-2$</p>
+<p>计算两个样本的均值$\bar{x_1}$和$\bar{x_2}$、方差$S_1^2$和$S_2^2$。</p>
+<p>$$S_c^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{v}$$</p>
+<p>$$S_{\overline{X_1}-\overline{X_2}}=\sqrt{(\frac{1}{n_1}+\frac{1}{n_2})S_c^2}$$</p>
+<p>$$t=\frac{\overline{x_1}-\overline{x_2}}{S_{\overline{X_1}-\overline{X_2}}}$$</p>
+<h4 id="b-经过F检验两样本方差不同时"><a href="#b-经过F检验两样本方差不同时" class="headerlink" title="(b). 经过F检验两样本方差不同时"></a><strong>(b). 经过F检验两样本方差不同时</strong></h4><p>如果$n_1=n_2=n$:</p>
+<p>计算方法与假设方差相同时一致，只是自由度为$n-1$而不是$2n-2$。</p>
+<p>没看懂，先抄下来……</p>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/statistics/20181017-aa04.html" rel="next" title="假设检验-假设检验的基本原理">
+    Next: 假设检验-假设检验的基本原理
+  </a>
+</p>
+
+
+            </div>
 			
-			   <li>
-				   <a href="/">
-					   <img class="slider-image" src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/sliders/antiquePainting01-1883x500.jpg">
-					   <div class="caption center-align">
-							<h4  style="color:#1E90FF !important"  >
-								扬子江头杨柳青，杨花瞅啥渡江人
-							</h4>
-							 <h5 style="color:#1E90FF !important"
-							 class="light grey-text text-lighten-3">
-								数声风笛离亭晚，君向潇湘我向秦
-							</h5>
-					   </div>
-				   </a>
-			   </li>
-			
-		</ul>
-	</div>
-
-
-
-<div id="article-list" class="container main-container">
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/data-processing/20180307-3057.html">python-pandas模块-Series类和DataFrame类</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-03-07T08:06:12.000Z"><a href="/data-processing/20180307-3057.html">2018-03-07</a></time>
-
-            
-
-
-            
         </div>
-
-        
     </div>
 </article>
 
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/statistics/20180306-c444.html">回归模型结果度量指标</a></h1>
-    
 
 
-            </div>
 
-            <time class="pink-link-context" datetime="2018-03-06T05:06:22.000Z"><a href="/statistics/20180306-c444.html">2018-03-06</a></time>
 
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/statistics/20180302-90e6.html">聚类结果度量指标</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-03-02T03:51:02.000Z"><a href="/statistics/20180302-90e6.html">2018-03-02</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/deep-learning/20180301-e69e.html">tensorflow-基于TFRecord加载图像数据</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-03-01T03:16:52.000Z"><a href="/deep-learning/20180301-e69e.html">2018-03-01</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/statistics/20180228-5746.html">假设检验原理2-卡方检验</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-02-28T12:41:44.000Z"><a href="/statistics/20180228-5746.html">2018-02-28</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/骚诗/20180228-ed5a.html">如梦醒 北山</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-02-28T06:09:19.000Z"><a href="/骚诗/20180228-ed5a.html">2018-02-28</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/python/20180201-ffef.html">python自用进度条</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-02-01T01:34:18.000Z"><a href="/python/20180201-ffef.html">2018-02-01</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/deep-learning/20180126-f29a.html">tensorflow-基于队列和多线程加载数据</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-01-26T03:18:29.000Z"><a href="/deep-learning/20180126-f29a.html">2018-01-26</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/windows10/20180125-f59f.html">win10系统将C盘的用户文件夹迁移至D盘</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-01-25T15:28:48.000Z"><a href="/windows10/20180125-f59f.html">2018-01-25</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="blue-grey-link-context"><a href="/deep-learning/20180125-ff54.html">tensorflow-计算资源控制</a></h1>
-    
-
-
-            </div>
-
-            <time class="pink-link-context" datetime="2018-01-25T13:23:42.000Z"><a href="/deep-learning/20180125-ff54.html">2018-01-25</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-
-    <ul class="pagination center-align">
-    <li class="">
-        <a href="/page/3/"><i class="fa fa-angle-left"></i></a>
-    </li>
-    
-    
-        <li class="waves-effect"><a href="/">1</a></li>
-    
-        <li class="waves-effect"><a href="/page/2">2</a></li>
-    
-        <li class="waves-effect"><a href="/page/3">3</a></li>
-    
-        <li class="active pink"><a href="/page/4">4</a></li>
-    
-    
-    <li class="disabled">
-        <a href="/"><i class="fa fa-angle-right"></i></a>
-    </li>
- </ul>
 
 </div>
 
