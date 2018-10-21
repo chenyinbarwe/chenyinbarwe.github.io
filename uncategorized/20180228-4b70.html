@@ -7,13 +7,20 @@
 
     
 
-    <title>database-op | CY的博客</title>
+    <title>假设检验原理1-t检验和F检验 | CY的博客</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="t检验用来检验两个小样本(通常&amp;lt;60)的均值差异是否明显。前提条件：
+
+理论上样本取自于符合正态分布的总体
+要求组内样本的方差相等（称为方差齐性）
+
+单样本均数的t检验适用情况：只有一个样本 $X$（或者称为一组数据）且其均值为 $\mu$ 可计算，总体均值 $\mu_0$ 已知。求样本与总体">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="假设检验原理1-t检验和F检验"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -257,30 +264,122 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue-grey">
         <span class="breadcrumb">Current page(Categories)</span>
         
+            
 
         
-            <a class="breadcrumb" href="/categories/database-op/">database-op</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>假设检验原理1-t检验和F检验</h1>
+    
 
 
-    <div class="collection mt-0">
-        
-            <a href="/database-op/20180718-3284.html" class="collection-item grey-text text-darken-1">
-                <time datetime="2018-07-18T04:23:32.000Z">2018-07-18</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                mysql的删除语法DROP TRUNCATE DELETE
-            </a>
-        
+            </div>
+            <time class="pink-link-context" datetime="2018-02-28T06:36:35.000Z"><a href="/uncategorized/20180228-4b70.html">2018-02-28</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#单样本均数的t检验"><span class="section table-of-contents-text">单样本均数的t检验</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#配对样本均数的t检验"><span class="section table-of-contents-text">配对样本均数的t检验</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#两独立样本均数的t检验"><span class="section table-of-contents-text">两独立样本均数的t检验</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#两独立样本方差的齐性检验"><span class="section table-of-contents-text">两独立样本方差的齐性检验</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#问题遗留"><span class="section table-of-contents-text">问题遗留</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#参考声明"><span class="section table-of-contents-text">参考声明</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p><strong>t检验</strong>用来检验两个<strong>小样本</strong>(通常&lt;60)的<strong>均值</strong>差异是否明显。<br>前提条件：</p>
+<ol>
+<li>理论上样本取自于符合<strong>正态分布</strong>的总体</li>
+<li>要求组内样本的方差相等（称为<strong>方差齐性</strong>）</li>
+</ol>
+<h1 id="单样本均数的t检验"><a href="#单样本均数的t检验" class="headerlink" title="单样本均数的t检验"></a>单样本均数的t检验</h1><p><strong>适用情况</strong>：只有一个样本 $X$（或者称为一组数据）且其均值为 $\mu$ 可计算，总体均值 $\mu_0$ 已知。求样本与总体有无差别</p>
+<p><strong>检验假设</strong>：<br>原假设： $\mu=\mu_0$<br>备择假设：<br>$\bullet$ $\mu\ne\mu_0$，双尾检验<br>$\bullet$ $\mu&gt;\mu_0$ 或者 $\mu&lt;\mu_0$，单尾检验</p>
+<p><strong>计算检验统计量</strong>：</p>
+<ol>
+<li>通过<strong>样本均值$\bar{X}$</strong>、<strong>总体期望$\mu_0$</strong>：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-2-28/52542272.jpg" alt=""></li>
+<li>查 <a href="https://www.cnblogs.com/emanlee/archive/2008/10/25/1319520.html" target="_blank" rel="noopener">t检验临界值表</a> 比较 t 值计算 P 值：当 P &gt; α 时接受原假设，否则拒绝原假设</li>
+</ol>
+<h1 id="配对样本均数的t检验"><a href="#配对样本均数的t检验" class="headerlink" title="配对样本均数的t检验"></a>配对样本均数的t检验</h1><p><strong>适用情况</strong>：两组数据形成对子，因此样本数相同。控制影响实验的无关变量。<br>优点：减少个体差异对实验的影响<br>缺点：数据成对处理</p>
+<p><strong>配对情况可以分为三类</strong>：</p>
+<ol>
+<li>两个相似的个体的配成一对进行不同的处理得到两个数据</li>
+<li>同一个个体同时进行两个处理得到两个数据：我的理解是对同一个个体的局部可以同时进行多个处理，比如人有两只手就可以在两只手上分别进行不同的处理得到两个结果</li>
+<li>同一个个体在时间先后上进行记录得到两个数据</li>
+</ol>
+<p>第一种是使用两个个体<br>第二种是使用一个个体同时间不同空间的数据<br>第三种是使用一个个体同空间不同时间的数据</p>
+<p><strong>检验假设</strong>：<br>零假设： μ<sub>d</sub> = 0 (无差别)<br>备择假设：μ<sub>d</sub> ≠ 0 (有差别)</p>
+<p><strong>计算检验统计量</strong>：</p>
+<ol>
+<li>因为是配对数据（样本量为N），先计算 n 个差值，转化为对一组数据的处理</li>
+<li>计算 n 个差值的均值 <span style="border-top:1px solid black">d</span></li>
+<li>根据 n 个差值和均值 <span style="border-top:1px solid black">d</span> 计算 S<sub>d</sub><br><img src="http://p33k8pinb.bkt.clouddn.com/18-2-28/86299349.jpg" alt=""></li>
+<li>根据均值 <span style="border-top:1px solid black">d</span> 、样本量 n 和第二步的结果  S<sub>d</sub> 计算 t 值和自由度 v<br><span style="font-size:30px">t = |<span style="border-top:1px solid black">d</span>|/(S<sub>d</sub>/sqrt(n))</span><br><span style="font-size:30px">v = n - 1</span></li>
+<li>查 <a href="https://www.cnblogs.com/emanlee/archive/2008/10/25/1319520.html" target="_blank" rel="noopener">t检验临界值表</a> 比较 t 值计算 P 值：当 P &gt; α 时接受原假设，否则拒绝原假设</li>
+</ol>
+<p>这是<a href="http://stat.smmu.edu.cn/uppic/file/jpkc/lesson6_ppt.pdf" target="_blank" rel="noopener">原PPT</a>给出的 <a href="http://p33k8pinb.bkt.clouddn.com/18-2-28/14034849.jpg" target="_blank" rel="noopener">例子</a> 和 <a href="http://p33k8pinb.bkt.clouddn.com/18-2-28/69890670.jpg" target="_blank" rel="noopener">解法</a></p>
+<h1 id="两独立样本均数的t检验"><a href="#两独立样本均数的t检验" class="headerlink" title="两独立样本均数的t检验"></a>两独立样本均数的t检验</h1><p><strong>适用情况</strong>：将样本随机分为两个组，分别进行两种不同的处理（或者观察），因此每个样本只可能受到一种处理，而不会像“配对样本均数的t检验”那样——同一个样本可能同时（或者同空）地接受两种处理。两组数据无配对情况，因此样本数（例数）可以不同（分别为 n<sub>1</sub> , n<sub>2</sub> )</p>
+<p><strong>检验假设</strong>：<br>原假设：μ<sub>1</sub> = μ<sub>2</sub> (处理无效)<br>备择假设：μ<sub>1</sub> ≠ μ<sub>2</sub> (双侧，处理有效)</p>
+<p><strong>计算检验统计量</strong>：</p>
+<ol>
+<li>计算自由度：<br><span style="font-size:30px">v = n<sub>1</sub> + n<sub>2</sub> -2</span></li>
+<li>分别计算出两组数据的均值 <span style="border-top:1px solid black">X<sub>1</sub></span> 和 <span style="border-top:1px solid black">X<sub>2</sub></span> 、方差 S<sub>1</sub><sup>2</sup> 和 S<sub>2</sub><sup>2</sup></li>
+<li>根据两组均值和方差计算 S<sub>c</sub><sup>2</sup>:<br><span style="font-size:30px">[S<sub>1</sub><sup>2</sup> ▪ (n<sub>1</sub>-1) + S<sub>2</sub><sup>2</sup> ▪ (n<sub>2</sub>-1)] / v</span></li>
+<li>计算 S <sub><span style="border-top:1px solid black">X<sub>1</sub></span> - <span style="border-top:1px solid black">X<sub>2</sub></span></sub>：<br><span style="font-size:30px">S <sub><span style="border-top:1px solid black">X<sub>1</sub></span> - <span style="border-top:1px solid black">X<sub>2</sub></span></sub> = sqrt(S<sub>c</sub><sup>2</sup> ▪ (1/n<sub>1</sub>+1/n<sub>2</sub>))</span></li>
+<li>计算 t :<br><span style="font-size:30px">(| <span style="border-top:1px solid black">X<sub>1</sub></span> - <span style="border-top:1px solid black">X<sub>2</sub></span> |) / S <sub><span style="border-top:1px solid black">X<sub>1</sub></span> - <span style="border-top:1px solid black">X<sub>2</sub></span></sub></span></li>
+<li>查 <a href="https://www.cnblogs.com/emanlee/archive/2008/10/25/1319520.html" target="_blank" rel="noopener">t检验临界值表</a> 比较 t 值计算 P 值：当 P &gt; α 时接受原假设，否则拒绝原假设</li>
+</ol>
+<h1 id="两独立样本方差的齐性检验"><a href="#两独立样本方差的齐性检验" class="headerlink" title="两独立样本方差的齐性检验"></a><span id="f_test">两独立样本方差的齐性检验</span></h1><p><strong>适用情况</strong>：在上述第三种情况（两独立样本均数的t检验）下，计算统计量 <code>t</code> 需要保证两组数据方差相同，因此需要对方差进行<strong>齐性检验</strong>。</p>
+<p><strong>检验假设</strong>：<br>原假设：σ<sub>1</sub> = σ<sub>2</sub> (方差齐性)<br>备择假设: σ<sub>1</sub> ≠ σ<sub>2</sub> (双侧，方差不齐)</p>
+<p><strong>计算检验统计量 F </strong>：<br><span style="font-size:30px"> F = max{S<sub>1</sub><sup>2</sup>, S<sub>2</sub><sup>2</sup>} / min{S<sub>1</sub><sup>2</sup>, S<sub>2</sub><sup>2</sup>} </span><br><span style="font-size:30px"> v<sub>1</sub> = n<sub>1</sub> - 1 </span><br><span style="font-size:30px"> v<sub>2</sub> = n<sub>2</sub> - 1 </span><br>查 <a href="http://p33k8pinb.bkt.clouddn.com/18-2-28/53856273.jpg" target="_blank" rel="noopener">α=0.05时的F临界值表</a> 比较 F 值：当 <strong>计算值 &gt; 查表值</strong> 时 <strong>P &lt; 0.05</strong> ,此时接受原假设（两组独立样本的方差的差别无统计学意义），否则拒绝原假设。<br>其他α值自行百度。</p>
+<h1 id="问题遗留"><a href="#问题遗留" class="headerlink" title="问题遗留"></a>问题遗留</h1><ul>
+<li>当样本不是来自正态分布采样时不能使用t检验，怎么办？</li>
+<li>当两独立样本的方差不齐性时依然不能用上述三种t检验，怎么办？</li>
+</ul>
+<p>记录一下其他的检验方法，有需要再查：校正t检验、变量代换、非参数检验(秩和检验…)</p>
+<h1 id="参考声明"><a href="#参考声明" class="headerlink" title="参考声明"></a>参考声明</h1><p>本文主要参考PPT：<a href="http://stat.smmu.edu.cn/uppic/file/jpkc/lesson6_ppt.pdf" target="_blank" rel="noopener">传送门</a></p>
+
+                
+<p class="pink-link-context">
+    <a href="/statistics/20180228-5746.html" rel="next" title="假设检验原理2-卡方检验">
+    Prev: 假设检验原理2-卡方检验
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/python/20180201-ffef.html" rel="next" title="python自用进度条">
+    Next: python自用进度条
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
     </div>
+</article>
+
+
+
+
 
 
 </div>
