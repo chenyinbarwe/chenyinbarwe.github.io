@@ -10,7 +10,7 @@
     <title>方差分析 | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="什么是方差分析？方差分析用于两个及两个以上样本的均数差异的显著性检验。
+    <meta name="description" content="一、什么是方差分析？方差分析用于两个及两个以上样本的均数差异的显著性检验。
 
 
 
@@ -42,7 +42,7 @@ R.A.Fisher
 
 
 
-t检验为什么不">
+二、t检验">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -197,14 +197,6 @@ t检验为什么不">
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/data-processing/">
-                    data-processing <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/algorithms/">
                     algorithms <span class="right">2</span></a>
                 </a>
@@ -215,6 +207,14 @@ t检验为什么不">
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/database-op/">
                     database-op <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/data-processing/">
+                    data-processing <span class="right">2</span></a>
                 </a>
             </li>
 
@@ -245,16 +245,16 @@ t检验为什么不">
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">8</span></a>
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">8</span></a>
                 </a>
             </li>
 
@@ -336,12 +336,12 @@ t检验为什么不">
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#什么是方差分析？"><span class="section table-of-contents-text">什么是方差分析？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#t检验为什么不能代替方差分析？"><span class="section table-of-contents-text">t检验为什么不能代替方差分析？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#方差分析的基本原理"><span class="section table-of-contents-text">方差分析的基本原理</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#▶-思想"><span class="section table-of-contents-text">▶ 思想</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#▶-目的"><span class="section table-of-contents-text">▶ 目的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#▶-用途"><span class="section table-of-contents-text">▶ 用途</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#数学模型"><span class="section table-of-contents-text">数学模型</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-线性等权加和模型"><span class="section table-of-contents-text">1.线性等权加和模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-处理效应不总是人为可控的"><span class="section table-of-contents-text">2.处理效应不总是人为可控的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-花式样本方差表达式求解"><span class="section table-of-contents-text">3.花式样本方差表达式求解</span></a></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、什么是方差分析？"><span class="section table-of-contents-text">一、什么是方差分析？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、t检验为什么不能代替方差分析？"><span class="section table-of-contents-text">二、t检验为什么不能代替方差分析？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、方差分析的基本原理"><span class="section table-of-contents-text">三、方差分析的基本原理</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-思想"><span class="section table-of-contents-text">1.思想</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-目的"><span class="section table-of-contents-text">2.目的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-用途"><span class="section table-of-contents-text">3.用途</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、数学模型"><span class="section table-of-contents-text">四、数学模型</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-线性等权加和模型"><span class="section table-of-contents-text">1.线性等权加和模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-处理效应不总是人为可控的"><span class="section table-of-contents-text">2.处理效应不总是人为可控的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-样本方差表达式求解"><span class="section table-of-contents-text">3.样本方差表达式求解</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-求分子"><span class="section table-of-contents-text">(1) 求分子</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-求分母"><span class="section table-of-contents-text">(2) 求分母</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-求方差"><span class="section table-of-contents-text">(3) 求方差</span></a></li></ol></li></ol></li></ol>
 </div>
 
 
             <div class="entry pink-link-context">
-                <h1 id="什么是方差分析？"><a href="#什么是方差分析？" class="headerlink" title="什么是方差分析？"></a><strong>什么是方差分析？</strong></h1><p><span style="color:green"><strong>方差分析</strong></span>用于<strong>两个</strong>及<strong>两个以上</strong>样本的均数差异的显著性检验。</p>
+                <h1 id="一、什么是方差分析？"><a href="#一、什么是方差分析？" class="headerlink" title="一、什么是方差分析？"></a><strong>一、什么是方差分析？</strong></h1><p><span style="color:green"><strong>方差分析</strong></span>用于<strong>两个</strong>及<strong>两个以上</strong>样本的均数差异的显著性检验。</p>
 <table>
 <thead>
 <tr>
@@ -373,25 +373,26 @@ t检验为什么不">
 </tbody>
 </table>
 <hr>
-<h1 id="t检验为什么不能代替方差分析？"><a href="#t检验为什么不能代替方差分析？" class="headerlink" title="t检验为什么不能代替方差分析？"></a><strong>t检验为什么不能代替方差分析？</strong></h1><p>t检验只适用于两个样本均数间的差异分析，当设计两个以上的样本时只能进行二元拆分，这种操作并不优雅。</p>
+<h1 id="二、t检验为什么不能代替方差分析？"><a href="#二、t检验为什么不能代替方差分析？" class="headerlink" title="二、t检验为什么不能代替方差分析？"></a><strong>二、t检验为什么不能代替方差分析？</strong></h1><p>t检验只适用于两个样本均数间的差异分析，当设计两个以上的样本时只能进行二元拆分，这种操作并不优雅。</p>
 <p><strong>1.检验过程繁琐。</strong>m个样本需要进行$C_m^2$组t检验，自寻烦恼。</p>
 <p><strong>2.无统一的试验误差，误差估计的精确性和检验的灵敏性低。</strong>（<span style="color:green">？？？</span>）</p>
 <p><strong>3.二元切分后进行多次t检验会使犯第Ⅰ类错误（假阳性错误）的概率大大增加。</strong>t检验只能将每次的检验犯错误概率控制在$\alpha$以内，在多次检验时这个概率会逐渐变大。例如一个三样本的均值差异检验共需要进行$C_3^2=3$次t检验，每一次犯错误的概率为$\alpha$，这意味着每一次检验不犯错误的概率为$1-\alpha$，连续三次不犯错误的概率为$(1-\alpha)^3$，所以这三次t检验犯第一类错误的概率为$1-(1-\alpha)^3=0.142615$（当$\alpha=0.05$时），这个概率相比于0.05已经大了很多了。由此可知，当$n{\to}\infty$时，犯第一类错误的概率将会趋近于1。</p>
 <hr>
-<h1 id="方差分析的基本原理"><a href="#方差分析的基本原理" class="headerlink" title="方差分析的基本原理"></a><strong>方差分析的基本原理</strong></h1><h2 id="▶-思想"><a href="#▶-思想" class="headerlink" title="▶ 思想"></a><span style="color:green">▶ 思想</span></h2><p>多个样本一般可以来自多个不同的<strong>处理</strong>(treatment)，比如注射不同的药物等，这些处理是我们可以<strong>控制</strong>的。</p>
+<h1 id="三、方差分析的基本原理"><a href="#三、方差分析的基本原理" class="headerlink" title="三、方差分析的基本原理"></a><strong>三、方差分析的基本原理</strong></h1><p>、、</p>
+<h2 id="1-思想"><a href="#1-思想" class="headerlink" title="1.思想"></a><span style="color:green">1.思想</span></h2><p>多个样本一般可以来自多个不同的<strong>处理</strong>(treatment)，比如注射不同的药物等，这些处理是我们可以<strong>控制</strong>的。</p>
 <p>不同的处理有可能影响并致使实验结果产生差异，这种影响一般是可以人为控制的，这种效应叫做<strong>处理效应</strong>(treatment effect)。</p>
 <p>对每个个体的观测值不同，除了处理效应施加影响，还包括实验过程中偶然性因素和测量误差的干扰。</p>
-<h2 id="▶-目的"><a href="#▶-目的" class="headerlink" title="▶ 目的"></a><span style="color:green">▶ 目的</span></h2><p>方差分析可以确定上面提到的<strong>处理效应</strong>和<strong>实验误差</strong>对总差异的贡献程度。</p>
+<h2 id="2-目的"><a href="#2-目的" class="headerlink" title="2.目的"></a><span style="color:green">2.目的</span></h2><p>方差分析可以确定上面提到的<strong>处理效应</strong>和<strong>实验误差</strong>对总差异的贡献程度。</p>
 <p>一般来说，实验误差是合理不可控的，同时它对总差异的影响也是很小的。因此我们可以比较<strong>处理效应</strong>和<strong>实验误差</strong>。</p>
 <p>而实验误差显然不是我们关心的东西，我们关心的应该是<strong>处理</strong>间（组间）均值是否有差异，即我们关心应该是<strong>处理效应</strong>：<br>● 处理效应和实验误差相差不大，意味着处理效应对指标影响不大。<br>● 处理效应比实验误差大很多，处理效应对实验结果差异有很大影响。</p>
-<h2 id="▶-用途"><a href="#▶-用途" class="headerlink" title="▶ 用途"></a><span style="color:green">▶ 用途</span></h2><ol>
+<h2 id="3-用途"><a href="#3-用途" class="headerlink" title="3.用途"></a><span style="color:green">3.用途</span></h2><ol>
 <li>多样本均数的比较</li>
 <li>多因素间相互作用的分析</li>
 <li>回归方程的假设假设</li>
 <li>方差的同质性检验</li>
 </ol>
 <hr>
-<h1 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a><strong>数学模型</strong></h1><p>根据上面对<strong>总差异</strong>的定性分析（由处理效应和实验误差构成）建立定量的数学模型。</p>
+<h1 id="四、数学模型"><a href="#四、数学模型" class="headerlink" title="四、数学模型"></a><strong>四、数学模型</strong></h1><p>根据上面对<strong>总差异</strong>的定性分析（由处理效应和实验误差构成）建立定量的数学模型。</p>
 <p>观测数据记录形式一般如下：</p>
 <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201810/20181022194352.png" alt=""></p>
 <p>其中每列（1,…,k）代表k个不同的处理，即k个样本；行数代表每种处理的重复次数，即一个样本的样本容量。</p>
@@ -400,7 +401,7 @@ t检验为什么不">
 <p>$$i=1,…,k$$</p>
 <p>$$j=1,…,n$$</p>
 <ul>
-<li>$\mu$是<strong>总体均数</strong>；（<span style="color:green">是否对总体分布有限制？？？</span>）</li>
+<li>$\mu$是<strong>总体均数</strong>；</li>
 <li>$\tau_i$是第$i$次处理的<strong>处理效应</strong>；</li>
 <li>$\epsilon_{ij}$是第$i$次处理中第$j$个样本的<strong>实验误差</strong>；</li>
 <li>$x_{ij}$是第$i$次处理中第$j$个样本的<strong>观测值</strong>；</li>
@@ -433,7 +434,45 @@ t检验为什么不">
 </tr>
 </tbody>
 </table>
-<h2 id="3-花式样本方差表达式求解"><a href="#3-花式样本方差表达式求解" class="headerlink" title="3.花式样本方差表达式求解"></a>3.花式样本方差表达式求解</h2><p>上面的模型虽然说简洁，但毕竟还是个花架子，我们需要把它的各个单项同真正的样本联系起来。</p>
+<h2 id="3-样本方差表达式求解"><a href="#3-样本方差表达式求解" class="headerlink" title="3.样本方差表达式求解"></a>3.样本方差表达式求解</h2><p>首先我们要明确方差求解式的结构：$\frac{平方和}{自由度}$</p>
+<p>下面分别求解分子和分母。</p>
+<h3 id="1-求分子"><a href="#1-求分子" class="headerlink" title="(1) 求分子"></a>(1) 求分子</h3><p>上面的模型虽然说简洁，但毕竟还是个花架子，我们需要把它的各个单项同真正的样本联系起来。</p>
+<p>那么怎么将<strong>处理效应</strong>和<strong>随机误差</strong>同已知样本联系起来呢？这里有两句话自行体会：</p>
+<ol>
+<li><strong>组间的</strong>平均数差异是由<strong>处理效应</strong>引起的：$\overline{x_i}-\overline{x}$</li>
+<li><strong>组内的</strong>差异是由<strong>随机误差</strong>引起的：$x_{ij}-\overline{x_i}$</li>
+</ol>
+<p>然后简单变换：</p>
+<p>$x_{ij}-\bar{x}=(x_{ij}-\overline{x_i})+(\overline{x_i}-\bar{x})$</p>
+<p>$(x_{ij}-\bar{x})^2=[(x_{ij}-\overline{x_i})+(\overline{x_i}-\bar{x})]^2=(x_{ij}-\overline{x_i})^2+(\overline{x_i}-\bar{x})^2+2(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})$</p>
+<p>针对某个特定的<strong>处理</strong>对样本内所有观测数据求和：</p>
+<p>$\sum_{j=1}^{n}(x_{ij}-\bar{x})^2=\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2+\sum_{j=1}^{n}(\overline{x_i}-\bar{x})^2+2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})$</p>
+<p>这里有个玄学项 $2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})$，我们将与 $j$ 无关的项提前：</p>
+<p>$2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})=2(\overline{x_i}-\bar{x})\sum_{j=1}^{n}(x_{ij}-\overline{x_i})$</p>
+<p><strong>均值</strong>具有这样一个特性：一个样本内所有观测数据到均值的距离（包含正负号）和为0。</p>
+<p>所以有这样一个结论：$2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})=0$</p>
+<p>即$\sum_{j=1}^{n}(x_{ij}-\bar{x})^2=\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2+\sum_{j=1}^{n}(\overline{x_i}-\bar{x})^2$</p>
+<p>然后我们将不同<strong>处理</strong>的观测数据的<strong>离均差平方</strong>进行累加：</p>
+<p>$\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\bar{x})^2=\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2+\sum_{i=1}^{k}\sum_{j=1}^{n}(\overline{x_i}-\bar{x})^2$</p>
+<p>化简得：</p>
+<p>$\underbrace{\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\bar{x})^2}_{SS_T}=\underbrace{\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2}_{SS_e}+\underbrace{n\sum_{i=1}^{k}(\overline{x_i}-\bar{x})^2}_{SS_t}$</p>
+<p>即：$SS_T(总平方和)=SS_e(组内平方和)+SS_t(组间平方和)$</p>
+<p>预算</p>
+<p>$$T=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}$$</p>
+<p>$$T_i=\sum_{j=1}^{n}x_{ij}$$</p>
+<p>$$C=\frac{T^2}{kn}$$</p>
+<p>得</p>
+<p>$$SS_T=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}^2-C$$</p>
+<p>$$SS_t=\frac{1}{n}\sum_{i=1}^{k}T_i^2-C$$</p>
+<p>$$SS_e=SS_T-SS_t$$</p>
+<h3 id="2-求分母"><a href="#2-求分母" class="headerlink" title="(2) 求分母"></a>(2) 求分母</h3><p>分母就是与$SS_T$、$SS_t$和$SS_e$相关的<strong>自由度</strong>$df$:</p>
+<p>$$df_T=nk-1$$</p>
+<p>$$df_t=k-1$$</p>
+<p>$$df_e=df_T-df_t=k(n-1)$$</p>
+<h3 id="3-求方差"><a href="#3-求方差" class="headerlink" title="(3) 求方差"></a>(3) 求方差</h3><p>组间方差</p>
+<p>$$s_t^2=\frac{SS_t}{df_t}$$</p>
+<p>$$s_e^2=\frac{SS_e}{df_e}$$</p>
+<p>坐等下次上课~</p>
 
                 
 
