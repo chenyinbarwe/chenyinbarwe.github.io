@@ -12,7 +12,7 @@
     
     <meta name="description" content="以点估计为例，我们可以通过矩估计法和最大似然估计法对总体的某个参数进行估计。我们通过不同的方法对同一个参数的估计结果可能不同，因此我们需要选择一个最好的估计量。
 下面是选择估计量时常用的三个标准：
-无偏性什么是无偏性？若${X_1,X_2,\cdots,X_n}$是总的一个样本，样本容量为$n$，$">
+无偏性什么是无偏性？若${X_1,X_2,\cdots,X_n}$是总体的一个样本，样本容量为$n$，">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -159,8 +159,8 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/algorithms/">
-                    algorithms <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/statistics/">
+                    statistics <span class="right">12</span></a>
                 </a>
             </li>
 
@@ -175,32 +175,16 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/algorithms/">
+                    algorithms <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/database-op/">
                     database-op <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/deep-learning/">
-                    deep-learning <span class="right">4</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
                 </a>
             </li>
 
@@ -215,16 +199,32 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">8</span></a>
+                <a class="no-padding" href="/categories/mathematics/">
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/statistics/">
-                    statistics <span class="right">11</span></a>
+                <a class="no-padding" href="/categories/deep-learning/">
+                    deep-learning <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">8</span></a>
                 </a>
             </li>
 
@@ -313,8 +313,8 @@
             <div class="entry pink-link-context">
                 <p>以点估计为例，我们可以通过矩估计法和最大似然估计法对总体的某个参数进行估计。我们通过不同的方法对同一个参数的估计结果可能不同，因此我们需要选择一个最好的估计量。</p>
 <p>下面是选择估计量时常用的三个标准：</p>
-<h1 id="无偏性"><a href="#无偏性" class="headerlink" title="无偏性"></a>无偏性</h1><h2 id="什么是无偏性？"><a href="#什么是无偏性？" class="headerlink" title="什么是无偏性？"></a>什么是无偏性？</h2><p>若${X_1,X_2,\cdots,X_n}$是总的一个样本，样本容量为$n$，$\theta$是与总体分布相关的一个<strong>待估参数</strong>。</p>
-<p>我们基于样本{X_1,X_2,\cdots,X_n}构造了一个<strong>估计量</strong>$\hat{\theta}=\theta(X_1,X_2,\cdots,X_n)$，当这歌估计量的<strong>期望</strong>$E(\hat{\theta})$存在且$E(\hat{\theta})=\theta$时称$\hat{\theta}$是$\theta$的<strong>无偏估计量</strong>。</p>
+<h1 id="无偏性"><a href="#无偏性" class="headerlink" title="无偏性"></a>无偏性</h1><h2 id="什么是无偏性？"><a href="#什么是无偏性？" class="headerlink" title="什么是无偏性？"></a>什么是无偏性？</h2><p>若${X_1,X_2,\cdots,X_n}$是总体的一个样本，样本容量为$n$，$\theta$是与总体分布相关的一个<strong>待估参数</strong>。</p>
+<p>我们基于样本${X_1,X_2,\cdots,X_n}$构造了一个<strong>估计量</strong>$\hat{\theta}=\theta(X_1,X_2,\cdots,X_n)$，当这歌估计量的<strong>期望</strong>$E(\hat{\theta})$存在且$E(\hat{\theta})=\theta$时称$\hat{\theta}$是$\theta$的<strong>无偏估计量</strong>。</p>
 <p>简而言之，估计量的期望等于待估参数就是无偏估计。</p>
 <h2 id="无系统误差"><a href="#无系统误差" class="headerlink" title="无系统误差"></a>无系统误差</h2><p>无偏估计意味着没有<strong>系统误差</strong>，那么有偏估计就意味着有系统误差，而系统误差是可以通过<strong>校正</strong>去除的，所谓我们可以对有偏估计进行无偏化处理得到完成无偏估计，典型的例子就是方差估计。</p>
 <h2 id="期望是无偏的"><a href="#期望是无偏的" class="headerlink" title="期望是无偏的"></a>期望是无偏的</h2><p>不论总体的分布形式如何，<strong>k阶样本矩</strong>（样本的k阶原点矩）$A_k=\frac1n\sum_{i=1}^{n}X_i^k$都是<strong>k阶总体矩</strong>（总体的k阶原点矩）$\mu_k$的<strong>无偏估计</strong>。只需证明$E(A_k)=\mu_k$即可。</p>

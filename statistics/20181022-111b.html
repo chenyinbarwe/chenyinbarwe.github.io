@@ -189,8 +189,8 @@ R.A.Fisher
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/algorithms/">
-                    algorithms <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/statistics/">
+                    statistics <span class="right">12</span></a>
                 </a>
             </li>
 
@@ -205,32 +205,16 @@ R.A.Fisher
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/algorithms/">
+                    algorithms <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/database-op/">
                     database-op <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/deep-learning/">
-                    deep-learning <span class="right">4</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
                 </a>
             </li>
 
@@ -245,16 +229,32 @@ R.A.Fisher
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">8</span></a>
+                <a class="no-padding" href="/categories/mathematics/">
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/statistics/">
-                    statistics <span class="right">11</span></a>
+                <a class="no-padding" href="/categories/deep-learning/">
+                    deep-learning <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">8</span></a>
                 </a>
             </li>
 
@@ -378,8 +378,7 @@ R.A.Fisher
 <p><strong>2.无统一的试验误差，误差估计的精确性和检验的灵敏性低。</strong>（<span style="color:green">？？？</span>）</p>
 <p><strong>3.二元切分后进行多次t检验会使犯第Ⅰ类错误（假阳性错误）的概率大大增加。</strong>t检验只能将每次的检验犯错误概率控制在$\alpha$以内，在多次检验时这个概率会逐渐变大。例如一个三样本的均值差异检验共需要进行$C_3^2=3$次t检验，每一次犯错误的概率为$\alpha$，这意味着每一次检验不犯错误的概率为$1-\alpha$，连续三次不犯错误的概率为$(1-\alpha)^3$，所以这三次t检验犯第一类错误的概率为$1-(1-\alpha)^3=0.142615$（当$\alpha=0.05$时），这个概率相比于0.05已经大了很多了。由此可知，当$n{\to}\infty$时，犯第一类错误的概率将会趋近于1。</p>
 <hr>
-<h1 id="三、方差分析的基本原理"><a href="#三、方差分析的基本原理" class="headerlink" title="三、方差分析的基本原理"></a><strong>三、方差分析的基本原理</strong></h1><p>、、</p>
-<h2 id="1-思想"><a href="#1-思想" class="headerlink" title="1.思想"></a><span style="color:green">1.思想</span></h2><p>多个样本一般可以来自多个不同的<strong>处理</strong>(treatment)，比如注射不同的药物等，这些处理是我们可以<strong>控制</strong>的。</p>
+<h1 id="三、方差分析的基本原理"><a href="#三、方差分析的基本原理" class="headerlink" title="三、方差分析的基本原理"></a><strong>三、方差分析的基本原理</strong></h1><h2 id="1-思想"><a href="#1-思想" class="headerlink" title="1.思想"></a><span style="color:green">1.思想</span></h2><p>多个样本一般可以来自多个不同的<strong>处理</strong>(treatment)，比如注射不同的药物等，这些处理是我们可以<strong>控制</strong>的。</p>
 <p>不同的处理有可能影响并致使实验结果产生差异，这种影响一般是可以人为控制的，这种效应叫做<strong>处理效应</strong>(treatment effect)。</p>
 <p>对每个个体的观测值不同，除了处理效应施加影响，还包括实验过程中偶然性因素和测量误差的干扰。</p>
 <h2 id="2-目的"><a href="#2-目的" class="headerlink" title="2.目的"></a><span style="color:green">2.目的</span></h2><p>方差分析可以确定上面提到的<strong>处理效应</strong>和<strong>实验误差</strong>对总差异的贡献程度。</p>
@@ -397,9 +396,7 @@ R.A.Fisher
 <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201810/20181022194352.png" alt=""></p>
 <p>其中每列（1,…,k）代表k个不同的处理，即k个样本；行数代表每种处理的重复次数，即一个样本的样本容量。</p>
 <h2 id="1-线性等权加和模型"><a href="#1-线性等权加和模型" class="headerlink" title="1.线性等权加和模型"></a>1.线性等权加和模型</h2><p>这里采用最简洁的线性模型定量描述上述关系：</p>
-<p>$$x_{ij}=\mu+\tau_i+\epsilon_{ij}$$</p>
-<p>$$i=1,…,k$$</p>
-<p>$$j=1,…,n$$</p>
+<p>$$\begin{split}<br>x_{ij}&amp;=\mu+\tau_i+\epsilon_{ij}\\<br>i&amp;=1,…,k\\<br>j&amp;=1,…,n<br>\end{split}$$</p>
 <ul>
 <li>$\mu$是<strong>总体均数</strong>；</li>
 <li>$\tau_i$是第$i$次处理的<strong>处理效应</strong>；</li>
@@ -443,8 +440,7 @@ R.A.Fisher
 <li><strong>组内的</strong>差异是由<strong>随机误差</strong>引起的：$x_{ij}-\overline{x_i}$</li>
 </ol>
 <p>然后简单变换：</p>
-<p>$x_{ij}-\bar{x}=(x_{ij}-\overline{x_i})+(\overline{x_i}-\bar{x})$</p>
-<p>$(x_{ij}-\bar{x})^2=[(x_{ij}-\overline{x_i})+(\overline{x_i}-\bar{x})]^2=(x_{ij}-\overline{x_i})^2+(\overline{x_i}-\bar{x})^2+2(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})$</p>
+<p>$$\begin{split}<br>(x_{ij}-\bar{x})&amp;=(x_{ij}-\overline{x_i})+(\overline{x_i}-\bar{x})\\<br>(x_{ij}-\bar{x})^2&amp;=[(x_{ij}-\overline{x_i})+(\overline{x_i}-\bar{x})]^2\\<br>&amp;=(x_{ij}-\overline{x_i})^2+(\overline{x_i}-\bar{x})^2+2(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})<br>\end{split}$$</p>
 <p>针对某个特定的<strong>处理</strong>对样本内所有观测数据求和：</p>
 <p>$\sum_{j=1}^{n}(x_{ij}-\bar{x})^2=\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2+\sum_{j=1}^{n}(\overline{x_i}-\bar{x})^2+2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})$</p>
 <p>这里有个玄学项 $2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})$，我们将与 $j$ 无关的项提前：</p>
@@ -458,23 +454,22 @@ R.A.Fisher
 <p>$\underbrace{\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\bar{x})^2}_{SS_T}=\underbrace{\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2}_{SS_e}+\underbrace{n\sum_{i=1}^{k}(\overline{x_i}-\bar{x})^2}_{SS_t}$</p>
 <p>即：$SS_T(总平方和)=SS_e(组内平方和)+SS_t(组间平方和)$</p>
 <p>预算</p>
-<p>$$T=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}$$</p>
-<p>$$T_i=\sum_{j=1}^{n}x_{ij}$$</p>
-<p>$$C=\frac{T^2}{kn}$$</p>
+<p>$$\begin{split}<br>T&amp;=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}\\<br>T_i&amp;=\sum_{j=1}^{n}x_{ij}\\<br>C&amp;=\frac{T^2}{kn}<br>\end{split}$$</p>
 <p>得</p>
-<p>$$SS_T=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}^2-C$$</p>
-<p>$$SS_t=\frac{1}{n}\sum_{i=1}^{k}T_i^2-C$$</p>
-<p>$$SS_e=SS_T-SS_t$$</p>
+<p>$$\begin{split}<br>SS_T&amp;=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}^2-C\\<br>SS_t&amp;=\frac{1}{n}\sum_{i=1}^{k}T_i^2-C\\<br>SS_e&amp;=SS_T-SS_t<br>\end{split}$$</p>
 <h3 id="2-求分母"><a href="#2-求分母" class="headerlink" title="(2) 求分母"></a>(2) 求分母</h3><p>分母就是与$SS_T$、$SS_t$和$SS_e$相关的<strong>自由度</strong>$df$:</p>
-<p>$$df_T=nk-1$$</p>
-<p>$$df_t=k-1$$</p>
-<p>$$df_e=df_T-df_t=k(n-1)$$</p>
+<p>$$\begin{split}<br>df_T&amp;=nk-1\\<br>df_t&amp;=k-1\\<br>df_e&amp;=df_T-df_t\\<br>&amp;=k(n-1)<br>\end{split}$$</p>
 <h3 id="3-求方差"><a href="#3-求方差" class="headerlink" title="(3) 求方差"></a>(3) 求方差</h3><p>组间方差</p>
-<p>$$s_t^2=\frac{SS_t}{df_t}$$</p>
-<p>$$s_e^2=\frac{SS_e}{df_e}$$</p>
+<p>$$\begin{split}<br>s_t^2&amp;=\frac{SS_t}{df_t}\\<br>s_e^2&amp;=\frac{SS_e}{df_e}<br>\end{split}$$</p>
 <p>坐等下次上课~</p>
 
                 
+<p class="pink-link-context">
+    <a href="/statistics/20181024-6839.html" rel="next" title="参数估计-区间估计">
+    Prev: 参数估计-区间估计
+  </a>
+</p>
+
 
 
 <p class="pink-link-context">
