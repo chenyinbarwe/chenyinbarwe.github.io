@@ -7,10 +7,10 @@
 
     
 
-    <title>方差分析 | CY的博客</title>
+    <title>方差分析1-基本原理、F检验、多重比较 | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="一、什么是方差分析？方差分析用于两个及两个以上样本的均数差异的显著性检验。
+    <meta name="description" content="一、问题引入1.什么是方差分析？方差分析用于两个及两个以上样本的均数差异的显著性检验。
 
 
 
@@ -41,13 +41,12 @@ R.A.Fisher
 
 
 
-
-二、t检验">
+">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="方差分析"/>
+    <meta property="og:title" content="方差分析1-基本原理、F检验、多重比较"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -189,16 +188,16 @@ R.A.Fisher
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/algorithms/">
-                    algorithms <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/data-processing/">
+                    data-processing <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/data-processing/">
-                    data-processing <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/algorithms/">
+                    algorithms <span class="right">2</span></a>
                 </a>
             </li>
 
@@ -237,6 +236,14 @@ R.A.Fisher
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/python/">
                     python <span class="right">8</span></a>
                 </a>
@@ -253,8 +260,8 @@ R.A.Fisher
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
+                <a class="no-padding" href="/categories/statistics/">
+                    statistics <span class="right">12</span></a>
                 </a>
             </li>
 
@@ -263,14 +270,6 @@ R.A.Fisher
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/windows10/">
                     windows10 <span class="right">5</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/statistics/">
-                    statistics <span class="right">11</span></a>
                 </a>
             </li>
 
@@ -323,7 +322,7 @@ R.A.Fisher
             <div class="article-title">
                 
     
-        <h1>方差分析</h1>
+        <h1>方差分析1-基本原理、F检验、多重比较</h1>
     
 
 
@@ -344,12 +343,12 @@ R.A.Fisher
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、什么是方差分析？"><span class="section table-of-contents-text">一、什么是方差分析？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、t检验为什么不能代替方差分析？"><span class="section table-of-contents-text">二、t检验为什么不能代替方差分析？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、方差分析的基本原理"><span class="section table-of-contents-text">三、方差分析的基本原理</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-思想"><span class="section table-of-contents-text">1.思想</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-目的"><span class="section table-of-contents-text">2.目的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-用途"><span class="section table-of-contents-text">3.用途</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、数学模型"><span class="section table-of-contents-text">四、数学模型</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-线性等权加和模型"><span class="section table-of-contents-text">1.线性等权加和模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-处理效应不总是人为可控的"><span class="section table-of-contents-text">2.处理效应不总是人为可控的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-样本方差表达式求解"><span class="section table-of-contents-text">3.样本方差表达式求解</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-求分子"><span class="section table-of-contents-text">(1) 求分子</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-求分母"><span class="section table-of-contents-text">(2) 求分母</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-求方差"><span class="section table-of-contents-text">(3) 求方差</span></a></li></ol></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、问题引入"><span class="section table-of-contents-text">一、问题引入</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-什么是方差分析？"><span class="section table-of-contents-text">1.什么是方差分析？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-t检验为什么不能代替方差分析？"><span class="section table-of-contents-text">2.t检验为什么不能代替方差分析？</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、方差分析的基本原理"><span class="section table-of-contents-text">二、方差分析的基本原理</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-思想"><span class="section table-of-contents-text">1.思想</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-目的"><span class="section table-of-contents-text">2.目的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-用途"><span class="section table-of-contents-text">3.用途</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、数学模型"><span class="section table-of-contents-text">三、数学模型</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-线性等权加和模型"><span class="section table-of-contents-text">1.线性等权加和模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-处理效应不总是人为可控的"><span class="section table-of-contents-text">2.处理效应不总是人为可控的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-样本方差表达式求解"><span class="section table-of-contents-text">3.样本方差表达式求解</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-求分子（平方和）"><span class="section table-of-contents-text">(1) 求分子（平方和）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-求分母（自由度）"><span class="section table-of-contents-text">(2) 求分母（自由度）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-求方差"><span class="section table-of-contents-text">(3) 求方差</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、-F-检验"><span class="section table-of-contents-text">四、$F$ 检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-F-值的定义"><span class="section table-of-contents-text">1.$F$ 值的定义</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-公式迁移"><span class="section table-of-contents-text">2.公式迁移</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-F-临界值表"><span class="section table-of-contents-text">3.$F$ 临界值表</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#五、多重比较"><span class="section table-of-contents-text">五、多重比较</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-最小显著差数法（LSD）"><span class="section table-of-contents-text">1.最小显著差数法（LSD）</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-检验方法"><span class="section table-of-contents-text">(1) 检验方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-结果表示"><span class="section table-of-contents-text">(2) 结果表示</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#a-标记字母法"><span class="section table-of-contents-text">a. 标记字母法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#b-梯形比较法-三角形法"><span class="section table-of-contents-text">b. 梯形比较法/三角形法</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-最小显著极差法（LSR）"><span class="section table-of-contents-text">2.最小显著极差法（LSR）</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-新复极差检验（SSR）"><span class="section table-of-contents-text">(1) 新复极差检验（SSR）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-q检验"><span class="section table-of-contents-text">(2) q检验</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-各个方法应用场景"><span class="section table-of-contents-text">3.各个方法应用场景</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#六、方差分析的基本步骤"><span class="section table-of-contents-text">六、方差分析的基本步骤</span></a></li></ol>
 </div>
 
 
             <div class="entry pink-link-context">
-                <h1 id="一、什么是方差分析？"><a href="#一、什么是方差分析？" class="headerlink" title="一、什么是方差分析？"></a><strong>一、什么是方差分析？</strong></h1><p><span style="color:green"><strong>方差分析</strong></span>用于<strong>两个</strong>及<strong>两个以上</strong>样本的均数差异的显著性检验。</p>
+                <h1 id="一、问题引入"><a href="#一、问题引入" class="headerlink" title="一、问题引入"></a><strong>一、问题引入</strong></h1><h2 id="1-什么是方差分析？"><a href="#1-什么是方差分析？" class="headerlink" title="1.什么是方差分析？"></a><strong>1.什么是方差分析？</strong></h2><p><span style="color:green"><strong>方差分析</strong></span>用于<strong>两个</strong>及<strong>两个以上</strong>样本的均数差异的显著性检验。</p>
 <table>
 <thead>
 <tr>
@@ -380,13 +379,12 @@ R.A.Fisher
 </tr>
 </tbody>
 </table>
-<hr>
-<h1 id="二、t检验为什么不能代替方差分析？"><a href="#二、t检验为什么不能代替方差分析？" class="headerlink" title="二、t检验为什么不能代替方差分析？"></a><strong>二、t检验为什么不能代替方差分析？</strong></h1><p>t检验只适用于两个样本均数间的差异分析，当设计两个以上的样本时只能进行二元拆分，这种操作并不优雅。</p>
+<h2 id="2-t检验为什么不能代替方差分析？"><a href="#2-t检验为什么不能代替方差分析？" class="headerlink" title="2.t检验为什么不能代替方差分析？"></a><strong>2.t检验为什么不能代替方差分析？</strong></h2><p>t检验只适用于两个样本均数间的差异分析，当设计两个以上的样本时只能进行二元拆分，这种操作并不优雅。</p>
 <p><strong>1.检验过程繁琐。</strong>m个样本需要进行$C_m^2$组t检验，自寻烦恼。</p>
 <p><strong>2.无统一的试验误差，误差估计的精确性和检验的灵敏性低。</strong>（<span style="color:green">？？？</span>）</p>
 <p><strong>3.二元切分后进行多次t检验会使犯第Ⅰ类错误（假阳性错误）的概率大大增加。</strong>t检验只能将每次的检验犯错误概率控制在$\alpha$以内，在多次检验时这个概率会逐渐变大。例如一个三样本的均值差异检验共需要进行$C_3^2=3$次t检验，每一次犯错误的概率为$\alpha$，这意味着每一次检验不犯错误的概率为$1-\alpha$，连续三次不犯错误的概率为$(1-\alpha)^3$，所以这三次t检验犯第一类错误的概率为$1-(1-\alpha)^3=0.142615$（当$\alpha=0.05$时），这个概率相比于0.05已经大了很多了。由此可知，当$n{\to}\infty$时，犯第一类错误的概率将会趋近于1。</p>
 <hr>
-<h1 id="三、方差分析的基本原理"><a href="#三、方差分析的基本原理" class="headerlink" title="三、方差分析的基本原理"></a><strong>三、方差分析的基本原理</strong></h1><h2 id="1-思想"><a href="#1-思想" class="headerlink" title="1.思想"></a><span style="color:green">1.思想</span></h2><p>多个样本一般可以来自多个不同的<strong>处理</strong>(treatment)，比如注射不同的药物等，这些处理是我们可以<strong>控制</strong>的。</p>
+<h1 id="二、方差分析的基本原理"><a href="#二、方差分析的基本原理" class="headerlink" title="二、方差分析的基本原理"></a><strong>二、方差分析的基本原理</strong></h1><h2 id="1-思想"><a href="#1-思想" class="headerlink" title="1.思想"></a><span style="color:green">1.思想</span></h2><p>多个样本一般可以来自多个不同的<strong>处理</strong>(treatment)，比如注射不同的药物等，这些处理是我们可以<strong>控制</strong>的。</p>
 <p>不同的处理有可能影响并致使实验结果产生差异，这种影响一般是可以人为控制的，这种效应叫做<strong>处理效应</strong>(treatment effect)。</p>
 <p>对每个个体的观测值不同，除了处理效应施加影响，还包括实验过程中偶然性因素和测量误差的干扰。</p>
 <h2 id="2-目的"><a href="#2-目的" class="headerlink" title="2.目的"></a><span style="color:green">2.目的</span></h2><p>方差分析可以确定上面提到的<strong>处理效应</strong>和<strong>实验误差</strong>对总差异的贡献程度。</p>
@@ -399,7 +397,7 @@ R.A.Fisher
 <li>方差的同质性检验</li>
 </ol>
 <hr>
-<h1 id="四、数学模型"><a href="#四、数学模型" class="headerlink" title="四、数学模型"></a><strong>四、数学模型</strong></h1><p>根据上面对<strong>总差异</strong>的定性分析（由处理效应和实验误差构成）建立定量的数学模型。</p>
+<h1 id="三、数学模型"><a href="#三、数学模型" class="headerlink" title="三、数学模型"></a><strong>三、数学模型</strong></h1><p>根据上面对<strong>总差异</strong>的定性分析（由处理效应和实验误差构成）建立定量的数学模型。</p>
 <p>观测数据记录形式一般如下：</p>
 <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201810/20181022194352.png" alt=""></p>
 <p>其中每列（1,…,k）代表k个不同的处理，即k个样本；行数代表每种处理的重复次数，即一个样本的样本容量。</p>
@@ -441,7 +439,7 @@ R.A.Fisher
 </table>
 <h2 id="3-样本方差表达式求解"><a href="#3-样本方差表达式求解" class="headerlink" title="3.样本方差表达式求解"></a>3.样本方差表达式求解</h2><p>首先我们要明确方差求解式的结构：$\frac{平方和}{自由度}$</p>
 <p>下面分别求解分子和分母。</p>
-<h3 id="1-求分子"><a href="#1-求分子" class="headerlink" title="(1) 求分子"></a>(1) 求分子</h3><p>上面的模型虽然说简洁，但毕竟还是个花架子，我们需要把它的各个单项同真正的样本联系起来。</p>
+<h3 id="1-求分子（平方和）"><a href="#1-求分子（平方和）" class="headerlink" title="(1) 求分子（平方和）"></a>(1) 求分子（平方和）</h3><p>上面的模型虽然说简洁，但毕竟还是个花架子，我们需要把它的各个单项同真正的样本联系起来。</p>
 <p>那么怎么将<strong>处理效应</strong>和<strong>随机误差</strong>同已知样本联系起来呢？这里有两句话自行体会：</p>
 <ol>
 <li><strong>组间的</strong>平均数差异是由<strong>处理效应</strong>引起的：$\overline{x_i}-\overline{x}$</li>
@@ -465,11 +463,68 @@ R.A.Fisher
 <p>$$\begin{split}<br>T&amp;=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}\\<br>T_i&amp;=\sum_{j=1}^{n}x_{ij}\\<br>C&amp;=\frac{T^2}{kn}<br>\end{split}$$</p>
 <p>得</p>
 <p>$$\begin{split}<br>SS_T&amp;=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}^2-C\\<br>SS_t&amp;=\frac{1}{n}\sum_{i=1}^{k}T_i^2-C\\<br>SS_e&amp;=SS_T-SS_t<br>\end{split}$$</p>
-<h3 id="2-求分母"><a href="#2-求分母" class="headerlink" title="(2) 求分母"></a>(2) 求分母</h3><p>分母就是与$SS_T$、$SS_t$和$SS_e$相关的<strong>自由度</strong>$df$:</p>
+<h3 id="2-求分母（自由度）"><a href="#2-求分母（自由度）" class="headerlink" title="(2) 求分母（自由度）"></a>(2) 求分母（自由度）</h3><p>分母就是与$SS_T$、$SS_t$和$SS_e$相关的<strong>自由度</strong>$df$:</p>
 <p>$$\begin{split}<br>df_T&amp;=nk-1\\<br>df_t&amp;=k-1\\<br>df_e&amp;=df_T-df_t\\<br>&amp;=k(n-1)<br>\end{split}$$</p>
 <h3 id="3-求方差"><a href="#3-求方差" class="headerlink" title="(3) 求方差"></a>(3) 求方差</h3><p>组间方差</p>
 <p>$$\begin{split}<br>s_t^2&amp;=\frac{SS_t}{df_t}\\<br>s_e^2&amp;=\frac{SS_e}{df_e}<br>\end{split}$$</p>
-<p>坐等下次上课~</p>
+<hr>
+<h1 id="四、-F-检验"><a href="#四、-F-检验" class="headerlink" title="四、$F$ 检验"></a><strong>四、$F$ 检验</strong></h1><h2 id="1-F-值的定义"><a href="#1-F-值的定义" class="headerlink" title="1.$F$ 值的定义"></a><strong>1.$F$ 值的定义</strong></h2><p>$F$ 值的定义：$$F=\frac{s_1^2}{s_2^2}$$<br>这里 $s_1^2$ 和 $s_2^2$ 都是随机采样于<strong>正态总体($\mu$, $\sigma$)</strong>，它们可能具有不同的<strong>样本容量（自由度）</strong>。<br>习惯上，我们让 $F$ 值<strong>大于1</strong>，即大方差做分子，小方差做分母。</p>
+<h2 id="2-公式迁移"><a href="#2-公式迁移" class="headerlink" title="2.公式迁移"></a><strong>2.公式迁移</strong></h2><p>在<strong>方差分析</strong>中，我们计算出了两个方差：组间方差 $S_t^2$ 和组内方差 $S_e^2$，它们分别代表了<strong>处理效应</strong>和<strong>实验误差</strong>，即<br>$$F=\frac{S_t^2}{S_e^2}=\frac{处理效应}{实验误差}$$</p>
+<p>对于上面的定义需要解释两点：</p>
+<p><strong>(1) 按照 $F$ 值的定义，分子和分母应该来自同一个正态总体</strong></p>
+<p>如果我们假设处理效应和实验误差相差不多（这将作为我们假设检验的<strong>原假设/无效假设/零假设</strong>），即 $S_t^2{\approx}S_e^2$，此时我们可以认为 $S_t^2$ 和 $S_e^2$ 来自于同一个正态总体。</p>
+<p><strong>(2) 按照 $F$ 值的定义，分子是大方差，分母是小方差</strong></p>
+<p>方差分析的目的是确定 $S_t^2$（处理效应）和 $S_e^2$（实验误差）的相对大小，由于<strong>实验误差</strong>这种东西一般情况下都是不可控的，而且也不会很大，所以我们认为一般只存在一下两种情况：</p>
+<ol>
+<li><p>处理效应比实验误差大得多</p>
+</li>
+<li><p>处理效应与实验误差相差不多</p>
+</li>
+</ol>
+<h2 id="3-F-临界值表"><a href="#3-F-临界值表" class="headerlink" title="3.$F$ 临界值表"></a><strong><a href="http://blog.sciencenet.cn/blog-456367-437322.html" target="_blank" rel="noopener">3.$F$ 临界值表</a></strong></h2><hr>
+<h1 id="五、多重比较"><a href="#五、多重比较" class="headerlink" title="五、多重比较"></a><strong>五、多重比较</strong></h1><p>比较其中两组处理平均数间差异的显著性，本质上与t检验没有任何区别</p>
+<h2 id="1-最小显著差数法（LSD）"><a href="#1-最小显著差数法（LSD）" class="headerlink" title="1.最小显著差数法（LSD）"></a><strong>1.最小显著差数法（LSD）</strong></h2><p><strong>Least Significant Difference</strong></p>
+<h3 id="1-检验方法"><a href="#1-检验方法" class="headerlink" title="(1) 检验方法"></a><strong>(1) 检验方法</strong></h3><p>本质上是两均数的t检验。</p>
+<ol>
+<li>计算<strong>达到</strong>差异显著的<strong>最小差数</strong>，记为 <strong>$LSD_\alpha$</strong></li>
+</ol>
+<p>$$LSD_\alpha=t_\alpha{\cdot}S_{\overline{X_1}-\overline{X_2}}$$</p>
+<p>其中 $S_{\overline{X_1}-\overline{X_2}}$ 为<strong>平均数差数的标准误</strong>：</p>
+<p>$$\begin{split}<br>S_{\overline{X_1}-\overline{X_2}}&amp;&amp;=\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}\\<br>&amp;&amp;=\sqrt{S_e^2{\cdot}(\frac{1}{n_1}+\frac{1}{n_2})}\\<br>&amp;&amp;=\sqrt{\frac{2S_e^2}{n}}{\quad}if{\quad}n_1=n_2=n<br>\end{split}$$</p>
+<div style="border:1px solid black;padding:20px"><strong>☺ 为什么令 $S_1^2=S_2^2=S_e^2$ ?</strong><br>上述公式的推导本身基于我们做出的<strong>无效假设</strong>（处理效应与实验误差相差不多）！<br><br><strong>☺ 查表的自由度依据？</strong><br>因为本质上是两个均数差异的t检验，因此需要查t临界值表。<br>因为均数差数标准误最终化归到了 $S_e^2$，因此查表的自由度依据的是 $df_e$ 而不是 $df_t$。</div>
+
+<ol start="2">
+<li>将两个处理平均数的差值绝对值 $\overline{x_1}-\overline{x_2}$ 与 $LSD_\alpha$ 进行比较</li>
+</ol>
+<h3 id="2-结果表示"><a href="#2-结果表示" class="headerlink" title="(2) 结果表示"></a><strong>(2) 结果表示</strong></h3><p>结果表示方法仅仅是用于优化两两比较次数，在使用结果表示方法之前都需要计算 <strong>$LSD_\alpha$</strong>。</p>
+<h4 id="a-标记字母法"><a href="#a-标记字母法" class="headerlink" title="a. 标记字母法"></a><strong>a. 标记字母法</strong></h4><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201811/20181118145733.jpg" alt=""></p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201811/20181118145822.jpg" alt=""></p>
+<h4 id="b-梯形比较法-三角形法"><a href="#b-梯形比较法-三角形法" class="headerlink" title="b. 梯形比较法/三角形法"></a><strong>b. 梯形比较法/三角形法</strong></h4><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201811/20181118150228.jpg" alt=""></p>
+<h2 id="2-最小显著极差法（LSR）"><a href="#2-最小显著极差法（LSR）" class="headerlink" title="2.最小显著极差法（LSR）"></a><strong>2.最小显著极差法（LSR）</strong></h2><p><strong>Least Significant Ranges</strong></p>
+<h3 id="1-新复极差检验（SSR）"><a href="#1-新复极差检验（SSR）" class="headerlink" title="(1) 新复极差检验（SSR）"></a>(1) 新复极差检验（SSR）</h3><p>新复极差法用于<span style="color:orange">方差分析后的</span>两两比较，有助于减少<strong>第二类错误</strong>，但是会增加<strong>第一类错误</strong>。</p>
+<p>原假设仍然是假设两个均值无差异：$\mu_A-\mu_B=0$</p>
+<p>步骤如下：</p>
+<p>1.平均数降序排序</p>
+<p>2.计算<strong>平均数标准误</strong>：$$S_{\bar{X}}=\sqrt{\frac{S_e^2}{n}}$$</p>
+<p>这里两组处理的样本容量是一致的：$n_1=n_2=n$，实验设计时一般也不会设计不一致这种骚操作。</p>
+<p>3.根据<strong>自由度 $df_e$ </strong>和排序平均数中相应两个数之间包含的平均数个数<strong>M</strong>查<a href="https://wenku.baidu.com/view/3a41820b763231126edb1197.html" target="_blank" rel="noopener"><strong>SSR值表</strong></a>，计算<strong>最小显著极差值</strong>（<strong>LSR值</strong>）：</p>
+<p>$$LSR_\alpha=SSR_\alpha{\cdot}S_{\bar{X}}$$</p>
+<p><div style="border:1px solid black;padding:20px"><strong>M值是个什么东西？</strong><br>排序平均数中相应两个数之间包含的平均数个数，即<strong>索引值差+1</strong>，相邻两个均数的M值为2。</div><br></p>
+<h3 id="2-q检验"><a href="#2-q检验" class="headerlink" title="(2) q检验"></a>(2) q检验</h3><p><strong>q检验</strong>也叫<strong>NK检验</strong>，与SSR检验十分相似，不同的是在第二步计算 $LSR_\alpha$ 时使用的是 $q_\alpha$ 值，而不是 $SSR_\alpha$ 值，因此需要查<a href="https://wenku.baidu.com/view/afb5647155270722182ef712.html" target="_blank" rel="noopener"><strong> $q_\alpha$ 值表</strong></a>。</p>
+<p>$$LSR_\alpha=q_\alpha{\cdot}S_{\bar{X}}$$</p>
+<h2 id="3-各个方法应用场景"><a href="#3-各个方法应用场景" class="headerlink" title="3.各个方法应用场景"></a><strong>3.各个方法应用场景</strong></h2><p>上面提到的LSD检验、SSR检验（新复极差检验）、q检验分别有自己的适用场景</p>
+<p>因此应用时</p>
+<ol>
+<li>对于精度要求高的检验，请使用<strong>q检验</strong>；</li>
+<li><strong>SSR检验</strong>适用于一般的检验；</li>
+<li><strong>LSD检验</strong>适用于将<strong>各个</strong>实验组与对照组进行比较。</li>
+</ol>
+<h1 id="六、方差分析的基本步骤"><a href="#六、方差分析的基本步骤" class="headerlink" title="六、方差分析的基本步骤"></a><strong>六、方差分析的基本步骤</strong></h1><p>从上面的过程我们可以总结出方差分析的三个大步骤：</p>
+<ol>
+<li>对样本数据的<strong>总平方和</strong>和<strong>总自由度</strong>分解为各个变异因素的平方和和自由度；</li>
+<li>进行<strong> $F$ 检验</strong>，检验各个变异因素在总变异中的重要程度；</li>
+<li>组间均数进行两两比较。</li>
+</ol>
 
                 
 <p class="pink-link-context">
@@ -539,9 +594,7 @@ R.A.Fisher
 					<div class="col m8 s12">
 						<h5 class="white-text">Links</h5>
 						
-							<a class="social-link" href="https://music.163.com/#/user/home?id=1514463016" target="_blank">网易云音乐</a>
-						
-							<a class="social-link" href="http://www.zgshige.com/c/2018-10-19/7451277.shtml" target="_blank">中国诗歌网</a>
+							<a class="social-link" href="https://music.163.com/#/user/home?id=1514463016" target="_blank">云村音乐</a>
 						
 					</div>
 				
