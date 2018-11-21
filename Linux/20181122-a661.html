@@ -7,18 +7,21 @@
 
     
 
-    <title>python之飘逸的format格式化字符串控制 | CY的博客</title>
+    <title>ubuntu16.04LTS修改软件源 | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="标志性符号 {:}
-传参
-通过{}内的索引取值
- &amp;#39;{}-{}&amp;#39;.format(111,222) &amp;lt;=&amp;gt; ‘111-222’ &amp;#39;{0}-{1}&amp;#39;.format(111,222) &amp;lt;=&amp;gt; ‘111-222’ &amp;#39;{1}-{0}&amp;#39;.f">
+    <meta name="description" content="1、备份原始源：
+1sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
+2、新建源：
+1sudo vim /etc/apt/sources.list
+写入以下内容（对于Ubuntu16.04LTS）：
+
+# 默认注释了源码镜像以提高 apt">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="python之飘逸的format格式化字符串控制"/>
+    <meta property="og:title" content="ubuntu16.04LTS修改软件源"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -293,7 +296,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/python/">python</a>
+    <a class="breadcrumb" href="/categories/Linux/">Linux</a>
 
 
         
@@ -310,12 +313,12 @@
             <div class="article-title">
                 
     
-        <h1>python之飘逸的format格式化字符串控制</h1>
+        <h1>ubuntu16.04LTS修改软件源</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-07-30T14:19:04.000Z"><a href="/python/20180730-ee75.html">2018-07-30</a></time>
+            <time class="pink-link-context" datetime="2018-11-21T16:07:36.000Z"><a href="/Linux/20181122-a661.html">2018-11-22</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -325,71 +328,41 @@
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#传参"><span class="section table-of-contents-text">传参</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#格式控制-（借助于：）"><span class="section table-of-contents-text">格式控制 {:}（借助于：）</span></a></li></ol>
+    
 </div>
 
 
             <div class="entry pink-link-context">
-                <p>标志性符号 <code>{:}</code></p>
-<h1 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h1><ol>
-<li><p>通过<code>{}</code>内的<strong>索引</strong>取值</p>
-<p> <code>&#39;{}-{}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{0}-{1}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{1}-{0}&#39;.format(111,222)</code> &lt;=&gt; ‘222-111’<br> <code>&#39;{0}-{1}-{0}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222-111’</p>
-</li>
-</ol>
-<ol>
-<li><p>通过<code>{}</code>内的<strong>关键字</strong>取值</p>
-<p> <code>&#39;{one}-{two}&#39;.format(one=111,two=222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{two}-{one}&#39;.format(one=111,two=222)</code> &lt;=&gt; ‘222-111’</p>
-</li>
-<li><p>传入<strong>对象</strong></p>
-<p> <code>&#39;{specific_obj.attr1}-{specific_obj.attr2}&#39;.format(specific_obj)</code></p>
-</li>
-<li><p>传入<strong>序列</strong>（元组，列表，…）</p>
-<p> L = [111,222]<br> P = [333,444]</p>
-<p> <code>&#39;{0[0]}-{0[1]}&#39;.format(L)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{0[1]}-{0[0]}&#39;.format(L)</code> &lt;=&gt; ‘222-111’</p>
-<p> <code>&#39;{0[0]}-{1[1]}&#39;.format(L,P)</code> &lt;=&gt; ‘111-444’</p>
-</li>
-</ol>
-<h1 id="格式控制-（借助于：）"><a href="#格式控制-（借助于：）" class="headerlink" title="格式控制 {:}（借助于：）"></a>格式控制 <code>{:}</code>（借助于<code>：</code>）</h1><ol>
-<li><p><strong>填充</strong></p>
-<p> <code>&#39;{:w&gt;8}&#39;.format(1314)</code> &lt;=&gt; ‘wwww1314’</p>
-<blockquote>
-<p>: 格式控制必须字符<br>w 是填充符，必须为单字符，可以不指定，默认为空格，例如 {:&gt;8}<br><span>&gt;</span> 左对齐，相应地’&lt;’为右对齐, ‘^’为居中对齐<br>8 域宽</p>
-</blockquote>
-</li>
-<li><p><strong>浮点数精度</strong></p>
-<p> <code>&#39;{:.2f}&#39;.format(1.2345)</code> &lt;=&gt; ‘1.23’</p>
-<blockquote>
-<p>.2 代表保留两位小数，而不是两位有效数字</p>
-</blockquote>
-<p> <code>&#39;{:.{}f}&#39;.format(1.2345, 3)</code> &lt;=&gt; ‘1.234’</p>
-<blockquote>
-<p>{}可以嵌套使用！！</p>
-</blockquote>
-<p> <code>&#39;{k:.2f}.format(1.2345)</code> &lt;=&gt; ‘1.23’</p>
-<blockquote>
-<p>配合关键字使用</p>
-</blockquote>
-</li>
-<li><p><strong>进制转换</strong></p>
-<p> <code>{:b}</code>: 二进制<br> <code>{:d}</code>: 十进制<br> <code>{:o}</code>: 八进制<br> <code>{:x}</code>: 十六进制</p>
-</li>
-<li><p><strong>数字分隔符</strong></p>
-<p> <code>{:,}.format(1234567)</code> &lt;=&gt; ‘1,234,567’</p>
-</li>
-</ol>
+                <p>1、备份原始源：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak</span><br></pre></td></tr></table></figure>
+<p>2、新建源：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<p>写入以下内容（对于Ubuntu16.04LTS）：</p>
+<pre>
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+</pre>
+
+<p>其他版本的源列表可以在 <a href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener">这里</a> 查看。</p>
+<p>3、刷新：<code>sudo apt-get update</code></p>
 
                 
-<p class="pink-link-context">
-    <a href="/python/20180730-5f87.html" rel="next" title="python内建模块-warnings">
-    Prev: python内建模块-warnings
-  </a>
-</p>
-
 
 
 <p class="pink-link-context">
-    <a href="/python/20180728-42ac.html" rel="next" title="python内建模块-时间模块">
-    Next: python内建模块-时间模块
+    <a href="/Linux/20181122-ad7f.html" rel="next" title="ubuntu16.04LTS更新R到3.5.x">
+    Next: ubuntu16.04LTS更新R到3.5.x
   </a>
 </p>
 

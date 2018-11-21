@@ -7,18 +7,20 @@
 
     
 
-    <title>python之飘逸的format格式化字符串控制 | CY的博客</title>
+    <title>ubuntu16.04LTS更新R到3.5.x | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="标志性符号 {:}
-传参
-通过{}内的索引取值
- &amp;#39;{}-{}&amp;#39;.format(111,222) &amp;lt;=&amp;gt; ‘111-222’ &amp;#39;{0}-{1}&amp;#39;.format(111,222) &amp;lt;=&amp;gt; ‘111-222’ &amp;#39;{1}-{0}&amp;#39;.f">
+    <meta name="description" content="1、系统换源
+2、检查旧版本R
+检查是否有旧版本的R：R --verion
+卸载旧版本的R：sudo apt-get remove r-base-core
+3、安装R3.5需要先添加源：
+1sudo apt-add-repository &#39;deb https://cloud.r-project.or">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="python之飘逸的format格式化字符串控制"/>
+    <meta property="og:title" content="ubuntu16.04LTS更新R到3.5.x"/>
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -293,7 +295,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/python/">python</a>
+    <a class="breadcrumb" href="/categories/Linux/">Linux</a>
 
 
         
@@ -310,12 +312,12 @@
             <div class="article-title">
                 
     
-        <h1>python之飘逸的format格式化字符串控制</h1>
+        <h1>ubuntu16.04LTS更新R到3.5.x</h1>
     
 
 
             </div>
-            <time class="pink-link-context" datetime="2018-07-30T14:19:04.000Z"><a href="/python/20180730-ee75.html">2018-07-30</a></time>
+            <time class="pink-link-context" datetime="2018-11-21T16:02:52.000Z"><a href="/Linux/20181122-ad7f.html">2018-11-22</a></time>
 
             <span id="busuanzi_container_page_pv" class="read-times-container">
     <i class="fa fa-eye"></i>
@@ -325,71 +327,37 @@
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#传参"><span class="section table-of-contents-text">传参</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#格式控制-（借助于：）"><span class="section table-of-contents-text">格式控制 {:}（借助于：）</span></a></li></ol>
+    
 </div>
 
 
             <div class="entry pink-link-context">
-                <p>标志性符号 <code>{:}</code></p>
-<h1 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h1><ol>
-<li><p>通过<code>{}</code>内的<strong>索引</strong>取值</p>
-<p> <code>&#39;{}-{}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{0}-{1}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{1}-{0}&#39;.format(111,222)</code> &lt;=&gt; ‘222-111’<br> <code>&#39;{0}-{1}-{0}&#39;.format(111,222)</code> &lt;=&gt; ‘111-222-111’</p>
-</li>
-</ol>
-<ol>
-<li><p>通过<code>{}</code>内的<strong>关键字</strong>取值</p>
-<p> <code>&#39;{one}-{two}&#39;.format(one=111,two=222)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{two}-{one}&#39;.format(one=111,two=222)</code> &lt;=&gt; ‘222-111’</p>
-</li>
-<li><p>传入<strong>对象</strong></p>
-<p> <code>&#39;{specific_obj.attr1}-{specific_obj.attr2}&#39;.format(specific_obj)</code></p>
-</li>
-<li><p>传入<strong>序列</strong>（元组，列表，…）</p>
-<p> L = [111,222]<br> P = [333,444]</p>
-<p> <code>&#39;{0[0]}-{0[1]}&#39;.format(L)</code> &lt;=&gt; ‘111-222’<br> <code>&#39;{0[1]}-{0[0]}&#39;.format(L)</code> &lt;=&gt; ‘222-111’</p>
-<p> <code>&#39;{0[0]}-{1[1]}&#39;.format(L,P)</code> &lt;=&gt; ‘111-444’</p>
-</li>
-</ol>
-<h1 id="格式控制-（借助于：）"><a href="#格式控制-（借助于：）" class="headerlink" title="格式控制 {:}（借助于：）"></a>格式控制 <code>{:}</code>（借助于<code>：</code>）</h1><ol>
-<li><p><strong>填充</strong></p>
-<p> <code>&#39;{:w&gt;8}&#39;.format(1314)</code> &lt;=&gt; ‘wwww1314’</p>
+                <p>1、<a href="/Linux/20181122-a661.html">系统换源</a></p>
+<p>2、检查旧版本R</p>
+<p>检查是否有旧版本的R：<code>R --verion</code></p>
+<p>卸载旧版本的R：<code>sudo apt-get remove r-base-core</code></p>
+<p>3、安装R3.5需要先添加源：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-add-repository <span class="string">'deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/'</span></span><br></pre></td></tr></table></figure>
+<p>添加上面这个源意味着在Ubuntu16.04LTS上可以安装R3.5。</p>
 <blockquote>
-<p>: 格式控制必须字符<br>w 是填充符，必须为单字符，可以不指定，默认为空格，例如 {:&gt;8}<br><span>&gt;</span> 左对齐，相应地’&lt;’为右对齐, ‘^’为居中对齐<br>8 域宽</p>
+<p><strong>xenial</strong> 意为“非洲地松鼠”，Ubuntu的每一个发行版都会有一个<a href="https://zh.wikipedia.org/wiki/Ubuntu发行版列表" target="_blank" rel="noopener">奇怪的名字</a>。</p>
 </blockquote>
-</li>
-<li><p><strong>浮点数精度</strong></p>
-<p> <code>&#39;{:.2f}&#39;.format(1.2345)</code> &lt;=&gt; ‘1.23’</p>
-<blockquote>
-<p>.2 代表保留两位小数，而不是两位有效数字</p>
-</blockquote>
-<p> <code>&#39;{:.{}f}&#39;.format(1.2345, 3)</code> &lt;=&gt; ‘1.234’</p>
-<blockquote>
-<p>{}可以嵌套使用！！</p>
-</blockquote>
-<p> <code>&#39;{k:.2f}.format(1.2345)</code> &lt;=&gt; ‘1.23’</p>
-<blockquote>
-<p>配合关键字使用</p>
-</blockquote>
-</li>
-<li><p><strong>进制转换</strong></p>
-<p> <code>{:b}</code>: 二进制<br> <code>{:d}</code>: 十进制<br> <code>{:o}</code>: 八进制<br> <code>{:x}</code>: 十六进制</p>
-</li>
-<li><p><strong>数字分隔符</strong></p>
-<p> <code>{:,}.format(1234567)</code> &lt;=&gt; ‘1,234,567’</p>
-</li>
-</ol>
-
+<p>然后更新源：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p>4、安装R3.5：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install r-base r-base-dev</span><br></pre></td></tr></table></figure>
                 
 <p class="pink-link-context">
-    <a href="/python/20180730-5f87.html" rel="next" title="python内建模块-warnings">
-    Prev: python内建模块-warnings
+    <a href="/Linux/20181122-a661.html" rel="next" title="ubuntu16.04LTS修改软件源">
+    Prev: ubuntu16.04LTS修改软件源
   </a>
 </p>
 
 
 
 <p class="pink-link-context">
-    <a href="/python/20180728-42ac.html" rel="next" title="python内建模块-时间模块">
-    Next: python内建模块-时间模块
+    <a href="/python/20181121-b9c.html" rel="next" title="python中运行shell命令">
+    Next: python中运行shell命令
   </a>
 </p>
 
