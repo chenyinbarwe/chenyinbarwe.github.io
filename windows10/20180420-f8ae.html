@@ -211,14 +211,6 @@ Windows Registry Editor Version 5.00
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/debug/">
                     debug <span class="right">1</span></a>
                 </a>
@@ -227,16 +219,24 @@ Windows Registry Editor Version 5.00
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/mathematics/">
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -328,7 +328,7 @@ Windows Registry Editor Version 5.00
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#添加“管理员权限”"><span class="section table-of-contents-text">添加“管理员权限”</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#添加“恢复原始权限”"><span class="section table-of-contents-text">添加“恢复原始权限”</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#取消上面两个选项"><span class="section table-of-contents-text">取消上面两个选项</span></a></li></ol>
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#添加“管理员权限”"><span class="section table-of-contents-text">添加“管理员权限”</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#添加“恢复原始权限”"><span class="section table-of-contents-text">添加“恢复原始权限”</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#取消上面两个选项"><span class="section table-of-contents-text">取消上面两个选项</span></a></li></ol>
 </div>
 
 
@@ -540,6 +540,7 @@ Windows Registry Editor Version 5.00
                         scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
                     }
                 }
+				scrollTargetTop = scrollTargetTop + 150
                 $toc.css('top', '-' + scrollTargetTop + 'px');
             });
 

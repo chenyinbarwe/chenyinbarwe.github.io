@@ -209,14 +209,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/debug/">
                     debug <span class="right">1</span></a>
                 </a>
@@ -225,16 +217,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/mathematics/">
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -326,7 +326,7 @@
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#什么是TFRecord文件？"><span class="section table-of-contents-text">什么是TFRecord文件？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#创建"><span class="section table-of-contents-text">创建</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#使用"><span class="section table-of-contents-text">使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-老规矩，先定义队列"><span class="section table-of-contents-text">1.老规矩，先定义队列</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-定义读取TFRecord文件的阅读器"><span class="section table-of-contents-text">2.定义读取TFRecord文件的阅读器</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-用这个reader读取TFRecord文件的文件名队列得到序列化的样例："><span class="section table-of-contents-text">3.用这个reader读取TFRecord文件的文件名队列得到序列化的样例：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-从样例中解析出图像数据和图像标签"><span class="section table-of-contents-text">4.从样例中解析出图像数据和图像标签</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5-从二进制数据中解码图像"><span class="section table-of-contents-text">5.从二进制数据中解码图像</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-千万别忘了在session中开启线程，被坑傻了"><span class="section table-of-contents-text">6.千万别忘了在session中开启线程，被坑傻了</span></a></li></ol></li></ol>
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#什么是TFRecord文件？"><span class="section table-of-contents-text">什么是TFRecord文件？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#创建"><span class="section table-of-contents-text">创建</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#使用"><span class="section table-of-contents-text">使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-老规矩，先定义队列"><span class="section table-of-contents-text">1.老规矩，先定义队列</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-定义读取TFRecord文件的阅读器"><span class="section table-of-contents-text">2.定义读取TFRecord文件的阅读器</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-用这个reader读取TFRecord文件的文件名队列得到序列化的样例："><span class="section table-of-contents-text">3.用这个reader读取TFRecord文件的文件名队列得到序列化的样例：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-从样例中解析出图像数据和图像标签"><span class="section table-of-contents-text">4.从样例中解析出图像数据和图像标签</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#5-从二进制数据中解码图像"><span class="section table-of-contents-text">5.从二进制数据中解码图像</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-千万别忘了在session中开启线程，被坑傻了"><span class="section table-of-contents-text">6.千万别忘了在session中开启线程，被坑傻了</span></a></li></ol></li></ol>
 </div>
 
 
@@ -502,6 +502,7 @@ img = tf.reshape(img, SHAPE)
                         scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
                     }
                 }
+				scrollTargetTop = scrollTargetTop + 150
                 $toc.css('top', '-' + scrollTargetTop + 'px');
             });
 

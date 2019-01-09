@@ -207,14 +207,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/debug/">
                     debug <span class="right">1</span></a>
                 </a>
@@ -223,16 +215,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/mathematics/">
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -330,7 +330,7 @@
 
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#无偏性"><span class="section table-of-contents-text">无偏性</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#什么是无偏性？"><span class="section table-of-contents-text">什么是无偏性？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#无系统误差"><span class="section table-of-contents-text">无系统误差</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#期望是无偏的"><span class="section table-of-contents-text">期望是无偏的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#方差是有偏的"><span class="section table-of-contents-text">方差是有偏的</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#有效性"><span class="section table-of-contents-text">有效性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#相合性"><span class="section table-of-contents-text">相合性</span></a></li></ol>
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#无偏性"><span class="section table-of-contents-text">无偏性</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#什么是无偏性？"><span class="section table-of-contents-text">什么是无偏性？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#无系统误差"><span class="section table-of-contents-text">无系统误差</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#期望是无偏的"><span class="section table-of-contents-text">期望是无偏的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#方差是有偏的"><span class="section table-of-contents-text">方差是有偏的</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#有效性"><span class="section table-of-contents-text">有效性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#相合性"><span class="section table-of-contents-text">相合性</span></a></li></ol>
 </div>
 
 
@@ -347,7 +347,7 @@
 </blockquote>
 <p>这意味着：<strong>样本均值</strong>总是<strong>总体期望</strong>的无偏估计。</p>
 <h2 id="方差是有偏的"><a href="#方差是有偏的" class="headerlink" title="方差是有偏的"></a>方差是有偏的</h2><p>对于方差存在的总体，用未修正的样本方差$\hat{\sigma}^2=\frac1n\sum_{i=1}^{n}(X_i-\bar{X})^2$来估计总体方差$\sigma^2$是<strong>有偏</strong>的。</p>
-<div style="border:3px black solid;padding:5px"><strong>证明：</strong><br>针对样本，由$E(X^2)=[E(X)]^2+D(X)$知<br>$$\begin{split}<br>\hat{\sigma}^2=D(X)&amp;=E(X^2)-[E(X)]^2\\<br>&amp;=A_2-\bar{X}^2<br>\end{split}$$<br>因为<strong>期望是无偏的</strong>，所以<br>$$\underbrace{E(A_2)=}_{期望无偏}\mu_2\underbrace{=\sigma^2+\mu^2}_{总体期望和方差的关系}$$<br>对于<strong>复合随机变量$\bar{X}^2$</strong>有<br>$$E(\bar{X}^2)=D(\bar{X})+[E(\bar{X})]^2=\frac{\sigma^2}n+\mu^2$$<br><div style="border:1px black solid;padding:5px"><strong>证明$D(\bar{X})=\frac{\sigma^2}n$</strong>:<br>$$\begin{split}<br>D(\bar{X})&amp;=D(\frac{X_1+X_2+\cdots+X_n}n)\\<br>&amp;=\frac1{n^2}D(X_1+X_2+\cdots+X_n)\\<br>&amp;=\frac1{n^2}[D(X_1)+D(X_2)+\cdots+D(X_n)]\\<br>&amp;=\frac1{n^2}(\underbrace{\sigma^2+\sigma^2+\cdots+\sigma^2}_{n个})\\<br>&amp;=\frac{n\sigma^2}{n^2}\\<br>&amp;=\frac{\sigma^2}n<br>\end{split}$$</div><br>所以<br>$$\begin{split}<br>E(\hat{\sigma}^2&amp;=E(A_2-\bar{X}^2))\\<br>&amp;=E(A_2)-E(\bar{X}^2)\\<br>&amp;=(\sigma^2+\mu^2)-(\frac{\sigma^2}n+\mu^2)\\<br>&amp;=\frac{n-1}n\sigma^2\ne\sigma^2<br>\end{split}$$<br>即证<strong>非修正的</strong>样本方差$\hat{\sigma}^2$是总体方差的$\sigma^2$的有偏估计。</div>
+<div style="border:3px black solid;padding:5px"><strong>证明：</strong><br>针对样本，由$E(X^2)=[E(X)]^2+D(X)$知<br>$$\begin{split}<br>\hat{\sigma}^2=D(X)&amp;=E(X^2)-[E(X)]^2\\<br>&amp;=A_2-\bar{X}^2<br>\end{split}$$<br>因为<strong>期望是无偏的</strong>，所以<br>$$\underbrace{E(A_2)=}_{期望无偏}\mu_2\underbrace{=\sigma^2+\mu^2}_{总体期望和方差的关系}$$<br>上式中 $\mu_2$ 是总体的二阶原点矩，$\mu$ 是总体的一阶原点矩（期望）。<br>对于<strong>复合随机变量$\bar{X}^2$</strong>有<br>$$E(\bar{X}^2)=D(\bar{X})+[E(\bar{X})]^2=\frac{\sigma^2}n+\mu^2$$<br><div style="border:1px black solid;padding:5px"><strong>证明$D(\bar{X})=\frac{\sigma^2}n$</strong>:<br>$$\begin{split}<br>D(\bar{X})&amp;=D(\frac{X_1+X_2+\cdots+X_n}n)\\<br>&amp;=\frac1{n^2}D(X_1+X_2+\cdots+X_n)\\<br>&amp;=\frac1{n^2}[D(X_1)+D(X_2)+\cdots+D(X_n)]\\<br>&amp;=\frac1{n^2}(\underbrace{\sigma^2+\sigma^2+\cdots+\sigma^2}_{n个})\\<br>&amp;=\frac{n\sigma^2}{n^2}\\<br>&amp;=\frac{\sigma^2}n<br>\end{split}$$</div><br>所以<br>$$\begin{split}<br>E(\hat{\sigma}^2)&amp;=E(A_2-\bar{X}^2)\\<br>&amp;=E(A_2)-E(\bar{X}^2)\\<br>&amp;=(\sigma^2+\mu^2)-(\frac{\sigma^2}n+\mu^2)\\<br>&amp;=\frac{n-1}n\sigma^2\ne\sigma^2<br>\end{split}$$<br>即证<strong>非修正的</strong>样本方差$\hat{\sigma}^2$是总体方差的$\sigma^2$的有偏估计。</div>
 
 <p>我们令<br>$$S^2=\frac{n}{n-1}\hat{\sigma}^2=\frac1{n-1}(X_i-\bar{X}^2)$$<br>此时有<br>$$E(S^2)=E(\frac{n}{n-1}\hat{\sigma}^2)=\frac{n}{n-1}E(\hat{\sigma}^2)=\sigma^2$$<br>即得<strong>修正的</strong>样本方差$S^2$是总体方差的$\sigma^2$的无偏估计。</p>
 <p>这就是为什么样本方差为什么总是除以n-1而不是n的原因~</p>
@@ -503,6 +503,7 @@
                         scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
                     }
                 }
+				scrollTargetTop = scrollTargetTop + 150
                 $toc.css('top', '-' + scrollTargetTop + 'px');
             });
 

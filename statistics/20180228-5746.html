@@ -207,14 +207,6 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/debug/">
                     debug <span class="right">1</span></a>
                 </a>
@@ -223,16 +215,24 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/mathematics/">
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -324,7 +324,7 @@
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#什么是χ2分布？"><span class="section table-of-contents-text">什么是χ2分布？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#χ2适合性检验"><span class="section table-of-contents-text">χ2适合性检验</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#χ2独立性检验"><span class="section table-of-contents-text">χ2独立性检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#列联表的独立性检验"><span class="section table-of-contents-text">列联表的独立性检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2x2列联表"><span class="section table-of-contents-text">2x2列联表</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#rxc列联表"><span class="section table-of-contents-text">rxc列联表</span></a></li></ol></li></ol></li></ol>
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#什么是χ2分布？"><span class="section table-of-contents-text">什么是χ2分布？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#χ2适合性检验"><span class="section table-of-contents-text">χ2适合性检验</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#χ2独立性检验"><span class="section table-of-contents-text">χ2独立性检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#列联表的独立性检验"><span class="section table-of-contents-text">列联表的独立性检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2x2列联表"><span class="section table-of-contents-text">2x2列联表</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#rxc列联表"><span class="section table-of-contents-text">rxc列联表</span></a></li></ol></li></ol></li></ol>
 </div>
 
 
@@ -486,6 +486,7 @@
                         scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
                     }
                 }
+				scrollTargetTop = scrollTargetTop + 150
                 $toc.css('top', '-' + scrollTargetTop + 'px');
             });
 

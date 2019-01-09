@@ -208,14 +208,6 @@ In programming languages, a closure(also lexical closure or function closure) is
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/debug/">
                     debug <span class="right">1</span></a>
                 </a>
@@ -224,16 +216,24 @@ In programming languages, a closure(also lexical closure or function closure) is
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/mathematics/">
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -325,7 +325,7 @@ In programming languages, a closure(also lexical closure or function closure) is
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    
+	
 </div>
 
 
@@ -504,6 +504,7 @@ In programming languages, a closure(also lexical closure or function closure) is
                         scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
                     }
                 }
+				scrollTargetTop = scrollTargetTop + 150
                 $toc.css('top', '-' + scrollTargetTop + 'px');
             });
 

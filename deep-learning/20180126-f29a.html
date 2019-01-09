@@ -208,14 +208,6 @@ with open(&amp;apos;fileslist.cs">
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/debug/">
                     debug <span class="right">1</span></a>
                 </a>
@@ -224,16 +216,24 @@ with open(&amp;apos;fileslist.cs">
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">10</span></a>
+                <a class="no-padding" href="/categories/mathematics/">
+                    mathematics <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
+                <a class="no-padding" href="/categories/network/">
+                    network <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">10</span></a>
                 </a>
             </li>
 
@@ -325,7 +325,7 @@ with open(&amp;apos;fileslist.cs">
             
 
             <div class="toc pink-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#建立如下的文件-fileslist-csv"><span class="section table-of-contents-text">建立如下的文件 fileslist.csv</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#将-fileslist-csv-按行加载到python内置列表，假设为-imgNames"><span class="section table-of-contents-text">将 fileslist.csv 按行加载到python内置列表，假设为 imgNames</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#建立文件名队列"><span class="section table-of-contents-text">建立文件名队列</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#建队"><span class="section table-of-contents-text">建队</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#出队"><span class="section table-of-contents-text">出队</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#单个记录-item-数据标准化：根据图像-路径字符串-解析出-数组"><span class="section table-of-contents-text">单个记录(item)数据标准化：根据图像 路径字符串 解析出 数组</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#对记录-item-解码得到路径-img-path-和标签-img-label"><span class="section table-of-contents-text">对记录 item 解码得到路径 img_path 和标签 img_label</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#解析-img-path-的内容"><span class="section table-of-contents-text">解析 img_path 的内容</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#对图像内容字符串-img-str-进行解析，获取图像的数字信息"><span class="section table-of-contents-text">对图像内容字符串 img_str 进行解析，获取图像的数字信息</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）"><span class="section table-of-contents-text">由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取批次数据（batch-subset）"><span class="section table-of-contents-text">获取批次数据（batch subset）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Session里面如何使用开启队列？"><span class="section table-of-contents-text">Session里面如何使用开启队列？</span></a></li></ol>
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#建立如下的文件-fileslist-csv"><span class="section table-of-contents-text">建立如下的文件 fileslist.csv</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#将-fileslist-csv-按行加载到python内置列表，假设为-imgNames"><span class="section table-of-contents-text">将 fileslist.csv 按行加载到python内置列表，假设为 imgNames</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#建立文件名队列"><span class="section table-of-contents-text">建立文件名队列</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#建队"><span class="section table-of-contents-text">建队</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#出队"><span class="section table-of-contents-text">出队</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#单个记录-item-数据标准化：根据图像-路径字符串-解析出-数组"><span class="section table-of-contents-text">单个记录(item)数据标准化：根据图像 路径字符串 解析出 数组</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#对记录-item-解码得到路径-img-path-和标签-img-label"><span class="section table-of-contents-text">对记录 item 解码得到路径 img_path 和标签 img_label</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#解析-img-path-的内容"><span class="section table-of-contents-text">解析 img_path 的内容</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#对图像内容字符串-img-str-进行解析，获取图像的数字信息"><span class="section table-of-contents-text">对图像内容字符串 img_str 进行解析，获取图像的数字信息</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）"><span class="section table-of-contents-text">由flatten化的数字信息确定图像矩阵尺寸（说白了就是reshape）</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#获取批次数据（batch-subset）"><span class="section table-of-contents-text">获取批次数据（batch subset）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Session里面如何使用开启队列？"><span class="section table-of-contents-text">Session里面如何使用开启队列？</span></a></li></ol>
 </div>
 
 
@@ -560,6 +560,7 @@ img_path, img_label = tf.decode_csv(item, [[&apos;&apos;],[1]], field_delim=&apo
                         scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
                     }
                 }
+				scrollTargetTop = scrollTargetTop + 150
                 $toc.css('top', '-' + scrollTargetTop + 'px');
             });
 
