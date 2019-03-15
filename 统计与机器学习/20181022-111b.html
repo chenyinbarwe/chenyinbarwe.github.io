@@ -1,0 +1,824 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>方差分析1-基本原理、F检验、多重比较 | CY的博客</title>
+    <meta name="author" content="John Doe">
+    
+    <meta name="description" content="一、问题引入1.什么是方差分析？方差分析用于两个及两个以上样本的均数差异的显著性检验。
+
+
+
+
+
+
+
+
+
+中文名
+方差分析
+
+
+中文别名
+变异数分析、变量分析、F检验
+
+
+外文名
+Analysis of Variance, F test
+
+
+简称
+ANOVA
+
+
+提出者
+R.A.Fisher
+
+
+
+">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="方差分析1-基本原理、F检验、多重比较"/>
+    <meta property="og:site_name" content="Barwe"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Barwe" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="blue-grey">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Barwe</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " 
+						   href="/" 
+						   >
+                            <i class="fa fa-home "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " 
+						   href="/archives" 
+						   >
+                            <i class="fa fa-archive "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" 
+						   href="javascript:;" 
+						   data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            category
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " 
+						   href="/reading" 
+						   >
+                            <i class="fa fa-book "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            reading
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://p33k8pinb.bkt.clouddn.com/18-3-8/42928697.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Barwe</p>
+                        <p class="desc">迷糊皮皮虾</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/生物信息学/">
+                    生物信息学 <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/IT开发笔记/">
+                    IT开发笔记 <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">16</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/小黄鸭debug/">
+                    小黄鸭debug <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/操作系统/">
+                    操作系统 <span class="right">9</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/统计与机器学习/">
+                    统计与机器学习 <span class="right">20</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/速查表/">
+                    速查表 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue-grey">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/统计与机器学习/">统计与机器学习</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>方差分析1-基本原理、F检验、多重比较</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-10-22T05:16:32.000Z"><a href="/统计与机器学习/20181022-111b.html">2018-10-22</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/UCAS生物统计与实验设计/" class="chip pink lighten-1">UCAS生物统计与实验设计</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#一、问题引入"><span class="section table-of-contents-text">一、问题引入</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-什么是方差分析？"><span class="section table-of-contents-text">1.什么是方差分析？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-t检验为什么不能代替方差分析？"><span class="section table-of-contents-text">2.t检验为什么不能代替方差分析？</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二、方差分析的基本原理"><span class="section table-of-contents-text">二、方差分析的基本原理</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-思想"><span class="section table-of-contents-text">1.思想</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-目的"><span class="section table-of-contents-text">2.目的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-用途"><span class="section table-of-contents-text">3.用途</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#三、数学模型"><span class="section table-of-contents-text">三、数学模型</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-线性等权加和模型"><span class="section table-of-contents-text">1.线性等权加和模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-处理效应不总是人为可控的"><span class="section table-of-contents-text">2.处理效应不总是人为可控的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-样本方差表达式求解"><span class="section table-of-contents-text">3.样本方差表达式求解</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-求分子（平方和）"><span class="section table-of-contents-text">(1) 求分子（平方和）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-求分母（自由度）"><span class="section table-of-contents-text">(2) 求分母（自由度）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-求方差"><span class="section table-of-contents-text">(3) 求方差</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#四、-F-检验"><span class="section table-of-contents-text">四、$F$ 检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-F-值的定义"><span class="section table-of-contents-text">1.$F$ 值的定义</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-公式迁移"><span class="section table-of-contents-text">2.公式迁移</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-F-临界值表"><span class="section table-of-contents-text">3.$F$ 临界值表</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#五、多重比较"><span class="section table-of-contents-text">五、多重比较</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-最小显著差数法（LSD）"><span class="section table-of-contents-text">1.最小显著差数法（LSD）</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-检验方法"><span class="section table-of-contents-text">(1) 检验方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-结果表示"><span class="section table-of-contents-text">(2) 结果表示</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#a-标记字母法"><span class="section table-of-contents-text">a. 标记字母法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#b-梯形比较法-三角形法"><span class="section table-of-contents-text">b. 梯形比较法/三角形法</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-最小显著极差法（LSR）"><span class="section table-of-contents-text">2.最小显著极差法（LSR）</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-新复极差检验（SSR）"><span class="section table-of-contents-text">(1) 新复极差检验（SSR）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-q检验"><span class="section table-of-contents-text">(2) q检验</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-各个方法应用场景"><span class="section table-of-contents-text">3.各个方法应用场景</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#六、方差分析的基本步骤"><span class="section table-of-contents-text">六、方差分析的基本步骤</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="一、问题引入"><a href="#一、问题引入" class="headerlink" title="一、问题引入"></a><strong>一、问题引入</strong></h1><h2 id="1-什么是方差分析？"><a href="#1-什么是方差分析？" class="headerlink" title="1.什么是方差分析？"></a><strong>1.什么是方差分析？</strong></h2><p><span style="color:green"><strong>方差分析</strong></span>用于<strong>两个</strong>及<strong>两个以上</strong>样本的均数差异的显著性检验。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中文名</td>
+<td>方差分析</td>
+</tr>
+<tr>
+<td>中文别名</td>
+<td>变异数分析、变量分析、F检验</td>
+</tr>
+<tr>
+<td>外文名</td>
+<td>Analysis of Variance, F test</td>
+</tr>
+<tr>
+<td>简称</td>
+<td>ANOVA</td>
+</tr>
+<tr>
+<td>提出者</td>
+<td>R.A.Fisher</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-t检验为什么不能代替方差分析？"><a href="#2-t检验为什么不能代替方差分析？" class="headerlink" title="2.t检验为什么不能代替方差分析？"></a><strong>2.t检验为什么不能代替方差分析？</strong></h2><p>t检验只适用于两个样本均数间的差异分析，当设计两个以上的样本时只能进行二元拆分，这种操作并不优雅。</p>
+<p><strong>1.检验过程繁琐。</strong>m个样本需要进行$C_m^2$组t检验，自寻烦恼。</p>
+<p><strong>2.无统一的试验误差，误差估计的精确性和检验的灵敏性低。</strong>（<span style="color:green">？？？</span>）</p>
+<p><strong>3.二元切分后进行多次t检验会使犯第Ⅰ类错误（假阳性错误）的概率大大增加。</strong>t检验只能将每次的检验犯错误概率控制在$\alpha$以内，在多次检验时这个概率会逐渐变大。例如一个三样本的均值差异检验共需要进行$C_3^2=3$次t检验，每一次犯错误的概率为$\alpha$，这意味着每一次检验不犯错误的概率为$1-\alpha$，连续三次不犯错误的概率为$(1-\alpha)^3$，所以这三次t检验犯第一类错误的概率为$1-(1-\alpha)^3=0.142615$（当$\alpha=0.05$时），这个概率相比于0.05已经大了很多了。由此可知，当$n{\to}\infty$时，犯第一类错误的概率将会趋近于1。</p>
+<hr>
+<h1 id="二、方差分析的基本原理"><a href="#二、方差分析的基本原理" class="headerlink" title="二、方差分析的基本原理"></a><strong>二、方差分析的基本原理</strong></h1><h2 id="1-思想"><a href="#1-思想" class="headerlink" title="1.思想"></a><span style="color:green">1.思想</span></h2><p>多个样本一般可以来自多个不同的<strong>处理</strong>(treatment)，比如注射不同的药物等，这些处理是我们可以<strong>控制</strong>的。</p>
+<p>不同的处理有可能影响并致使实验结果产生差异，这种影响一般是可以人为控制的，这种效应叫做<strong>处理效应</strong>(treatment effect)。</p>
+<p>对每个个体的观测值不同，除了处理效应施加影响，还包括实验过程中偶然性因素和测量误差的干扰。</p>
+<h2 id="2-目的"><a href="#2-目的" class="headerlink" title="2.目的"></a><span style="color:green">2.目的</span></h2><p>方差分析可以确定上面提到的<strong>处理效应</strong>和<strong>实验误差</strong>对总差异的贡献程度。</p>
+<p>一般来说，实验误差是合理不可控的，同时它对总差异的影响也是很小的。因此我们可以比较<strong>处理效应</strong>和<strong>实验误差</strong>。</p>
+<p>而实验误差显然不是我们关心的东西，我们关心的应该是<strong>处理</strong>间（组间）均值是否有差异，即我们关心应该是<strong>处理效应</strong>：<br>● 处理效应和实验误差相差不大，意味着处理效应对指标影响不大。<br>● 处理效应比实验误差大很多，处理效应对实验结果差异有很大影响。</p>
+<h2 id="3-用途"><a href="#3-用途" class="headerlink" title="3.用途"></a><span style="color:green">3.用途</span></h2><ol>
+<li>多样本均数的比较</li>
+<li>多因素间相互作用的分析</li>
+<li>回归方程的假设假设</li>
+<li>方差的同质性检验</li>
+</ol>
+<hr>
+<h1 id="三、数学模型"><a href="#三、数学模型" class="headerlink" title="三、数学模型"></a><strong>三、数学模型</strong></h1><p>根据上面对<strong>总差异</strong>的定性分析（由处理效应和实验误差构成）建立定量的数学模型。</p>
+<p>观测数据记录形式一般如下：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201810/20181022194352.png" alt=""></p>
+<p>其中每列（1,…,k）代表k个不同的处理，即k个样本；行数代表每种处理的重复次数，即一个样本的样本容量。</p>
+<h2 id="1-线性等权加和模型"><a href="#1-线性等权加和模型" class="headerlink" title="1.线性等权加和模型"></a>1.线性等权加和模型</h2><p>这里采用最简洁的线性模型定量描述上述关系：</p>
+<p>$$\begin{split}<br>x_{ij}&amp;=\mu+\tau_i+\epsilon_{ij}\\<br>i&amp;=1,…,k\\<br>j&amp;=1,…,n<br>\end{split}$$</p>
+<ul>
+<li>$\mu$是<strong>总体均数</strong>；</li>
+<li>$\tau_i$是第$i$次处理的<strong>处理效应</strong>；</li>
+<li>$\epsilon_{ij}$是第$i$次处理中第$j$个样本的<strong>实验误差</strong>；</li>
+<li>$x_{ij}$是第$i$次处理中第$j$个样本的<strong>观测值</strong>；</li>
+</ul>
+<p>上面的线性模型只是简单的对总体均值、处理效应和实验误差进行<strong>等权加和</strong>进而构造出<strong>观测值</strong>。这种构造形式可能不是最优的形式，但却是最简单最易理解的形式。这进一步印证了解决问题总是一个化繁为简、由简入繁的过程。（<span style="color:green">当前更优的模型构建方式？？？</span>）</p>
+<h2 id="2-处理效应不总是人为可控的"><a href="#2-处理效应不总是人为可控的" class="headerlink" title="2.处理效应不总是人为可控的"></a>2.处理效应不总是人为可控的</h2><p>虽然说大多数情况下通过<strong>实验设计</strong>我们可以控制处理的种类，即控制处理效应，但是这在某些实验中$\tau_i$却是不可控的。根据$\tau_i$是否可控将上面的数学模型分为三类：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$\tau_i$取值</th>
+<th>泛化能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>固定模型</td>
+<td>$\tau_i=\mu_i-\mu$为常数且$\sum_{i=1}^{k}{\tau_i}=0$</td>
+<td>结果不能扩展到其他处理</td>
+</tr>
+<tr>
+<td>随机模型</td>
+<td>$\tau_i$从$N(0,\sigma^2)$中采样</td>
+<td>结果可以扩展到其他处理</td>
+</tr>
+<tr>
+<td>混合模型</td>
+<td>略略略</td>
+<td>略略略</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-样本方差表达式求解"><a href="#3-样本方差表达式求解" class="headerlink" title="3.样本方差表达式求解"></a>3.样本方差表达式求解</h2><p>首先我们要明确方差求解式的结构：$\frac{平方和}{自由度}$</p>
+<p>下面分别求解分子和分母。</p>
+<h3 id="1-求分子（平方和）"><a href="#1-求分子（平方和）" class="headerlink" title="(1) 求分子（平方和）"></a>(1) 求分子（平方和）</h3><p>上面的模型虽然说简洁，但毕竟还是个花架子，我们需要把它的各个单项同真正的样本联系起来。</p>
+<p>那么怎么将<strong>处理效应</strong>和<strong>随机误差</strong>同已知样本联系起来呢？这里有两句话自行体会：</p>
+<ol>
+<li><strong>组间的</strong>平均数差异是由<strong>处理效应</strong>引起的：$\overline{x_i}-\overline{x}$</li>
+<li><strong>组内的</strong>差异是由<strong>随机误差</strong>引起的：$x_{ij}-\overline{x_i}$</li>
+</ol>
+<p>然后简单变换：</p>
+<p>$$\begin{split}<br>(x_{ij}-\bar{x})&amp;=(x_{ij}-\overline{x_i})+(\overline{x_i}-\bar{x})\\<br>(x_{ij}-\bar{x})^2&amp;=[(x_{ij}-\overline{x_i})+(\overline{x_i}-\bar{x})]^2\\<br>&amp;=(x_{ij}-\overline{x_i})^2+(\overline{x_i}-\bar{x})^2+2(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})<br>\end{split}$$</p>
+<p>针对某个特定的<strong>处理</strong>对样本内所有观测数据求和：</p>
+<p>$\sum_{j=1}^{n}(x_{ij}-\bar{x})^2=\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2+\sum_{j=1}^{n}(\overline{x_i}-\bar{x})^2+2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})$</p>
+<p>这里有个玄学项 $2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})$，我们将与 $j$ 无关的项提前：</p>
+<p>$2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})=2(\overline{x_i}-\bar{x})\sum_{j=1}^{n}(x_{ij}-\overline{x_i})$</p>
+<p><strong>均值</strong>具有这样一个特性：一个样本内所有观测数据到均值的距离（包含正负号）和为0。</p>
+<p>所以有这样一个结论：$2\sum_{j=1}^{n}(x_{ij}-\overline{x_i})(\overline{x_i}-\bar{x})=0$</p>
+<p>即$\sum_{j=1}^{n}(x_{ij}-\bar{x})^2=\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2+\sum_{j=1}^{n}(\overline{x_i}-\bar{x})^2$</p>
+<p>然后我们将不同<strong>处理</strong>的观测数据的<strong>离均差平方</strong>进行累加：</p>
+<p>$\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\bar{x})^2=\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2+\sum_{i=1}^{k}\sum_{j=1}^{n}(\overline{x_i}-\bar{x})^2$</p>
+<p>化简得：</p>
+<p>$\underbrace{\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\bar{x})^2}_{SS_T}=\underbrace{\sum_{i=1}^{k}\sum_{j=1}^{n}(x_{ij}-\overline{x_i})^2}_{SS_e}+\underbrace{n\sum_{i=1}^{k}(\overline{x_i}-\bar{x})^2}_{SS_t}$</p>
+<p>即：$SS_T(总平方和)=SS_e(组内平方和)+SS_t(组间平方和)$</p>
+<p>预算</p>
+<p>$$\begin{split}<br>T&amp;=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}\\<br>T_i&amp;=\sum_{j=1}^{n}x_{ij}\\<br>C&amp;=\frac{T^2}{kn}<br>\end{split}$$</p>
+<p>得</p>
+<p>$$\begin{split}<br>SS_T&amp;=\sum_{i=1}^{k}\sum_{j=1}^{n}x_{ij}^2-C\\<br>SS_t&amp;=\frac{1}{n}\sum_{i=1}^{k}T_i^2-C\\<br>SS_e&amp;=SS_T-SS_t<br>\end{split}$$</p>
+<h3 id="2-求分母（自由度）"><a href="#2-求分母（自由度）" class="headerlink" title="(2) 求分母（自由度）"></a>(2) 求分母（自由度）</h3><p>分母就是与$SS_T$、$SS_t$和$SS_e$相关的<strong>自由度</strong>$df$:</p>
+<p>$$\begin{split}<br>df_T&amp;=nk-1\\<br>df_t&amp;=k-1\\<br>df_e&amp;=df_T-df_t\\<br>&amp;=k(n-1)<br>\end{split}$$</p>
+<h3 id="3-求方差"><a href="#3-求方差" class="headerlink" title="(3) 求方差"></a>(3) 求方差</h3><p>组间方差</p>
+<p>$$\begin{split}<br>s_t^2&amp;=\frac{SS_t}{df_t}\\<br>s_e^2&amp;=\frac{SS_e}{df_e}<br>\end{split}$$</p>
+<hr>
+<h1 id="四、-F-检验"><a href="#四、-F-检验" class="headerlink" title="四、$F$ 检验"></a><strong>四、$F$ 检验</strong></h1><h2 id="1-F-值的定义"><a href="#1-F-值的定义" class="headerlink" title="1.$F$ 值的定义"></a><strong>1.$F$ 值的定义</strong></h2><p>$F$ 值的定义：$$F=\frac{s_1^2}{s_2^2}$$<br>这里 $s_1^2$ 和 $s_2^2$ 都是随机采样于<strong>正态总体($\mu$, $\sigma$)</strong>，它们可能具有不同的<strong>样本容量（自由度）</strong>。<br>习惯上，我们让 $F$ 值<strong>大于1</strong>，即大方差做分子，小方差做分母。</p>
+<h2 id="2-公式迁移"><a href="#2-公式迁移" class="headerlink" title="2.公式迁移"></a><strong>2.公式迁移</strong></h2><p>在<strong>方差分析</strong>中，我们计算出了两个方差：组间方差 $S_t^2$ 和组内方差 $S_e^2$，它们分别代表了<strong>处理效应</strong>和<strong>实验误差</strong>，即<br>$$F=\frac{S_t^2}{S_e^2}=\frac{处理效应}{实验误差}$$</p>
+<p>对于上面的定义需要解释两点：</p>
+<p><strong>(1) 按照 $F$ 值的定义，分子和分母应该来自同一个正态总体</strong></p>
+<p>如果我们假设处理效应和实验误差相差不多（这将作为我们假设检验的<strong>原假设/无效假设/零假设</strong>），即 $S_t^2{\approx}S_e^2$，此时我们可以认为 $S_t^2$ 和 $S_e^2$ 来自于同一个正态总体。</p>
+<p><strong>(2) 按照 $F$ 值的定义，分子是大方差，分母是小方差</strong></p>
+<p>方差分析的目的是确定 $S_t^2$（处理效应）和 $S_e^2$（实验误差）的相对大小，由于<strong>实验误差</strong>这种东西一般情况下都是不可控的，而且也不会很大，所以我们认为一般只存在一下两种情况：</p>
+<ol>
+<li><p>处理效应比实验误差大得多</p>
+</li>
+<li><p>处理效应与实验误差相差不多</p>
+</li>
+</ol>
+<h2 id="3-F-临界值表"><a href="#3-F-临界值表" class="headerlink" title="3.$F$ 临界值表"></a><strong><a href="http://blog.sciencenet.cn/blog-456367-437322.html" target="_blank" rel="noopener">3.$F$ 临界值表</a></strong></h2><hr>
+<h1 id="五、多重比较"><a href="#五、多重比较" class="headerlink" title="五、多重比较"></a><strong>五、多重比较</strong></h1><p>比较其中两组处理平均数间差异的显著性，本质上与t检验没有任何区别</p>
+<h2 id="1-最小显著差数法（LSD）"><a href="#1-最小显著差数法（LSD）" class="headerlink" title="1.最小显著差数法（LSD）"></a><strong>1.最小显著差数法（LSD）</strong></h2><p><strong>Least Significant Difference</strong></p>
+<h3 id="1-检验方法"><a href="#1-检验方法" class="headerlink" title="(1) 检验方法"></a><strong>(1) 检验方法</strong></h3><p>本质上是两均数的t检验。</p>
+<ol>
+<li>计算<strong>达到</strong>差异显著的<strong>最小差数</strong>，记为 <strong>$LSD_\alpha$</strong></li>
+</ol>
+<p>$$LSD_\alpha=t_\alpha{\cdot}S_{\overline{X_1}-\overline{X_2}}$$</p>
+<p>其中 $S_{\overline{X_1}-\overline{X_2}}$ 为<strong>平均数差数的标准误</strong>：</p>
+<p>$$\begin{split}<br>S_{\overline{X_1}-\overline{X_2}}&amp;&amp;=\sqrt{\frac{S_1^2}{n_1}+\frac{S_2^2}{n_2}}\\<br>&amp;&amp;=\sqrt{S_e^2{\cdot}(\frac{1}{n_1}+\frac{1}{n_2})}\\<br>&amp;&amp;=\sqrt{\frac{2S_e^2}{n}}{\quad}if{\quad}n_1=n_2=n<br>\end{split}$$</p>
+<div style="border:1px solid black;padding:20px"><strong>☺ 为什么令 $S_1^2=S_2^2=S_e^2$ ?</strong><br>上述公式的推导本身基于我们做出的<strong>无效假设</strong>（处理效应与实验误差相差不多）！<br><br><strong>☺ 查表的自由度依据？</strong><br>因为本质上是两个均数差异的t检验，因此需要查t临界值表。<br>因为均数差数标准误最终化归到了 $S_e^2$，因此查表的自由度依据的是 $df_e$ 而不是 $df_t$。</div>
+
+<ol start="2">
+<li>将两个处理平均数的差值绝对值 $\overline{x_1}-\overline{x_2}$ 与 $LSD_\alpha$ 进行比较</li>
+</ol>
+<h3 id="2-结果表示"><a href="#2-结果表示" class="headerlink" title="(2) 结果表示"></a><strong>(2) 结果表示</strong></h3><p>结果表示方法仅仅是用于优化两两比较次数，在使用结果表示方法之前都需要计算 <strong>$LSD_\alpha$</strong>。</p>
+<h4 id="a-标记字母法"><a href="#a-标记字母法" class="headerlink" title="a. 标记字母法"></a><strong>a. 标记字母法</strong></h4><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201811/20181118145733.jpg" alt=""></p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201811/20181118145822.jpg" alt=""></p>
+<h4 id="b-梯形比较法-三角形法"><a href="#b-梯形比较法-三角形法" class="headerlink" title="b. 梯形比较法/三角形法"></a><strong>b. 梯形比较法/三角形法</strong></h4><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201811/20181118150228.jpg" alt=""></p>
+<h2 id="2-最小显著极差法（LSR）"><a href="#2-最小显著极差法（LSR）" class="headerlink" title="2.最小显著极差法（LSR）"></a><strong>2.最小显著极差法（LSR）</strong></h2><p><strong>Least Significant Ranges</strong></p>
+<h3 id="1-新复极差检验（SSR）"><a href="#1-新复极差检验（SSR）" class="headerlink" title="(1) 新复极差检验（SSR）"></a>(1) 新复极差检验（SSR）</h3><p>新复极差法用于<span style="color:orange">方差分析后的</span>两两比较，有助于减少<strong>第二类错误</strong>，但是会增加<strong>第一类错误</strong>。</p>
+<p>原假设仍然是假设两个均值无差异：$\mu_A-\mu_B=0$</p>
+<p>步骤如下：</p>
+<p>1.平均数降序排序</p>
+<p>2.计算<strong>平均数标准误</strong>：$$S_{\bar{X}}=\sqrt{\frac{S_e^2}{n}}$$</p>
+<p>这里两组处理的样本容量是一致的：$n_1=n_2=n$，实验设计时一般也不会设计不一致这种骚操作。</p>
+<p>3.根据<strong>自由度 $df_e$ </strong>和排序平均数中相应两个数之间包含的平均数个数<strong>M</strong>查<a href="https://wenku.baidu.com/view/3a41820b763231126edb1197.html" target="_blank" rel="noopener"><strong>SSR值表</strong></a>，计算<strong>最小显著极差值</strong>（<strong>LSR值</strong>）：</p>
+<p>$$LSR_\alpha=SSR_\alpha{\cdot}S_{\bar{X}}$$</p>
+<p><div style="border:1px solid black;padding:20px"><strong>M值是个什么东西？</strong><br>排序平均数中相应两个数之间包含的平均数个数，即<strong>索引值差+1</strong>，相邻两个均数的M值为2。</div><br></p>
+<h3 id="2-q检验"><a href="#2-q检验" class="headerlink" title="(2) q检验"></a>(2) q检验</h3><p><strong>q检验</strong>也叫<strong>NK检验</strong>，与SSR检验十分相似，不同的是在第二步计算 $LSR_\alpha$ 时使用的是 $q_\alpha$ 值，而不是 $SSR_\alpha$ 值，因此需要查<a href="https://wenku.baidu.com/view/afb5647155270722182ef712.html" target="_blank" rel="noopener"><strong> $q_\alpha$ 值表</strong></a>。</p>
+<p>$$LSR_\alpha=q_\alpha{\cdot}S_{\bar{X}}$$</p>
+<h2 id="3-各个方法应用场景"><a href="#3-各个方法应用场景" class="headerlink" title="3.各个方法应用场景"></a><strong>3.各个方法应用场景</strong></h2><p>上面提到的LSD检验、SSR检验（新复极差检验）、q检验分别有自己的适用场景</p>
+<p>因此应用时</p>
+<ol>
+<li>对于精度要求高的检验，请使用<strong>q检验</strong>；</li>
+<li><strong>SSR检验</strong>适用于一般的检验；</li>
+<li><strong>LSD检验</strong>适用于将<strong>各个</strong>实验组与对照组进行比较。</li>
+</ol>
+<h1 id="六、方差分析的基本步骤"><a href="#六、方差分析的基本步骤" class="headerlink" title="六、方差分析的基本步骤"></a><strong>六、方差分析的基本步骤</strong></h1><p>从上面的过程我们可以总结出方差分析的三个大步骤：</p>
+<ol>
+<li>对样本数据的<strong>总平方和</strong>和<strong>总自由度</strong>分解为各个变异因素的平方和和自由度；</li>
+<li>进行<strong> $F$ 检验</strong>，检验各个变异因素在总变异中的重要程度；</li>
+<li>组间均数进行两两比较。</li>
+</ol>
+
+                
+<p class="pink-link-context">
+    <a href="/速查表/20181106-e8e2.html" rel="next" title="写论文值得收藏的8个网站">
+    Prev: 写论文值得收藏的8个网站
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/统计与机器学习/20181018-327a.html" rel="next" title="假设检验-显著性假设检验">
+    Next: 假设检验-显著性假设检验
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer blue-grey darken-1">
+    
+		<div class="footer-container container">
+			<div class="row">
+			
+				
+					<div class="social-group col m4 s12">
+						<h5 class="white-text">Social</h5>
+						
+							<a class="social-link" href="http://weibo.com/dangercy1314" target="_blank">
+								<i class="fa fa-2x fa-weibo"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+							<a class="social-link" href="https://github.com/barwe" target="_blank">
+								<i class="fa fa-2x fa-github"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+						
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+					</div>
+				
+
+				
+					<div class="col m8 s12">
+						<h5 class="white-text">Links</h5>
+						
+							<a class="social-link" href="https://music.163.com/#/user/home?id=1514463016" target="_blank">云村音乐</a>
+						
+					</div>
+				
+			</div>
+		</div>
+    
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+				scrollTargetTop = scrollTargetTop + 150
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65955364" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

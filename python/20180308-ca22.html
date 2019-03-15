@@ -1,0 +1,687 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>pandas模块-加载数据 | CY的博客</title>
+    <meta name="author" content="John Doe">
+    
+    <meta name="description" content="文本文件读取pd.read_csv(…)详细记录pandas读取表格型数据文件的方法：pd.read_csv()
+
+其实pytohn内置了一个可以处理简单规整csv文件的模块：import csv给 csv.reader() 传入文件型对象即可什么？你不知道什么是文件型对象？ open(fp,&amp;#3">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="pandas模块-加载数据"/>
+    <meta property="og:site_name" content="Barwe"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Barwe" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="blue-grey">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Barwe</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " 
+						   href="/" 
+						   >
+                            <i class="fa fa-home "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " 
+						   href="/archives" 
+						   >
+                            <i class="fa fa-archive "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" 
+						   href="javascript:;" 
+						   data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            category
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " 
+						   href="/reading" 
+						   >
+                            <i class="fa fa-book "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            reading
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://p33k8pinb.bkt.clouddn.com/18-3-8/42928697.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Barwe</p>
+                        <p class="desc">迷糊皮皮虾</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/生物信息学/">
+                    生物信息学 <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/IT开发笔记/">
+                    IT开发笔记 <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">16</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/小黄鸭debug/">
+                    小黄鸭debug <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/操作系统/">
+                    操作系统 <span class="right">9</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/统计与机器学习/">
+                    统计与机器学习 <span class="right">20</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/速查表/">
+                    速查表 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue-grey">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/python/">python</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>pandas模块-加载数据</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-03-08T15:51:29.000Z"><a href="/python/20180308-ca22.html">2018-03-08</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#文本文件读取"><span class="section table-of-contents-text">文本文件读取</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#pd-read-csv-…"><span class="section table-of-contents-text">pd.read_csv(…)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#逐块读取"><span class="section table-of-contents-text">逐块读取</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#XML文件读取"><span class="section table-of-contents-text">XML文件读取</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#二进制文件读取"><span class="section table-of-contents-text">二进制文件读取</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#pickle序列化"><span class="section table-of-contents-text">pickle序列化</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#HDF5格式"><span class="section table-of-contents-text">HDF5格式</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#存储"><span class="section table-of-contents-text">存储</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Excel格式"><span class="section table-of-contents-text">Excel格式</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#使用HTML和Web-API"><span class="section table-of-contents-text">使用HTML和Web API</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#使用数据库"><span class="section table-of-contents-text">使用数据库</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#存取MongoDB中的数据"><span class="section table-of-contents-text">存取MongoDB中的数据</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="文本文件读取"><a href="#文本文件读取" class="headerlink" title="文本文件读取"></a>文本文件读取</h1><h2 id="pd-read-csv-…"><a href="#pd-read-csv-…" class="headerlink" title="pd.read_csv(…)"></a>pd.read_csv(…)</h2><p>详细记录pandas读取表格型数据文件的方法：<code>pd.read_csv()</code></p>
+<blockquote>
+<p>其实pytohn内置了一个可以处理简单规整csv文件的模块：<code>import csv</code><br>给 <code>csv.reader()</code> 传入<strong>文件型对象</strong>即可<br>什么？你不知道什么是文件型对象？ <code>open(fp,&#39;r&#39;)</code> 返回的就是文件型对象</p>
+</blockquote>
+<p>重要参数解析：</p>
+<pre><code>path: 这个参数不解释，可以是本地路径，也可以是URL
+
+sep: 行内字段(列)分隔符，csv文件默认为逗号，还可以为正则表达式
+
+header: 标识列名的行号。默认为0，代表文件第一行是列名，没有列名时需要设为None
+    //当header=None时:
+    names: 字符串组成的列表，指定列名
+
+index_col: 标识行索引
+    简单行索引：列编号（整数）或者列名（字符串）
+    层次化索引：列编号/列名zucheng的列表
+        什么是层次化索引？将多个列作为索引，列之间将产生层次关系
+            a   a1
+                a2
+            b   b1
+                b2
+                b3
+            ...
+
+
+skiprows:    如果传入整数，表示需要从文件开始出算起需要忽略的行数
+            如果传入整数列表，表示需要跳过的行号列表（从0开始）
+skip_footer: 整型，从文件末尾算起需要忽略的行数
+
+nrows: 整型，需要读取的行数（从开始算起）
+
+na_value: 用于替换NaN的值
+
+comment: 当行末有注释信息时指定注释信息标志字符
+
+parse_dates: 尝试将数据解析为日期，默认为False
+    传入True：尝试将所有列都解析为日期（一般是行不通的）
+    传入列号/列名的列表：仅尝试将指定的（一些）列解析为日期
+    传入上一行列表的列表：尝试将多个列进行组合后进行解析（当日期不同部分分散在不同的列中时）
+        keep_date_col: 当组合多列解析时是否保留原始列，默认为False
+dayfirst: 当日期出现歧义时（如7/6/2018究竟是6月还是7月？)指定day的位置，默认为False
+date_parser: 或者传入一个用于解析日期的函数
+
+converters: 列值预处理，传入一个字典d={列号/列名: 函数, ...}，表示对相应地列的值将执行相应地函数
+
+iterator: 用于逐块读取文件
+chunksize: 文件块的大小
+
+verbose: 是否打印日志
+
+encoding: 文本编码格式
+
+squeeze: 数据经过解析后只剩下一列，返回Series而不是DataFrame
+
+thousands: 千分位分隔符
+</code></pre><h2 id="逐块读取"><a href="#逐块读取" class="headerlink" title="逐块读取"></a>逐块读取</h2><p>当文件特别大时我门可能只是想读取文件的一小部分或者逐块迭代</p>
+<ul>
+<li>如果我们只是想读文件开始几行，使用关键字参数 <code>nrows</code>。（Q: 那中间几行呢？）</li>
+<li>逐块迭代：<code>read_csgv</code> 指定 <code>chunksize</code> 后将返回一个TextParser用于后续迭代<br>Q: 按固定字符数读取？If so, 貌似只适用于行字符数相同的文件?</li>
+</ul>
+<h2 id="XML文件读取"><a href="#XML文件读取" class="headerlink" title="XML文件读取"></a>XML文件读取</h2><p>略</p>
+<hr>
+<h1 id="二进制文件读取"><a href="#二进制文件读取" class="headerlink" title="二进制文件读取"></a>二进制文件读取</h1><h2 id="pickle序列化"><a href="#pickle序列化" class="headerlink" title="pickle序列化"></a>pickle序列化</h2><p>首先得了解<a href="#">python内置的pickle序列化</a><br>保存pandas对象到磁盘：<code>PD_OBJ.save(FILE_NAME)</code><br>从磁盘取回pandas对象：<code>PD_OBJ.load(FILE_NAME)</code></p>
+<h2 id="HDF5格式"><a href="#HDF5格式" class="headerlink" title="HDF5格式"></a>HDF5格式</h2><blockquote>
+<p><strong>高效</strong>读写磁盘上以二进制形式存储的科学数据<br>HDF: Hierarchical Data Format<br>高效<strong>分块读写</strong><br>python中有两个接口：PyTables + h5py<br>pandas建立HDFStore类，通过PyTables存储对象</p>
+</blockquote>
+<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>HDFStore类类似于字典，创建HDFStore对象后按照字典方式赋值即可。</p>
+<pre><code>//&lt;class &apos;pandas.io.pytables.HDFStore&apos;&gt;
+store = pd.HDFStore(OUTPUT_FILE)
+store[&apos;obj1&apos;] = dataframe
+store[&apos;obj1_col&apos;] = dataframe[&apos;a&apos;]
+</code></pre><p><span style="color:red">对于IO密集型数据（而非CPU密集型数据），使用HDF5能够大大提升效率</span></p>
+<h2 id="Excel格式"><a href="#Excel格式" class="headerlink" title="Excel格式"></a>Excel格式</h2><p>panda中相关的类：<code>ExcelFile</code><br>依赖包：xlrd, openpyxl</p>
+<p>创建实例：<code>xls_file = pd.ExcelFile(XLS_FILE)</code></p>
+<p>读取数据：<code>table = xls_file.parse(&#39;Sheet1&#39;)</code></p>
+<h1 id="使用HTML和Web-API"><a href="#使用HTML和Web-API" class="headerlink" title="使用HTML和Web API"></a>使用HTML和Web API</h1><h1 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h1><h1 id="存取MongoDB中的数据"><a href="#存取MongoDB中的数据" class="headerlink" title="存取MongoDB中的数据"></a>存取MongoDB中的数据</h1>
+                
+<p class="pink-link-context">
+    <a href="/统计与机器学习/20180312-62c1.html" rel="next" title="参数模型和非参数模型">
+    Prev: 参数模型和非参数模型
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/python/20180307-3057.html" rel="next" title="pandas模块-Series类和DataFrame类">
+    Next: pandas模块-Series类和DataFrame类
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer blue-grey darken-1">
+    
+		<div class="footer-container container">
+			<div class="row">
+			
+				
+					<div class="social-group col m4 s12">
+						<h5 class="white-text">Social</h5>
+						
+							<a class="social-link" href="http://weibo.com/dangercy1314" target="_blank">
+								<i class="fa fa-2x fa-weibo"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+							<a class="social-link" href="https://github.com/barwe" target="_blank">
+								<i class="fa fa-2x fa-github"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+						
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+					</div>
+				
+
+				
+					<div class="col m8 s12">
+						<h5 class="white-text">Links</h5>
+						
+							<a class="social-link" href="https://music.163.com/#/user/home?id=1514463016" target="_blank">云村音乐</a>
+						
+					</div>
+				
+			</div>
+		</div>
+    
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+				scrollTargetTop = scrollTargetTop + 150
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65955364" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

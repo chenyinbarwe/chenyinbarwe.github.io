@@ -10,7 +10,10 @@
     <title>python中运行shell命令 | CY的博客</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="123import subprocessstring = subprocess.check_output(&#34;COMMAND&#34;, [shell=True]).decode()">
+    <meta name="description" content="Method 1
+123import subprocessstring = subprocess.check_output(&#34;COMMAND_STRING&#34;, [shell=True]).decode()
+Method 2
+123import osresult = os.system(&#34;COMMAN">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -157,72 +160,16 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Django/">
-                    Django <span class="right">4</span></a>
+                <a class="no-padding" href="/categories/生物信息学/">
+                    生物信息学 <span class="right">2</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/Linux/">
-                    Linux <span class="right">3</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/algorithms/">
-                    algorithms <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/database-op/">
-                    database-op <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/data-processing/">
-                    data-processing <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/deep-learning/">
-                    deep-learning <span class="right">4</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/debug/">
-                    debug <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/mathematics/">
-                    mathematics <span class="right">2</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/network/">
-                    network <span class="right">3</span></a>
+                <a class="no-padding" href="/categories/IT开发笔记/">
+                    IT开发笔记 <span class="right">8</span></a>
                 </a>
             </li>
 
@@ -230,31 +177,39 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/python/">
-                    python <span class="right">10</span></a>
+                    python <span class="right">16</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/resources/">
-                    resources <span class="right">1</span></a>
+                <a class="no-padding" href="/categories/小黄鸭debug/">
+                    小黄鸭debug <span class="right">1</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/statistics/">
-                    statistics <span class="right">12</span></a>
+                <a class="no-padding" href="/categories/操作系统/">
+                    操作系统 <span class="right">9</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/windows10/">
-                    windows10 <span class="right">5</span></a>
+                <a class="no-padding" href="/categories/统计与机器学习/">
+                    统计与机器学习 <span class="right">20</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/速查表/">
+                    速查表 <span class="right">3</span></a>
                 </a>
             </li>
 
@@ -320,6 +275,12 @@
 </span>
 
             
+    <div class="tags-row">
+        
+            <a href="/tags/青铜派森/" class="chip pink lighten-1">青铜派森</a>
+        
+    </div>
+
 
             <div class="toc pink-link-context hide-on-med-and-down">
 	
@@ -327,10 +288,13 @@
 
 
             <div class="entry pink-link-context">
-                <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">string = subprocess.check_output(<span class="string">"COMMAND"</span>, [shell=<span class="keyword">True</span>]).decode()</span><br></pre></td></tr></table></figure>
+                <p><strong>Method 1</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">string = subprocess.check_output(<span class="string">"COMMAND_STRING"</span>, [shell=<span class="keyword">True</span>]).decode()</span><br></pre></td></tr></table></figure>
+<p><strong>Method 2</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">result = os.system(<span class="string">"COMMAND_STRING"</span>)</span><br></pre></td></tr></table></figure>
                 
 <p class="pink-link-context">
-    <a href="/Linux/20181122-ad7f.html" rel="next" title="ubuntu16.04LTS更新R到3.5.x">
+    <a href="/操作系统/20181122-ad7f.html" rel="next" title="ubuntu16.04LTS更新R到3.5.x">
     Prev: ubuntu16.04LTS更新R到3.5.x
   </a>
 </p>
@@ -388,6 +352,20 @@
 							</a>
 						
 						
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
 
 					</div>
 				

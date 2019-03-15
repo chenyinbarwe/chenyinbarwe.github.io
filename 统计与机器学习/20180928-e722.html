@@ -1,0 +1,641 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>估计量选择的原则 | CY的博客</title>
+    <meta name="author" content="John Doe">
+    
+    <meta name="description" content="以点估计为例，我们可以通过矩估计法和最大似然估计法对总体的某个参数进行估计。我们通过不同的方法对同一个参数的估计结果可能不同，因此我们需要选择一个最好的估计量。
+下面是选择估计量时常用的三个标准：
+无偏性什么是无偏性？若${X_1,X_2,\cdots,X_n}$是总体的一个样本，样本容量为$n$，">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="估计量选择的原则"/>
+    <meta property="og:site_name" content="Barwe"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Barwe" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="blue-grey">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Barwe</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " 
+						   href="/" 
+						   >
+                            <i class="fa fa-home "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " 
+						   href="/archives" 
+						   >
+                            <i class="fa fa-archive "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" 
+						   href="javascript:;" 
+						   data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            category
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " 
+						   href="/reading" 
+						   >
+                            <i class="fa fa-book "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            reading
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://p33k8pinb.bkt.clouddn.com/18-3-8/42928697.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Barwe</p>
+                        <p class="desc">迷糊皮皮虾</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/生物信息学/">
+                    生物信息学 <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/IT开发笔记/">
+                    IT开发笔记 <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">16</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/小黄鸭debug/">
+                    小黄鸭debug <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/操作系统/">
+                    操作系统 <span class="right">9</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/统计与机器学习/">
+                    统计与机器学习 <span class="right">20</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/速查表/">
+                    速查表 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue-grey">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/统计与机器学习/">统计与机器学习</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>估计量选择的原则</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-09-28T07:04:50.000Z"><a href="/统计与机器学习/20180928-e722.html">2018-09-28</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/UCAS生物统计与实验设计/" class="chip pink lighten-1">UCAS生物统计与实验设计</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#无偏性"><span class="section table-of-contents-text">无偏性</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#什么是无偏性？"><span class="section table-of-contents-text">什么是无偏性？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#无系统误差"><span class="section table-of-contents-text">无系统误差</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#期望是无偏的"><span class="section table-of-contents-text">期望是无偏的</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#方差是有偏的"><span class="section table-of-contents-text">方差是有偏的</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#有效性"><span class="section table-of-contents-text">有效性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#相合性"><span class="section table-of-contents-text">相合性</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>以点估计为例，我们可以通过矩估计法和最大似然估计法对总体的某个参数进行估计。我们通过不同的方法对同一个参数的估计结果可能不同，因此我们需要选择一个最好的估计量。</p>
+<p>下面是选择估计量时常用的三个标准：</p>
+<h1 id="无偏性"><a href="#无偏性" class="headerlink" title="无偏性"></a>无偏性</h1><h2 id="什么是无偏性？"><a href="#什么是无偏性？" class="headerlink" title="什么是无偏性？"></a>什么是无偏性？</h2><p>若${X_1,X_2,\cdots,X_n}$是总体的一个样本，样本容量为$n$，$\theta$是与总体分布相关的一个<strong>待估参数</strong>。</p>
+<p>我们基于样本${X_1,X_2,\cdots,X_n}$构造了一个<strong>估计量</strong>$\hat{\theta}=\theta(X_1,X_2,\cdots,X_n)$，当这歌估计量的<strong>期望</strong>$E(\hat{\theta})$存在且$E(\hat{\theta})=\theta$时称$\hat{\theta}$是$\theta$的<strong>无偏估计量</strong>。</p>
+<p>简而言之，估计量的期望等于待估参数就是无偏估计。</p>
+<h2 id="无系统误差"><a href="#无系统误差" class="headerlink" title="无系统误差"></a>无系统误差</h2><p>无偏估计意味着没有<strong>系统误差</strong>，那么有偏估计就意味着有系统误差，而系统误差是可以通过<strong>校正</strong>去除的，所谓我们可以对有偏估计进行无偏化处理得到完成无偏估计，典型的例子就是方差估计。</p>
+<h2 id="期望是无偏的"><a href="#期望是无偏的" class="headerlink" title="期望是无偏的"></a>期望是无偏的</h2><p>不论总体的分布形式如何，<strong>k阶样本矩</strong>（样本的k阶原点矩）$A_k=\frac1n\sum_{i=1}^{n}X_i^k$都是<strong>k阶总体矩</strong>（总体的k阶原点矩）$\mu_k$的<strong>无偏估计</strong>。只需证明$E(A_k)=\mu_k$即可。</p>
+<blockquote>
+<p>样本常见的数字特征有：样本均值、未修正样本方差、修正样本方差、样本k阶原点矩和样本k阶中心矩。</p>
+</blockquote>
+<p>这意味着：<strong>样本均值</strong>总是<strong>总体期望</strong>的无偏估计。</p>
+<h2 id="方差是有偏的"><a href="#方差是有偏的" class="headerlink" title="方差是有偏的"></a>方差是有偏的</h2><p>对于方差存在的总体，用未修正的样本方差$\hat{\sigma}^2=\frac1n\sum_{i=1}^{n}(X_i-\bar{X})^2$来估计总体方差$\sigma^2$是<strong>有偏</strong>的。</p>
+<div style="border:3px black solid;padding:5px"><strong>证明：</strong><br>针对样本，由$E(X^2)=[E(X)]^2+D(X)$知<br>$$\begin{split}<br>\hat{\sigma}^2=D(X)&amp;=E(X^2)-[E(X)]^2\\<br>&amp;=A_2-\bar{X}^2<br>\end{split}$$<br>因为<strong>期望是无偏的</strong>，所以<br>$$\underbrace{E(A_2)=}_{期望无偏}\mu_2\underbrace{=\sigma^2+\mu^2}_{总体期望和方差的关系}$$<br>上式中 $\mu_2$ 是总体的二阶原点矩，$\mu$ 是总体的一阶原点矩（期望）。<br>对于<strong>复合随机变量$\bar{X}^2$</strong>有<br>$$E(\bar{X}^2)=D(\bar{X})+[E(\bar{X})]^2=\frac{\sigma^2}n+\mu^2$$<br><div style="border:1px black solid;padding:5px"><strong>证明$D(\bar{X})=\frac{\sigma^2}n$</strong>:<br>$$\begin{split}<br>D(\bar{X})&amp;=D(\frac{X_1+X_2+\cdots+X_n}n)\\<br>&amp;=\frac1{n^2}D(X_1+X_2+\cdots+X_n)\\<br>&amp;=\frac1{n^2}[D(X_1)+D(X_2)+\cdots+D(X_n)]\\<br>&amp;=\frac1{n^2}(\underbrace{\sigma^2+\sigma^2+\cdots+\sigma^2}_{n个})\\<br>&amp;=\frac{n\sigma^2}{n^2}\\<br>&amp;=\frac{\sigma^2}n<br>\end{split}$$</div><br>所以<br>$$\begin{split}<br>E(\hat{\sigma}^2)&amp;=E(A_2-\bar{X}^2)\\<br>&amp;=E(A_2)-E(\bar{X}^2)\\<br>&amp;=(\sigma^2+\mu^2)-(\frac{\sigma^2}n+\mu^2)\\<br>&amp;=\frac{n-1}n\sigma^2\ne\sigma^2<br>\end{split}$$<br>即证<strong>非修正的</strong>样本方差$\hat{\sigma}^2$是总体方差的$\sigma^2$的有偏估计。</div>
+
+<p>我们令<br>$$S^2=\frac{n}{n-1}\hat{\sigma}^2=\frac1{n-1}(X_i-\bar{X}^2)$$<br>此时有<br>$$E(S^2)=E(\frac{n}{n-1}\hat{\sigma}^2)=\frac{n}{n-1}E(\hat{\sigma}^2)=\sigma^2$$<br>即得<strong>修正的</strong>样本方差$S^2$是总体方差的$\sigma^2$的无偏估计。</p>
+<p>这就是为什么样本方差为什么总是除以n-1而不是n的原因~</p>
+<hr>
+<h1 id="有效性"><a href="#有效性" class="headerlink" title="有效性"></a>有效性</h1><p>当我们通过<strong>无偏性</strong>判断出多个无偏估计量$\hat{\theta_1}$、$\hat{\theta_2}$、…时我们需要进一步筛选。</p>
+<p>由于无偏估计量的期望总是待估参数，因此方差越小越好</p>
+<p>$$\hat{\theta_{opt}}=\mathop{\arg\min}_{i=1,2,\cdots}\hat{\theta_i}$$</p>
+<hr>
+<h1 id="相合性"><a href="#相合性" class="headerlink" title="相合性"></a>相合性</h1><p><strong>相合性</strong>指的是当样本容量$n\to\infty$时$\hat{\theta}(X_1,X_2,\cdots,X_n)$<strong>依概率收敛于</strong>$\theta$。</p>
+<p>相合性是估计量最基本的特性，估计量可以有偏但不能不依概率收敛。</p>
+
+                
+<p class="pink-link-context">
+    <a href="/速查表/20181017-aedb.html" rel="next" title="latex数学符号表">
+    Prev: latex数学符号表
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/统计与机器学习/20180921-469f.html" rel="next" title="参数估计-点估计">
+    Next: 参数估计-点估计
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer blue-grey darken-1">
+    
+		<div class="footer-container container">
+			<div class="row">
+			
+				
+					<div class="social-group col m4 s12">
+						<h5 class="white-text">Social</h5>
+						
+							<a class="social-link" href="http://weibo.com/dangercy1314" target="_blank">
+								<i class="fa fa-2x fa-weibo"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+							<a class="social-link" href="https://github.com/barwe" target="_blank">
+								<i class="fa fa-2x fa-github"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+						
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+					</div>
+				
+
+				
+					<div class="col m8 s12">
+						<h5 class="white-text">Links</h5>
+						
+							<a class="social-link" href="https://music.163.com/#/user/home?id=1514463016" target="_blank">云村音乐</a>
+						
+					</div>
+				
+			</div>
+		</div>
+    
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+				scrollTargetTop = scrollTargetTop + 150
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65955364" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
