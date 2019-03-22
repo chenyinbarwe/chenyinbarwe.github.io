@@ -87,10 +87,10 @@
   
   <entry>
     <title>生信分析工具-SCENIC</title>
-    <link href="http://chenyin.top/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/20190315-94a8.html"/>
-    <id>http://chenyin.top/生物信息学/20190315-94a8.html</id>
+    <link href="http://chenyin.top/Bioinformatics/20190315-94a8.html"/>
+    <id>http://chenyin.top/Bioinformatics/20190315-94a8.html</id>
     <published>2019-03-15T10:53:18.000Z</published>
-    <updated>2019-03-15T11:07:48.338Z</updated>
+    <updated>2019-03-22T02:53:47.828Z</updated>
     
     <content type="html"><![CDATA[<p><strong>SCENIC: Single-cell regulatory network inference and clustering</strong></p><p>基于regulon(TF-&gt;targets)构建GRNs，基于GRNs可以进行细胞聚类。</p><p>与其说是算法，不如说SCENIC是组合算法的一个流程。如下图所示：</p><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/scenic-01.png" alt=""></p><h1 id="1-基因数据过滤"><a href="#1-基因数据过滤" class="headerlink" title="1. 基因数据过滤"></a>1. 基因数据过滤</h1><p>共表达分析之前需要对基因数据进行过滤，本文使用如下两个方法：</p><p>1.根据每个基因的reads数目移除可信度低或者将产生较大噪声的基因。reads数目的阈值与数据集的大小有关，以下是原文表述：3 UMI counts (slightly over the median of the nonzero values) multiplied by 1% of the number of cells in the dataset (e.g. in mouse brain: 3 UMI counts x 30 (1% of cells) = minimum 90 counts per gene).</p><p>2.根据可检测到某个基因的细胞数目过滤掉只在一个细胞或者极少量细胞中表达的基因，细胞数目的阈值设定参考原文：set a percentage lower than the smallest population of cells to be detected. For example, since microglia cells represent approximately 3% of the total cells in the dataset, we used a detection threshold of at least 1% of the cells.</p><h1 id="2-共表达分析"><a href="#2-共表达分析" class="headerlink" title="2. 共表达分析"></a>2. 共表达分析</h1><p>仅仅借助<strong>共表达分析</strong>(co-expression analysis)(GENIE3或者GRNBoost)得到regulons的表达情况（GRNs）。一个regulon由一个TF和它调控的靶基因组成。当数据集非常大时GENIE3的运行速度将会变得非常慢，此时使用GRNBoost替换GENIE3能大大加快计算速度。</p><p>但是，共表达分析存在许多假阳性结果，我们需要找到这些实际上不存在的TF-靶基因配对，因此需要下一步的基序富集分析。</p><h2 id="GENIE3"><a href="#GENIE3" class="headerlink" title="GENIE3"></a>GENIE3</h2><p>GENIE3的核心算法是<strong>随机森林回归模型</strong>。随机森林能够处理非线性共表达关系。针对不同的TF训练不同的模型，这些模型用于计算相应TF的权重，这些权重可以用来衡量它与靶基因共表达的强度。</p><p>输入：一个基因表达矩阵，矩阵的每一列代表一个细胞的不同基因，每一行代表一个基因在不同细胞里的表达量。矩阵的元素可以是UMI计数，也可以是其它指标，例如TPM (Transcripts Per Million)、FPKM/RPKM等等。输入矩阵应避免进行标准化或归一化处理，这样会人为的引入多余的协方差。</p><p>输出：一张三列表，分别代表TF、靶基因、权重（TF靶向目标基因的可信度）</p><h2 id="GRNBoost"><a href="#GRNBoost" class="headerlink" title="GRNBoost"></a>GRNBoost</h2><blockquote><p>Spark <strong>RDD</strong>：Risilient Distributed Datasets 弹性分布式数据库<br><strong>广播变量</strong>(Broadcast Variable)：将只读变量广播到各个节点以供读取，避免变量在任务间进行传递。变量被广播之后应避免被修改。</p></blockquote><p>GRNBoost作为GENIE3在大数据集下的替代方案，它仍然接受GENIE3的基本思想：仅从基因表达数据中推断GRNs。</p><p>算法方面，GRNBoost使用了XGBoost库中的GBM (Gradient Boosting Machines)。GBM是一种结合多种弱学习器、以提升学习作为基本策略的集成学习方法。相对于随机森林，GBM使用了bagging自助聚合进行模型的平均以提高回归准确度。</p><p>然而，GRNBoost的主要贡献是基于Spark实现了多回归并行计算。<br>软件输入是<strong>基因表达向量</strong>（一系列基因和一个转录因子表达量组成的向量？）。<br>GRNBoost首先将基因表达向量分发给集群的各个节点，然后构建一个基于表达数据全集的预测矩阵。<br>然后使用<strong>广播变量</strong>（Broadcast Variable）将这个预测矩阵广播到各个节点，接下来进行Map/Reduce分布式计算。</p><p><strong>Map阶段</strong>：基于基因表达向量使用预测器训练XGBoost回归模型。基于训练的模型，TF和靶基因的靶向强度将以网络的边的形式呈现出来。</p><p><strong>Reduce阶段</strong>：整合所有的边形成最终的GRNs。</p><h1 id="3-基序富集分析"><a href="#3-基序富集分析" class="headerlink" title="3. 基序富集分析"></a>3. 基序富集分析</h1><p><strong>基序富集分析</strong>(motif enrichment analysis)使用的工具是RcisTarget，它能找到共表达分析的假阳性结果。删除这些假阳性结果就能得到正确的GRNs (Gene Regulatory Networks)。</p><p>RcisTarget 是 i-cisTarget 和 iRegulon 基序富集框架的 R/Bioconductor 实现。</p><p>主要分为两个步骤：</p><ol><li>选择在基因的转录起始位点（TSS）附近明显高表达的DNA基序<br>This is achieved by applying a recovery-based method on a database that contains genome-wide cross-species rankings for each motif. 实现方法：在基序全基因组跨物种排名数据库上使用recovery方法<br>保留那些可以注释到TF并且标准富集分数(Normalized Enrichment Score, NES)大于3.0的基序<br>2.对于每个基序和基因集，RcisTarget预测候选靶基因（如在基因集中排列在前缘以上的基因）<br>方法详情见引用[32]，此方法在i-cisTarget&amp;iRegulon中均有实现，因此使用RcisTarget得到的结果与i-cisTarget&amp;iRegulon的结果一致</li></ol><p>为了构建最终的调控子，我们将每个有基序富集的TF模块预测的靶基因进行归并。<br>上面针对的是正调控，对于抑制，仍然可以对负相关的TF模块做相同的处理；但是我们的分析中，这类模块较少。<br>基于上述事实，本实验之研究正相关，不研究负相关<br>本文使用的数据集：the “18k motif collection” from iRegulon (gene-based motif rankings) for human and mouse<br>TSS搜索空间：10kb around the TSS or 500bp upstream the TSS</p><h1 id="4-AUCell打分"><a href="#4-AUCell打分" class="headerlink" title="4. AUCell打分"></a>4. AUCell打分</h1><p>The relative scores of each regulon across the cells allow identifying which cells have a significantly high sub-network activity<br>细胞的调节子打分容许我们识别哪些细胞具有明显的高子网络活性？？？结果是一个二进制的活性矩阵，可用于下游分析<br>——对此矩阵的聚类可用于细胞类型或者细胞状态的识别，基于调控子网络的活性共享。<br>对抗dropouts增强鲁棒性：对调节子整体进行打分，而不是针对特定的转录因子或者单个基因。</p><p>基于单细胞测序数据，从活化的GRNs中鉴定细胞<br>输入是一个基因集，输出为每个细胞中基因集的活性（AUC指标）<br>在SCENIC中，这些基因集表现为regulons，每个调控子由一个TF和它对应的靶基因组成<br>AUCell calculates the enrichment of the regulon as an area under the recovery curve (AUC) across the ranking of all genes in a particular cell, whereby genes are ranked by their expression value.<br>将AUC区域面积作为regulon的富集量，该区域包含了特定细胞中所有基因的排序。<br>This method is therefore independent of the gene expression units and the normalization procedure.<br>因为是在单个细胞上进行检验，因此很容易可以应用到大数据集</p><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/scenic-02.png" alt=""></p><p>——AUCell用来估计每个细胞中每个regulon的活性，通过计算恢复曲线下的面积，整合了每个regulon里所有排列的基因的信息<br>——AUC打分（上面计算出来的）通过设定阈值构建Regulon Activity Matrix，用来判定哪些细胞里的regulon处于on状态<br>——左图横坐标是一个regulon的靶基因的排列，纵坐标是从输入数据集中数出来的基因数目<br>然后，AUCell使用“曲线下面积”(AUC)计算输入基因集中的一个关键子集是否在每个细胞的排名顶部富集。<br>AUC表示表达基因在特征中的比例以及相对于细胞内其他基因的相对表达值<br>这一部的输出是一个矩阵：每一个细胞的每一个基因集的AUC分数<br>使用细胞中的一系列regulon的AUC值进行细胞的聚类，或者使用处理过的二值矩阵<br>——二值矩阵：自动 or 手动<br>——下图是AUC分布的几个例子</p><h1 id="5-基于GRNs的细胞聚类"><a href="#5-基于GRNs的细胞聚类" class="headerlink" title="5. 基于GRNs的细胞聚类"></a>5. 基于GRNs的细胞聚类</h1><p>AUC activity matrix：每个细胞中每个regulon的AUC值，连续值<br>regulon activity matrix：上面矩阵二值化的结果，01矩阵<br>可视化：主要用t-SNE、层次聚类的热图<br>探究结果的其他可选项<br>—— t-SNE的高密度区域 =&gt; 最可能的稳定状态<br>—— 鉴定key regulators<br>—— 基于数据库注释了解细胞属性<br>—— GO terms (regulon内的基因富集分析)</p><blockquote><p>操纵子（operon）：包含了操纵基因的核苷酸序列，被某个启动子控制，对应一组受操纵基因调控的基因<br>调节子（regulon）：对应受某个起调节作用的蛋白质调节的一组基因<br>刺激子（stimulon）：对应某类起调节作用的细胞调节的一组基因</p></blockquote><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>Nat Methods. 2017 Nov;14(11):1083-1086. doi: 10.1038/nmeth.4463. Epub 2017 Oct 9.<br><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5937676" target="_blank" rel="noopener">SCENIC: Single-cell regulatory network inference and clustering</a><br>Aibar S1,2, González-Blas CB1,2, Moerman T3,4, Huynh-Thu VA5, Imrichova H1,2, Hulselmans G1,2, Rambow F6,7, Marine JC6,7, Geurts P5, Aerts J3,4, van den Oord J8, Atak ZK1,2, Wouters J1,2,8, Aerts S1,2.</p><p><a href="http://scenic.aertslab.org" target="_blank" rel="noopener">&gt;&gt;&gt; SCENIC</a></p>]]></content>
     
@@ -104,17 +104,17 @@
     
     </summary>
     
-      <category term="生物信息学" scheme="http://chenyin.top/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/"/>
+      <category term="Bioinformatics" scheme="http://chenyin.top/categories/Bioinformatics/"/>
     
     
   </entry>
   
   <entry>
     <title>生信分析工具-RaceID2+StemID</title>
-    <link href="http://chenyin.top/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/20190315-98e6.html"/>
-    <id>http://chenyin.top/生物信息学/20190315-98e6.html</id>
+    <link href="http://chenyin.top/Bioinformatics/20190315-98e6.html"/>
+    <id>http://chenyin.top/Bioinformatics/20190315-98e6.html</id>
     <published>2019-03-15T08:17:11.000Z</published>
-    <updated>2019-03-15T09:28:08.923Z</updated>
+    <updated>2019-03-22T02:53:30.883Z</updated>
     
     <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>数据分析时要处理的噪声不仅来自实验误差和测量误差，基因表达和少量mRNA的扩增都会产生一定的噪声。其中来自生物过程的噪声可以通过大量测序来缓和。</p><p>如果根据某一时刻的转录表达情况推断细胞系谱结构一直是一个严峻的挑战。作者肯定了<a href="/生物信息学/20190315-643b.html">Wanderlust算法</a>的设计思想，但是同时对其设计的拓扑结构的合理性表示怀疑，并提出了自己的解决方案。</p><p>RaceID2算法旨在：基于单细胞转录组数据，通过聚类鉴定出干细胞</p><p>StemID算法旨在：利用RaceID2的聚类结果，构建系谱树</p><h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>算法在小肠的Lgr5+细胞、骨髓造血干细胞上学习，在人类胰腺多能干细胞上测试。Lgr5+小鼠肠道干细胞群的分化过程研究已经发表，作为算法学习的基础数据集。</p><h2 id="RaceID"><a href="#RaceID" class="headerlink" title="RaceID"></a>RaceID</h2><p><a href="https://www.nature.com/articles/nature14966" target="_blank" rel="noopener">此处嘀向作者2015年发表的论文</a></p><h2 id="RaceID2"><a href="#RaceID2" class="headerlink" title="RaceID2"></a>RaceID2</h2><p>作者对自己已经发表的RaceID算法进行优化：RaceID使用K-means进行聚类，因此求所有样本平均值的做法使得RaceID对异常值十分敏感，同时RaceID使用<strong>间隔统计量</strong>（Gap Statistics, GS）确定分类个数；但是作者认为这种方法并不理想，因此在RaceID2中改用K-medoids方法聚类，并且依据类内散布饱和临界值为依据确定分类个数。K-medoids聚类方法使用类似于中位数的方法确定聚类中心，与K-means不同，它的聚类中心始终产生在样本点上。</p><p>RaceID2是一种改进的聚类算法，能够将大量细胞进行聚类，从而确定不同细胞群/亚群的分界线。</p><h2 id="StemID"><a href="#StemID" class="headerlink" title="StemID"></a>StemID</h2><p>StemID是一种系谱图推导方法，StemID的系谱图推导基于RaceID2的聚类结果。</p><p>下面是从原文摘录的算法流程图：</p><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/2019-03-15-000000.jpg" alt=""></p><p>图A是RaceID2的聚类结果，其聚类中心都在样本点上。</p><p>这里先介绍作者给出的一个<strong>感性假设</strong>：每个节点 $k$ (一个细胞)除了属于自身的第 $i$ 类外，它还将连接到一个其它的某个类 $j$ ，这个类 $j$ 实际意义等同于另一个的细胞群/亚群，细胞 $k$ 将倾向于朝细胞群 $j$ 分化。</p><p>如图A所示，Cluster 1的聚类中心是 $m_i$，这里 $i=1$，将 $m_i$ 与其它所有聚类中进行连接（如图A黑色矢量）。第 $i$ 类中的节点 $k$（蓝色矢量箭头处）与类中心 $m_i$ 组成了一个向量（如图A蓝色矢量）。蓝色矢量将在所有黑色矢量上产生一个 <strong>投影</strong>。我们取与 <strong>最大投影长度</strong> 相对应的那个外类作为 <strong>感性假设</strong> 中陈述的潜在分化方向。</p><p>如图B2所示，将所有节点转换成到之相对应的投影位置，此时所有节点都将落到由聚类中心组成的网络上。</p><p>此网络就是StenID算法所构建的系谱树框架。</p><p>给网络的边打分：映射后不同边上点的分布是不同的，对于某条边 $L$ 上的任意两点 $r_i$ 和 $r_j$，定义打分公式：</p><p>$$score=1-\max_{i,j{\in}L}{||r_i-r_j||}$$ </p><p>当 $score{\to}0$ 时说明该边上所有点非常紧密的靠近聚类中心。</p><p>p值计算：重复采样，略</p><p>细胞的熵得计算：略</p><h2 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h2><p>作者自己分析了一下，在下面两种情况出现时算法可能不太灵光：</p><ol><li>出现中间过渡态细胞的样本缺失；</li><li>出现不直接关联的细胞。</li></ol><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>Cell Stem Cell. 2016 Aug 4;19(2):266-277. doi: 10.1016/j.stem.2016.05.010. Epub 2016 Jun 23.<br><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4985539/" target="_blank" rel="noopener">De Novo Prediction of Stem Cell Identity using Single-Cell Transcriptome Data</a><br>Grün D1, Muraro MJ2, Boisset JC2, Wiebrands K2, Lyubimova A2, Dharmadhikari G3, van den Born M2, van Es J2, Jansen E2, Clevers H4, de Koning EJP3, van Oudenaarden A5.</p><p>github：<a href="https://github.com/dgrun/StemID" target="_blank" rel="noopener">StemID</a><br>omicX：<a href="https://omictools.com/stemid-tool" target="_blank" rel="noopener">stemid-tool</a></p>]]></content>
     
@@ -127,17 +127,17 @@
     
     </summary>
     
-      <category term="生物信息学" scheme="http://chenyin.top/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/"/>
+      <category term="Bioinformatics" scheme="http://chenyin.top/categories/Bioinformatics/"/>
     
     
   </entry>
   
   <entry>
     <title>生信分析工具-Wanderlust</title>
-    <link href="http://chenyin.top/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/20190315-643b.html"/>
-    <id>http://chenyin.top/生物信息学/20190315-643b.html</id>
+    <link href="http://chenyin.top/Bioinformatics/20190315-643b.html"/>
+    <id>http://chenyin.top/Bioinformatics/20190315-643b.html</id>
     <published>2019-03-15T06:57:30.000Z</published>
-    <updated>2019-03-15T08:15:35.698Z</updated>
+    <updated>2019-03-22T02:53:16.037Z</updated>
     
     <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>以人类B细胞为例，确定每个细胞在相应细胞过程（例如细胞分化）中的先后顺序。</p><h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p><strong>输入</strong>：算法的输入是一个 $M{\times}N$ 的矩阵，其中 $M$ 是细胞数量，$N$ 是选取的marker数量。每个marker的丰度由<strong>质谱流式细胞技术</strong>(Mass Cytometry)测定。</p><p><strong>输出</strong>：每个细胞的路径打分。此打分值介于0~1之间：0表示路径起点细胞，1代表路径终点细胞。</p><p>Wanderlust实际上就是<strong>最近邻图</strong>(Nearest Neighbour Graph)与<strong>EM算法</strong>的组合。</p><p>下图是摘自原文的算法流程：</p><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/2019-03-15_153512.jpg" alt=""></p><p>图A是输入数据的形象表示。</p><p>1.凭先验知识确定一个<strong>起始节点</strong>（图B红色节点），<strong>随机</strong>确定 $nl$ 个<strong>路标节点</strong>（图B紫色节点）</p><p>为什么设置路标节点？路标节点起到缓冲噪声干扰的作用。相对于起始点，具有更小的<strong>最短路径距离</strong>（Shortest Path Distance）。而随机选取可以排除了先验知识的影响。</p><p>2.构建<strong>k-NNG</strong>，该图以<strong>邻接矩阵</strong>的方式进行存储，计算相连节点间的距离，可选的距离定义有欧式距离、余弦距离、……</p><p>3.NNG下采样：从这个k-NNG构造出 $l$ 个l-k-NNG。算法只在子图上迭代运行，最后取均值作为最终结果。</p><p>为什么采样成子图进行计算？前面构造的k-NNG实际上包含了许多与实际情况不符的连接，即“假边”。进一步的随机下采样使得这些“假边”在子图中出现一定程度的缺失，这将增强模型的适应能力（鲁棒性）。</p><p>对于每个子图进行迭代优化：</p><p>4.初始化每个节点（细胞）的路径打分；起始节点为0，终止节点为1，中间节点的初始打分为该节点到起始节点的最短路径距离。最短路径距离通过Dijkstra算法计算。</p><p>初始化两节点连接的方向：距离起始节点<strong>路径打分</strong>小的节点作为上游节点。</p><p>5.对每个目标节点 $t$ 和每个路标节点 $l$ 间的距离进行打分：</p><p>$$w_{l,t}=\frac{d(l,t)^2}{\sum_m{d(l,m)^2}}$$</p><p>这个打分有什么意义？尚未知晓</p><p>6.计算每个目标节点 $t$ 的路径打分，即该目标节点到所有路标节点距离的加权平均：</p><p>$$traj_t=\frac1{nl}\sum_l{w_{l,t}d(l,t)}$$</p><p>7.根据计算出来的路径打分计算新的方向。</p><p>8.重复步骤567直到路径打分收敛。</p><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>Cell. 2014 Apr 24;157(3):714-25. doi: 10.1016/j.cell.2014.04.005.<br><a href="https://www.ncbi.nlm.nih.gov/pubmed/24766814" target="_blank" rel="noopener">Single-cell trajectory detection uncovers progression and regulatory coordination in human B cell development.</a><br>Bendall SC1, Davis KL2, Amir el-AD3, Tadmor MD3, Simonds EF4, Chen TJ5, Shenfeld DK3, Nolan GP6, Pe’er D7.</p>]]></content>
     
@@ -151,17 +151,17 @@
     
     </summary>
     
-      <category term="生物信息学" scheme="http://chenyin.top/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6/"/>
+      <category term="Bioinformatics" scheme="http://chenyin.top/categories/Bioinformatics/"/>
     
     
   </entry>
   
   <entry>
     <title>监督学习-广义线性模型01-普通最小二乘法</title>
-    <link href="http://chenyin.top/%E7%BB%9F%E8%AE%A1%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/20190225-724a.html"/>
-    <id>http://chenyin.top/统计与机器学习/20190225-724a.html</id>
+    <link href="http://chenyin.top/ML/20190225-724a.html"/>
+    <id>http://chenyin.top/ML/20190225-724a.html</id>
     <published>2019-02-25T02:53:41.000Z</published>
-    <updated>2019-03-15T06:41:50.229Z</updated>
+    <updated>2019-03-22T03:09:59.642Z</updated>
     
     <content type="html"><![CDATA[<p>线性模型：输出是输入的线性组合，即：</p><p>$$y(w,x)=w_0+w_1x_1+\cdots+w_px_p$$</p><p>在sklearn中，变量 <code>coef_</code> 存储向量 $w=(w_1,\cdots,w_p)$，变量 <code>intercept_</code> 存储 $w_0$。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br></pre></td></tr></table></figure><hr><h1 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h1><p><strong>普通最小二乘法</strong>(Ordinary Least Squares)就是简单的计算残差和：</p><p>$$min_w{||Xw-y||_2}^2$$</p><p>这个算法叫做 <strong>线性回归</strong>(Linear Regression):</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line">estimator = linear_model.LineaRegression(...)</span><br></pre></td></tr></table></figure><p>简单的线性回归只在输入X数据集的各特征之间线性不相关时表现良好。</p><p>当X的特征线性相关时，估计结果受随机误差影响大，此时就需要进行模型的矫正。</p><hr><h1 id="脊回归-岭回归"><a href="#脊回归-岭回归" class="headerlink" title="脊回归/岭回归"></a>脊回归/岭回归</h1><p>当特征间 <strong>共线性</strong>（Collinearity）关系较强时，<strong>脊回归</strong>（Ridge Regression）可以使模型具有收缩能力。</p><p>这通过给线性回归添加L2正则项实现：</p><p>$$min_w{||Xw-y||_2}^2+\alpha{||w||_2}^2，其中\alpha\le0$$</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定关键超参数α的值</span></span><br><span class="line">estimator = linear_model.Ridge(alpha=<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure><p>对于α，可以使用交叉验证进行最优解搜索：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给定α的取值范围，默认值如下</span></span><br><span class="line"><span class="comment"># cv指定交叉验证的折数，默认如下，默认使用留一交叉验证（Leave-One-Out CV）</span></span><br><span class="line">estimator = linear_model.RidgeCV(alpha=[<span class="number">0.1</span>, <span class="number">1.0</span>, <span class="number">10.0</span>], cv=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure><hr><h1 id="Lasso"><a href="#Lasso" class="headerlink" title="Lasso"></a>Lasso</h1><p>Lasso是用来估计稀疏系数的线性模型，和其变异体广泛用于语义压缩领域？</p><p>$$min_w\frac1{2n_{samples}}{||Xw-y||_2}^2+\alpha||w||_1，其中\alpha\le0$$</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"></span><br><span class="line"><span class="comment"># α默认值如下</span></span><br><span class="line">estimator = linear_model.Lasso(alpha=<span class="number">1.0</span>)</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -176,7 +176,7 @@
     
     </summary>
     
-      <category term="统计与机器学习" scheme="http://chenyin.top/categories/%E7%BB%9F%E8%AE%A1%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="ML" scheme="http://chenyin.top/categories/ML/"/>
     
     
   </entry>
@@ -286,10 +286,10 @@
   
   <entry>
     <title>博客改造计划</title>
-    <link href="http://chenyin.top/%E9%80%9F%E6%9F%A5%E8%A1%A8/20190102-19a0.html"/>
-    <id>http://chenyin.top/速查表/20190102-19a0.html</id>
+    <link href="http://chenyin.top/quicky/20190102-19a0.html"/>
+    <id>http://chenyin.top/quicky/20190102-19a0.html</id>
     <published>2019-01-02T04:13:34.000Z</published>
-    <updated>2019-03-15T06:54:43.944Z</updated>
+    <updated>2019-03-22T02:58:19.774Z</updated>
     
     <content type="html"><![CDATA[<h1 id="页面元素位置控制"><a href="#页面元素位置控制" class="headerlink" title="页面元素位置控制"></a><span style="color:#666699">页面元素位置控制</span></h1><h2 id="右侧书签水平位置"><a href="#右侧书签水平位置" class="headerlink" title="右侧书签水平位置"></a>右侧书签水平位置</h2><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/02/2019-02-22_124005.jpg" alt=""></p><p>代码位置：<code>themes\raytaylorism\source\css\_partial\tablecontents.styl</code> <strong>第5行</strong></p><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/02/2019-02-22_124219.jpg" alt=""></p><h2 id="正文区域宽度"><a href="#正文区域宽度" class="headerlink" title="正文区域宽度"></a>正文区域宽度</h2><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/02/2019-02-22_122808.jpg" alt=""></p><p>代码位置：<code>themes\raytaylorism\source\css\_base\lib_customize.styl</code> <strong>第5行</strong></p><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/02/2019-02-22_123644.jpg" alt=""></p>]]></content>
     
@@ -302,17 +302,17 @@
     
     </summary>
     
-      <category term="速查表" scheme="http://chenyin.top/categories/%E9%80%9F%E6%9F%A5%E8%A1%A8/"/>
+      <category term="quicky" scheme="http://chenyin.top/categories/quicky/"/>
     
     
   </entry>
   
   <entry>
     <title>Linux系统信息查询</title>
-    <link href="http://chenyin.top/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/20190101-1ff5.html"/>
-    <id>http://chenyin.top/操作系统/20190101-1ff5.html</id>
+    <link href="http://chenyin.top/os/20190101-1ff5.html"/>
+    <id>http://chenyin.top/os/20190101-1ff5.html</id>
     <published>2019-01-01T13:53:38.000Z</published>
-    <updated>2019-03-15T06:53:49.086Z</updated>
+    <updated>2019-03-22T02:57:15.342Z</updated>
     
     <content type="html"><![CDATA[<p>emmmmmm,先记下来……</p><h1 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h1><p><code>uname -a</code>：内核、操作系统、CPU信息</p><p><code>head -n 1 /etc/issue</code>：操作系统版本</p><p><code>cat /proc/cpuinfo</code>：CPU信息</p><p><code>hostname</code>：计算机名</p><p><code>lspci -tv</code>：列出所有PCI设备</p><p><code>lsusb -tv</code>：列出所有USB设备</p><p><code>lsmod</code>：列出加载的内核模块</p><p><code>env</code>：查看环境变量</p><h1 id="内存与资源"><a href="#内存与资源" class="headerlink" title="内存与资源"></a>内存与资源</h1><p><code>free -m</code>：查看内存使用量和交换区使用量</p><p><code>df -h</code>：查看各分区使用情况</p><p><code>du -sh DIR</code>：查看目录DIR的大小，非本人的目录可能要使用 <code>sudo</code> 提权</p><p><code>grep MemTotal /proc/meminfo</code>：查看内存总量</p><p><code>grep MemFree /proc/meninfo</code>：查看空闲内存量</p><p><code>uptime</code>：查看系统运行时间、用户数、负载</p><p><code>cat /proc/loadavg</code>：查看系统负载</p><h1 id="磁盘和分区信息"><a href="#磁盘和分区信息" class="headerlink" title="磁盘和分区信息"></a>磁盘和分区信息</h1><p><code>mount | column -t</code>：查看挂接的分区状态</p><p><code>fdisk -l</code>：查看所有分区</p><p><code>swapon -s</code>：查看所有交换分区</p><p><code>hdparm -i /dev/hda</code>：查看磁盘参数</p><p><code>dmesg | grep IDE</code>：查看启动时IDE设备检测状况</p><h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p><code>ifconfig</code>：查看所有网络接口的属性</p><p><code>iptables -L</code>：查看防火墙设置</p><p><code>route -n</code>：查看路由表</p><p><code>netstat -lntp</code>：查看所有监听端口</p><p><code>netstat -antp</code>：查看所有已经建立的连接</p><p><code>netstat -s</code>：查看网络统计信息</p><h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p><code>ps -ef</code>：查看所有进程</p><p><code>top</code>：是实现显示进程状态</p><h1 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h1><p><code>w</code>：查看活动用户</p><p><code>id USERNAME</code>：查看用户USERNAME的信息</p><p><code>last</code>：查看用户登录日志</p><p><code>cut -d: -f1 /etc/passwd</code>：查看系统所有用户</p><p><code>cut -d: -f1 /etc/group</code>：查看系统所有组</p><p><code>crontab -l</code>：查看当前用户的计划任务</p><h1 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h1><p><code>chkconfig --list</code>：列出所有系统服务</p><p><code>chkconfig  --list | grep on</code>：列出所有启动的系统任务</p>]]></content>
     
@@ -327,7 +327,7 @@
     
     </summary>
     
-      <category term="操作系统" scheme="http://chenyin.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="os" scheme="http://chenyin.top/categories/os/"/>
     
     
       <category term="知识手册" scheme="http://chenyin.top/tags/%E7%9F%A5%E8%AF%86%E6%89%8B%E5%86%8C/"/>
@@ -336,10 +336,10 @@
   
   <entry>
     <title>ubuntu16.04LTS修改软件源</title>
-    <link href="http://chenyin.top/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/20181122-a661.html"/>
-    <id>http://chenyin.top/操作系统/20181122-a661.html</id>
+    <link href="http://chenyin.top/os/20181122-a661.html"/>
+    <id>http://chenyin.top/os/20181122-a661.html</id>
     <published>2018-11-21T16:07:36.000Z</published>
-    <updated>2019-03-15T06:53:59.194Z</updated>
+    <updated>2019-03-22T02:57:15.371Z</updated>
     
     <content type="html"><![CDATA[<p>1、备份原始源：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak</span><br></pre></td></tr></table></figure><p>2、新建源：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure><p>写入以下内容（对于Ubuntu16.04LTS）：</p><pre># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse# 预发布软件源，不建议启用# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse</pre><p>其他版本的源列表可以在 <a href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener">这里</a> 查看。</p><p>3、刷新：<code>sudo apt-get update</code></p>]]></content>
     
@@ -353,17 +353,17 @@
     
     </summary>
     
-      <category term="操作系统" scheme="http://chenyin.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="os" scheme="http://chenyin.top/categories/os/"/>
     
     
   </entry>
   
   <entry>
     <title>ubuntu16.04LTS更新R到3.5.x</title>
-    <link href="http://chenyin.top/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/20181122-ad7f.html"/>
-    <id>http://chenyin.top/操作系统/20181122-ad7f.html</id>
+    <link href="http://chenyin.top/os/20181122-ad7f.html"/>
+    <id>http://chenyin.top/os/20181122-ad7f.html</id>
     <published>2018-11-21T16:02:52.000Z</published>
-    <updated>2019-03-15T06:53:55.084Z</updated>
+    <updated>2019-03-22T02:57:15.356Z</updated>
     
     <content type="html"><![CDATA[<p>1、<a href="/Linux/20181122-a661.html">系统换源</a></p><p>2、检查旧版本R</p><p>检查是否有旧版本的R：<code>R --verion</code></p><p>卸载旧版本的R：<code>sudo apt-get remove r-base-core</code></p><p>3、安装R3.5需要先添加源：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-add-repository <span class="string">'deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/'</span></span><br></pre></td></tr></table></figure><p>添加上面这个源意味着在Ubuntu16.04LTS上可以安装R3.5。</p><blockquote><p><strong>xenial</strong> 意为“非洲地松鼠”，Ubuntu的每一个发行版都会有一个<a href="https://zh.wikipedia.org/wiki/Ubuntu发行版列表" target="_blank" rel="noopener">奇怪的名字</a>。</p></blockquote><p>然后更新源：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure><p>4、安装R3.5：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install r-base r-base-dev</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -379,7 +379,7 @@
     
     </summary>
     
-      <category term="操作系统" scheme="http://chenyin.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="os" scheme="http://chenyin.top/categories/os/"/>
     
     
   </entry>
@@ -467,10 +467,10 @@ set so
   
   <entry>
     <title>HttpRequest对象</title>
-    <link href="http://chenyin.top/IT%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/20181121-f755.html"/>
-    <id>http://chenyin.top/IT开发笔记/20181121-f755.html</id>
+    <link href="http://chenyin.top/ITech/20181121-f755.html"/>
+    <id>http://chenyin.top/ITech/20181121-f755.html</id>
     <published>2018-11-21T08:18:44.000Z</published>
-    <updated>2019-03-15T06:33:45.451Z</updated>
+    <updated>2019-03-22T02:55:24.686Z</updated>
     
     <content type="html"><![CDATA[<p>每个<strong>view函数</strong>函数的第一个参数都是HttpRequest对象，包含当前<strong>请求URL</strong>的一些信息<br>HttpRequest对象实例：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 属性</span></span><br><span class="line">request.path <span class="comment"># str类型，请求页面的全路径，不包括域名</span></span><br><span class="line">request.method <span class="comment"># str类型，值为'GET'或者'POST'</span></span><br><span class="line">request.GET <span class="comment"># QueryDict实例</span></span><br><span class="line">request.POST <span class="comment"># QueryDict实例，注意区分POST为空和POST的请求内容为空，判断是否为POST方法使用method属性</span></span><br><span class="line">request.COOKIES <span class="comment"># 标准python字典对象(用&#123;&#125;表示)，&#123;str:str&#125;</span></span><br><span class="line">request.FILES <span class="comment"># 类字典对象（？），包含所有上传文件</span></span><br><span class="line"><span class="comment"># 形式为：XxxDict&#123;name: &#123;'filename':..., 'content-type':..., 'content':...&#125;&#125;</span></span><br><span class="line"><span class="comment"># 上面的name变量的值是&lt;input type="file" name="..."&gt;中name属性的值</span></span><br><span class="line"><span class="comment"># 只有POST请求并且啥啥啥的FILES属性才会有值，否则为空</span></span><br><span class="line">request.META <span class="comment"># 可用的http头部信息字典</span></span><br><span class="line">request.user <span class="comment"># django.contrib.auth.models.User对象实例，代表当前登录的用户</span></span><br><span class="line"><span class="comment"># 用户未登录则为django.contrib.auth.models.AnonymousUser对象实例</span></span><br><span class="line"><span class="comment"># 通过 request.user.is_authenticated() 判断用户是否登录</span></span><br><span class="line"><span class="comment"># 需要激活django的AuthenticationMidlleware属性</span></span><br><span class="line">request.session <span class="comment"># 当前会话的字典对象，需要激活啥啥啥</span></span><br><span class="line">request.raw_post_data <span class="comment"># 未解析的原始post数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 方法</span></span><br><span class="line">request.__getitem__(key) <span class="comment"># 取出GET/POST中的值，优先POST</span></span><br><span class="line">request.has_key(key) <span class="comment"># 检查GET/POST是否包含key</span></span><br><span class="line">request.get_full_path() <span class="comment"># 返回包含查询字符串的请求路径字符串</span></span><br><span class="line">request.is_secure() <span class="comment"># 如果发出的是HTTPS安全请求返回True</span></span><br></pre></td></tr></table></figure>]]></content>
     
@@ -484,17 +484,17 @@ set so
     
     </summary>
     
-      <category term="IT开发笔记" scheme="http://chenyin.top/categories/IT%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+      <category term="ITech" scheme="http://chenyin.top/categories/ITech/"/>
     
     
   </entry>
   
   <entry>
     <title>Django官方文档笔记-request(GET+POST)属性与QueryDict类.md</title>
-    <link href="http://chenyin.top/IT%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/20181121-8d33.html"/>
-    <id>http://chenyin.top/IT开发笔记/20181121-8d33.html</id>
+    <link href="http://chenyin.top/ITech/20181121-8d33.html"/>
+    <id>http://chenyin.top/ITech/20181121-8d33.html</id>
     <published>2018-11-21T08:13:38.000Z</published>
-    <updated>2019-03-15T06:34:30.013Z</updated>
+    <updated>2019-03-22T02:55:34.057Z</updated>
     
     <content type="html"><![CDATA[<p>在HttpRequest对象中，GET和POST属性的值都是QueryDict的实例</p><p>QueryDict用来处理<strong>单键对应多值</strong>的情况</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">qd = django.http.QueryDict(...)</span><br><span class="line"></span><br><span class="line"><span class="comment">#与普通字典一致的方法</span></span><br><span class="line">qd.__getitem__(key) <span class="comment"># 返回key对应值列表的最后一个值</span></span><br><span class="line">qd.__setitem__(key, value_list) <span class="comment"># GET和POST属性值字典不允许被直接修改，因此此方法只能用于该字典的拷贝上</span></span><br><span class="line">qd.get(key, IF_NONE) <span class="comment"># 如果key存在返回key对应值列表的最后一个值</span></span><br><span class="line">qd.update(d) <span class="comment"># D为QD(查询字典)或者D(python字典)都可以,如果key存在，执行添加而不是替换</span></span><br><span class="line">qd.items() <span class="comment"># 返回键值对，值是key对应的值列表的最后一个值（单值）</span></span><br><span class="line">qd.values() <span class="comment"># 跟items一样使用单值逻辑</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#特有方法</span></span><br><span class="line">qd.copy() <span class="comment"># 返回可更改的拷贝（比如可以使用__setitem__)</span></span><br><span class="line">qd.getlist(key) <span class="comment"># 返回key对应的python列表</span></span><br><span class="line">qd.setlist(key, value_list) <span class="comment"># 无须拷贝直接修改？？？？？</span></span><br><span class="line">qd.appendlist(key, value) <span class="comment"># 给已经存在的key的列表中添加一个值</span></span><br><span class="line">qd.setlistdefault(ket, value_list)</span><br><span class="line">qd.lists() <span class="comment"># 作用与items类似，不执行单值逻辑，也就是说键值对的值是所有值的列表</span></span><br><span class="line">qd.urlencode(key) <span class="comment"># 返回查询字符串格式的字符串，如'a=3&amp;a=4&amp;a=5'</span></span><br></pre></td></tr></table></figure>]]></content>
     
@@ -509,7 +509,7 @@ set so
     
     </summary>
     
-      <category term="IT开发笔记" scheme="http://chenyin.top/categories/IT%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/"/>
+      <category term="ITech" scheme="http://chenyin.top/categories/ITech/"/>
     
     
   </entry>

@@ -86,18 +86,6 @@
                     </li>
                 
                     <li>
-                        <a class="menu-reading " 
-						   href="/reading" 
-						   >
-                            <i class="fa fa-book "></i>
-							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
-							<!--  -->
-                            
-                            reading
-                        </a>
-                    </li>
-                
-                    <li>
                         <a class="menu-search modal-trigger " 
 						   href="#search" 
 						   >
@@ -154,14 +142,6 @@
             </li>
         
             <li class="no-padding">
-                <a class="waves-effect menu-reading " href="/reading" >
-                    <i class="fa fa-book "></i>
-                    
-                    Reading
-                </a>
-            </li>
-        
-            <li class="no-padding">
                 <a class="waves-effect menu-search modal-trigger " href="#search" >
                     <i class="fa fa-search "></i>
                     
@@ -178,31 +158,31 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/Bioinformatics/">
-                    Bioinformatics <span class="right">2</span></a>
+                    Bioinformatics <span class="right">5</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/生物信息学/">
-                    生物信息学 <span class="right">3</span></a>
+                <a class="no-padding" href="/categories/DeepLearning/">
+                    DeepLearning <span class="right">4</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/IT开发笔记/">
-                    IT开发笔记 <span class="right">8</span></a>
+                <a class="no-padding" href="/categories/ITech/">
+                    ITech <span class="right">8</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/python/">
-                    python <span class="right">16</span></a>
+                <a class="no-padding" href="/categories/ML/">
+                    ML <span class="right">8</span></a>
                 </a>
             </li>
 
@@ -217,16 +197,8 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/小黄鸭debug/">
-                    小黄鸭debug <span class="right">1</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/操作系统/">
-                    操作系统 <span class="right">8</span></a>
+                <a class="no-padding" href="/categories/Statistics/">
+                    Statistics <span class="right">8</span></a>
                 </a>
             </li>
 
@@ -234,23 +206,31 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/os/">
-                    os <span class="right">1</span></a>
+                    os <span class="right">9</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/统计与机器学习/">
-                    统计与机器学习 <span class="right">20</span></a>
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">16</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/速查表/">
-                    速查表 <span class="right">3</span></a>
+                <a class="no-padding" href="/categories/quicky/">
+                    quicky <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/debug/">
+                    debug <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -326,7 +306,7 @@
                 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">permutation</span><span class="params">(xs)</span>:</span></span><br><span class="line">	</span><br><span class="line">    <span class="keyword">if</span> isinstance(xs,str):</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">str2charArray</span><span class="params">(str)</span>:</span></span><br><span class="line">            charArray = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> str:</span><br><span class="line">                charArray.append(i)</span><br><span class="line">            <span class="keyword">return</span> charArray</span><br><span class="line">        xs = str2charArray(xs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> len(xs) == <span class="number">0</span> <span class="keyword">or</span> len(xs) == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> [xs]</span><br><span class="line"></span><br><span class="line">    result = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(xs)):</span><br><span class="line">        temp_list = xs[:]</span><br><span class="line">        temp_list.pop(i)</span><br><span class="line">        temp = permutation(temp_list)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> temp:</span><br><span class="line">            j.insert(<span class="number">0</span>,xs[i])</span><br><span class="line">            result.append(j)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
                 
 <p class="pink-link-context">
-    <a href="/统计与机器学习/20190225-724a.html" rel="next" title="监督学习-广义线性模型01-普通最小二乘法">
+    <a href="/ML/20190225-724a.html" rel="next" title="监督学习-广义线性模型01-普通最小二乘法">
     Prev: 监督学习-广义线性模型01-普通最小二乘法
   </a>
 </p>

@@ -1,0 +1,698 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>假设检验-假设检验的基本原理 | </title>
+    <meta name="author" content="阔落煮酒">
+    
+    <meta name="description" content="青梅煮茶去，让我阔落来煮酒">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="假设检验-假设检验的基本原理"/>
+    <meta property="og:site_name" content="Barwe"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Barwe" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="light-blue accent-3">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Barwe</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " 
+						   href="/" 
+						   >
+                            <i class="fa fa-home "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " 
+						   href="/archives" 
+						   >
+                            <i class="fa fa-archive "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" 
+						   href="javascript:;" 
+						   data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            category
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " 
+						   href="#search" 
+						   >
+                            <i class="fa fa-search "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav grey darken-3" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://p33k8pinb.bkt.clouddn.com/18-3-8/42928697.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Barwe</p>
+                        <p class="desc">迷糊皮皮虾</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav grey darken-3" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Bioinformatics/">
+                    Bioinformatics <span class="right">5</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/DeepLearning/">
+                    DeepLearning <span class="right">4</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/ITech/">
+                    ITech <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/ML/">
+                    ML <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/R/">
+                    R <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Statistics/">
+                    Statistics <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/os/">
+                    os <span class="right">9</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">16</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/quicky/">
+                    quicky <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/debug/">
+                    debug <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper grey darken-2">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Statistics/">Statistics</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>假设检验-假设检验的基本原理</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-10-17T15:29:51.000Z"><a href="/Statistics/20181017-aa04.html">2018-10-17</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/UCAS生物统计与实验设计/" class="chip pink lighten-1">UCAS生物统计与实验设计</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#显著性检验的意义"><span class="section table-of-contents-text">显著性检验的意义</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#原假设与备择假设的选取"><span class="section table-of-contents-text">原假设与备择假设的选取</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#案例1-零件质量问题"><span class="section table-of-contents-text">案例1 零件质量问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#案例2-合格率问题"><span class="section table-of-contents-text">案例2 合格率问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#案例3-成分含量问题"><span class="section table-of-contents-text">案例3 成分含量问题</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#显著性检验的一般步骤"><span class="section table-of-contents-text">显著性检验的一般步骤</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-提出假设"><span class="section table-of-contents-text">1.提出假设</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-确定显著水平"><span class="section table-of-contents-text">2.确定显著水平</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-计算显著概率"><span class="section table-of-contents-text">3.计算显著概率</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-统计推断"><span class="section table-of-contents-text">4.统计推断</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#显著水平与两种类型的错误"><span class="section table-of-contents-text">显著水平与两种类型的错误</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#两尾检验和一尾检验"><span class="section table-of-contents-text">两尾检验和一尾检验</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#◆-两种检验的适用情况？"><span class="section table-of-contents-text">◆ 两种检验的适用情况？</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#◆-一尾检验的临界值怎么确定？"><span class="section table-of-contents-text">◆ 一尾检验的临界值怎么确定？</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="显著性检验的意义"><a href="#显著性检验的意义" class="headerlink" title="显著性检验的意义"></a>显著性检验的意义</h1><p>以<strong>均数差异显著性检验</strong>来说，两样本平均数为$\bar{x_1}$和$\bar{x_2}$，样本背后对应的<strong>总体</strong>均值相应的为$\mu_1$和$\mu_1$。下式十分容易理解：</p>
+<p>$$\bar{x_1}=\mu_1+\bar{\epsilon_1}$$</p>
+<p>$$\bar{x_2}=\mu_2+\bar{\epsilon_2}$$</p>
+<p>其中$\bar{\epsilon_1}$和$\bar{\epsilon_2}$均表示<strong>实验误差</strong>。</p>
+<p>当我们检验这两个样本的均数是否存在差异时依据的实际上是下面这个式子：</p>
+<p>$$\bar{x_1}-\bar{x_2}=(\mu_1-\mu_2)+(\bar{\epsilon_1}-\bar{\epsilon_2})$$</p>
+<p>即样本均数间的差异（<strong>表面差异</strong>）是由总体间的<strong>真实差异</strong>和<strong>抽样误差</strong>共同决定的。</p>
+<p>所以显著性检验的目的就是：判明表面差异$\bar{x_1}-\bar{x_2}$是来源于总体真实差异$\mu_1-\mu_2$还是抽样误差$\bar{\epsilon_1}-\bar{\epsilon_2}$。</p>
+<hr>
+<h1 id="原假设与备择假设的选取"><a href="#原假设与备择假设的选取" class="headerlink" title="原假设与备择假设的选取"></a>原假设与备择假设的选取</h1><p>统计学为实际目的服务，我们对某个总体进行抽样都是有确切目的的。换句话说，我们往往希望通过自己的努力搜集一定的证据去证明一些东西，这实际上是一个立场问题。譬如质量检测人员希望检测出劣质产品而不是合格产品，因为其工作内容就是努力找出不合格的产品；给作物施加改良药物希望的是作物产量提高而不是一成不变…</p>
+<p>一般情况下我们都希望总体的参数存在差异（当然这也不是绝对的~），这是我们假设检验的<strong>方向</strong>，此时我们进行试验的初衷也是希望改变总体的参数已完成我们的工作目标。我们将与假设检验方向相同的假设称为<strong>备择假设</strong>，与备择假设再逻辑上完备互斥的假设称为<strong>原假设</strong>（<strong>无效假设</strong>、<strong>零假设</strong>）。</p>
+<p>所以原假设往往希望总体参数不发生变化，即表面差异由抽样误差决定。我们假装接受原假设，然后对原假设进行检验，实际上就是对<strong>表面差异由抽样误差决定</strong>这一基于原假设的结论进行检验。后续通过求解P(表面差异由抽样误差决定)通过<strong>小概率事件不可能发生原理</strong>对原假设予以接受或者拒绝。</p>
+<p>◆ 由于原假设假定总体参数未发生变化，所以等号往往出现在原假设中</p>
+<p>◆ 原假设与备择假设逻辑上完备互斥，且原假设由备择假设确定</p>
+<p>◆ 备择假设的选择往往和实验人员的<strong>立场</strong>息息相关</p>
+<p>下面对案例进行详细分析：</p>
+<h2 id="案例1-零件质量问题"><a href="#案例1-零件质量问题" class="headerlink" title="案例1 零件质量问题"></a>案例1 零件质量问题</h2><p><strong>背景</strong>：<span style="font-family:楷体">一汽车配件生产企业生产的某种汽车零件长度标准为70毫米，为对零件质量进行控制，质量监测人员需要对生产线上的一台加工机床进行检查，以确定这台机床生产的零件是否符合标准要求。如果零件的平均长度大于或小于70毫米，则表明该零件质量不正常，必须对机床进行检查。<br></span><br><strong>分析</strong>：“70毫米”是（合格产品）总体的参数，质量检测人员将进行抽样，需要比较这个样本对应的总体和合格产品总体。质量检测人员希望通过搜集证据证明的是样本不合格（其工作任务总是希望找出不合格的产品），因此备择假设为“零件的平均长度大于或小于（不等于）70毫米”（这是检测人员希望通过努力证明的结果）。由备择假设确定原假设为“零件的平均长度等于70毫米”。</p>
+<h2 id="案例2-合格率问题"><a href="#案例2-合格率问题" class="headerlink" title="案例2 合格率问题"></a>案例2 合格率问题</h2><p><strong>背景</strong>：<span style="font-family:楷体">一采购商需要采购一批构件，某供应商称其提供的构件合格率超过95%，为了检验其可信度，采购商随机抽取了一批样本进行检验。</span></p>
+<p><strong>分析</strong>：“95%”是总体的参数。采购商的立场总是尝试证明构件合格率不超过95%，这也是总体参数发生改变的假设，因此我们将之作为备择假设。由备择假设确定的原假设为“构件合格率≥95%”。</p>
+<h2 id="案例3-成分含量问题"><a href="#案例3-成分含量问题" class="headerlink" title="案例3 成分含量问题"></a>案例3 成分含量问题</h2><p><strong>背景</strong>：<span style="font-family:楷体">一乳制品生产商生产的奶粉被媒体曝光某种营养成分大大低于国家规定的2%的含量标准。</span></p>
+<p>▶ <span style="font-family:楷体">现质量监督部门从保护消费者权益角度出发，对曝光的奶粉进行抽查，请对检验做出假设。</span></p>
+<p><strong>分析</strong>：质量监督部门的立场是通过搜集证据证明该成分含量低于2%，因此备择假设为“成分含量&lt;2%”，原假设为“成分含量≥2%”。</p>
+<p>▶ <span style="font-family:楷体">如果生产商相信其产品不存在上述问题，判断这是由竞争对手操纵的不正当竞争手段，并委托市场上的第三方检测机构进行检测，请对这一检验作出假设。</span></p>
+<p><strong>分析</strong>：第三方检测机构的立场是通过自己的努力证明成分含量是合格的（因为这也是生产商希望看到的，如果这个检测机构跟金主爸爸做对就是有病了~），因此备择假设为“成分含量≤2%”，原假设为“成分含量&gt;2%”。</p>
+<p>◆ 有趣的是，上面同一个情景却因为立场和初衷的不同导致备择假设和原假设完全相反，这表明统计学真的源于生活啊hahaha</p>
+<p>（注：尊重原创，以上案例均来自于<a href="https://blog.csdn.net/sanqima/article/details/51307443?utm_source=blogxgwz0" target="_blank" rel="noopener">博客</a>。）</p>
+<hr>
+<h1 id="显著性检验的一般步骤"><a href="#显著性检验的一般步骤" class="headerlink" title="显著性检验的一般步骤"></a>显著性检验的一般步骤</h1><h2 id="1-提出假设"><a href="#1-提出假设" class="headerlink" title="1.提出假设"></a>1.提出假设</h2><p>大多数情况下都是：</p>
+<p>$$H_0: \mu=\mu_0$$</p>
+<p>$$H_1: \mu\ne\mu_0$$</p>
+<h2 id="2-确定显著水平"><a href="#2-确定显著水平" class="headerlink" title="2.确定显著水平"></a>2.确定显著水平</h2><p><strong>显著水平$\alpha$</strong>（significance level）即否定$H_0$的概率标准，人为规定的小概率事件分界线。生物统计学中通常取0.05和0.01。</p>
+<h2 id="3-计算显著概率"><a href="#3-计算显著概率" class="headerlink" title="3.计算显著概率"></a>3.计算显著概率</h2><p>在假定原假设的条件下求<strong>表面差异是由抽样误差造成的</strong>的概率。</p>
+<p>对于总体参数μ已知、单样本均值$\bar{x}$可求条件下，表面差异为$\bar{x}-\mu$，这个不难理解哈。</p>
+<p>◆ 判定是<strong>两尾检验</strong>还是<strong>单尾检验</strong>。</p>
+<h2 id="4-统计推断"><a href="#4-统计推断" class="headerlink" title="4.统计推断"></a>4.统计推断</h2><p>根据<strong>小概率事件实际不可能性</strong>对原假设予以接受或者否定。</p>
+<p>检验结果被表述为“在α水平上$\bar{x}$与μ差异<strong>不显著/显著/极其显著</strong>”。</p>
+<ol>
+<li>不显著：|u|&lt;1.96，即p&gt;0.05</li>
+<li>显著：1.96≤|u|&lt;2.58，即0.01&lt;p≤0.05</li>
+<li>极其显著：|u|≥2.58，即p≤0.01</li>
+</ol>
+<hr>
+<h1 id="显著水平与两种类型的错误"><a href="#显著水平与两种类型的错误" class="headerlink" title="显著水平与两种类型的错误"></a>显著水平与两种类型的错误</h1><p>实际上原假设正确，但我们却否定了原假设而接受备择假设时会犯<strong>第Ⅰ类错误</strong>：原假设正确意味着总体参数本来是相同的，但是我们推断认为他们不同，即将抽样误差错判为了真实差异。</p>
+<p>犯第Ⅰ类错误的概率是α，因此减少犯第Ⅰ类错误的概率只需要减少α的值即可。</p>
+<p>本来我们应该否定原假设，但是推断后却没有否认原假设时会犯<strong>第Ⅱ类错误</strong>：本应该否认原假设意味着总体参数间是存在差异的，但是我们没有否认原假设说明我们将这个真实差异错判为了抽样误差。</p>
+<p>当<strong>表面差异很小</strong>或者<strong>抽样误差很大</strong>时就十分容易犯第Ⅱ类错误。</p>
+<p>表面差异或许不可控制，但是我们可以通过<strong>增大样本量</strong>来减小抽样误差</p>
+<p>◆ <strong>第Ⅰ类错误</strong>拒绝了正确的原假设，<strong>第Ⅱ类错误</strong>接受了错误的原假设。</p>
+<p>◆ <strong>第Ⅰ类错误</strong>又叫做<strong>假阳性</strong>错误：因为我们接受了错误的备择假设。</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/20181017x01.jpeg" alt=""></p>
+<hr>
+<h1 id="两尾检验和一尾检验"><a href="#两尾检验和一尾检验" class="headerlink" title="两尾检验和一尾检验"></a>两尾检验和一尾检验</h1><h2 id="◆-两种检验的适用情况？"><a href="#◆-两种检验的适用情况？" class="headerlink" title="◆ 两种检验的适用情况？"></a>◆ <strong>两种检验的适用情况？</strong></h2><p>如果仅仅检验是否存在差异，即不在乎谁大谁小，采用<strong>两尾检验</strong>；</p>
+<p>凭经验和专业知识断定取大（或者取小），采用<strong>一尾检验</strong>。</p>
+<h2 id="◆-一尾检验的临界值怎么确定？"><a href="#◆-一尾检验的临界值怎么确定？" class="headerlink" title="◆ 一尾检验的临界值怎么确定？"></a>◆ <strong>一尾检验的临界值怎么确定？</strong></h2><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/single_tail_test.png" alt=""></p>
+<p>对于两位检验可以直接查表获取临界值，一尾检验需要先转化为两尾检验再求临界值，如上图所示：$u_{2\alpha}$的值可以直接通过两尾检验的表获取。所以有下面的这个公式：</p>
+<p>$$一尾检验的u_{\alpha}=两尾检验的u_{2\alpha}$$</p>
+<p>$$一尾检验的u_{0.05}=两尾检验的u_{0.10}=1.64$$</p>
+<p>$$一尾检验的u_{0.01}=两尾检验的u_{0.02}=2.33$$</p>
+
+                
+<p class="pink-link-context">
+    <a href="/Statistics/20181018-327a.html" rel="next" title="假设检验-显著性假设检验">
+    Prev: 假设检验-显著性假设检验
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/quicky/20181017-aedb.html" rel="next" title="latex数学符号表">
+    Next: latex数学符号表
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer light-blue accent-4 darken-1">
+    
+		<div class="footer-container container">
+			<div class="row">
+			
+				
+					<div class="social-group col m4 s12">
+						<h5 class="white-text">Social</h5>
+						
+							<a class="social-link" href="http://weibo.com/dangercy1314" target="_blank">
+								<i class="fa fa-2x fa-weibo"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+							<a class="social-link" href="https://github.com/barwe" target="_blank">
+								<i class="fa fa-2x fa-github"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+						
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+					</div>
+				
+
+				
+					<div class="col m8 s12">
+						<h5 class="white-text">Links</h5>
+						
+							<a class="social-link" href="https://music.163.com/#/user/home?id=1514463016" target="_blank">云村音乐</a>
+						
+					</div>
+				
+			</div>
+		</div>
+    
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+				scrollTargetTop = scrollTargetTop + 150
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65955364" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
