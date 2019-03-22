@@ -7,12 +7,10 @@
 
     
 
-    <title>生信分析工具-Wanderlust | CY的博客</title>
-    <meta name="author" content="John Doe">
+    <title>生信分析工具-Wanderlust | </title>
+    <meta name="author" content="阔落煮酒">
     
-    <meta name="description" content="背景以人类B细胞为例，确定每个细胞在相应细胞过程（例如细胞分化）中的先后顺序。
-算法输入：算法的输入是一个 $M{\times}N$ 的矩阵，其中 $M$ 是细胞数量，$N$ 是选取的marker数量。每个marker的丰度由质谱流式细胞技术(Mass Cytometry)测定。
-输出：每个细胞的路">
+    <meta name="description" content="青梅煮茶去，让我阔落来煮酒">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -42,7 +40,7 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="blue-grey">
+    <nav class="light-blue accent-3">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
@@ -99,9 +97,21 @@
                         </a>
                     </li>
                 
+                    <li>
+                        <a class="menu-search modal-trigger " 
+						   href="#search" 
+						   >
+                            <i class="fa fa-search "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            Search
+                        </a>
+                    </li>
+                
             </ul>
             <div>
-    <ul class="side-nav indigo darken-1" id="main-menu">
+    <ul class="side-nav grey darken-3" id="main-menu">
         
         <li class="side-user">
             <div class="row">
@@ -151,16 +161,32 @@
                 </a>
             </li>
         
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
     </ul>
 
-    <ul class="side-nav indigo darken-1" id="category-menu">
+    <ul class="side-nav grey darken-3" id="category-menu">
     
 
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Bioinformatics/">
+                    Bioinformatics <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/生物信息学/">
-                    生物信息学 <span class="right">2</span></a>
+                    生物信息学 <span class="right">3</span></a>
                 </a>
             </li>
 
@@ -183,6 +209,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/R/">
+                    R <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/小黄鸭debug/">
                     小黄鸭debug <span class="right">1</span></a>
                 </a>
@@ -192,7 +226,15 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/操作系统/">
-                    操作系统 <span class="right">9</span></a>
+                    操作系统 <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/os/">
+                    os <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -238,7 +280,7 @@
     <main>
         <div class="container main-container">
     <nav class="page-nav hide-on-small-only">
-    <div class="nav-wrapper blue-grey">
+    <div class="nav-wrapper grey darken-2">
         <span class="breadcrumb">Current page(Categories)</span>
         
             
@@ -345,7 +387,7 @@
   </div>
 
     </main>
-    <footer class="page-footer blue-grey darken-1">
+    <footer class="page-footer light-blue accent-4 darken-1">
     
 		<div class="footer-container container">
 			<div class="row">

@@ -1,0 +1,691 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>paper3 - RUV算法移除批次效应 (Davide Risso, 20140824) | </title>
+    <meta name="author" content="阔落煮酒">
+    
+    <meta name="description" content="青梅煮茶去，让我阔落来煮酒">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="paper3 - RUV算法移除批次效应 (Davide Risso, 20140824)"/>
+    <meta property="og:site_name" content="Barwe"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Barwe" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	
+	
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="light-blue accent-3">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Barwe</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " 
+						   href="/" 
+						   >
+                            <i class="fa fa-home "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            home
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " 
+						   href="/archives" 
+						   >
+                            <i class="fa fa-archive "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            archives
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" 
+						   href="javascript:;" 
+						   data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            category
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " 
+						   href="/reading" 
+						   >
+                            <i class="fa fa-book "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            reading
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " 
+						   href="#search" 
+						   >
+                            <i class="fa fa-search "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            Search
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav grey darken-3" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://p33k8pinb.bkt.clouddn.com/18-3-8/42928697.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Barwe</p>
+                        <p class="desc">迷糊皮皮虾</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    Home
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    Archives
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    Categories
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    Reading
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav grey darken-3" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Bioinformatics/">
+                    Bioinformatics <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/生物信息学/">
+                    生物信息学 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/IT开发笔记/">
+                    IT开发笔记 <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/python/">
+                    python <span class="right">16</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/R/">
+                    R <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/小黄鸭debug/">
+                    小黄鸭debug <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/操作系统/">
+                    操作系统 <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/os/">
+                    os <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/统计与机器学习/">
+                    统计与机器学习 <span class="right">20</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/速查表/">
+                    速查表 <span class="right">3</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">Search</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper grey darken-2">
+        <span class="breadcrumb">Current page(Categories)</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Bioinformatics/">Bioinformatics</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>paper3 - RUV算法移除批次效应 (Davide Risso, 20140824)</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2019-03-22T01:37:34.000Z"><a href="/Bioinformatics/20190322-afa7.html">2019-03-22</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+	<ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#方法"><span class="section table-of-contents-text">方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-基于阴性对照基因的RUVg"><span class="section table-of-contents-text">1. 基于阴性对照基因的RUVg</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-基于残差的RUVr"><span class="section table-of-contents-text">2. 基于残差的RUVr</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-基于重复-阴性对照样本的RUVs"><span class="section table-of-contents-text">3. 基于重复/阴性对照样本的RUVs</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#要点"><span class="section table-of-contents-text">要点</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#两个数据集"><span class="section table-of-contents-text">两个数据集</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#两种讨厌因子"><span class="section table-of-contents-text">两种讨厌因子</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#算法横向对比"><span class="section table-of-contents-text">算法横向对比</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#补充"><span class="section table-of-contents-text">补充</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#ERCC-spike-in-controls"><span class="section table-of-contents-text">ERCC spike-in controls</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p> Gagnon-Bartsch et al.提出了RUV-2用来标准化<strong>连续的</strong>微阵列数据，移除不需要的变异。这里基于前面的方法进行扩展，用以标准化<strong>离散的</strong>RNA测序数据。</p>
+<p> 对于表达矩阵（样本数 $n{\times}J$ 基因数）,构建<strong>泛化线性模型</strong> (Generalized Linear Model, GLM):<br>$$ \log{E[Y|W,X,O]}=W\alpha+X\beta+O $$<br>参数意义如下：</p>
+<ul>
+<li>$Y$ 是 $n{\times}J$ 的表达矩阵；</li>
+<li>$W$ 是 $n{\times}k$ 与<strong>不需要的变异</strong>相关的<strong>多余变异相关矩阵</strong>（k是不需要的变异相关的变量的个数），$\alpha$ 是 $k{\times}J$ 的多余变异相关矩阵的系数（参数）；</li>
+<li>$X$ 是 $n{\times}p$ 与<strong>感兴趣的变异</strong>相关的<strong>期望变异相关矩阵</strong>（p是感兴趣的变异相关的变量的个数），$\beta$ 是 $p{\times}J$ 的期望变异相关矩阵的系数（参数）；</li>
+<li>$O$ 是一个 $n{\times}J$ 的矩阵，它可以置零，也可以包含其它的标准化过程（如<a href="https://en.wikipedia.org/wiki/Quantile_normalization" target="_blank" rel="noopener">UQ标准化</a>）。</li>
+<li>矩阵 $X$ 是一个随机变量，是我们实验的测量值，是已知的（先验）。</li>
+<li>矩阵 $W$ 是未观测的随机变量；$\alpha$、$\beta$、$k$ 都是未知参数。</li>
+</ul>
+<p>不同于先前的标准化方法，RUV可以使用GLM标准化技术同时标准化reads计数（$W\alpha$）和推断差异表达（$X\beta$）。标准化的计数也可以通过由原始计数对不需要的因子进行回归分析后求残差得到，但是直接从原始计数中移除不需要的因子（$W\alpha$）可能会损失掉 $X$ 的一部分。[<a href="">reference</a>]</p>
+<p>同时估计 $W$, $\alpha$, $\beta$ 和 $k$ 是很难的。对于一个给定的 $k$ 值，我们尝试着用下面三种方法对$W$ 进行估计：</p>
+<h2 id="1-基于阴性对照基因的RUVg"><a href="#1-基于阴性对照基因的RUVg" class="headerlink" title="1. 基于阴性对照基因的RUVg"></a>1. 基于阴性对照基因的RUVg</h2><ol>
+<li>假设我们鉴定出了一个阴性对照基因 (negative control genes) 的集合（大小为 $J_c$），例如不差异表达的基因，对这个基因集合来说 $\beta_c=0$ 即 $\log{E[Y_c|W,X,O]}=W\alpha_c+O_c$，公式中的下标c将矩阵限制在了大小为 $J_c$ 的基因集合里。</li>
+<li>定义 $Z=\log{Y}-O$，$Z^\ast$ 是 $Z$ 列向量中心化（$Z$ 的各个列向量均值都为0）的结果。</li>
+<li>对 $Z_c^\ast$ 进行奇异值分解 (singular value decomposition, SVD) 即 $Z_c^\ast=U{\Lambda}V^T$。矩阵 $U$ 是 $n{\times}n$ 列正交矩阵，它的列向量是 $Z^\ast$ 的左奇异向量集；矩阵 $V$ 是 $J_c{\times}J_c$ 的列正交矩阵，它的列向量是 $Z^\ast$ 的右奇异向量集；$\Lambda$ 矩阵是由 $Z^\ast$ 的奇异值组成的非方形对角矩阵，大小为 $n{\times}J_c$。$Z^\ast$ 最少有 $\min{(n,J_c)}$ 个奇异值。对于一个给定的 $k$，通过 $\widehat{W\alpha_c}=U\Lambda_kV^T$ 估计 $W\alpha_c$，通过 $\hat{W}=U\Lambda_k$ 估计 $W$。$|lambda_k$ 是由 $\Lambda$ 导出的大小为 $n{\times}J_c$ 的非方形对角矩阵，保留 $\Lambda$ 中最大的 $k$ 个奇异值，将其它的奇异值置为0。</li>
+<li>将 $\hat{W}$ 带入上面基于 $J$ 个基因构建的公式中，通过GLM回归估计 $\alpha$ 和 $\beta$。</li>
+<li>（可选）将标准化的读段计数定义为 $Z$ 对 $\hat{W}$ 的普通最小二乘回归 (ordinary least squares, OLS) 的残差。 </li>
+</ol>
+<p>这是最基础的RUV-2的离散版本。其中的关键假设是我们能够找到这个阴性对照基因集合。然而，RUV-2已被证实对对照基因的选择十分敏感。我们因此考虑下面的两种方法：RUVr不需要阴性对照基因，RUVs对阴性对照基因选择的鲁棒性更强。</p>
+<h2 id="2-基于残差的RUVr"><a href="#2-基于残差的RUVr" class="headerlink" title="2. 基于残差的RUVr"></a>2. 基于残差的RUVr</h2><ol>
+<li>计算残差矩阵 $E(n{\times}J)$: 计数矩阵 $Y(n{\times}J)$ 关于感兴趣的协变量矩阵 $X(n{\times}J)$ 的初步GLM回归，例如异常值残差。这里用于回归计算的计数矩阵可以是未标准化的原始数据，也可以是经过其它标准化工具（例如UQ）处理过的数据。</li>
+<li>对残差进行奇异值分解，即 $E=U{\Lambda}V^T$，通过 $\hat{W}=U\Lambda_k$ 估计 $w$。接下来的步骤与 <code>RUVg</code> 的第4、5步相同。</li>
+</ol>
+<h2 id="3-基于重复-阴性对照样本的RUVs"><a href="#3-基于重复-阴性对照样本的RUVs" class="headerlink" title="3. 基于重复/阴性对照样本的RUVs"></a>3. 基于重复/阴性对照样本的RUVs</h2><ol>
+<li>假设在多个复制样本中具有生物学特征的（我们感兴趣的）某些协变量的表达量可看作恒定的，它们的计数差异与<code>RUVg</code>中的阴性对照基因一样，对我们后续的研究没有影响。现在假设有 $R$ 个复制组，$r(i){\in}{1,…,R}$ 表示样本 $i$ 所属的复制组；如果样本 $i$ 不属于任何一个复制组，则 $r(i)=0$。例如，对于SEQC数据集，样本A和样本B各自的64个<strong>复制本</strong>（$=4[\text{libraries}]{\times}2[\text{flow-cell}]{\times}8[\text{lanes}]$）分别组成了一个<strong>复制组</strong>。</li>
+<li>对每一个复制本对应的计数矩阵进行<strong>列中心化</strong>处理，即矩阵各个列向量的均值都为0。去掉不属于预期复制组的样本，即筛选出 $n_d=\sum_i{I(r(i)\ne0)}$ 个样本对应的列中心化后的计数子矩阵 $Y_d(n_d{\times}J)$。 此时 $\log{E[Y_d|W,X,O]}=W_d\alpha+O_d$，对应的矩阵大小是 $(n_d{\times}J){\leftarrow}({n_d\times}k)({k\times}J)+(n_d{\times}J)$。</li>
+<li>定义 $Z_d=\log{Y_d}-O_d$，$Z_d^\ast$ 是 $Z_d$ 列中心化的结果，$Z_d^\ast=U{\Lambda}V^T$。通过 $\hat{\alpha}=\Lambda_kV^T$（保留最大的 $k$ 个奇异值，$k{\le}\min{(n_d,J)}$）来估计 $\alpha$。</li>
+<li>在所有 $n$ 个原始数据和 $J_c$ 个阴性对照基因上对 $Z_c$ 进行最小二乘回归（OLS）。估计讨厌因子 $W$：$\hat{W}=Z_c\hat\alpha_c^T(\hat\alpha_c\hat\alpha_c^T)^{-1}$。接下来的步骤与 <code>RUVg</code>的第4、5步相同。</li>
+</ol>
+<hr>
+<h1 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h1><h2 id="两个数据集"><a href="#两个数据集" class="headerlink" title="两个数据集"></a>两个数据集</h2><ol>
+<li><strong>SEQC data set</strong>: The third phase of the MicroArray Quality Control (MAQC) project, also known as the Sequencing Quality Control17 (SEQC) project, aims to assess the technical performance of high-throughput sequencing platforms by generating benchmarking data sets.</li>
+<li><strong>Zebrafish (斑马鱼) data set</strong>: All procedures were conducted in compliance with US federal guidelines in an AAALAC-accredited facility and were approved by the UC Berkeley Office of Animal Care and Use. </li>
+</ol>
+<h2 id="两种讨厌因子"><a href="#两种讨厌因子" class="headerlink" title="两种讨厌因子"></a>两种讨厌因子</h2><p>本文分析了两种讨厌因子：<strong>library preparation</strong> &amp; <strong>flow-cell effects</strong>。</p>
+<p><strong>flowcell</strong>：流动室，别称鞘流池、流动池，是流式细胞技术的基础关键部件。大概长这个样子：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/flowcell-350x2332.jpg" width="100%"></p>
+<p>作者用<strong>正交的主成分图</strong>展示了这两种讨厌因子：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/2019-03-22_101808.jpg" width="100%"><span style="font-size:16px;color:gray">Scatterplot matrix of first three principal components (PC) for unnormalized counts (log scale, centered). The principal components are orthogonal linear combinations of the original 21,559-dimensional gene expression profiles, with successively maximal variance across the 128 samples, that is, the first principal component is the weighted average of the 21,559 gene expression measures that provides the most separation between the 128 samples. Each point corresponds to one of the 128 samples. The four sample A and the four sample B libraries are represented by different shades of blue and red, respectively (16 replicates per library). Circles and triangles represent samples sequenced in the first and second flow-cells, respectively. As expected for the SEQC data set, the first principal component is driven by the extreme biological difference between sample A and sample B. The second and third principal components clearly show library preparation effects (the samples cluster by shade) and, to a lesser extent, flow-cell effects reflecting differences in sequencing depths (within each shade, the samples cluster by shape).</span></p>
+<h2 id="算法横向对比"><a href="#算法横向对比" class="headerlink" title="算法横向对比"></a>算法横向对比</h2><p><strong>上分位数标准化</strong> (Upper-quartile normalization, UQ)，UQ只能消除流细胞效应而对文库效应束手无策，RUV算法解决的就是如何消除不同文库的影响。</p>
+<p><strong>局部加权回归散点平滑法</strong> (Locally Weighted Scatterplot Smoothing, LOWESS/LOESS)不能消除文库效应。</p>
+<hr>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="ERCC-spike-in-controls"><a href="#ERCC-spike-in-controls" class="headerlink" title="ERCC spike-in controls"></a>ERCC spike-in controls</h2><p>ERCC 即 External RNA Controls Consortium，是斯坦福大学为了定制一套spike-in RNA而成立的专门性组织，主要的工作是设计了好用的spike-in RNA，方便microarray以及RNA-Seq进行内参定量。[<a href="https://jimb.stanford.edu/ercc/" target="_blank" rel="noopener">官方首页</a>]</p>
+<p>RNA spike-in是一种数量和序列都已知的RNA转录本，用于校准RNA杂交实验（例如DNA微阵列实验、RT-qPCR、RNA测序等）的测量值。RNA spike-in作为对照组（控制组）探针，被设计成能与具有相应匹配序列的DNA分子结合，这个特异性结合的过程我们称之为<strong>杂交</strong>。在制备的过程中，已知数量的spike-in将与实验样本进行混合。spike-ins的杂交程度可以用来标准化样本RNA的测量值。[<a href="https://en.wikipedia.org/wiki/RNA_spike-in" target="_blank" rel="noopener">wiki</a>] [<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1797020" target="_blank" rel="noopener">reference</a>]</p>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/Bioinformatics/20190319-cca5.html" rel="next" title="批次效应（batch effect）">
+    Next: 批次效应（batch effect）
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="Return to top"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="Menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer light-blue accent-4 darken-1">
+    
+		<div class="footer-container container">
+			<div class="row">
+			
+				
+					<div class="social-group col m4 s12">
+						<h5 class="white-text">Social</h5>
+						
+							<a class="social-link" href="http://weibo.com/dangercy1314" target="_blank">
+								<i class="fa fa-2x fa-weibo"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+							<a class="social-link" href="https://github.com/barwe" target="_blank">
+								<i class="fa fa-2x fa-github"></i>
+								<!-- <i class="fa fa-2x fa-cat"></i> -->
+							</a>
+						
+						
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+					</div>
+				
+
+				
+					<div class="col m8 s12">
+						<h5 class="white-text">Links</h5>
+						
+							<a class="social-link" href="https://music.163.com/#/user/home?id=1514463016" target="_blank">云村音乐</a>
+						
+					</div>
+				
+			</div>
+		</div>
+    
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+				scrollTargetTop = scrollTargetTop + 150
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=65955364" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

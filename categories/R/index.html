@@ -7,25 +7,15 @@
 
     
 
-    <title>Linux-vim设置优化 | CY的博客</title>
-    <meta name="author" content="John Doe">
+    <title>R | </title>
+    <meta name="author" content="阔落煮酒">
     
-    <meta name="description" content="设置tab宽度，显示行号，自动缩进…vim ~/.vimrc 打开文件（不存在则新建），键入（#后面为注释）：
-# 将tab替换为4个空格
-set shiftwidth=4
-
-# Backspace时删除一个tab
-set softtabstop=4        
-
-# 显示行号
-set nu
-
-">
+    <meta name="description" content="青梅煮茶去，让我阔落来煮酒">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Linux-vim设置优化"/>
+    
     <meta property="og:site_name" content="Barwe"/>
 
     
@@ -50,7 +40,7 @@ set nu
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="blue-grey">
+    <nav class="light-blue accent-3">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
@@ -107,9 +97,21 @@ set nu
                         </a>
                     </li>
                 
+                    <li>
+                        <a class="menu-search modal-trigger " 
+						   href="#search" 
+						   >
+                            <i class="fa fa-search "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            Search
+                        </a>
+                    </li>
+                
             </ul>
             <div>
-    <ul class="side-nav indigo darken-1" id="main-menu">
+    <ul class="side-nav grey darken-3" id="main-menu">
         
         <li class="side-user">
             <div class="row">
@@ -159,16 +161,32 @@ set nu
                 </a>
             </li>
         
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
     </ul>
 
-    <ul class="side-nav indigo darken-1" id="category-menu">
+    <ul class="side-nav grey darken-3" id="category-menu">
     
 
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Bioinformatics/">
+                    Bioinformatics <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/生物信息学/">
-                    生物信息学 <span class="right">2</span></a>
+                    生物信息学 <span class="right">3</span></a>
                 </a>
             </li>
 
@@ -191,6 +209,14 @@ set nu
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/R/">
+                    R <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/小黄鸭debug/">
                     小黄鸭debug <span class="right">1</span></a>
                 </a>
@@ -200,7 +226,15 @@ set nu
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/操作系统/">
-                    操作系统 <span class="right">9</span></a>
+                    操作系统 <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/os/">
+                    os <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -245,88 +279,30 @@ set nu
 
     <main>
         <div class="container main-container">
-    <nav class="page-nav hide-on-small-only">
-    <div class="nav-wrapper blue-grey">
+    
+
+<nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper grey darken-2">
         <span class="breadcrumb">Current page(Categories)</span>
         
-            
-    
-    
-    <a class="breadcrumb" href="/categories/操作系统/">操作系统</a>
-
 
         
-
+            <a class="breadcrumb" href="/categories/R/">R</a>
         
     </div>
 </nav>
 
-<article>
-    <div class="card">
-        <div class="card-content">
-            
-
-            <div class="article-title">
-                
-    
-        <h1>Linux-vim设置优化</h1>
-    
 
 
-            </div>
-            <time class="pink-link-context" datetime="2018-11-21T08:25:38.000Z"><a href="/操作系统/20181121-5ec8.html">2018-11-21</a></time>
-
-            <span id="busuanzi_container_page_pv" class="read-times-container">
-    <i class="fa fa-eye"></i>
-    <span id="busuanzi_value_page_pv"></span>
-</span>
-
-            
-
-            <div class="toc pink-link-context hide-on-med-and-down">
-	
-</div>
-
-
-            <div class="entry pink-link-context">
-                <p>设置tab宽度，显示行号，自动缩进…<br><code>vim ~/.vimrc</code> 打开文件（不存在则新建），键入（#后面为注释）：</p>
-<pre># 将tab替换为4个空格
-set shiftwidth=4
-
-# Backspace时删除一个tab
-set softtabstop=4        
-
-# 显示行号
-set nu
-
-#自动缩进                
-set autoindent
-</pre>
-                
-<p class="pink-link-context">
-    <a href="/python/20181121-d3bf.html" rel="next" title="自动加载自定义模块到环境">
-    Prev: 自动加载自定义模块到环境
-  </a>
-</p>
-
-
-
-<p class="pink-link-context">
-    <a href="/IT开发笔记/20181121-f755.html" rel="next" title="HttpRequest对象">
-    Next: HttpRequest对象
-  </a>
-</p>
-
-
-            </div>
-			
-        </div>
+    <div class="collection mt-0">
+        
+            <a href="/R/20190319-1548.html" class="collection-item grey-text text-darken-1">
+                <time datetime="2019-03-19T03:34:18.000Z">2019-03-19</time>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                model.matrix(...)
+            </a>
+        
     </div>
-</article>
-
-
-
-
 
 
 </div>
@@ -342,7 +318,7 @@ set autoindent
   </div>
 
     </main>
-    <footer class="page-footer blue-grey darken-1">
+    <footer class="page-footer light-blue accent-4 darken-1">
     
 		<div class="footer-container container">
 			<div class="row">

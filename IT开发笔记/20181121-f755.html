@@ -7,11 +7,10 @@
 
     
 
-    <title>HttpRequest对象 | CY的博客</title>
-    <meta name="author" content="John Doe">
+    <title>HttpRequest对象 | </title>
+    <meta name="author" content="阔落煮酒">
     
-    <meta name="description" content="每个view函数函数的第一个参数都是HttpRequest对象，包含当前请求URL的一些信息HttpRequest对象实例：
-1234567891011121314151617181920212223## 属性request.path # str类型，请求页面的全路径，不包括域名request.me">
+    <meta name="description" content="青梅煮茶去，让我阔落来煮酒">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -41,7 +40,7 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="blue-grey">
+    <nav class="light-blue accent-3">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
@@ -98,9 +97,21 @@
                         </a>
                     </li>
                 
+                    <li>
+                        <a class="menu-search modal-trigger " 
+						   href="#search" 
+						   >
+                            <i class="fa fa-search "></i>
+							<!-- 在使用自定义的menu时下面的menu.会显示在页面上，原因尚未排查，故而直接注销，有问题再议 -->
+							<!--  -->
+                            
+                            Search
+                        </a>
+                    </li>
+                
             </ul>
             <div>
-    <ul class="side-nav indigo darken-1" id="main-menu">
+    <ul class="side-nav grey darken-3" id="main-menu">
         
         <li class="side-user">
             <div class="row">
@@ -150,16 +161,32 @@
                 </a>
             </li>
         
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    Search
+                </a>
+            </li>
+        
     </ul>
 
-    <ul class="side-nav indigo darken-1" id="category-menu">
+    <ul class="side-nav grey darken-3" id="category-menu">
     
 
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Bioinformatics/">
+                    Bioinformatics <span class="right">2</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/生物信息学/">
-                    生物信息学 <span class="right">2</span></a>
+                    生物信息学 <span class="right">3</span></a>
                 </a>
             </li>
 
@@ -182,6 +209,14 @@
         
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/R/">
+                    R <span class="right">1</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/小黄鸭debug/">
                     小黄鸭debug <span class="right">1</span></a>
                 </a>
@@ -191,7 +226,15 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/操作系统/">
-                    操作系统 <span class="right">9</span></a>
+                    操作系统 <span class="right">8</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/os/">
+                    os <span class="right">1</span></a>
                 </a>
             </li>
 
@@ -237,7 +280,7 @@
     <main>
         <div class="container main-container">
     <nav class="page-nav hide-on-small-only">
-    <div class="nav-wrapper blue-grey">
+    <div class="nav-wrapper grey darken-2">
         <span class="breadcrumb">Current page(Categories)</span>
         
             
@@ -284,7 +327,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 属性</span></span><br><span class="line">request.path <span class="comment"># str类型，请求页面的全路径，不包括域名</span></span><br><span class="line">request.method <span class="comment"># str类型，值为'GET'或者'POST'</span></span><br><span class="line">request.GET <span class="comment"># QueryDict实例</span></span><br><span class="line">request.POST <span class="comment"># QueryDict实例，注意区分POST为空和POST的请求内容为空，判断是否为POST方法使用method属性</span></span><br><span class="line">request.COOKIES <span class="comment"># 标准python字典对象(用&#123;&#125;表示)，&#123;str:str&#125;</span></span><br><span class="line">request.FILES <span class="comment"># 类字典对象（？），包含所有上传文件</span></span><br><span class="line"><span class="comment"># 形式为：XxxDict&#123;name: &#123;'filename':..., 'content-type':..., 'content':...&#125;&#125;</span></span><br><span class="line"><span class="comment"># 上面的name变量的值是&lt;input type="file" name="..."&gt;中name属性的值</span></span><br><span class="line"><span class="comment"># 只有POST请求并且啥啥啥的FILES属性才会有值，否则为空</span></span><br><span class="line">request.META <span class="comment"># 可用的http头部信息字典</span></span><br><span class="line">request.user <span class="comment"># django.contrib.auth.models.User对象实例，代表当前登录的用户</span></span><br><span class="line"><span class="comment"># 用户未登录则为django.contrib.auth.models.AnonymousUser对象实例</span></span><br><span class="line"><span class="comment"># 通过 request.user.is_authenticated() 判断用户是否登录</span></span><br><span class="line"><span class="comment"># 需要激活django的AuthenticationMidlleware属性</span></span><br><span class="line">request.session <span class="comment"># 当前会话的字典对象，需要激活啥啥啥</span></span><br><span class="line">request.raw_post_data <span class="comment"># 未解析的原始post数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 方法</span></span><br><span class="line">request.__getitem__(key) <span class="comment"># 取出GET/POST中的值，优先POST</span></span><br><span class="line">request.has_key(key) <span class="comment"># 检查GET/POST是否包含key</span></span><br><span class="line">request.get_full_path() <span class="comment"># 返回包含查询字符串的请求路径字符串</span></span><br><span class="line">request.is_secure() <span class="comment"># 如果发出的是HTTPS安全请求返回True</span></span><br></pre></td></tr></table></figure>
                 
 <p class="pink-link-context">
-    <a href="/操作系统/20181121-5ec8.html" rel="next" title="Linux-vim设置优化">
+    <a href="/os/20181121-5ec8.html" rel="next" title="Linux-vim设置优化">
     Prev: Linux-vim设置优化
   </a>
 </p>
@@ -322,7 +365,7 @@
   </div>
 
     </main>
-    <footer class="page-footer blue-grey darken-1">
+    <footer class="page-footer light-blue accent-4 darken-1">
     
 		<div class="footer-container container">
 			<div class="row">
