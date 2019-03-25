@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="[object Object]/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hj.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hj.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="阔落煮酒" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一、定义下面是大佬给出来的关于批次效应(batch effect)的定义：  Batch effects are sub-groups of measurements that have qualitatively different behaviour across conditions and are unrelated to the biological or scientific vari">
+<meta property="og:type" content="article">
+<meta property="og:title" content="批次效应（batch effect）">
+<meta property="og:url" content="http://chenyin.top/生信工具和算法/20190319-cca5.html">
+<meta property="og:site_name" content="阔落煮酒">
+<meta property="og:description" content="一、定义下面是大佬给出来的关于批次效应(batch effect)的定义：  Batch effects are sub-groups of measurements that have qualitatively different behaviour across conditions and are unrelated to the biological or scientific vari">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-result1.png">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-pheno.png">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-edata.png">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-result2.png">
+<meta property="og:updated_time" content="2019-03-23T09:32:34.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="批次效应（batch effect）">
+<meta name="twitter:description" content="一、定义下面是大佬给出来的关于批次效应(batch effect)的定义：  Batch effects are sub-groups of measurements that have qualitatively different behaviour across conditions and are unrelated to the biological or scientific vari">
+<meta name="twitter:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-result1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chenyin.top/生信工具和算法/20190319-cca5.html"/>
+
+
+
+
+
+  <title>批次效应（batch effect） | 阔落煮酒</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<!-- fork me on github begin -->
+			<!-- 左上角 -->
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250"
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0;" aria-hidden="true">
+					 <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+					 <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+					 <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+				</svg>
+			</a>
+			<style>
+				.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+				@media (max-width:500px){
+					.github-corner:hover .octo-arm{animation:none}
+					.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				}
+			</style>
+			<!-- 左上角
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250" 
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0; transform: scale(-1, 1);" aria-hidden="true">
+						<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+						<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+						<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+					</svg>
+					<style>
+						.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+						@media (max-width:500px){
+							.github-corner:hover .octo-arm{animation:none}
+							.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						}
+					</style>
+				</a>
+			-->
+		<!-- fork me on github end -->
+		<header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阔落煮酒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenyin.top/生信工具和算法/20190319-cca5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Barwe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阔落煮酒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">批次效应（batch effect）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T14:38:32+08:00">
+                2019-03-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-23T17:32:34+08:00">
+                2019-03-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/生信工具和算法/" itemprop="url" rel="index">
+                    <span itemprop="name">生信工具和算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a><span id="def">一、定义</span></h1><p>下面是大佬给出来的关于<strong>批次效应</strong>(batch effect)的定义：</p>
+<blockquote>
+<p>Batch effects are sub-groups of measurements that have qualitatively different behaviour across conditions and are unrelated to the biological or scientific variables in a study. For example, batch effects may occur if a subset of experiments was run on Monday and another set on Tuesday, if two technicians were responsible for different subsets of the experiments, or if two different lots of reagents, chips or instruments were used. <a href="https://www.nature.com/articles/nrg2825" target="_blank" rel="noopener">Leek et. al (2010)</a></p>
+</blockquote>
+<a id="more"></a>
+<p>批次效应是测量结果中的一部分，它们因为实验条件的不同而具有不同的表现形式，并且与我们研究的变量没有半毛钱关系。一般批次效应可能在下述情形中出现：</p>
+<ul>
+<li>一个实验的不同部分在<strong>不同时间</strong>完成；</li>
+<li>一个实验的不同部分由<strong>不同的人</strong>完成；</li>
+<li>试剂用量不同、芯片不同、实验仪器不同；</li>
+<li>将自己测的数据与从网上下载的数据混合使用；</li>
+<li>……</li>
+</ul>
+<hr>
+<h1 id="二、检测"><a href="#二、检测" class="headerlink" title="二、检测"></a>二、检测</h1><p>批次效应相关协变量已知时，直接聚类观察结果是否和相应协变量相关。<br>混合数据因为实验条件迥异，一般批次效应都很大。</p>
+<p>以R为例，通过聚类检验是否存在批次效应。请先查看下面的<a href="#dataset">示例数据集</a>。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># t() 转置函数</span></span><br><span class="line"><span class="comment"># dist() 距离函数：按照指定规则求行向量间的距离，因此要转置</span></span><br><span class="line">&gt; dist_mat &lt;- dist(t(edata))</span><br><span class="line">&gt; clustering &lt;- hclust(dist_mat) <span class="comment"># hclust 的输入结构与 dist 相同！</span></span><br><span class="line"><span class="comment"># 按照批次信息聚类</span></span><br><span class="line">&gt; plot(clustering, labels = pheno$batch)</span><br><span class="line"><span class="comment"># 按照是否是正常细胞聚类</span></span><br><span class="line">&gt; plot(clustering, labels = pheno$cancer)</span><br></pre></td></tr></table></figure></p>
+<p>聚类结果如下：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-result1.png" width="50%"><br>左边的红色框框是正常细胞中混入的癌细胞，右边蓝色框框中是癌细胞中混入的正常细胞。</p>
+<p>还有许多检验批次效应的的方法，这篇<a href="https://www.itl.nist.gov/div898/handbook/eda/section4/eda42a3.htm" target="_blank" rel="noopener">文章</a>给出了多种检验方式：</p>
+<ul>
+<li>图分析：双柱状图、QQ图、箱线图、块图、…</li>
+<li>定量分析：F检验、双样本t检验、…</li>
+</ul>
+<hr>
+<h1 id="三、处理"><a href="#三、处理" class="headerlink" title="三、处理"></a>三、处理</h1><p>实验条件允许的条件下，应该优化实验设计，将引起批次效应的协变量采样<strong>分散</strong>开来。例如，对于时间批次效应，实验的不同部分应该在各个时间内均匀采样。这叫“治病就治本”。</p>
+<p>但是大多数情况下实验条件不允许，如果够幸运的话批次效应相关的协变量已经被记录下来了，此时对批次效应进行验证，然后使用统计模型过滤；如果十分不幸，批次效应相关的协变量没有被记录或者不明显，我们就需要借助相关工具猜一下哪个变量可能造成了批次效应，然后使用统计模型过滤。前者叫<strong>参数化方法</strong>，后者叫<strong>非参数化方法</strong>。</p>
+<h2 id="1-导入示例数据集"><a href="#1-导入示例数据集" class="headerlink" title="1.导入示例数据集"></a><span id="dataset">1.导入示例数据集</span></h2><h3 id="bladderbatch包"><a href="#bladderbatch包" class="headerlink" title="bladderbatch包"></a>bladderbatch包</h3><p><code>bladderbatch</code>包包含了一项<a href="https://www.ncbi.nlm.nih.gov/pubmed/15173019" target="_blank" rel="noopener">膀胱癌研究</a>中相关的57个样本的基因表达数据，这些数据已经使用RMA标准化，并且已经按照<a href="https://www.ncbi.nlm.nih.gov/pubmed/20838408" target="_blank" rel="noopener">相关协议</a>进行了预处理。</p>
+<p>另外阅读R文档我们发现：</p>
+<ul>
+<li><code>eSet</code>是一个包含高通量实验元数据的一个类，它不能直接被实例化。</li>
+<li><code>pData</code>方法在类<code>eSet</code>中被定义，它的作用是访问数据的元数据（注释信息）。</li>
+<li><code>ExpressionSet</code>继承自<code>eSet</code>，同样是一个高通量测序数据的容器，由&gt; * <code>biobase</code>包引入，封装了<strong>表达矩阵</strong>和<strong>样本分组信息</strong>。表达矩阵存储在<code>exprs</code>中。</li>
+</ul>
+<p><code>bladderbatch</code>数据集是（类似）<code>ExpressionSet</code>类型，我们可以使用<code>pData()</code>加载元数据，使用<code>exprs()</code>加载表达谱数据。<br><code>bladderbatch</code>数据集用来演示如何校正批次效应。</p>
+<h3 id="下载和加载数据集"><a href="#下载和加载数据集" class="headerlink" title="下载和加载数据集"></a>下载和加载数据集</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 1.安装并加载数据集</span></span><br><span class="line">&gt; BiocInstaller::biocLite(<span class="string">"bladderbatch"</span>)</span><br><span class="line">&gt; <span class="keyword">library</span>(bladderbatch) <span class="comment"># 或者 library("bladderbatch", character.only=TRUE)</span></span><br><span class="line"><span class="comment">## 2.查看当前可用数据集</span></span><br><span class="line">&gt; data()</span><br><span class="line"><span class="comment">## 3.检查是否有如下信息</span></span><br><span class="line">Data sets <span class="keyword">in</span> package ‘bladderbatch’:</span><br><span class="line">bladderEset (bladderdata)           Bladder Gene Expression Data Illustrating Batch Effects</span><br><span class="line"><span class="comment">## 加载数据集</span></span><br><span class="line">&gt; data(bladderdata) <span class="comment"># 实际加载进来的数据集名字叫做 bladderEset !</span></span><br><span class="line">&gt; pheno &lt;- pData(bladderEset) <span class="comment"># 使用 pData 加载元数据/注释信息</span></span><br><span class="line">&gt; edata &lt;- exprs(bladderEset) <span class="comment"># 使用 exprs 加载数据</span></span><br></pre></td></tr></table></figure>
+<p><code>pheno</code>如下所示：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-pheno.png" width="20%"><br>样本的批次信息存储作为元数据存储在<code>pheno$batch</code>中（R中使用<code>$</code>访问对象的属性）。</p>
+<p><code>edata</code>如下所示：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-edata.png" width="50%"><br>一列表示一个样本（细胞），后面求距离需要转置。</p>
+<hr>
+<h2 id="2-R中的sva包"><a href="#2-R中的sva包" class="headerlink" title="2.R中的sva包"></a>2.R中的sva包</h2><p><code>sva</code>用于移除高通量测序数据中的<a href="#def"><strong>批次效应</strong></a>以及其它无关变量的影响。</p>
+<p><code>sva</code>包含用于标识和构建高维数据集（例如基因表达、RNA测序/甲基化/脑成像数据等可以直接进行后续分析的数据）<strong>代理变量</strong>的函数。代理变量是直接从高维数据构建的协变量，可以在后续分析中用于调整未知的、未建模的或潜在的噪音源。</p>
+<blockquote>
+<p><strong>代理变量（surrogate/proxy variable）</strong>: A variable that can be measured (or is easy to measure) that is used in place of one that cannot be measured (or is difficult to measure). For example, whereas it may be difficult to assess the wealth of a household, it is relatively easy to assess the value of a house. See also proxy variable. (from <a href="http://www.oxfordreference.com/view/10.1093/oi/authority.20110803100544210" target="_blank" rel="noopener">Oxford Reference</a>)<br><strong>代理变量分析（Surrogate Variable Analysis）</strong>：<a href="https://digital.lib.washington.edu/researchworks/handle/1773/9586" target="_blank" rel="noopener">Click here</a></p>
+</blockquote>
+<p><code>sva</code>从三个方面消除人为设计造成的影响：</p>
+<ol>
+<li>为未知变异源构造代理变量；(Leek and Storey <a href="https://www.ncbi.nlm.nih.gov/pubmed/17907809" target="_blank" rel="noopener">2007 PLoS Genetics</a>, <a href="https://www.ncbi.nlm.nih.gov/pubmed/20941797" target="_blank" rel="noopener">2011 Pharm Stat.</a>)</li>
+<li>使用ComBat直接移除已知的批次效应；<a href="https://academic.oup.com/biostatistics/article/8/1/118/252073" target="_blank" rel="noopener">(Johnson et al. 2007 Biostatistics)</a></li>
+<li>使用已知的控制探针(known control probes)移除批次效应；<a href="https://www.biorxiv.org/content/10.1101/006585v2" target="_blank" rel="noopener">(Leek 2014 biorXiv)</a><br>移除批次效应和使用代理变量可以减少依赖性，稳定错误率估计值，提高重现性。</li>
+</ol>
+<p>查看<code>sva</code><a href="http://127.0.0.1:28090/library/sva/doc/sva.pdf" target="_blank" rel="noopener">在线文档</a>。</p>
+<h3 id="gt-已记录批次信息"><a href="#gt-已记录批次信息" class="headerlink" title="&gt; 已记录批次信息"></a>&gt; 已记录批次信息</h3><p>当<strong>批次协变量</strong>已知时（即每个样本分属于哪一个批次记录在数据集的元数据中），可以使用<code>sva</code>的<code>ComBat</code>校正<strong>批次效应</strong>。<br><code>ComBat</code>使用参数（parametric）或者非参数（non-parametric）的<strong>经验贝叶斯框架</strong>（Empirical Bayes Frameworks）进行批次效应的校正。</p>
+<p>先看<code>ComBat</code>的用法：摘自<a href="https://www.rdocumentation.org/packages/sva/versions/3.20.0/topics/ComBat" target="_blank" rel="noopener">官方文档</a><br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; ComBat(dat, batch, mod=<span class="literal">NULL</span>, par.prior = <span class="literal">TRUE</span>, prior.plots = <span class="literal">FALSE</span>)</span><br><span class="line"><span class="comment"># dat: 基因组测量矩阵（探针维度 X 样本数），探针维度例如marker数、基因数.....，例如表达谱矩阵</span></span><br><span class="line"><span class="comment"># batch: 批次协变量，只能传入一个批次协变量！</span></span><br><span class="line"><span class="comment"># mod: 这是一个模式矩阵，里面包含了我们感兴趣的变量！</span></span><br><span class="line"><span class="comment"># par.prior: 基于参数/非参数，默认为基于参数</span></span><br></pre></td></tr></table></figure></p>
+<p>有了背景知识我们就可以进行膀胱癌数据的批次校正：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; pheno$hasCancer &lt;- pheno$cancer == <span class="string">"Cancer"</span></span><br><span class="line"><span class="comment"># 或者 &gt; pheno$hasCancer &lt;- as.numeric(pheno$cancer == "Cancer")</span></span><br><span class="line">&gt; model &lt;- model.matrix(~hasCancer, data=pheno)</span><br><span class="line">&gt; combat_edata &lt;- ComBat(dat = edata, batch = pheno$batch, mod = model)</span><br><span class="line"><span class="comment"># 这里的 mod 参数就比较有意思了，它记录的是我们感兴趣的变量。因为初次接触R只能肤浅理解一下。</span></span><br><span class="line"><span class="comment"># 它应该是一个我们期望样本能被正确聚类所依据的协变量，它总是数值型变量</span></span><br></pre></td></tr></table></figure></p>
+<p><code>model.matrix(...)</code>的详细解释见<a href="/R/20190319-1548.html">这里</a>。</p>
+<p>画图：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; dist_mat_combat &lt;- dist(t(combat_edata))</span><br><span class="line">&gt; clustering_combat &lt;- hclust(dist_mat_combat, method = <span class="string">"complete"</span>)</span><br><span class="line">&gt; plot(clustering, labels = pheno$batch)</span><br><span class="line">&gt; plot(clustering, labels = pheno$cancer))</span><br></pre></td></tr></table></figure></p>
+<p>我们发现批次效应被移除了：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/ComBat-result2.png" width="50%"></p>
+<h3 id="gt-没有记录批次信息"><a href="#gt-没有记录批次信息" class="headerlink" title="&gt; 没有记录批次信息"></a>&gt; 没有记录批次信息</h3><p><a href="http://master.bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html#removing-hidden-batch-effects" target="_blank" rel="noopener">看这里</a></p>
+<hr>
+<h2 id="3-R中的ber包"><a href="#3-R中的ber包" class="headerlink" title="3.R中的ber包"></a>3.R中的ber包</h2><p>ber的全称就是batch effects removal，使用<code>&gt; install.packages(&quot;ber&quot;)</code>安装ber包，查看<a href="https://cran.r-project.org/web/packages/ber/ber.pdf" target="_blank" rel="noopener">用户手册</a>。</p>
+<p>这个包里有6个函数，它们的作用就是校正<strong>微阵列标准数据</strong>中的批次效应。标准数据指的是：输入矩阵每一行代表独立的样本，每一列代表基因；批次信息作为已知的<strong>分类变量</strong>；期望变量可以大大提高批次效应校正的效率。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>berr(Y, b, covariates = NULL)</code></td>
+<td>using a two-stage regression approach <a href="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/2019031901.pdf" target="_blank" rel="noopener">(M. Giordan. February 2013)</a></td>
+</tr>
+<tr>
+<td><code>ber_bg(Y, b, covariates = NULL,partial=TRUE,nSim=150)</code></td>
+<td>using a two-stage regression approach and bagging <a href="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/2019031901.pdf" target="_blank" rel="noopener">(M. Giordan. February 2013)</a></td>
+</tr>
+<tr>
+<td><code>combat_p(Y, b, covariates = NULL, prior.plots=T)</code></td>
+<td>using a parametric empirical Bayes approach <a href="https://www.ncbi.nlm.nih.gov/pubmed/16632515" target="_blank" rel="noopener">(n Johnson et al. 2007)</a></td>
+</tr>
+<tr>
+<td><code>combat_np(Y, b, covariates = NULL)</code></td>
+<td>using a non-parametric empirical Bayes approach <a href="https://www.ncbi.nlm.nih.gov/pubmed/16632515" target="_blank" rel="noopener">(n Johnson et al. 2007)</a></td>
+</tr>
+<tr>
+<td><code>mean_centering(Y, b)</code></td>
+<td>using the means of the batches</td>
+</tr>
+<tr>
+<td><code>standardization(Y, b)</code></td>
+<td>using the means and the standard deviations of the batches</td>
+</tr>
+</tbody>
+</table>
+<p>上表中的：</p>
+<ul>
+<li><code>Y</code>是输入矩阵（样本数 $n{\times}g$ 探针数）</li>
+<li><code>b</code>是 $n$ 维<strong>分类1向量</strong>，每个分量对应着每个样本的批次信息</li>
+<li><code>covariates</code>是一个 $n$ 行的<code>data.frame</code>实例</li>
+</ul>
+<p>上面的6个函数都需要指定<code>b</code>，所以它们都是用来处理<strong>批次信息被记录</strong>的情形的，对于启发性的校正貌似没提出解决方案。</p>
+<hr>
+<h2 id="4-R中的RUVSeq包"><a href="#4-R中的RUVSeq包" class="headerlink" title="4.R中的RUVSeq包"></a>4.R中的RUVSeq包</h2><p>RUVSeq means <em>Remove Unwanted Variation from RNA-Seq Data</em>, which shows us how to conduct a differential expression (DE) analysis that controls for “unwanted variation”, e.g., batch, library preparation, and other nuisance effects, using the between-sample normalization methods proposed in <a href="https://www.nature.com/articles/nbt.2931" target="_blank" rel="noopener">Risso et al. (2014)</a>.</p>
+<p>RUV算法基本原理参考<a href="/Bioinformatics/20190322-afa7.html">这里</a>，原文在<a href="https://www.nature.com/articles/nbt.2931" target="_blank" rel="noopener">这里</a>。</p>
+<hr>
+<h2 id="5-R中的BatchQC包"><a href="#5-R中的BatchQC包" class="headerlink" title="5. R中的BatchQC包"></a>5. R中的BatchQC包</h2><p><a href="https://bioconductor.org/packages/release/bioc/html/BatchQC.html" target="_blank" rel="noopener">BatchQC工具</a></p>
+<hr>
+<h1 id="四、FAQ"><a href="#四、FAQ" class="headerlink" title="四、FAQ"></a>四、FAQ</h1><ol>
+<li><strong>标准化（normalization）可以消除批次效应吗？</strong> 只能缓解，不能消除。</li>
+</ol>
+<hr>
+<h1 id="五、其它资料"><a href="#五、其它资料" class="headerlink" title="五、其它资料"></a>五、其它资料</h1><p>Stanford大学MOOC公开课讲义：<a href="http://genomicsclass.github.io/book/" target="_blank" rel="noopener">PH525x series - Biomedical Data Science</a></p>
+<p><a href="https://bioinformatics.mdanderson.org/public-software/tcga-batch-effects/" target="_blank" rel="noopener">TCGA Batch Effects Viewer</a></p>
+<p>From BioMedSearch: <a href="http://www.biomedsearch.com/nih/Removing-batch-effects-in-analysis/21386892.html" target="_blank" rel="noopener">Removing batch effects in analysis of expression microarray data: an evaluation of six batch adjustment methods.</a></p>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+      
+        
+      
+	</div>
+	
+    
+
+    
+
+    
+
+	<div> <!-- 在文章末尾添加“文章结束”标记 -->
+	
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束！<i class="fa fa-paw"></i>没想到吧？-------------</div>
+    
+</div>
+	
+	</div>
+	
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/R统计语言/20190319-1548.html" rel="prev" title="paper3 - RUV算法移除批次效应 (Davide Risso, 20140824)">
+                <i class="fa fa-chevron-left"></i> paper3 - RUV算法移除批次效应 (Davide Risso, 20140824)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/R统计语言/20190319-1548.html" rel="next" title="model.matrix(...)">
+                model.matrix(...) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="Barwe" />
+            
+              <p class="site-author-name" itemprop="name">Barwe</p>
+              <p class="site-description motion-element" itemprop="description">青梅煮茶去，让我阔落来煮酒</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                知识链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" title="廖雪峰python" target="_blank">廖雪峰python</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://algs4.cs.princeton.edu/home/" title="算法第四版(java实现)" target="_blank">算法第四版(java实现)</a>
+                  </li>
+                
+              </ul>
+			  <div id="days"></div>
+<script>
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("11/10/2018 23:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML=daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+            </div>
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、定义"><span class="nav-number">1.</span> <span class="nav-text">一、定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、检测"><span class="nav-number">2.</span> <span class="nav-text">二、检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、处理"><span class="nav-number">3.</span> <span class="nav-text">三、处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-导入示例数据集"><span class="nav-number">3.1.</span> <span class="nav-text">1.导入示例数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bladderbatch包"><span class="nav-number">3.1.1.</span> <span class="nav-text">bladderbatch包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载和加载数据集"><span class="nav-number">3.1.2.</span> <span class="nav-text">下载和加载数据集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-R中的sva包"><span class="nav-number">3.2.</span> <span class="nav-text">2.R中的sva包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-已记录批次信息"><span class="nav-number">3.2.1.</span> <span class="nav-text">&gt; 已记录批次信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-没有记录批次信息"><span class="nav-number">3.2.2.</span> <span class="nav-text">&gt; 没有记录批次信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-R中的ber包"><span class="nav-number">3.3.</span> <span class="nav-text">3.R中的ber包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-R中的RUVSeq包"><span class="nav-number">3.4.</span> <span class="nav-text">4.R中的RUVSeq包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-R中的BatchQC包"><span class="nav-number">3.5.</span> <span class="nav-text">5. R中的BatchQC包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、FAQ"><span class="nav-number">4.</span> <span class="nav-text">四、FAQ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、其它资料"><span class="nav-number">5.</span> <span class="nav-text">五、其它资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+
+&copy; 
+<span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Barwe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      
+	  <span class="post-meta-item-text">全站总字数：</span>
+    
+    <span title="Site words total count">48.4k</span>
+  
+</div>
+
+
+
+
+<!--
+
+
+
+-->
+
+
+	<div class="footer-custom">
+		
+		流光容易把人抛，红了樱桃，绿了芭蕉
+	</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 261838c24da337adc098758cad8e0b0b10c2e7e97e998ef633a38725e8c75903,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
