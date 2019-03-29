@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="降维,非线性降维,SNE,t-SNE,paper," />
+  <meta name="keywords" content="降维,t-SNE,非线性降维,SNE,paper," />
 
 
 
@@ -113,7 +113,7 @@
 
 
 <meta name="description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE) 由Hinton在">
-<meta name="keywords" content="降维,非线性降维,SNE,t-SNE,paper">
+<meta name="keywords" content="降维,t-SNE,非线性降维,SNE,paper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="降维03 - SNE原理">
 <meta property="og:url" content="http://chenyin.top/机器学习与算法基础/20190325-80ae.html">
@@ -556,11 +556,11 @@
           
             <a href="/tags/降维/" rel="tag"><i class="fa fa-tag"></i> 降维</a>
           
+            <a href="/tags/t-SNE/" rel="tag"><i class="fa fa-tag"></i> t-SNE</a>
+          
             <a href="/tags/非线性降维/" rel="tag"><i class="fa fa-tag"></i> 非线性降维</a>
           
             <a href="/tags/SNE/" rel="tag"><i class="fa fa-tag"></i> SNE</a>
-          
-            <a href="/tags/t-SNE/" rel="tag"><i class="fa fa-tag"></i> t-SNE</a>
           
             <a href="/tags/paper/" rel="tag"><i class="fa fa-tag"></i> paper</a>
           
@@ -742,29 +742,17 @@
               </ul>
 			  <div id="days"></div>
 <script>
-function show_date_time(){
-window.setTimeout("show_date_time()", 1000);
-BirthDay=new Date("11/10/2018 23:00:00");
-today=new Date();
-timeold=(today.getTime()-BirthDay.getTime());
-sectimeold=timeold/1000
-secondsold=Math.floor(sectimeold);
-msPerDay=24*60*60*1000
-e_daysold=timeold/msPerDay
-daysold=Math.floor(e_daysold);
-e_hrsold=(e_daysold-daysold)*24;
-hrsold=setzero(Math.floor(e_hrsold));
-e_minsold=(e_hrsold-hrsold)*60;
-minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
-seconds=setzero(Math.floor((e_minsold-minsold)*60));
-document.getElementById('days').innerHTML=daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
-}
-function setzero(i){
-if (i<10)
-{i="0" + i};
-return i;
-}
-show_date_time();
+	function show_date_time(){
+		window.setTimeout("show_date_time()", 1000);
+		loveDay = new Date("2018/11/10 23:00:00");
+		today = new Date()
+		var diff = today.getTime()-loveDay.getTime()
+		var diffDays = Math.floor(diff/(24*3600*1000)); 
+		var leftDiff=diff%(24*3600*1000);
+		var diffHours=Math.floor(leftDiff/(3600*1000)); 
+		document.getElementById('days').innerHTML="已经过了" + diffDays +" 天 "+ diffHours + " 小时";
+	}
+	show_date_time();
 </script>
 
             </div>
@@ -822,7 +810,7 @@ show_date_time();
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">52.9k</span>
+    <span title="Site words total count">53.5k</span>
   
 </div>
 

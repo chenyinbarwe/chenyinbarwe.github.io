@@ -126,7 +126,7 @@
 <meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/202201.png">
 <meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/103318.png">
 <meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/111808.png">
-<meta property="og:updated_time" content="2019-03-29T07:25:38.670Z">
+<meta property="og:updated_time" content="2019-03-29T09:01:12.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="降维04 - TSNE引领时尚">
 <meta name="twitter:description" content="t-SNE (t-distributed Stochastic Neighbor Embedding) 是目前来说效果较好的数据降维与可视化方法，但是大量占用内存、计算时间长的缺点也很突出。相比于SNE，t-SNE的主要优化有：联合概率替代条件概率、低维空间下使用t分布代替高斯分布。[1]">
@@ -410,7 +410,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T15:25:38+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T17:01:12+08:00">
                 2019-03-29
               </time>
             
@@ -460,7 +460,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.8k
+                  4.3k
                 </span>
               
 
@@ -551,7 +551,21 @@
 <li>学习率初始值设为100，每次迭代都将进行适应性更新 <a href="#ref11">[11]</a>。</li>
 </ul>
 <p><a href="http://ticc. uvt.nl/˜lvdrmaaten/tsne" target="_blank" rel="noopener">算法的Matlab实现</a></p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><span id="ref1">[1]</span> <a href="http://www.jmlr.org/papers/v9/vandermaaten08a.html" target="_blank" rel="noopener">Maaten, L. V. D., &amp; Hinton, G. (2008). <strong>Visualizing data using t-SNE</strong>. Journal of machine learning research, 9(Nov), 2579-2605.</a><br><span id="ref2">[2]</span> M.C. Ferreira de Oliveira and H. Levkowitz. <strong>From visual data exploration to visual data mining: A survey</strong>. IEEE Transactions on Visualization and Computer Graphics, 9(3):378–394, 2003.<br><span id="ref3">[3]</span> J.W. Sammon. <strong>A nonlinear mapping for data structure analysis</strong>. IEEE Transactions on Computers, 18(5):401–409, 1969.<br><span id="ref4">[4]</span> P. Demartines and J. Herault. <strong>´ Curvilinear component analysis: A self-organizing neural network for nonlinear mapping of data sets</strong>. IEEE Transactions on Neural Networks, 8(1):148–154, 1997<br><span id="ref5">[5]</span> G.E. Hinton and S.T. Roweis. <strong>Stochastic Neighbor Embedding</strong>. In Advances in Neural Information Processing Systems, volume 15, pages 833–840, Cambridge, MA, USA, 2002. The MIT Press.<br><span id="ref6">[6]</span> J.B. Tenenbaum, V. de Silva, and J.C. Langford. <strong>A global geometric framework for nonlinear dimensionality reduction</strong>. Science, 290(5500):2319–2323, 2000.<br><span id="ref7">[7]</span> K.Q. Weinberger, F. Sha, and L.K. Saul. <strong>Learning a kernel matrix for nonlinear dimensionality reduction</strong>. In Proceedings of the 21st International Confernence on Machine Learning, 2004.<br><span id="ref8">[8]</span> S.T. Roweis and L.K. Saul. <strong>Nonlinear dimensionality reduction by Locally Linear Embedding</strong>. Science, 290(5500):2323–2326, 2000.<br><span id="ref9">[9]</span> M. Belkin and P. Niyogi. <strong>Laplacian Eigenmaps and spectral techniques for embedding and clustering</strong>. In Advances in Neural Information Processing Systems, volume 14, pages 585–591, Cambridge, MA, USA, 2002. The MIT Press.<br><span id="ref10">[10]</span> J.A. Cook, I. Sutskever, A. Mnih, and G.E. Hinton. <strong>Visualizing similarity data with a mixture of maps</strong>. In Proceedings of the 11th International Conference on Artificial Intelligence and Statistics, volume 2, pages 67–74, 2007.<br><span id="ref11">[11]</span> R.A. Jacobs. <strong>Increased rates of convergence through learning rate adaptation</strong>. Neural Networks, 1: 295–307, 1988.</p>
+<h1 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h1><p>作者分析了三个不足之处。</p>
+<p><strong>1. 不能用于低维空间超过三维的情况</strong></p>
+<p>因为t-SNE算法在映射空间利用了<strong>柯西分布</strong>的重尾特性解决拥挤问题，柯西分布是自由度为1的t分布，这种特性在二维空间中表现十分优异。但如果需要降到三维以上的映射空间，1自由度的t分布不能很好的保留局部特征，我们可能需要使用更多自由度的t分布。</p>
+<p><strong>2. 本征维度诅咒</strong></p>
+<p>t-SNE虽然能够保留全局特征，但是总体上还是基于局部特征进行的降维，这表示t-SNE对原始数据的 <strong>本征维度 (intrinsic dimentionality)</strong> 十分敏感，因为本征维度过高，我们就不能再把流形曲面的局部区域当欧几里得空间处理了，数据点间的局部特征更加复杂 <a href="#ref12">[12]</a>。不仅t-SNE，其它主流的基于局部特征提取的降维算法（如Isomap，LLe）都面临着这个诅咒。</p>
+<p>作者提出了一种可行的办法：先用 <strong>自编码器 (autoencoder)</strong><a href="#ref13">[13]</a> 对数据进行压缩，这类模型可以大大降低原始数据的维度，同时最大保留高维数据的特征。经过编码的数据再进行t-SNE降维。</p>
+<p><strong>3. 损失函数不凸~</strong></p>
+<p>不幸的是当前主流降维算法使用的损失函数都是凸函数，而t-SNE优化的超参更多，这使得其损失函数是非凸的。这意味着，不同的超参取值、不同的初始化都可能收敛到不同的（局部最优）解。但是作者表示，如果固定这些超参，t-SNE就可以应用于不同的可视化任务，优化结果不会随着不同批次而发生变化。</p>
+<p>t-SNE降维结果中点间的距离是没有实际意义的。原始的t-SNE训练很慢，后面有许多改进，比如 </p>
+<ul>
+<li>multiple maps of t-SNE</li>
+<li>parametric t-SNE</li>
+<li>… …</li>
+</ul>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><span id="ref1">[1]</span> <a href="http://www.jmlr.org/papers/v9/vandermaaten08a.html" target="_blank" rel="noopener">Maaten, L. V. D., &amp; Hinton, G. (2008). <strong>Visualizing data using t-SNE</strong>. Journal of machine learning research, 9(Nov), 2579-2605.</a><br><span id="ref2">[2]</span> M.C. Ferreira de Oliveira and H. Levkowitz. <strong>From visual data exploration to visual data mining: A survey</strong>. IEEE Transactions on Visualization and Computer Graphics, 9(3):378–394, 2003.<br><span id="ref3">[3]</span> J.W. Sammon. <strong>A nonlinear mapping for data structure analysis</strong>. IEEE Transactions on Computers, 18(5):401–409, 1969.<br><span id="ref4">[4]</span> P. Demartines and J. Herault. <strong>´ Curvilinear component analysis: A self-organizing neural network for nonlinear mapping of data sets</strong>. IEEE Transactions on Neural Networks, 8(1):148–154, 1997<br><span id="ref5">[5]</span> G.E. Hinton and S.T. Roweis. <strong>Stochastic Neighbor Embedding</strong>. In Advances in Neural Information Processing Systems, volume 15, pages 833–840, Cambridge, MA, USA, 2002. The MIT Press.<br><span id="ref6">[6]</span> J.B. Tenenbaum, V. de Silva, and J.C. Langford. <strong>A global geometric framework for nonlinear dimensionality reduction</strong>. Science, 290(5500):2319–2323, 2000.<br><span id="ref7">[7]</span> K.Q. Weinberger, F. Sha, and L.K. Saul. <strong>Learning a kernel matrix for nonlinear dimensionality reduction</strong>. In Proceedings of the 21st International Confernence on Machine Learning, 2004.<br><span id="ref8">[8]</span> S.T. Roweis and L.K. Saul. <strong>Nonlinear dimensionality reduction by Locally Linear Embedding</strong>. Science, 290(5500):2323–2326, 2000.<br><span id="ref9">[9]</span> M. Belkin and P. Niyogi. <strong>Laplacian Eigenmaps and spectral techniques for embedding and clustering</strong>. In Advances in Neural Information Processing Systems, volume 14, pages 585–591, Cambridge, MA, USA, 2002. The MIT Press.<br><span id="ref10">[10]</span> J.A. Cook, I. Sutskever, A. Mnih, and G.E. Hinton. <strong>Visualizing similarity data with a mixture of maps</strong>. In Proceedings of the 11th International Conference on Artificial Intelligence and Statistics, volume 2, pages 67–74, 2007.<br><span id="ref11">[11]</span> R.A. Jacobs. <strong>Increased rates of convergence through learning rate adaptation</strong>. Neural Networks, 1: 295–307, 1988.<br><span id="ref12">[12]</span> Y. Bengio. <strong>Learning deep architectures for AI</strong>. Technical Report 1312, Universite´ de Montreal, ´ 2007.<br><span id="ref13">[13]</span> G.E. Hinton and R.R. Salakhutdinov. <strong>Reducing the dimensionality of data with neural networks</strong>. Science, 313(5786):504–507, 2006.</p>
 
       
     </div>
@@ -763,29 +777,17 @@
               </ul>
 			  <div id="days"></div>
 <script>
-function show_date_time(){
-window.setTimeout("show_date_time()", 1000);
-BirthDay=new Date("11/10/2018 23:00:00");
-today=new Date();
-timeold=(today.getTime()-BirthDay.getTime());
-sectimeold=timeold/1000
-secondsold=Math.floor(sectimeold);
-msPerDay=24*60*60*1000
-e_daysold=timeold/msPerDay
-daysold=Math.floor(e_daysold);
-e_hrsold=(e_daysold-daysold)*24;
-hrsold=setzero(Math.floor(e_hrsold));
-e_minsold=(e_hrsold-hrsold)*60;
-minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
-seconds=setzero(Math.floor((e_minsold-minsold)*60));
-document.getElementById('days').innerHTML=daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
-}
-function setzero(i){
-if (i<10)
-{i="0" + i};
-return i;
-}
-show_date_time();
+	function show_date_time(){
+		window.setTimeout("show_date_time()", 1000);
+		loveDay = new Date("2018/11/10 23:00:00");
+		today = new Date()
+		var diff = today.getTime()-loveDay.getTime()
+		var diffDays = Math.floor(diff/(24*3600*1000)); 
+		var leftDiff=diff%(24*3600*1000);
+		var diffHours=Math.floor(leftDiff/(3600*1000)); 
+		document.getElementById('days').innerHTML="已经过了" + diffDays +" 天 "+ diffHours + " 小时";
+	}
+	show_date_time();
 </script>
 
             </div>
@@ -804,7 +806,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可视化"><span class="nav-number">1.1.</span> <span class="nav-text">可视化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性降维"><span class="nav-number">1.2.</span> <span class="nav-text">线性降维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性降维"><span class="nav-number">1.3.</span> <span class="nav-text">非线性降维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t-SNE"><span class="nav-number">1.4.</span> <span class="nav-text">t-SNE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法论"><span class="nav-number">2.</span> <span class="nav-text">方法论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优化SNE成对称结构"><span class="nav-number">2.1.</span> <span class="nav-text">优化SNE成对称结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决SNE的拥挤问题"><span class="nav-number">2.2.</span> <span class="nav-text">解决SNE的拥挤问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是拥挤问题"><span class="nav-number">2.2.1.</span> <span class="nav-text">什么是拥挤问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流形的直观理解"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">流形的直观理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么存在拥挤"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">为什么存在拥挤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么解决拥挤问题"><span class="nav-number">2.2.2.</span> <span class="nav-text">怎么解决拥挤问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#低维空间采用柯西分布表达联合概率"><span class="nav-number">2.3.</span> <span class="nav-text">低维空间采用柯西分布表达联合概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pseudo-code"><span class="nav-number">2.4.</span> <span class="nav-text">Pseudo code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化方法"><span class="nav-number">2.5.</span> <span class="nav-text">优化方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用"><span class="nav-number">3.</span> <span class="nav-text">引用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可视化"><span class="nav-number">1.1.</span> <span class="nav-text">可视化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性降维"><span class="nav-number">1.2.</span> <span class="nav-text">线性降维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性降维"><span class="nav-number">1.3.</span> <span class="nav-text">非线性降维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t-SNE"><span class="nav-number">1.4.</span> <span class="nav-text">t-SNE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法论"><span class="nav-number">2.</span> <span class="nav-text">方法论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优化SNE成对称结构"><span class="nav-number">2.1.</span> <span class="nav-text">优化SNE成对称结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决SNE的拥挤问题"><span class="nav-number">2.2.</span> <span class="nav-text">解决SNE的拥挤问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是拥挤问题"><span class="nav-number">2.2.1.</span> <span class="nav-text">什么是拥挤问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流形的直观理解"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">流形的直观理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么存在拥挤"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">为什么存在拥挤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么解决拥挤问题"><span class="nav-number">2.2.2.</span> <span class="nav-text">怎么解决拥挤问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#低维空间采用柯西分布表达联合概率"><span class="nav-number">2.3.</span> <span class="nav-text">低维空间采用柯西分布表达联合概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pseudo-code"><span class="nav-number">2.4.</span> <span class="nav-text">Pseudo code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化方法"><span class="nav-number">2.5.</span> <span class="nav-text">优化方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不足"><span class="nav-number">3.</span> <span class="nav-text">不足</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用"><span class="nav-number">4.</span> <span class="nav-text">引用</span></a></li></ol></div>
             
 
           </div>
@@ -843,7 +845,7 @@ show_date_time();
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">52.9k</span>
+    <span title="Site words total count">53.5k</span>
   
 </div>
 
