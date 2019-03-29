@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chenyin.top/"/>
-  <updated>2019-03-25T12:51:16.377Z</updated>
+  <updated>2019-03-29T07:25:38.670Z</updated>
   <id>http://chenyin.top/</id>
   
   <author>
@@ -17,17 +17,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>降维04 - TSNE引领时尚</title>
+    <link href="http://chenyin.top/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/20190328-acd8.html"/>
+    <id>http://chenyin.top/机器学习与算法基础/20190328-acd8.html</id>
+    <published>2019-03-28T03:12:08.000Z</published>
+    <updated>2019-03-29T07:25:38.670Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/111403.png" alt=""><br><strong>t-SNE</strong> (<strong>t-distributed Stochastic Neighbor Embedding</strong>) 是目前来说效果较好的数据降维与可视化方法，但是大量占用内存、计算时间长的缺点也很突出。<br>相比于SNE，t-SNE的主要优化有：联合概率替代条件概率、低维空间下使用t分布代替高斯分布。<a href="#ref1">[1]</a><br><a id="more"></a></p><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><p>早期的<strong>可视化 (Visualization)</strong> 工具<u>不负责解释数据</u>，这就限制了这些工具在真实世界数据上的应用，因为我们要想解释数据，我们还是只能靠人眼看。相比于能解释数据的监督学习而言，可视化只需要展示训练数据，而不需要训练模型使它能够拟合到测试数据集。可视化的任务简单许多。<a href="#ref2">[2]</a></p><h2 id="线性降维"><a href="#线性降维" class="headerlink" title="线性降维"></a>线性降维</h2><p> 将数据从高位空间映射到低维空间的过程我们称之为 <strong>map</strong>，相应的，低维空间中的映射点被称之为 <strong>map points</strong>。降维算法已经注意到，要将高维空间中的数据结构问题尽可能的保留到低维空间。</p><p> 但是传统的<strong>线性降维 (Linear dimentionality reduction)</strong>  算法，例如PCA、MDS，更加侧重<u>在低维空间中保持高维空间中的<strong>差异性</strong></u>，即尽可能地分开数据。同时它们更加关注数据地<strong>全局特征</strong>，这点与非线性降维算法显著不同。</p><h2 id="非线性降维"><a href="#非线性降维" class="headerlink" title="非线性降维"></a>非线性降维</h2><p>大部分<strong>非线性降维 (non-linear dimentionality reduction)</strong> 算法关注的是 <u>在低维空间中保持高维空间地<strong>局部特征</strong></u>。这就意味着，它们不能同时关注数据的全局特征和局部特征。全局特征就是基于所有数据进行的解释，比如聚类结果就是基于所有数据进行的，理想情况下每个数据点都能找到它自己所属的类；局部特征只是基于部分数据点进行的推导，比如在SNE算法中，总是计算离中心点欧式距离小的部分点进行下降，它关注的是以中心点为圆心，以有限长度为半径的（超）球体内的点。</p><p>下面7个常见的非线性降维算法，它们在局部特征提取上都是很优秀的：Sammon mapping <a href="#ref3">[3]</a>, CCA <a href="#ref4">[4]</a>, SNE <a href="#ref5">[5]</a>, Isomap <a href="#ref6">[6]</a>, MVU <a href="#ref7">[7]</a>, LLE <a href="#ref8">[8]</a>, Laplacian Eigenmaps <a href="#ref9">[9]</a>。</p><h2 id="t-SNE"><a href="#t-SNE" class="headerlink" title="t-SNE"></a>t-SNE</h2><p>t-SNE继承自SNE算法，同样是非线性降维，它的优势在于：能够保持大部分局部特征到低维空间，同时不丢失全局特征（例如聚类）。</p><p>与SNE一样，t-SNE的思想还是计算两个点间的<strong>相似度</strong> (similarity)。</p><h1 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h1><p>SNE尽管能得到比较好的可视化结果，但是它的损失函数难以优化，并且还存在 <strong>crowding problem (拥挤问题)</strong> 。相比之下，t-SNE能缓和上面提到的所有问题（优化问题和拥挤问题），与SNE相比，t-SNE主要在两个方面进行改进：<br>1.使用<strong>对称</strong>的损失函数，新的损失函数求导会更加容易。<a href="#ref10">[10]</a><br>2.计算低维空间中两点的相似度使用<strong>t分布</strong>而不是高斯分布，t分布是一种<a href="https://en.wikipedia.org/wiki/Heavy-tailed_distribution" target="_blank" rel="noopener"><strong>重尾分布 (heavy-tailed distribution)</strong></a>，它能够有效缓解拥挤问题和优化问题，后面将会详细介绍。</p><h2 id="优化SNE成对称结构"><a href="#优化SNE成对称结构" class="headerlink" title="优化SNE成对称结构"></a>优化SNE成对称结构</h2><p><strong>联合概率替换条件概率</strong></p><p>在SNE中我们通过<strong>条件概率</strong>分别计算高维空间和低维空间中<strong>点对</strong>间的相似度：<br>$$\begin{cases}<br>&amp; p_{ij}=p(x_j|x_i)=\frac{\exp(-||x_i-x_j||^2)}{\sum_{k{\ne}i}{\exp(-||x_i-x_k||^2)}} \\<br>&amp; q_{ij}=q(y_j|y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{k{\ne}i}{\exp{(-||y_i-y_k||^2)}}}<br>\end{cases}$$</p><p>然后在t-SNE中我们将条件概率换成<strong>联合概率</strong>：<br>$$\begin{cases}<br>&amp; p_{ij}=p(x_j,x_i)=\frac{\exp(-||x_i-x_j||^2)}{\sum_{m{\ne}n}{\exp(-||x_m-x_n||^2)}} \\<br>&amp; q_{ij}=q(y_j,y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{m{\ne}n}{\exp{(-||y_m-y_n||^2)}}}<br>\end{cases}$$</p><p>注意上面两种表述方式的分母的差异：</p><ul><li>条件概率的分母是中心点 $x_i$ 与其它所有点的相似度之和;</li><li>联合概率的分母没有中心点一说，计算的是所有点对（n个数据点有 $C_n^2$ 个点对）的相似度之和。</li><li>条件概率中 $p_{ij}{\ne}p_{ji}$，而联合概率中 $p_{ij}=p_{ji}$（q同理），这正好也与分母的这种差异吻合。</li></ul><p><strong>注意到联合概率算法会产生一个条件概率算法不会遇到的问题：离群点。</strong></p><p>观察上面的联合概率公式，对于离群点 $x_i$，所有与它配对计算出来的 $p_{ij}$ 或者 $p_{ji}$ 的 $||x_i-x_j||^2$ 将会特别大，这导致 $p_{ij}$ 或者 $p_{ji}$ 总是特别的小，即与 $x_i$ 相关的 $p_{ij}$ 或者 $p_{ji}$ 在对损失函数的贡献总是特别小。这相当于自动减小了那些低密度区域的点在损失函数中的权重，使得通过相似性确定离群点在低维空间中的位置更加困难。<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/103236.png" alt=""></p><p>所以呢，必须想办法消除这种效应，增大离群点在损失函数中的比重，文中用用条件概率公式代替上述 $p_{ij}$ 的定义，即：<br>$$\begin{cases}<br>&amp; p_{ij}=\frac{p(x_j|x_i)+p(x_i|x_j)}{2n}  \\<br>&amp; q_{ij}=q(y_j|y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{m{\ne}n}{\exp{(-||y_m-y_n||^2)}}}<br>\end{cases}$$</p><p>这样每个点 $x_i$ 对损失函数的贡献度 $p(x_i)=\sum_jp_{ij}&gt;\frac1{2n}$，这就保证了离群点的贡献不会太少。</p><p><strong>KL散度作为损失函数</strong></p><p>t-SNE仍然使用KL散度作为损失函数，所不同的是，这里求的是两个联合概率分布之间的散度：<br>$$C=KL(P||Q)=\sum_i\sum_jp_{ij}\log{\frac{p_{ij}}{q_{ij}}}$$</p><p>此时KL损失函数求导的结果更加简洁：<br>$$\frac{\partial{C}}{\partial{y_i}}=4\sum_k(p_{ik}-q_{ik})(y_i-y_k)$$</p><p>SNE求导结果为：<br>$$\frac{\partial{C}}{\partial{y_i}}=2\sum_k{(y_i-y_k)[(p_{ik}-q_{ik})+(p_{ki}-q_{ki})]}$$</p><h2 id="解决SNE的拥挤问题"><a href="#解决SNE的拥挤问题" class="headerlink" title="解决SNE的拥挤问题"></a>解决SNE的拥挤问题</h2><h3 id="什么是拥挤问题"><a href="#什么是拥挤问题" class="headerlink" title="什么是拥挤问题"></a>什么是拥挤问题</h3><h4 id="流形的直观理解"><a href="#流形的直观理解" class="headerlink" title="流形的直观理解"></a>流形的直观理解</h4><p>manifold的<a href="https://en.wikipedia.org/wiki/Manifold" target="_blank" rel="noopener">Wiki解释</a>：</p><blockquote><p>In mathematics, a manifold is a topological space that locally resembles Euclidean space near each point. </p></blockquote><p>而中文概念“流形”是由北大已故数学教授江泽涵先生提出来。江老的堂姐夫是胡适？… … 不过“流形：这个词真的很艺术，我初次见到时就感叹其形象而不能自已。流形的<a href="https://zh.wikipedia.org/wiki/%E6%B5%81%E5%BD%A2" target="_blank" rel="noopener">Wiki中文解释</a>：</p><blockquote><p>是局部具有欧几里得空间性质的空间，是欧几里得空间中的曲线、曲面等概念的推广。欧几里得空间就是最简单的流形的实例。地球表面这样的球面则是一个稍微复杂的例子。一般的流形可以通过把许多平直的片折弯并粘连而成。</p></blockquote><p><strong>为什么说二维流形面上的点距容易建模 (model)？</strong></p><p>这个问题直观上理解最是简单。首先对于欧几里得空间，我们普通人类最多能直观感受到三维。换算成黎曼空间，就意味着我们只能在三维空间中直观感不超过二维流形曲面的存在，二维流形曲面上的距离就是曲面内连接它们的最短曲线长度。经典的二维流形曲面如下（Swiss Roll 流形, <a href="http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html%29" target="_blank" rel="noopener">Swiss Roll dataset</a>）：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/200300.png" alt=""></p><h4 id="为什么存在拥挤"><a href="#为什么存在拥挤" class="headerlink" title="为什么存在拥挤"></a>为什么存在拥挤</h4><p>为了便于可视化，我们会将高维流形上的点映射到二维空间，同时最大程度的保留它们的相对位置（这种每个点相对于整体数据点的定位就是一种全局特征）。然而这种映射是很难完美实现的，举个例子，十维空间（欧几里得空间或者黎曼空间）中可以很容易找到11个相互等距的点（就好比二维空间中能轻易找到三个相互等距的点一样），然而映射到二维空间是不可能找到11个相互等距的点的，势必会有一些点会相互靠近挤在一起，如下图所示：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/202201.png" alt=""><br>以二维相互等距的三个点映射到一维空间为例，无论怎么努力，三点都不可能再等距。归根揭底，不同维度空间内的距离分布是不同的，降维映射难免尽如人意。</p><p>再以球内区域为例解释crowding现象：以数据点 $x_i$ 为中心的球的体积与 $r^m$ 直接相关（ $r$ 是半径，$m$ 是球所在空间的维度）。如果在十维流形曲面上数据点均匀分布在这个球中，我们试图在二维流形曲面上以 $y_i$ 为中心对与 $x_i$ 相关的两两距离进行建模。此时我们就会遇到传说中的拥挤问题：与容纳中心点附近数据点的区域相比，容纳适中距离数据点的区域显得不够用。</p><p>在均匀分布的条件下，等距点的数量与半径相关，距离越大数量越多，这意味着映射到低维空间就会越“挤”。因此如果我们想要较为准确的在二维流形曲面中对以 $x_i$ 为中心的两两距离建模，我们就必须把距离 $x_i$ 适中位置的那些点往更远的地方推置（因为太挤了）。</p><!--在SNE中，数据点 $y_i$ 与其它点之间存在一个微弱的引力，所有的力相互作用最终使所有的点**分散在**了自己的收敛位置，这使得点的分布具有连续性质，在聚类时也不会出现断层的现象。--><p>不只是SNE，其它局部特征提取算法例如Sammon mapping等也都面临着拥挤难题。</p><h3 id="怎么解决拥挤问题"><a href="#怎么解决拥挤问题" class="headerlink" title="怎么解决拥挤问题"></a>怎么解决拥挤问题</h3><p>一种叫做<strong>UNI-SNE</strong>的改良算法<a href="#ref10">[10]</a>提出了一种解决办法：给每一个两两相似度添加一个背景值，背景值采样自均匀分布并以一定的比例 $\rho$ 进行混合。由于每个点对之间都引进了背景值，因此不管低维空间中两个映射点离的多么远，$q_{ij}$ 永远不会小于 $\frac{\rho}{n(n-1)/2}$（n个数据点可组合成 $C_n^2$ 个点对）。</p><p>引进背景值导致对于高维空间中相距很远的两个数据点总有$q_{ij}&gt;p_{ij}$（$p_{ij}{\rightarrow}0$ 时 $q_{ij}{\rightarrow}\frac{\rho}{n(n-1)/2}$），这表示低维空间中点对并没有完全拟合高维空间的点对相似度，映射后相似度变小。</p><p>尽管UNI-SNE的效果比SNE好，但是其损失函数却很难优化。目前较好的优化UNI-SNE的方法是：开始的时候将背景值混合比例设为0，这实际上等效于运行SNE；当SNE开始使用<strong>模拟退火</strong>策略时增大背景值的混合比例，促进自然分类间的gaps形成。</p><p>直接优化UNI-SNE并不可行，因为低维空间中两个相距很远的映射点的 $q_{ij}$ 几乎全部来自于背景值，即高维空间中相应两点间（即使他们的 $p_{ij}$ 很大）的距离对 $q_{ij}$ 的影响很小，这使得映射后的两点间的 $q_{ij}$ 没有什么实际意义。这表示，如果一个自然类的两部分在优化早期就分开了，就再也不会再聚合在一起了。</p><h2 id="低维空间采用柯西分布表达联合概率"><a href="#低维空间采用柯西分布表达联合概率" class="headerlink" title="低维空间采用柯西分布表达联合概率"></a>低维空间采用柯西分布表达联合概率</h2><p>UNI-SNE通过添加背景值使低维空间中相距甚远的 $q_{ij}$ 不至于趋近于0。</p><p>本文提出了一种新的解决办法，采用与高斯分布性质极其相似的重尾分布计算联合概率。右重尾分布使得当随机变量取值很大时其对应的概率值高斯分布要大，典型的重尾分布是t分布，如下图所示：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/103318.png" alt=""><br>t分布实际上是不同方差的高斯分布的混合分布，它的性质与高斯分布十分接近，而且更加容易计算：因为高斯分布涉及到指数运算，而t分布只需要求倒数。</p><p>这里采用的是自由度 $\nu=1$ 的t、分布，又叫做<strong>柯西分布</strong>，其概率密度函数如下：<br>$$f(x;x_0,\gamma)=\frac1{\pi\gamma[1+(\frac{x-x_o}{\gamma})]^2}$$</p><p>取 $x_0=0, \gamma=1$ 得标准柯西分布：<br>$$f(x;0,1)=\frac1{\pi[1+(x-x_0)]^2}$$</p><p>用标准柯西分布表示联合概率：<br>$$q_{ij}=\frac{(1+||y_i-y_j||^2)^{-1}}{\sum_{m{\ne}n}{(1+||y_m-y_n||^2)^{-1}}}=\frac{\sum_{m{\ne}n}(1+||y_m-y_n||^2)}{1+||y_i-y_j||^2}$$</p><p>求导结果如下：<br>$$\frac{\partial{C}}{\partial{y_i}}=4\sum_j{(p_{ij}-q_{ij})(y_i-y_j)(1+||y_i-y_j||^2)^{-1}}$$</p><h2 id="Pseudo-code"><a href="#Pseudo-code" class="headerlink" title="Pseudo code"></a>Pseudo code</h2><p>下面是<strong>精简版t-SNE算法</strong>伪代码，非常简洁：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/111808.png" alt=""></p><h2 id="优化方法"><a href="#优化方法" class="headerlink" title="优化方法"></a>优化方法</h2><p><strong>添加微小的动量项可以减少到达最优解的迭代次数</strong></p><p><strong>精简版的t-SNE算法采用适应性学习率加速训练</strong>：在梯度较稳定的方向上增大学习率。<a href="#ref11">[11]</a></p><p>尽管精简版算法已经可以吊打其它非参数降维技术了，还是可以继续优化，文中提出了两个技巧：</p><p><strong>1. early compression</strong>：优化起始的时候将所有的映射点初始化在原点附近，有利于映射点移动、形成自然类。early compression通过给损失函数加上一个L2惩罚项实现。<br><strong>2. early exaggeration</strong>：在优化的初始阶段将所有的 $p_{ij}$ 扩大指定倍数加快收敛速度。</p><p>总结一下模型优化的参数配置：</p><ul><li>起始的50次迭代中将所有的 $p_{ij}$ 乘以4（这个步骤在精简版算法的伪代码中没有写出来）；</li><li>梯度下降的迭代轮数T设为1000；</li><li>动量项 $\alpha^{(t)}$ 当 $t&lt;250$ 时设为0.5，当 $t{\ge}250$ 时设为0.8；</li><li>学习率初始值设为100，每次迭代都将进行适应性更新 <a href="#ref11">[11]</a>。</li></ul><p><a href="http://ticc. uvt.nl/˜lvdrmaaten/tsne" target="_blank" rel="noopener">算法的Matlab实现</a></p><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><span id="ref1">[1]</span> <a href="http://www.jmlr.org/papers/v9/vandermaaten08a.html" target="_blank" rel="noopener">Maaten, L. V. D., &amp; Hinton, G. (2008). <strong>Visualizing data using t-SNE</strong>. Journal of machine learning research, 9(Nov), 2579-2605.</a><br><span id="ref2">[2]</span> M.C. Ferreira de Oliveira and H. Levkowitz. <strong>From visual data exploration to visual data mining: A survey</strong>. IEEE Transactions on Visualization and Computer Graphics, 9(3):378–394, 2003.<br><span id="ref3">[3]</span> J.W. Sammon. <strong>A nonlinear mapping for data structure analysis</strong>. IEEE Transactions on Computers, 18(5):401–409, 1969.<br><span id="ref4">[4]</span> P. Demartines and J. Herault. <strong>´ Curvilinear component analysis: A self-organizing neural network for nonlinear mapping of data sets</strong>. IEEE Transactions on Neural Networks, 8(1):148–154, 1997<br><span id="ref5">[5]</span> G.E. Hinton and S.T. Roweis. <strong>Stochastic Neighbor Embedding</strong>. In Advances in Neural Information Processing Systems, volume 15, pages 833–840, Cambridge, MA, USA, 2002. The MIT Press.<br><span id="ref6">[6]</span> J.B. Tenenbaum, V. de Silva, and J.C. Langford. <strong>A global geometric framework for nonlinear dimensionality reduction</strong>. Science, 290(5500):2319–2323, 2000.<br><span id="ref7">[7]</span> K.Q. Weinberger, F. Sha, and L.K. Saul. <strong>Learning a kernel matrix for nonlinear dimensionality reduction</strong>. In Proceedings of the 21st International Confernence on Machine Learning, 2004.<br><span id="ref8">[8]</span> S.T. Roweis and L.K. Saul. <strong>Nonlinear dimensionality reduction by Locally Linear Embedding</strong>. Science, 290(5500):2323–2326, 2000.<br><span id="ref9">[9]</span> M. Belkin and P. Niyogi. <strong>Laplacian Eigenmaps and spectral techniques for embedding and clustering</strong>. In Advances in Neural Information Processing Systems, volume 14, pages 585–591, Cambridge, MA, USA, 2002. The MIT Press.<br><span id="ref10">[10]</span> J.A. Cook, I. Sutskever, A. Mnih, and G.E. Hinton. <strong>Visualizing similarity data with a mixture of maps</strong>. In Proceedings of the 11th International Conference on Artificial Intelligence and Statistics, volume 2, pages 67–74, 2007.<br><span id="ref11">[11]</span> R.A. Jacobs. <strong>Increased rates of convergence through learning rate adaptation</strong>. Neural Networks, 1: 295–307, 1988.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/111403.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;strong&gt;t-SNE&lt;/strong&gt; (&lt;strong&gt;t-distributed Stochastic Neighbor Embedding&lt;/strong&gt;) 是目前来说效果较好的数据降维与可视化方法，但是大量占用内存、计算时间长的缺点也很突出。&lt;br&gt;相比于SNE，t-SNE的主要优化有：联合概率替代条件概率、低维空间下使用t分布代替高斯分布。&lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="机器学习与算法基础" scheme="http://chenyin.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="降维" scheme="http://chenyin.top/tags/%E9%99%8D%E7%BB%B4/"/>
+    
+      <category term="t-SNE" scheme="http://chenyin.top/tags/t-SNE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>降维03 - SNE原理</title>
     <link href="http://chenyin.top/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/20190325-80ae.html"/>
     <id>http://chenyin.top/机器学习与算法基础/20190325-80ae.html</id>
     <published>2019-03-25T12:44:14.000Z</published>
-    <updated>2019-03-25T12:51:16.377Z</updated>
+    <updated>2019-03-29T00:55:53.549Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 <a id="more"></a></p><h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}$$</p><p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}} $$<br>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p><h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 (perplexity)</strong> $k$ ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p><h1 id="映射到低维空间"><a href="#映射到低维空间" class="headerlink" title="映射到低维空间"></a>映射到低维空间</h1><p>在低维空间（二维或者三维）确定一点 $y_i$，它与高维空间的点 $x_i$ 对应，我们手动设置点 $y_i$ 的条件概率分布，即固定以 $y_i$ 为中心点的高斯分布对应的方差为 $\frac12$，当 $j{\ne}i$ 时：<br>$$ q_{ij}=q(y_j|y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{k{\ne}i}{\exp{(-||y_i-y_k||^2)}}} $$<br>当j=i时 $q(y_j|y_i)=0$ 。</p><p>此时，如果低维点 $y_i$ 能够正确表示高维点 $x_i$，意味着 $q(y_j|y_i)=p(x_j|x_i)$。为了使两个概率（近似）相等，我们可以最小化<strong>KL散度</strong>。损失函数如下：<br>$$C=\sum_iKL(P_i|Q_i)=\sum_i\sum_jp_{ij}\log\frac{p_{ij}}{q_{ij}}$$</p><ul><li>$P_i$ 表示：给定点 $x_i$，其它所有点的条件概率分布；</li><li>$Q_i$ 表示：给定低维空间映射点 $y_i$，其它所有低维映射点的条件概率分布。</li></ul><p><strong>KL散度只能保留局部结构</strong> </p><p>KL散度中包含 $\log\frac{p_{ij}}{q_{ij}}$ 意味着这个映射不是对称的，即：</p><ul><li>使用距离较小的低维点表示距离较大的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于小于0，则损失C较小；</li><li>使用距离较大的低维点表示距离较小的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于大于0，则损失C较大。</li></ul><p>这里就存在一个问题：当两个高维点距离很远，而我构造两个距离很近的低维点能够使损失函数更小，却与实际的目的不相符！所以，SNE算法只能保留数据的局部结构，即高维空间中距离近的点在低维空间中距离仍然很近，但是远的点就嘿嘿嘿了。</p><h1 id="最小化损失函数"><a href="#最小化损失函数" class="headerlink" title="最小化损失函数"></a>最小化损失函数</h1><p>从 $q_{ij}$ 的定义式的分母部分可知，低维空间中点 $y_i$ 选择点 $y_j$ 的概率 $q_{ij}$ 与低维空间中的每一个映射点都有关系（分母起到了normalization的作用），但是求导结果却十分简洁：<br>$$\frac{\partial{C}}{\partial{y_i}}=2\sum_k{(y_i-y_k)[(p_{ik}-q_{ik})+(p_{ki}-q_{ki})]}$$<br>想沿着所有点以最陡梯度下降是不现实的，不仅低效，还可能陷入糟糕费解的局部最优。这里作者采用的是<strong>随机抖动</strong> (random jitter) 的技巧，尽管还是很慢，不过已经能够节省大量时间并且找到更优的局部解。所谓的随机抖动就是将所有的低维空间的映射点随机初始化在原点附近。当然还有其它的解决办法，例如对perplexity退火……</p><p><strong>更好的优化策略（简要摘录）</strong></p><p>随机抖动的最快梯度下降尽管能得到较优解，却需要耗费大量的时间：3000个高维点就要花上几个小时。作者提出了几种更加棒的优化策略：</p><ol><li>忽略 $p_{ij}$, $p_{ji}$, $q_{ij}$ 和 $q_{ji}$ 都很小的点对的计算；</li><li>另一个复杂版本的优化，这里暂时忽略；</li><li>给低维数据点增加维度并给这些额外的维度施加惩罚，在搜索最优解时这些额外的维度能够帮助绕过低维障碍，同时增大惩罚以保持平衡。</li></ol><h1 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h1><p><a href="http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf" target="_blank" rel="noopener">Hinton, G. E., &amp; Roweis, S. T. (2003). <strong>Stochastic neighbor embedding</strong>. In Advances in neural information processing systems (pp. 857-864).</a></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019-03-27_073917.png" width="100%"></p><blockquote><p><a href="http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf" target="_blank" rel="noopener">Hinton, G. E., &amp; Roweis, S. T. (2003). <strong>Stochastic neighbor embedding</strong>. In Advances in neural information processing systems (pp. 857-864).</a></p></blockquote><p><strong>随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 <a id="more"></a></p><h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}$$</p><p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}} $$<br>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p><h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 k (perplexity)</strong> ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$H(P_i)=-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p><p><strong>熵 $H(P_i)$ 的理解</strong></p><ul><li><strong>不确定性</strong>：熵本身就意味着不确定性，当区域点密集时，中心点位置的不确定性就小；</li><li><strong>能量</strong>：不确定性大意味着能量大，拉不住中心点，它要到处跑；</li><li><strong>有效邻居数</strong>：点密集时中心点的有效邻居就多。</li></ul><h1 id="映射到低维空间"><a href="#映射到低维空间" class="headerlink" title="映射到低维空间"></a>映射到低维空间</h1><p>在低维空间（二维或者三维）确定一点 $y_i$，它与高维空间的点 $x_i$ 对应，我们手动设置点 $y_i$ 的条件概率分布，即固定以 $y_i$ 为中心点的高斯分布对应的方差为 $\frac12$，当 $j{\ne}i$ 时：<br>$$ q_{ij}=q(y_j|y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{k{\ne}i}{\exp{(-||y_i-y_k||^2)}}} $$<br>当j=i时 $q(y_j|y_i)=0$ 。</p><p>此时，如果低维点 $y_i$ 能够正确表示高维点 $x_i$，意味着 $q(y_j|y_i)=p(x_j|x_i)$。为了使两个概率（近似）相等，我们可以最小化<strong>KL散度</strong>。损失函数如下：<br>$$C=\sum_iKL(P_i|Q_i)=\sum_i\sum_jp_{ij}\log\frac{p_{ij}}{q_{ij}}$$</p><ul><li>$P_i$ 表示：给定点 $x_i$，其它所有点的条件概率分布；</li><li>$Q_i$ 表示：给定低维空间映射点 $y_i$，其它所有低维映射点的条件概率分布。</li></ul><p>KL散度又叫<strong>相对熵</strong>，用来度量两个分布间的距离。假设P是真实分布，Q是模型分布，$KL(P|Q)$ 表示用Q表示P分布的数据所需的额外信息。   </p><p><strong>KL散度是不对称的</strong> </p><p>KL散度中包含 $\log\frac{p_{ij}}{q_{ij}}$ 意味着这个映射不是对称的，即：</p><ul><li>使用距离较小的低维点表示距离较大的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于小于0，则损失C较小；</li><li>使用距离较大的低维点表示距离较小的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于大于0，则损失C较大。</li></ul><p>这里就存在一个问题：当两个高维点距离很远，而我构造两个距离很近的低维点能够使损失函数更小，却与实际的目的不相符！所以，SNE算法使得高维空间中距离近的点在低维空间中距离仍然很近，但是远的点就嘿嘿嘿了。</p><h1 id="最小化损失函数"><a href="#最小化损失函数" class="headerlink" title="最小化损失函数"></a>最小化损失函数</h1><p>从 $q_{ij}$ 的定义式的分母部分可知，低维空间中点 $y_i$ 选择点 $y_j$ 的概率 $q_{ij}$ 与低维空间中的每一个映射点都有关系（分母起到了normalization的作用），但是求导结果却十分简洁：<br>$$\frac{\partial{C}}{\partial{y_i}}=2\sum_k{(y_i-y_k)[(p_{ik}-q_{ik})+(p_{ki}-q_{ki})]}$$</p><p>想沿着所有点以最陡梯度下降是不现实的，不仅低效，还可能陷入糟糕费解的局部最优。上面的梯度公式右边理论上是针对所有低维映射点进行迭代，但是实际上，相距较远的一堆点间的影响十分小（抽象），在计算时往往可以忽略不计，也就是说：仅仅计算与中心点相距较近的一部分点，即<strong>邻居</strong> ，这也是为什么算法中含有单词neighbour的原因了吧。</p><p>选择中心点的部分较近的邻居参与计算表示，我们只保留了中心点附近区域的特性，而忽略了整体局势，所以说SNE是保留局部特征而非全局特征的算法。这个局部特性主要反应为 $\sigma_i^2$：局部点密集方差小，局部点稀疏方法大。方差确定的方法前面已经陈述了~。</p><h2 id="带动量项的梯度更新"><a href="#带动量项的梯度更新" class="headerlink" title="带动量项的梯度更新"></a>带动量项的梯度更新</h2><p>为了加速优化过程、避免很一般的局部解，可以在每次下降时添加动量项。<strong>动量 (momentum)</strong> 的作用就是在下降到局部最优时，小球仍然具有沿切线方向的分量，这使得小球将继续朝前运动，这会有两种结果：</p><ul><li>小球越过障碍，继续前行；</li><li>小球回退，返回局部最优解；<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/201354.png" alt=""><br>具体的，更新公式如下：<br>$$\gamma^{(t)}=\gamma^{(t-1)}-{\eta}\frac{\partial{C}}{\partial{\gamma}}+\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$$</li></ul><p>式中 $\alpha(t)$ 即动量，动量项 ($\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$) 还与上一次运动幅度有关，直观的看，上一次运动越剧烈，下一次就越刹不住车。</p><h2 id="随机抖动"><a href="#随机抖动" class="headerlink" title="随机抖动"></a>随机抖动</h2><p><strong>随机抖动</strong> (random jitter) 是一种初始化技巧，即将低维空间中的所有数据点初始化在离坐标原点极近的地方。在迭代的过程中，它们将抖抖抖抖抖动直至收敛。尽管还是很慢，不过在节约时间和选择更优局部解时还是有明显提升的。</p><h2 id="模拟退火"><a href="#模拟退火" class="headerlink" title="模拟退火"></a>模拟退火</h2><p>在优化早期给每一步迭代加上高斯噪音，这可以帮助避免不好的局部最优解。随着迭代次数变多，噪音方差将逐渐减小。当方差变化非常慢时，这表明开始形成全局结构。（玄学）</p><p>然而，高斯噪音的数量和衰减速率是十分难以确定的，它们不仅与动量相关，也受学习率的影响。怎么办？多算几次！666</p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE)&lt;/strong&gt; 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。
+      &lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019-03-27_073917.png&quot; width=&quot;100%&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hinton, G. E., &amp;amp; Roweis, S. T. (2003). &lt;strong&gt;Stochastic neighbor embedding&lt;/strong&gt;. In Advances in neural information processing systems (pp. 857-864).&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE)&lt;/strong&gt; 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。
     
     </summary>
     
@@ -41,6 +69,8 @@
       <category term="SNE" scheme="http://chenyin.top/tags/SNE/"/>
     
       <category term="t-SNE" scheme="http://chenyin.top/tags/t-SNE/"/>
+    
+      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
     
   </entry>
   
@@ -217,6 +247,30 @@
     
       <category term="生信工具和算法" scheme="http://chenyin.top/categories/%E7%94%9F%E4%BF%A1%E5%B7%A5%E5%85%B7%E5%92%8C%E7%AE%97%E6%B3%95/"/>
     
+    
+  </entry>
+  
+  <entry>
+    <title>win10系统激活</title>
+    <link href="http://chenyin.top/OS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/20190301-83a5.html"/>
+    <id>http://chenyin.top/OS学习手册/20190301-83a5.html</id>
+    <published>2019-03-01T14:18:59.000Z</published>
+    <updated>2019-03-26T14:34:31.662Z</updated>
+    
+    <content type="html"><![CDATA[<p>晚上打开公司发的个人电脑，桌面右下角的“激活windows”提示十分难受，遂上网了一下激活方法。</p><a id="more"></a><p><code>Win</code> + <code>X</code> 选择<strong>命令提示符(管理源)</strong>打开cmd</p><p>三行命令激活：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//Win10专业版(<span class="number">2019</span>年<span class="number">3</span>月<span class="number">26</span>日测试可用)</span><br><span class="line">slmgr /ipk W269N-WFGWX-YVC9B-<span class="number">4</span>J6C9-T83GX</span><br><span class="line">slmgr /skms kms.<span class="number">03</span>k.org</span><br><span class="line">slmgr /ato</span><br><span class="line"></span><br><span class="line">//Win10企业版</span><br><span class="line">slmgr /ipk NPPR9-FWDCX-D2C8J-H872K-<span class="number">2</span>YT43</span><br><span class="line">slmgr /skms kms.<span class="number">03</span>k.org</span><br><span class="line">slmgr /ato </span><br><span class="line"></span><br><span class="line">//Win10家庭版</span><br><span class="line">slmgr /ipk TX9XD-<span class="number">98</span>N7V-<span class="number">6</span>WMQ6-BX7FG-H8Q99</span><br><span class="line">slmgr /skms kms.<span class="number">03</span>k.org</span><br><span class="line">slmgr /ato</span><br></pre></td></tr></table></figure></p><p>Win10激活密钥key激活次数有限制，不能保证100%激活成功。</p><p><a href="https://blog.csdn.net/weixin_42588262/article/details/81120403" target="_blank" rel="noopener">2019年3月最新可用KMS激活服务器地址</a></p><p><a href="http://kms.cangshui.net/" target="_blank" rel="noopener">KMS一键激活服务</a></p><p><a href="https://03k.org/kms.html" target="_blank" rel="noopener">KMS一句命令激活windows/office</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;晚上打开公司发的个人电脑，桌面右下角的“激活windows”提示十分难受，遂上网了一下激活方法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="OS学习手册" scheme="http://chenyin.top/categories/OS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/"/>
+    
+    
+      <category term="win10" scheme="http://chenyin.top/tags/win10/"/>
+    
+      <category term="激活" scheme="http://chenyin.top/tags/%E6%BF%80%E6%B4%BB/"/>
     
   </entry>
   
@@ -401,48 +455,6 @@
     <summary type="html">
     
       &lt;p&gt;重装R时踩得坑。
-    
-    </summary>
-    
-      <category term="OS学习手册" scheme="http://chenyin.top/categories/OS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>python中运行shell命令</title>
-    <link href="http://chenyin.top/python%E7%BC%96%E7%A8%8B/20181121-b9c.html"/>
-    <id>http://chenyin.top/python编程/20181121-b9c.html</id>
-    <published>2018-11-21T08:35:13.000Z</published>
-    <updated>2019-03-25T15:05:01.323Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录常用方法。<a id="more"></a></p><p><strong>Method 1</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">string = subprocess.check_output(<span class="string">"COMMAND_STRING"</span>, [shell=<span class="keyword">True</span>]).decode()</span><br></pre></td></tr></table></figure><p><strong>Method 2</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">result = os.system(<span class="string">"COMMAND_STRING"</span>)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录常用方法。
-    
-    </summary>
-    
-      <category term="python编程" scheme="http://chenyin.top/categories/python%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="青铜派森" scheme="http://chenyin.top/tags/%E9%9D%92%E9%93%9C%E6%B4%BE%E6%A3%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux-vim设置优化</title>
-    <link href="http://chenyin.top/OS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/20181121-5ec8.html"/>
-    <id>http://chenyin.top/OS学习手册/20181121-5ec8.html</id>
-    <published>2018-11-21T08:25:38.000Z</published>
-    <updated>2019-03-25T15:06:22.392Z</updated>
-    
-    <content type="html"><![CDATA[<p>设置tab宽度，显示行号，自动缩进… <a id="more"></a><br><code>vim ~/.vimrc</code> 打开文件（不存在则新建），键入（#后面为注释）：</p><pre># 将tab替换为4个空格set tabstop=4# Backspace时删除一个tabset softtabstop=4        # 显示行号set nu#自动缩进                set autoindent</pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;设置tab宽度，显示行号，自动缩进…
     
     </summary>
     
