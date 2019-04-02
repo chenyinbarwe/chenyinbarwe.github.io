@@ -2049,7 +2049,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #bf4ebb;
+  background: #a6f5cb;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3233,7 +3233,7 @@ pre {
   border: 1px solid #d6d6d6;
 }
 .container {
-  background: #ffebee;
+  background: #e8f5e9;
 }
 .container .main-inner {
   width: 1080px;
@@ -3246,11 +3246,11 @@ pre {
   width: 1080px;
 }
 .headband {
-  height: 2px;
-  background: #ffcdd2;
+  height: 1px;
+  background: #90caf9;
 }
 .fork-me-on-github {
-  fill: #ffcdd2;
+  fill: #90caf9;
   color: #fff;
   top: 0;
   right: 0;
@@ -3262,11 +3262,11 @@ pre {
   background: #fff;
 }
 .site-meta {
-  background: #ffcdd2;
+  background: #90caf9;
 }
 .site-title {
   font-size: 24px;
-  color: #757575;
+  color: #fff;
 }
 .menu .menu-item a {
   font-size: 16px;
@@ -3281,7 +3281,7 @@ pre {
 }
 .feed-link {
   border: none;
-  background: #ffebee;
+  background: #e9ebfe;
 }
 .links-of-blogroll-title {
   font-size: 20px;
@@ -3362,4 +3362,82 @@ img[src^="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs"] {
 }
 .post-body p a {
   border-bottom: none;
+}
+.reading-categories {
+  border: #7986cb solid 1px;
+  width: fit-content;
+  position: fixed;
+  right: 4%;
+  top: 11%;
+}
+.reading-categories ul {
+  margin-right: 30px;
+}
+.reading-categories a {
+  border-bottom: none;
+  color: #448aff;
+}
+.all-books-list {
+  text-align: center;
+  background-color: #ef9a9a;
+}
+.reading-page a {
+  border-bottom: none;
+}
+.reading-page .book-list {
+  margin: 20px 0;
+  padding: 10px;
+}
+.reading-page .book-list ul {
+  overflow: hidden;
+  margin: 10px;
+  padding-left: 10px;
+}
+.reading-page .book-list li {
+  width: 31%;
+  float: left;
+  display: block;
+  margin: 5px;
+}
+.bookCard p {
+  background-color: #b3e5fc;
+  text-align: center;
+  margin: 0;
+}
+.reading-img {
+  width: 217px;
+  height: 320px;
+}
+.reading-txt {
+  width: 215px;
+  height: 318px;
+  background-color: #e1f5fe;
+}
+.reading-desc {
+  margin: 20px;
+  font-size: 18px;
+}
+.forbid-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.reading-link {
+  text-align: center;
+  border: #b3e5fc solid 1px;
+  padding-top: 6px;
+}
+.douban-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/icons/douban16x16.jpg") no-repeat;
+}
+.baiduyun-icon {
+  display: inline-block;
+  margin: 1px;
+  width: 16px;
+  height: 16px;
+  background: url("https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/icons/bdwp16.png") no-repeat;
 }
