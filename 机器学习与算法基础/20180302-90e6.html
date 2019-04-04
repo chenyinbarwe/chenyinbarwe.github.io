@@ -112,25 +112,21 @@
 
 
 
-<meta name="description" content="一个好的聚类结果：   簇内相似度(intra-cluster similarity)高 簇间相似度(inter-cluster similarity)低  聚类性能度量指标总体分为两类：  外部指标(external index)：与已知的“参考模型”的结果进行比较 内部指标(internal index)：在自己结果的内部进行比较">
+<meta name="description" content="一个好的聚类结果要求较高的簇内相似度 (intra-) 和较低的簇间相似度 (inter-) 。根据模型比较的对象不同，聚类结果评估指标可以分为外部指标 (external) 和内部指标 (internal) 两类：  外部指标：需要参考模型，比较样本在不同模型中的分类情况； 内部指标：基于自己的聚类结果，不借助模型间的比较。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="聚类结果度量指标">
+<meta property="og:title" content="聚类结果评估">
 <meta property="og:url" content="http://chenyin.top/机器学习与算法基础/20180302-90e6.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="一个好的聚类结果：   簇内相似度(intra-cluster similarity)高 簇间相似度(inter-cluster similarity)低  聚类性能度量指标总体分为两类：  外部指标(external index)：与已知的“参考模型”的结果进行比较 内部指标(internal index)：在自己结果的内部进行比较">
+<meta property="og:description" content="一个好的聚类结果要求较高的簇内相似度 (intra-) 和较低的簇间相似度 (inter-) 。根据模型比较的对象不同，聚类结果评估指标可以分为外部指标 (external) 和内部指标 (internal) 两类：  外部指标：需要参考模型，比较样本在不同模型中的分类情况； 内部指标：基于自己的聚类结果，不借助模型间的比较。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-2/88239646.jpg">
-<meta property="og:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-2/89315682.jpg">
-<meta property="og:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-2/74771099.jpg">
-<meta property="og:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-2/69667805.jpg">
-<meta property="og:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-2/13123557.jpg">
-<meta property="og:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-2/11177646.jpg">
-<meta property="og:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-2/8104484.jpg">
-<meta property="og:updated_time" content="2019-03-25T15:34:12.762Z">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201904/144107.png">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201904/144107.png">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201904/191931.png">
+<meta property="og:updated_time" content="2019-04-04T02:48:07.167Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="聚类结果度量指标">
-<meta name="twitter:description" content="一个好的聚类结果：   簇内相似度(intra-cluster similarity)高 簇间相似度(inter-cluster similarity)低  聚类性能度量指标总体分为两类：  外部指标(external index)：与已知的“参考模型”的结果进行比较 内部指标(internal index)：在自己结果的内部进行比较">
-<meta name="twitter:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-2/88239646.jpg">
+<meta name="twitter:title" content="聚类结果评估">
+<meta name="twitter:description" content="一个好的聚类结果要求较高的簇内相似度 (intra-) 和较低的簇间相似度 (inter-) 。根据模型比较的对象不同，聚类结果评估指标可以分为外部指标 (external) 和内部指标 (internal) 两类：  外部指标：需要参考模型，比较样本在不同模型中的分类情况； 内部指标：基于自己的聚类结果，不借助模型间的比较。">
+<meta name="twitter:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201904/144107.png">
 
 
 
@@ -166,7 +162,7 @@
 
 
 
-  <title>聚类结果度量指标 | 阔落煮酒</title>
+  <title>聚类结果评估 | 阔落煮酒</title>
   
 
 
@@ -308,6 +304,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-cargo">
+          <a href="/cargo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-truck"></i> <br />
+            
+            仓库
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -393,7 +399,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">聚类结果度量指标</h1>
+          <h1 class="post-title" itemprop="name headline">聚类结果评估</h1>
         
 
         <div class="post-meta">
@@ -421,8 +427,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T23:34:12+08:00">
-                2019-03-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-04T10:48:07+08:00">
+                2019-04-04
               </time>
             
           </span>
@@ -471,7 +477,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  539
+                  1.7k
                 </span>
               
 
@@ -496,57 +502,80 @@
       
 
       
-        <p>一个好的聚类结果： </p>
+        <p>一个好的聚类结果要求较高的<strong>簇内相似度 (intra-)</strong> 和较低的<strong>簇间相似度 (inter-)</strong> 。根据模型比较的对象不同，聚类结果评估指标可以分为<strong>外部指标 (external)</strong> 和<strong>内部指标 (internal)</strong> 两类：</p>
 <ul>
-<li><strong>簇内相似度</strong>(intra-cluster similarity)高</li>
-<li><strong>簇间相似度</strong>(inter-cluster similarity)低</li>
+<li>外部指标：需要<strong>参考模型</strong>，比较样本在不同模型中的分类情况；</li>
+<li>内部指标：基于自己的聚类结果，不借助模型间的比较。</li>
 </ul>
-<p>聚类性能度量指标总体分为两类：</p>
-<ul>
-<li><strong>外部指标</strong>(external index)：与已知的“参考模型”的结果进行比较</li>
-<li><strong>内部指标</strong>(internal index)：在自己结果的内部进行比较<a id="more"></a>
-<hr><h1 id="外部指标"><a href="#外部指标" class="headerlink" title="外部指标"></a>外部指标</h1></li>
-</ul>
-<p>首先，将样本两两配对，N个样本将组成$C_n^2=\frac{n(n-1)}{2}$对<br>然后，将上述<strong>对子</strong>分成四类：</p>
+<a id="more"></a>
+<h1 id="外部指标"><a href="#外部指标" class="headerlink" title="外部指标"></a>外部指标</h1><p>外部指标一般用于：</p>
 <ol>
-<li>a = |SS|: 在本模型中属于同一簇，在参考模型中也属于同一簇</li>
-<li>b = |SD|: 在本模型中属于同一簇，但在参考模型中属于不同的簇</li>
-<li>c = |DS|: 在本模型中属于不同的簇，但在参考模型中属于同一簇</li>
-<li>d = |DD|: 在本模型中属于不同的簇，在参考模型中也属于不同的簇</li>
+<li>以他人的模型作为参考模型进行比较；</li>
+<li>以<strong>标签</strong>作为基准模型进行比较。</li>
 </ol>
-<p><strong>注意</strong>： 每一个对子只可能属于上述四类中的一个</p>
-<p>由上面四个集合导出下面常用的外部指标：</p>
-<h2 id="杰卡德系数-Jaccard-Coefficient-JC"><a href="#杰卡德系数-Jaccard-Coefficient-JC" class="headerlink" title="杰卡德系数(Jaccard Coefficient, JC)"></a>杰卡德系数(Jaccard Coefficient, JC)</h2><p><img src="http://p33k8pinb.bkt.clouddn.com/18-3-2/88239646.jpg" alt=""></p>
-<p>JC本来是用来度量两个集合的差异程度：$JC = \frac{交集}{ 并集}$。在这里实际上指的是如下集合：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-3-2/89315682.jpg" alt=""></p>
-<h2 id="FM指数-FMI"><a href="#FM指数-FMI" class="headerlink" title="FM指数, FMI"></a>FM指数, FMI</h2><p><img src="http://p33k8pinb.bkt.clouddn.com/18-3-2/74771099.jpg" alt=""></p>
-<p>FMI本来的定义是：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-3-2/69667805.jpg" alt=""></p>
-<h2 id="Rand指数-RI"><a href="#Rand指数-RI" class="headerlink" title="Rand指数, RI"></a>Rand指数, RI</h2><p>观察到的阳性数据的比例<br><img src="http://p33k8pinb.bkt.clouddn.com/18-3-2/13123557.jpg" alt=""></p>
-<p>上述四个指标取值 [0, 1]，值越大性能越好</p>
-<p><hr></p>
-<h1 id="内部指标"><a href="#内部指标" class="headerlink" title="内部指标"></a>内部指标</h1><p>首先，定义一个样本间的距离 <strong>dist(a, b)</strong></p>
+<p>首先，将任意两个样本配对，因此n个样本将组成 $N=C_n^2=\frac{n(n-1)}{2}$ 对。<br>然后，将上述<strong>对子</strong>分成四类 (S means Same while D means Different)：</p>
+<ol>
+<li>集合A=|SS|: 在本模型中属于同一簇，在参考模型中也属于同一簇</li>
+<li>集合B=|SD|: 在本模型中属于同一簇，但在参考模型中属于不同的簇</li>
+<li>集合C=|DS|: 在本模型中属于不同的簇，但在参考模型中属于同一簇</li>
+<li>集合D=|DD|: 在本模型中属于不同的簇，在参考模型中也属于不同的簇</li>
+</ol>
+<p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201904/144107.png" width="50%"></p>
+<p>如果参考模型是理想模型，上述：A=TP(真阳性)，B=FP(假阳性),C=FN(假阴性),D=TN(真阴性)。</p>
+<h2 id="Jaccard系数"><a href="#Jaccard系数" class="headerlink" title="Jaccard系数"></a>Jaccard系数</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><strong>杰卡德系数 (Jaccard Coefficient, JC)</strong> 用于比较<strong>有限</strong>集合$X$和$Y$之间的相似性与差异性：<br>$$J(X,Y)=\frac{X{\cap}Y}{X{\cup}Y}=\frac{X{\cap}Y}{X+Y-X{\cap}Y}$$<br>特别地，当 $X=Y=\emptyset$ 时，$J(X,Y)=0$。</p>
+<p>Jaccard系数描述集合相似性：Jaccard系数越大，集合相似性越高；<br>Jaccard距离描述集合差异性：Jaccard距离越大，集合差异性越大。</p>
+<p>Jaccard距离定义为：<br>$$d_J(X,Y)=1-J(X,Y)=1-\frac{X{\cap}Y}{X{\cup}Y}=\frac{X{\triangle}Y}{X{\cup}Y}$$<br>记 $X{\triangle}Y = X{\cup}Y - X{\cap}Y$</p>
+<p><strong>集合与矩阵的转换</strong></p>
+<p>例如对于集合 $X={a,b,c}$ 和 $Y={b,c,d}$ 有 $X{\cup}Y={a,b,c,d}$ 和 $X{\cap}Y={b,c}$。</p>
+<p>那么求并和求交的操作怎么通过矩阵的逻辑运算实现呢？</p>
+<ul>
+<li>基于特征集{a,b,c,d}将两个集合表示为增广向量：<br>$$X^\ast=(1,1,1,0)$$<br>$$Y^\ast=(0,1,1,1)$$</li>
+<li><p><strong>求交</strong> 等效于<strong>逻辑与</strong>，<strong>求并</strong>等效于<strong>逻辑或</strong>：<br>$$X{\cap}Y{\leftarrow}X^\ast\&amp;Y^\ast=(0,1,1,0){\rightarrow}{b,c}$$<br>$$X{\cup}Y{\leftarrow}X^\ast|Y^\ast=(1,1,1,1){\rightarrow}{a,b,c,d}$$</p>
+<p>X和Y为矩阵时，计算方法类似。</p>
+</li>
+</ul>
+<h3 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h3><p><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201904/144107.png" width="50%"></p>
+<p>我们将两两配对表示为一个矩阵，例如：<br>$$X=\left[\begin{matrix}<br>0 &amp; 0 &amp; 0 &amp; 1 \\<br>0 &amp; 0 &amp; 1 &amp; 1 \\<br>0 &amp; 1 &amp; 0 &amp; 1 \\<br>1 &amp; 1 &amp; 1 &amp; 0<br>\end{matrix}\right],Y=\left[\begin{matrix}<br>0 &amp; 0 &amp; 1 &amp; 1 \\<br>0 &amp; 0 &amp; 1 &amp; 1 \\<br>1 &amp; 1 &amp; 0 &amp; 1 \\<br>1 &amp; 1 &amp; 1 &amp; 0<br>\end{matrix}\right]$$<br>其中0表示两个样本被预测为同一簇，1表示两个样本被预测为不同簇。</p>
+<p>Jaccard系数定义为：<br>$$ JC = \frac{X\&amp;Y}{X|Y} =  \frac{|DD|}{|DD|+|SD|+|DS|} $$</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>Jaccard系数主要用于计算文本相似度，例如新闻去重、网页去重、考试作弊检测、论文查重等。<br>适合稀疏度很高的数据。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>Jaccard系数计算的总是二值矩阵，不能解决信息更丰富的矩阵。</p>
+<h3 id="广义系数"><a href="#广义系数" class="headerlink" title="广义系数"></a>广义系数</h3><p>广义Jaccard系数能处理多值向量：<br>$$\begin{split}<br>J(x,y)&amp;=\frac{\sum_{i=1}^{n}{\min{(x^{(i)},y^{(i)})}}}{\sum_{i=1}^{n}{\max{(x^{(i)},y^{(i)})}}} \\<br>J(X,Y)&amp;=\frac{\int{\min{(f,g)}du}}{\int{\max{(f,g)}du}}<br>\end{split}$$</p>
+<h2 id="FM指数"><a href="#FM指数" class="headerlink" title="FM指数"></a>FM指数</h2><p><strong>FM指数 (Fowlkes and Mallows lndex，FMI)</strong> 多用于两个层次聚类间的比较或者与基准参考聚类模型间的比较，FM指数越大说明两个聚类结果越相近。</p>
 <blockquote>
-<p>距离的定义必须满足经典的四个性质：</p>
-<ol>
-<li>dist(a, b) ≥ 0 恒成立</li>
-<li>当且仅当 a = b 时 dist(a, b) = 0</li>
-<li>对称： dist(a, b) = dist(b, a)</li>
-<li>三角不等式： dist(a, b) ≤ dist(a, c) + dist(c, b)</li>
-</ol>
+<p>Fowlkes, E. B., &amp; Mallows, C. L. (1983). A method for comparing two hierarchical clusterings. Journal of the American statistical association, 78(383), 553-569.</p>
 </blockquote>
-<p>然后定义一下量：</p>
+<h3 id="与基准聚类模型比较"><a href="#与基准聚类模型比较" class="headerlink" title="与基准聚类模型比较"></a>与基准聚类模型比较</h3><p><strong>FM指数 (Fowlkes and Mallows lndex，FMI)</strong> 定义为：<br>$$FMI = \sqrt{ \frac{TP}{TP+FP} {\times} \frac{TP}{TP+FN} }$$</p>
+<h3 id="层次聚类模型的比较"><a href="#层次聚类模型的比较" class="headerlink" title="层次聚类模型的比较"></a>层次聚类模型的比较</h3><p>略</p>
+<h2 id="RI-和-ARI"><a href="#RI-和-ARI" class="headerlink" title="RI 和 ARI"></a>RI 和 ARI</h2><p>给定 $n$ 个样本的集合 $S$，$X={X_1,X_2,{\cdots},X_r}$ 和 $Y={Y_1,Y_2,{\cdots},Y_s}$ 是关于 $S$ 的两个的划分。因为聚类的过程就是再对数据集进行划分，所以一个划分就等效于一个聚类模型。X和Y同时也意味着两个聚类模型 (clustering)。</p>
+<h3 id="RI"><a href="#RI" class="headerlink" title="RI"></a>RI</h3><p>定义<strong>兰德指数 (Rand Index, RI)</strong>：<br>$$RI = \frac{|SS|+|DD|}{|SS|+|SD|+|DS|+|DD|} = \frac{||SS|+|DD|}{C_n^2}$$<br>直观上理解，分子是X和Y认可一致的配对，分母是所有可能的配对。当Y是基准划分时，RI表示<strong>真阳性</strong>数据和<strong>真阴性</strong>数据所占的比重。</p>
+<h3 id="ARI"><a href="#ARI" class="headerlink" title="ARI"></a>ARI</h3><p>为了实现“在聚类结果随机产生的情况下，指标应该接近零”提出了 <strong>调整兰德指数 (Adjusted Rand Index, ARI)</strong> 。</p>
+<p>构建<strong>列联表</strong> (contingency table):<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201904/191931.png" width="50%"><br>其中 $n_{ij}$ 表示X的第i簇与Y的第j簇共有的元素，即 $n_{ij}=|X_i{\cap}Y_j|$。</p>
+<p>ARI 定义如下：<br>$$ARI= \frac{RI-E[RI]}{\max{(RI)}-E[RI]} = \frac { \overbrace{ \sum_{ij}{C_{n_{ij}}^2}}^{\text{Index}} - \overbrace{\frac{\sum_iC_{a_i}^2\sum_jC_{b_i}^2}{C_n^2}}^{\text{Expected Index}} }{ \underbrace{\frac{\sum_iC_{a_i}^2+\sum_jC_{b_i}^2}2}_{\text{Max Index}} - \underbrace{\frac{\sum_iC_{a_i}^2\sum_jC_{b_i}^2}{C_n^2}}_{\text{Expected Index}} }$$</p>
+<p>ARI 的取值范围扩展到了[-1, 1]，起到了衡量 <strong>两组数据分布的吻合程度</strong> 的作用。</p>
+<h2 id="MI-和-NMI"><a href="#MI-和-NMI" class="headerlink" title="MI 和 NMI"></a>MI 和 NMI</h2><p><strong>互信息 (Mutual Information, MI)</strong></p>
+<p>$$MI(X,Y)=\sum_{x,y}{ p(x,y)\log{ \frac{p(x,y)}{p(x)p(y)} } }$$</p>
+<p><strong>标准互信息 (Normalized Mutual Information, NMI)</strong></p>
+<p>$$U(X,Y)=2R=2\frac{I(X;Y)}{H(X)+H(Y)}$$</p>
+<p>$$H(X)=\sum_{i=1}^{n}{p(x_i)I(x_i)}=\sum_{i=1}^{n}{p(x_i)\log_b{\frac1{p(x_i)}}}=-\sum_{i=1}^{n}{p(x_i)\log_b{p(x_i)}}$$</p>
+<hr>
+<h1 id="内部指标"><a href="#内部指标" class="headerlink" title="内部指标"></a>内部指标</h1><p>所谓的内部指标就是基于本模型的聚类结果进行计算。</p>
+<p>为了衡量样本之间的相似性和差异性，我们需要先定义一个距离公式  <strong>dist(a, b)</strong> ，距离的定义需要满足下面四个基本性质：</p>
 <ol>
-<li><strong>avg(C)</strong>: 簇内两点间的平均距离</li>
-<li><strong>diam(C)</strong>: 簇内样本间的最大距离</li>
-<li><strong>d<sub>min</sub>(C<sub>i</sub>, C<sub>j</sub>)</strong>: 两个簇最近样本间的距离</li>
-<li><strong>d<sub>cen</sub>(C<sub>i</sub>, C<sub>j</sub>)</strong>: 两个簇中心点间的距离</li>
+<li>$dist(a, b) {\ge} 0$ 恒成立</li>
+<li>当且仅当 a = b 时 $dist(a, b) = 0$</li>
+<li>对称：$dist(a, b) = dist(b, a)$</li>
+<li>三角不等式： $dist(a, b) {\le} dist(a, c) + dist(c, b)$</li>
 </ol>
-<p style="color:red;font-family:楷体">中心点各分量值就是簇内所有样本各分量值的平均值</p>
-
-<p>基于上述定义导出常用的内部指标：</p>
-<h2 id="DB指数，DBI"><a href="#DB指数，DBI" class="headerlink" title="DB指数，DBI"></a>DB指数，DBI</h2><p><img src="http://p33k8pinb.bkt.clouddn.com/18-3-2/11177646.jpg" alt=""></p>
-<h2 id="Dunn指数，DI"><a href="#Dunn指数，DI" class="headerlink" title="Dunn指数，DI"></a>Dunn指数，DI</h2><p><img src="http://p33k8pinb.bkt.clouddn.com/18-3-2/8104484.jpg" alt=""></p>
-<p><hr></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>本节主要参考周志华西瓜书 P<sub>197</sub></p>
+<p>当然也可以使用经典距离，例如欧式距离、余弦距离、Hamming距离等等。基于<strong>距离</strong>，我们定义以下量：</p>
+<ol>
+<li>$avg(C)$：簇内两点间的平均距离</li>
+<li>$diam(C)$：簇内样本间的最大距离</li>
+<li>$d_{min}(C_i,C_j)$：两个簇最近样本间的距离</li>
+<li>$d_{cen}(C_i,C_j)$：两个簇中心点（簇的重心）间的距离</li>
+</ol>
+<h2 id="Davies-Bouldin-Index"><a href="#Davies-Bouldin-Index" class="headerlink" title="Davies-Bouldin Index"></a>Davies-Bouldin Index</h2><p><strong>戴维森堡丁指数 (Davies-Bouldin Index, DBI)</strong></p>
+<h2 id="Dunn-Validity-Index"><a href="#Dunn-Validity-Index" class="headerlink" title="Dunn Validity Index"></a>Dunn Validity Index</h2><p><strong>邓恩指数 (Dunn Validity Index, DVI)</strong></p>
+<p><strong>轮廓系数 (Silhouette coefficient)</strong></p>
 
       
     </div>
@@ -783,7 +812,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#外部指标"><span class="nav-number">1.</span> <span class="nav-text">外部指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#杰卡德系数-Jaccard-Coefficient-JC"><span class="nav-number">1.1.</span> <span class="nav-text">杰卡德系数(Jaccard Coefficient, JC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FM指数-FMI"><span class="nav-number">1.2.</span> <span class="nav-text">FM指数, FMI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rand指数-RI"><span class="nav-number">1.3.</span> <span class="nav-text">Rand指数, RI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内部指标"><span class="nav-number">2.</span> <span class="nav-text">内部指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DB指数，DBI"><span class="nav-number">2.1.</span> <span class="nav-text">DB指数，DBI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dunn指数，DI"><span class="nav-number">2.2.</span> <span class="nav-text">Dunn指数，DI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#外部指标"><span class="nav-number">1.</span> <span class="nav-text">外部指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jaccard系数"><span class="nav-number">1.1.</span> <span class="nav-text">Jaccard系数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迁移"><span class="nav-number">1.1.2.</span> <span class="nav-text">迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">1.1.3.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.1.4.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广义系数"><span class="nav-number">1.1.5.</span> <span class="nav-text">广义系数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FM指数"><span class="nav-number">1.2.</span> <span class="nav-text">FM指数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与基准聚类模型比较"><span class="nav-number">1.2.1.</span> <span class="nav-text">与基准聚类模型比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层次聚类模型的比较"><span class="nav-number">1.2.2.</span> <span class="nav-text">层次聚类模型的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RI-和-ARI"><span class="nav-number">1.3.</span> <span class="nav-text">RI 和 ARI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RI"><span class="nav-number">1.3.1.</span> <span class="nav-text">RI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARI"><span class="nav-number">1.3.2.</span> <span class="nav-text">ARI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MI-和-NMI"><span class="nav-number">1.4.</span> <span class="nav-text">MI 和 NMI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内部指标"><span class="nav-number">2.</span> <span class="nav-text">内部指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Davies-Bouldin-Index"><span class="nav-number">2.1.</span> <span class="nav-text">Davies-Bouldin Index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dunn-Validity-Index"><span class="nav-number">2.2.</span> <span class="nav-text">Dunn Validity Index</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -822,7 +851,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">53.5k</span>
+    <span title="Site words total count">54.7k</span>
   
 </div>
 

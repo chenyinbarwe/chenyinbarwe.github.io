@@ -137,7 +137,7 @@
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/latex_math/delimiter.png">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/latex_math/delimiter_AMS.png">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/201811/20181117152615.jpg">
-<meta property="og:updated_time" content="2019-03-29T06:55:12.634Z">
+<meta property="og:updated_time" content="2019-04-04T02:55:14.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="latex数学符号表">
 <meta name="twitter:description" content="Latex，展现公式的美！">
@@ -319,6 +319,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-cargo">
+          <a href="/cargo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-truck"></i> <br />
+            
+            仓库
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -432,8 +442,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T14:55:12+08:00">
-                2019-03-29
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-04T10:55:14+08:00">
+                2019-04-04
               </time>
             
           </span>
@@ -482,7 +492,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  562
+                  599
                 </span>
               
 
@@ -550,7 +560,6 @@
 <p><strong>AMS否定关系符</strong> <img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/latex_math/negative_symbol_AMS.png" alt=""></p>
 <h1 id="运算符号"><a href="#运算符号" class="headerlink" title="运算符号"></a>运算符号</h1><p><strong>运算符</strong> <img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/latex_math/operator.png" alt=""></p>
 <p><strong>大运算符</strong> <img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/latex_math/operator_large.png" alt=""></p>
-<p>求和符号基本格式：<strong>\sum_{}^{}{}</strong></p>
 <p><strong>AMS运算符</strong> <img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/latex_math/operator_AMS.png" alt=""></p>
 <h1 id="箭头"><a href="#箭头" class="headerlink" title="箭头"></a>箭头</h1><p><strong>箭头</strong> <img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/latex_math/arrow.png" alt=""></p>
 <p><strong>AMS箭头</strong> <img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/latex_math/arrow_AMS.png" alt=""></p>
@@ -591,6 +600,16 @@
 <td>$\int_{-1}^{1}{x_3}dx$</td>
 <td><code>\int_{-1}^{1}{x_3}dx</code></td>
 </tr>
+<tr>
+<td>排列组合</td>
+<td>$\binom{n}{k}$</td>
+<td><code>\binom{n}{k}</code></td>
+</tr>
+<tr>
+<td>排列组合</td>
+<td>$\mathrm{C}_n^k$</td>
+<td><code>\mathrm{C}_n^k</code></td>
+</tr>
 </tbody>
 </table>
 <h1 id="其他小技巧"><a href="#其他小技巧" class="headerlink" title="其他小技巧"></a>其他小技巧</h1><h2 id="基本运算的格式控制"><a href="#基本运算的格式控制" class="headerlink" title="基本运算的格式控制"></a><span style="color:#EE0C4D">基本运算的格式控制</span></h2><table>
@@ -623,9 +642,8 @@
 <li>自动标签（不建议使用）：<code>\begin{equation}...\end{equation}</code></li>
 <li>手动标签：<code>...\tag{...}</code></li>
 </ul>
-<h2 id="单个公式的连等换行"><a href="#单个公式的连等换行" class="headerlink" title="单个公式的连等换行"></a><span style="color:#EE0C4D">单个公式的连等换行</span></h2><p>对于单个公式换行（共用一个标签）的格式控制问题，如下</p>
+<h2 id="单个公式的连等换行"><a href="#单个公式的连等换行" class="headerlink" title="单个公式的连等换行"></a><span style="color:#EE0C4D">单个公式的连等换行</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;split&#125;</span><br><span class="line">y&amp;=x^2-4x+5\\\\</span><br><span class="line">&amp;=(x^2-4x+4)+1\\\\</span><br><span class="line">&amp;=(x-2)^2+1</span><br><span class="line">\end&#123;split&#125;\tag&#123;xx&#125;$$</span><br></pre></td></tr></table></figure>
 <p>$$\begin{split}<br>y&amp;=x^2-4x+5\\<br>&amp;=(x^2-4x+4)+1\\<br>&amp;=(x-2)^2+1<br>\end{split}\tag{xx}$$</p>
-<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;split&#125;</span><br><span class="line">y&amp;=x^2-4x+5\\\\</span><br><span class="line">&amp;=(x^2-4x+4)+1\\\\</span><br><span class="line">&amp;=(x-2)^2+1</span><br><span class="line">\end&#123;split&#125;\tag&#123;xx&#125;$$</span><br></pre></td></tr></table></figure></p>
 <p>要点如下：</p>
 <ol>
 <li>公式代码用<code>begin{split}...\end{split}</code>标识以说明需要多行显示一个单行公式；</li>
@@ -633,15 +651,16 @@
 <li>换行的地方用<code>\\</code>标识，如果在windows系统下可能是<code>\\\\</code>；</li>
 <li>在<strong>所有</strong>行中使用且<strong>仅</strong>使用<strong>一个</strong><code>&amp;</code>标明对齐位置。</li>
 </ol>
-<h2 id="分段函数"><a href="#分段函数" class="headerlink" title="分段函数"></a><span style="color:#EE0C4D">分段函数</span></h2><p>代码：</p>
-<pre>Sign(x)=
+<h2 id="分段函数"><a href="#分段函数" class="headerlink" title="分段函数"></a><span style="color:#EE0C4D">分段函数</span></h2><pre>Sign(x)=
 \begin{cases}
     1, & \text{if $x$ > 0;}\\\\
     0, & \text{if $x$ = 0;}\\\\
     -1, & \text{else}
 \end{cases}</pre>
 
-<p>效果：<br>$$<br>Sign(x)=<br>\begin{cases}<br>    1, &amp; \text{if $x$ &gt; 0;}\\<br>    0, &amp; \text{if $x$ = 0;}\\<br>    -1, &amp; \text{else}<br>\end{cases}<br>$$</p>
+<p>$$<br>Sign(x)=<br>\begin{cases}<br>    1, &amp; \text{if $x$ &gt; 0;}\\<br>    0, &amp; \text{if $x$ = 0;}\\<br>    -1, &amp; \text{else}<br>\end{cases}<br>$$</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a><span style="color:#EE0C4D">矩阵</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$\left[\begin&#123;matrix&#125; </span><br><span class="line">1 &amp; 2 &amp; 3 \\\\</span><br><span class="line">4 &amp; 5 &amp; 6 \\\\</span><br><span class="line">7 &amp; 8 &amp; 9 </span><br><span class="line">\end&#123;matrix&#125;\right]\tag&#123;2&#125;$$</span><br></pre></td></tr></table></figure>
+<p>$$\left[\begin{matrix}<br>1 &amp; 2 &amp; 3 \\<br>4 &amp; 5 &amp; 6 \\<br>7 &amp; 8 &amp; 9<br>\end{matrix}\right]\tag{2}$$</p>
 
       
     </div>
@@ -884,7 +903,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#重音符号"><span class="nav-number">1.</span> <span class="nav-text">重音符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#独立符号"><span class="nav-number">2.</span> <span class="nav-text">独立符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关系符号"><span class="nav-number">3.</span> <span class="nav-text">关系符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符号"><span class="nav-number">4.</span> <span class="nav-text">运算符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#箭头"><span class="nav-number">5.</span> <span class="nav-text">箭头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#括号及定界符"><span class="nav-number">6.</span> <span class="nav-text">括号及定界符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#空格"><span class="nav-number">7.</span> <span class="nav-text">空格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">8.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他小技巧"><span class="nav-number">9.</span> <span class="nav-text">其他小技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本运算的格式控制"><span class="nav-number">9.1.</span> <span class="nav-text">基本运算的格式控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公式末尾序号"><span class="nav-number">9.2.</span> <span class="nav-text">公式末尾序号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单个公式的连等换行"><span class="nav-number">9.3.</span> <span class="nav-text">单个公式的连等换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分段函数"><span class="nav-number">9.4.</span> <span class="nav-text">分段函数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#重音符号"><span class="nav-number">1.</span> <span class="nav-text">重音符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#独立符号"><span class="nav-number">2.</span> <span class="nav-text">独立符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关系符号"><span class="nav-number">3.</span> <span class="nav-text">关系符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符号"><span class="nav-number">4.</span> <span class="nav-text">运算符号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#箭头"><span class="nav-number">5.</span> <span class="nav-text">箭头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#括号及定界符"><span class="nav-number">6.</span> <span class="nav-text">括号及定界符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#空格"><span class="nav-number">7.</span> <span class="nav-text">空格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">8.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他小技巧"><span class="nav-number">9.</span> <span class="nav-text">其他小技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本运算的格式控制"><span class="nav-number">9.1.</span> <span class="nav-text">基本运算的格式控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公式末尾序号"><span class="nav-number">9.2.</span> <span class="nav-text">公式末尾序号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单个公式的连等换行"><span class="nav-number">9.3.</span> <span class="nav-text">单个公式的连等换行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分段函数"><span class="nav-number">9.4.</span> <span class="nav-text">分段函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵"><span class="nav-number">9.5.</span> <span class="nav-text">矩阵</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -923,7 +942,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">53.5k</span>
+    <span title="Site words total count">54.7k</span>
   
 </div>
 
