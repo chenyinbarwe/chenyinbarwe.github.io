@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chenyin.top/"/>
-  <updated>2019-03-29T09:01:12.294Z</updated>
+  <updated>2019-04-08T09:49:39.052Z</updated>
   <id>http://chenyin.top/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>photos</title>
+    <link href="http://chenyin.top/uncategorized/20190408-undefined.html"/>
+    <id>http://chenyin.top/uncategorized/20190408-undefined.html</id>
+    <published>2019-04-08T09:49:39.000Z</published>
+    <updated>2019-04-08T09:49:39.052Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>降维04 - TSNE引领时尚</title>
@@ -45,9 +59,9 @@
     <link href="http://chenyin.top/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/20190325-80ae.html"/>
     <id>http://chenyin.top/机器学习与算法基础/20190325-80ae.html</id>
     <published>2019-03-25T12:44:14.000Z</published>
-    <updated>2019-03-29T00:55:53.549Z</updated>
+    <updated>2019-04-08T07:32:59.777Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019-03-27_073917.png" width="100%"></p><blockquote><p><a href="http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf" target="_blank" rel="noopener">Hinton, G. E., &amp; Roweis, S. T. (2003). <strong>Stochastic neighbor embedding</strong>. In Advances in neural information processing systems (pp. 857-864).</a></p></blockquote><p><strong>随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 <a id="more"></a></p><h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}$$</p><p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}} $$<br>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p><h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 k (perplexity)</strong> ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$H(P_i)=-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p><p><strong>熵 $H(P_i)$ 的理解</strong></p><ul><li><strong>不确定性</strong>：熵本身就意味着不确定性，当区域点密集时，中心点位置的不确定性就小；</li><li><strong>能量</strong>：不确定性大意味着能量大，拉不住中心点，它要到处跑；</li><li><strong>有效邻居数</strong>：点密集时中心点的有效邻居就多。</li></ul><h1 id="映射到低维空间"><a href="#映射到低维空间" class="headerlink" title="映射到低维空间"></a>映射到低维空间</h1><p>在低维空间（二维或者三维）确定一点 $y_i$，它与高维空间的点 $x_i$ 对应，我们手动设置点 $y_i$ 的条件概率分布，即固定以 $y_i$ 为中心点的高斯分布对应的方差为 $\frac12$，当 $j{\ne}i$ 时：<br>$$ q_{ij}=q(y_j|y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{k{\ne}i}{\exp{(-||y_i-y_k||^2)}}} $$<br>当j=i时 $q(y_j|y_i)=0$ 。</p><p>此时，如果低维点 $y_i$ 能够正确表示高维点 $x_i$，意味着 $q(y_j|y_i)=p(x_j|x_i)$。为了使两个概率（近似）相等，我们可以最小化<strong>KL散度</strong>。损失函数如下：<br>$$C=\sum_iKL(P_i|Q_i)=\sum_i\sum_jp_{ij}\log\frac{p_{ij}}{q_{ij}}$$</p><ul><li>$P_i$ 表示：给定点 $x_i$，其它所有点的条件概率分布；</li><li>$Q_i$ 表示：给定低维空间映射点 $y_i$，其它所有低维映射点的条件概率分布。</li></ul><p>KL散度又叫<strong>相对熵</strong>，用来度量两个分布间的距离。假设P是真实分布，Q是模型分布，$KL(P|Q)$ 表示用Q表示P分布的数据所需的额外信息。   </p><p><strong>KL散度是不对称的</strong> </p><p>KL散度中包含 $\log\frac{p_{ij}}{q_{ij}}$ 意味着这个映射不是对称的，即：</p><ul><li>使用距离较小的低维点表示距离较大的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于小于0，则损失C较小；</li><li>使用距离较大的低维点表示距离较小的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于大于0，则损失C较大。</li></ul><p>这里就存在一个问题：当两个高维点距离很远，而我构造两个距离很近的低维点能够使损失函数更小，却与实际的目的不相符！所以，SNE算法使得高维空间中距离近的点在低维空间中距离仍然很近，但是远的点就嘿嘿嘿了。</p><h1 id="最小化损失函数"><a href="#最小化损失函数" class="headerlink" title="最小化损失函数"></a>最小化损失函数</h1><p>从 $q_{ij}$ 的定义式的分母部分可知，低维空间中点 $y_i$ 选择点 $y_j$ 的概率 $q_{ij}$ 与低维空间中的每一个映射点都有关系（分母起到了normalization的作用），但是求导结果却十分简洁：<br>$$\frac{\partial{C}}{\partial{y_i}}=2\sum_k{(y_i-y_k)[(p_{ik}-q_{ik})+(p_{ki}-q_{ki})]}$$</p><p>想沿着所有点以最陡梯度下降是不现实的，不仅低效，还可能陷入糟糕费解的局部最优。上面的梯度公式右边理论上是针对所有低维映射点进行迭代，但是实际上，相距较远的一堆点间的影响十分小（抽象），在计算时往往可以忽略不计，也就是说：仅仅计算与中心点相距较近的一部分点，即<strong>邻居</strong> ，这也是为什么算法中含有单词neighbour的原因了吧。</p><p>选择中心点的部分较近的邻居参与计算表示，我们只保留了中心点附近区域的特性，而忽略了整体局势，所以说SNE是保留局部特征而非全局特征的算法。这个局部特性主要反应为 $\sigma_i^2$：局部点密集方差小，局部点稀疏方法大。方差确定的方法前面已经陈述了~。</p><h2 id="带动量项的梯度更新"><a href="#带动量项的梯度更新" class="headerlink" title="带动量项的梯度更新"></a>带动量项的梯度更新</h2><p>为了加速优化过程、避免很一般的局部解，可以在每次下降时添加动量项。<strong>动量 (momentum)</strong> 的作用就是在下降到局部最优时，小球仍然具有沿切线方向的分量，这使得小球将继续朝前运动，这会有两种结果：</p><ul><li>小球越过障碍，继续前行；</li><li>小球回退，返回局部最优解；<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/201354.png" alt=""><br>具体的，更新公式如下：<br>$$\gamma^{(t)}=\gamma^{(t-1)}-{\eta}\frac{\partial{C}}{\partial{\gamma}}+\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$$</li></ul><p>式中 $\alpha(t)$ 即动量，动量项 ($\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$) 还与上一次运动幅度有关，直观的看，上一次运动越剧烈，下一次就越刹不住车。</p><h2 id="随机抖动"><a href="#随机抖动" class="headerlink" title="随机抖动"></a>随机抖动</h2><p><strong>随机抖动</strong> (random jitter) 是一种初始化技巧，即将低维空间中的所有数据点初始化在离坐标原点极近的地方。在迭代的过程中，它们将抖抖抖抖抖动直至收敛。尽管还是很慢，不过在节约时间和选择更优局部解时还是有明显提升的。</p><h2 id="模拟退火"><a href="#模拟退火" class="headerlink" title="模拟退火"></a>模拟退火</h2><p>在优化早期给每一步迭代加上高斯噪音，这可以帮助避免不好的局部最优解。随着迭代次数变多，噪音方差将逐渐减小。当方差变化非常慢时，这表明开始形成全局结构。（玄学）</p><p>然而，高斯噪音的数量和衰减速率是十分难以确定的，它们不仅与动量相关，也受学习率的影响。怎么办？多算几次！666</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019-03-27_073917.png" width="100%"></p><blockquote><p><a href="http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf" target="_blank" rel="noopener">Hinton, G. E., &amp; Roweis, S. T. (2003). <strong>Stochastic neighbor embedding</strong>. In Advances in neural information processing systems (pp. 857-864).</a></p></blockquote><p><strong>随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 </p><a id="more"></a><h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}$$</p><p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}} $$<br>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p><h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 k (perplexity)</strong> ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$H(P_i)=-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p><p><strong>熵 $H(P_i)$ 的理解</strong></p><ul><li><strong>不确定性</strong>：熵本身就意味着不确定性，当区域点密集时，中心点位置的不确定性就小；</li><li><strong>能量</strong>：不确定性大意味着能量大，拉不住中心点，它要到处跑；</li><li><strong>有效邻居数</strong>：点密集时中心点的有效邻居就多。</li></ul><h1 id="映射到低维空间"><a href="#映射到低维空间" class="headerlink" title="映射到低维空间"></a>映射到低维空间</h1><p>在低维空间（二维或者三维）确定一点 $y_i$，它与高维空间的点 $x_i$ 对应，我们手动设置点 $y_i$ 的条件概率分布，即固定以 $y_i$ 为中心点的高斯分布对应的方差为 $\frac12$，当 $j{\ne}i$ 时：<br>$$ q_{ij}=q(y_j|y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{k{\ne}i}{\exp{(-||y_i-y_k||^2)}}} $$<br>当j=i时 $q(y_j|y_i)=0$ 。</p><p>此时，如果低维点 $y_i$ 能够正确表示高维点 $x_i$，意味着 $q(y_j|y_i)=p(x_j|x_i)$。为了使两个概率（近似）相等，我们可以最小化<strong>KL散度</strong>。损失函数如下：<br>$$C=\sum_iKL(P_i|Q_i)=\sum_i\sum_jp_{ij}\log\frac{p_{ij}}{q_{ij}}$$</p><ul><li>$P_i$ 表示：给定点 $x_i$，其它所有点的条件概率分布；</li><li>$Q_i$ 表示：给定低维空间映射点 $y_i$，其它所有低维映射点的条件概率分布。</li></ul><p>KL散度又叫<strong>相对熵</strong>，用来度量两个分布间的距离。假设P是真实分布，Q是模型分布，$KL(P|Q)$ 表示用Q表示P分布的数据所需的额外信息。   </p><p><strong>KL散度是不对称的</strong> </p><p>KL散度中包含 $\log\frac{p_{ij}}{q_{ij}}$ 意味着这个映射不是对称的，即：</p><ul><li>使用距离较小的低维点表示距离较大的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于小于0，则损失C较小；</li><li>使用距离较大的低维点表示距离较小的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于大于0，则损失C较大。</li></ul><p>这里就存在一个问题：当两个高维点距离很远，而我构造两个距离很近的低维点能够使损失函数更小，却与实际的目的不相符！所以，SNE算法使得高维空间中距离近的点在低维空间中距离仍然很近，但是远的点就嘿嘿嘿了。</p><h1 id="最小化损失函数"><a href="#最小化损失函数" class="headerlink" title="最小化损失函数"></a>最小化损失函数</h1><p>从 $q_{ij}$ 的定义式的分母部分可知，低维空间中点 $y_i$ 选择点 $y_j$ 的概率 $q_{ij}$ 与低维空间中的每一个映射点都有关系（分母起到了normalization的作用），但是求导结果却十分简洁：<br>$$\frac{\partial{C}}{\partial{y_i}}=2\sum_k{(y_i-y_k)[(p_{ik}-q_{ik})+(p_{ki}-q_{ki})]}$$</p><p>想沿着所有点以最陡梯度下降是不现实的，不仅低效，还可能陷入糟糕费解的局部最优。上面的梯度公式右边理论上是针对所有低维映射点进行迭代，但是实际上，相距较远的一堆点间的影响十分小（抽象），在计算时往往可以忽略不计，也就是说：仅仅计算与中心点相距较近的一部分点，即<strong>邻居</strong> ，这也是为什么算法中含有单词neighbour的原因了吧。</p><p>选择中心点的部分较近的邻居参与计算表示，我们只保留了中心点附近区域的特性，而忽略了整体局势，所以说SNE是保留局部特征而非全局特征的算法。这个局部特性主要反应为 $\sigma_i^2$：局部点密集方差小，局部点稀疏方法大。方差确定的方法前面已经陈述了~。</p><h2 id="带动量项的梯度更新"><a href="#带动量项的梯度更新" class="headerlink" title="带动量项的梯度更新"></a>带动量项的梯度更新</h2><p>为了加速优化过程、避免很一般的局部解，可以在每次下降时添加动量项。<strong>动量 (momentum)</strong> 的作用就是在下降到局部最优时，小球仍然具有沿切线方向的分量，这使得小球将继续朝前运动，这会有两种结果：</p><ul><li>小球越过障碍，继续前行；</li><li>小球回退，返回局部最优解；<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/201354.png" alt=""><br>具体的，更新公式如下：<br>$$\gamma^{(t)}=\gamma^{(t-1)}-{\eta}\frac{\partial{C}}{\partial{\gamma}}+\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$$</li></ul><p>式中 $\alpha(t)$ 即动量，动量项 ($\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$) 还与上一次运动幅度有关，直观的看，上一次运动越剧烈，下一次就越刹不住车。</p><h2 id="随机抖动"><a href="#随机抖动" class="headerlink" title="随机抖动"></a>随机抖动</h2><p><strong>随机抖动</strong> (random jitter) 是一种初始化技巧，即将低维空间中的所有数据点初始化在离坐标原点极近的地方。在迭代的过程中，它们将抖抖抖抖抖动直至收敛。尽管还是很慢，不过在节约时间和选择更优局部解时还是有明显提升的。</p><h2 id="模拟退火"><a href="#模拟退火" class="headerlink" title="模拟退火"></a>模拟退火</h2><p>在优化早期给每一步迭代加上高斯噪音，这可以帮助避免不好的局部最优解。随着迭代次数变多，噪音方差将逐渐减小。当方差变化非常慢时，这表明开始形成全局结构。（玄学）</p><p>然而，高斯噪音的数量和衰减速率是十分难以确定的，它们不仅与动量相关，也受学习率的影响。怎么办？多算几次！666</p>]]></content>
     
     <summary type="html">
     
@@ -55,7 +69,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hinton, G. E., &amp;amp; Roweis, S. T. (2003). &lt;strong&gt;Stochastic neighbor embedding&lt;/strong&gt;. In Advances in neural information processing systems (pp. 857-864).&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE)&lt;/strong&gt; 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。
+&lt;p&gt;&lt;strong&gt;随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE)&lt;/strong&gt; 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 &lt;/p&gt;
     
     </summary>
     
@@ -103,7 +117,7 @@
     <link href="http://chenyin.top/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/20190325-d2ce.html"/>
     <id>http://chenyin.top/机器学习与算法基础/20190325-d2ce.html</id>
     <published>2019-03-25T07:13:10.000Z</published>
-    <updated>2019-03-25T07:14:19.667Z</updated>
+    <updated>2019-04-08T07:31:45.680Z</updated>
     
     <content type="html"><![CDATA[<p>大数据包含了丰富的先验知识，即几乎包含了一切我们感兴趣的信息。但是数据量过大也会使我们在分析时感到茫然无措。特征过多使得我们不可能对单个特征进行详细解析，大部分时候我们是将所有特征当成一个整体进行考虑，或者分析特征之间的关系。对高维数据数据进行预处理是一种不错的选择，此时各种各样的<strong>降维</strong>浓缩技术应运而生。<a id="more"></a></p><p>降维的好处有哪些？</p><ol><li>减少数据维度，存储数据需要的空间也会减少（盘霸可忽略~）；</li><li>低维数据可以减少计算量，缩短模型训练时间；</li><li>很多算法在高维数据上的表现远远没有在低维数据上好；</li><li>去掉冗余特征（强相关特征），提高数据的质量；</li><li>有助于可视化，我们只能形象观察三维及以下的数据！</li></ol><h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>降维总是围绕着减少特征数进行的，根据对特征的操作可分为：</p><ul><li><strong>特征选择</strong>：保留原始特征集的子集，即选取部分原始特征；</li><li><strong>特征提取</strong>：构造不同于原始特征的新特征，新特征往往是原始特征的组合，替代原始特征表达原始数据想表达的信息。<br>特征提取是降维算法研究的核心内容。</li></ul><h1 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h1><p>特征选择只是对每个特征进行评估，去掉不重要的或者选出重要的：</p><ol><li>缺失值比率：按缺失值比率删除特征；</li><li>低方差滤波：删除方差小的特征；</li><li>高相关滤波：只保留高相关特征中的一个；</li><li>随机森林：计算每个特征的重要性；</li><li>前向特征选择：依次增加特征数检验模型性能；</li><li>反向特征消除：依次减少特征数检验模型性能。</li></ol><h1 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h1><p>特征提取才是降维思想的核心内容，降维算法家族枝繁叶茂，先做一个总体分类：<img src="" alt=""></p>]]></content>
     
@@ -435,26 +449,6 @@
     <summary type="html">
     
       &lt;p&gt;修改软件源能大大加快软件更新和下载速度。
-    
-    </summary>
-    
-      <category term="OS学习手册" scheme="http://chenyin.top/categories/OS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu16.04LTS更新R到3.5.x</title>
-    <link href="http://chenyin.top/OS%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/20181122-ad7f.html"/>
-    <id>http://chenyin.top/OS学习手册/20181122-ad7f.html</id>
-    <published>2018-11-21T16:02:52.000Z</published>
-    <updated>2019-03-25T15:04:05.265Z</updated>
-    
-    <content type="html"><![CDATA[<p>重装R时踩得坑。<a id="more"></a></p><p>1、<a href="/Linux/20181122-a661.html">系统换源</a></p><p>2、检查旧版本R</p><p>检查是否有旧版本的R：<code>R --verion</code></p><p>卸载旧版本的R：<code>sudo apt-get remove r-base-core</code></p><p>3、安装R3.5需要先添加源：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-add-repository <span class="string">'deb https://cloud.r-project.org/bin/linux/ubuntu xenial-cran35/'</span></span><br></pre></td></tr></table></figure><p>添加上面这个源意味着在Ubuntu16.04LTS上可以安装R3.5。</p><blockquote><p><strong>xenial</strong> 意为“非洲地松鼠”，Ubuntu的每一个发行版都会有一个<a href="https://zh.wikipedia.org/wiki/Ubuntu发行版列表" target="_blank" rel="noopener">奇怪的名字</a>。</p></blockquote><p>然后更新源：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure><p>4、安装R3.5：</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install r-base r-base-dev</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;重装R时踩得坑。
     
     </summary>
     

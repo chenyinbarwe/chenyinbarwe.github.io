@@ -112,20 +112,20 @@
 
 
 
-<meta name="description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE) 由Hinton在">
+<meta name="description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
 <meta name="keywords" content="降维,非线性降维,SNE,t-SNE,paper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="降维03 - SNE原理">
 <meta property="og:url" content="http://chenyin.top/机器学习与算法基础/20190325-80ae.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE) 由Hinton在">
+<meta property="og:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019-03-27_073917.png">
 <meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019/03/201354.png">
-<meta property="og:updated_time" content="2019-03-29T00:55:53.549Z">
+<meta property="og:updated_time" content="2019-04-08T07:32:59.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="降维03 - SNE原理">
-<meta name="twitter:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE) 由Hinton在">
+<meta name="twitter:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
 <meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/blogImgs/2019-03-27_073917.png">
 
 
@@ -172,6 +172,7 @@
 
 
 
+  
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -314,6 +315,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            照片
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -387,7 +398,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Barwe">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -427,8 +438,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-29T08:55:53+08:00">
-                2019-03-29
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-08T15:32:59+08:00">
+                2019-04-08
               </time>
             
           </span>
@@ -506,7 +517,8 @@
 <blockquote>
 <p><a href="http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf" target="_blank" rel="noopener">Hinton, G. E., &amp; Roweis, S. T. (2003). <strong>Stochastic neighbor embedding</strong>. In Advances in neural information processing systems (pp. 857-864).</a></p>
 </blockquote>
-<p><strong>随机近邻嵌入算法 (Stochastic Neighbour Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 <a id="more"></a></p>
+<p><strong>随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 </p>
+<a id="more"></a>
 <h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}$$</p>
 <p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}} $$<br>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p>
 <h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 k (perplexity)</strong> ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$H(P_i)=-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p>
@@ -692,7 +704,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/uploads/avatar.jpg"
+                src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg"
                 alt="Barwe" />
             
               <p class="site-author-name" itemprop="name">Barwe</p>
@@ -706,7 +718,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -745,39 +757,6 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-battery-three-quarters"></i>
-                阁下充电不
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" title="廖雪峰python" target="_blank">廖雪峰python</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://algs4.cs.princeton.edu/home/" title="算法第四版(java实现)" target="_blank">算法第四版(java实现)</a>
-                  </li>
-                
-              </ul>
-			  <div id="days"></div>
-<script>
-	function show_date_time(){
-		window.setTimeout("show_date_time()", 1000);
-		loveDay = new Date("2018/11/10 23:00:00");
-		today = new Date()
-		var diff = today.getTime()-loveDay.getTime()
-		var diffDays = Math.floor(diff/(24*3600*1000)); 
-		var leftDiff=diff%(24*3600*1000);
-		var diffHours=Math.floor(leftDiff/(3600*1000)); 
-		document.getElementById('days').innerHTML="已经过了" + diffDays +" 天 "+ diffHours + " 小时";
-	}
-	show_date_time();
-</script>
-
-            </div>
-          
 
         </div>
       </section>
@@ -812,7 +791,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">
 
 &copy; 
@@ -838,11 +817,6 @@
 
 
 
-<!--
-
-
-
--->
 
 
 	<div class="footer-custom">

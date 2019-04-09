@@ -101,7 +101,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="BT, ML" />
 
 
 
@@ -170,6 +170,7 @@
 
 
 
+  
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -312,6 +313,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            照片
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -385,7 +396,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Barwe">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -646,7 +657,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/uploads/avatar.jpg"
+                src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg"
                 alt="Barwe" />
             
               <p class="site-author-name" itemprop="name">Barwe</p>
@@ -660,7 +671,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -699,39 +710,6 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-battery-three-quarters"></i>
-                阁下充电不
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" title="廖雪峰python" target="_blank">廖雪峰python</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://algs4.cs.princeton.edu/home/" title="算法第四版(java实现)" target="_blank">算法第四版(java实现)</a>
-                  </li>
-                
-              </ul>
-			  <div id="days"></div>
-<script>
-	function show_date_time(){
-		window.setTimeout("show_date_time()", 1000);
-		loveDay = new Date("2018/11/10 23:00:00");
-		today = new Date()
-		var diff = today.getTime()-loveDay.getTime()
-		var diffDays = Math.floor(diff/(24*3600*1000)); 
-		var leftDiff=diff%(24*3600*1000);
-		var diffHours=Math.floor(leftDiff/(3600*1000)); 
-		document.getElementById('days').innerHTML="已经过了" + diffDays +" 天 "+ diffHours + " 小时";
-	}
-	show_date_time();
-</script>
-
-            </div>
-          
 
         </div>
       </section>
@@ -766,7 +744,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">
 
 &copy; 
@@ -792,11 +770,6 @@
 
 
 
-<!--
-
-
-
--->
 
 
 	<div class="footer-custom">
