@@ -1,4 +1,775 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta name="baidu-site-verification" content="93qdDuu84i"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet"><link href="[object Object]/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"><link href="/css/main.css?v=5.1.4" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hj.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hj.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content=",,"><meta name="description" content="PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了线性代数之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。"><meta name="keywords" content="降维,PCA"><meta property="og:type" content="website"><meta property="og:title" content="降维02 - 主成分分析 (PCA)"><meta property="og:url" content="http://chenyin.top/BACKUP/posts_2019_04_15_20_54_24/02.机器学习与算法基础/降维02-主成分分析-PCA.html"><meta property="og:site_name" content="阔落煮酒"><meta property="og:description" content="PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了线性代数之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/19.png"><meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/20.png"><meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/21.png"><meta property="og:updated_time" content="2019-04-14T16:02:20.109Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="降维02 - 主成分分析 (PCA)"><meta name="twitter:description" content="PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了线性代数之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。"><meta name="twitter:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/19.png"><script id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"5.1.4",sidebar:{position:"left",display:"hide",offset:12,b2t:!1,scrollpercent:!0,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://chenyin.top/BACKUP/posts_2019_04_15_20_54_24/02.机器学习与算法基础/降维02-主成分分析-PCA.html"><title>降维02 - 主成分分析 (PCA) | 阔落煮酒</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" class="fork-me-on-github" style="position:absolute;border:0" aria-hidden="true"><path d="M0 0 115 115 130 115 142 142 250 250 250 0Z"></path><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4L133.7 101.6C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">阔落煮酒</span><span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle"></p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-reading"><a href="/reading/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i><br>阅读</a></li><li class="menu-item menu-item-cargo"><a href="/cargo/" rel="section"><i class="menu-item-icon fa fa-fw fa-truck"></i><br>仓库</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i></span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><div class="post-block page"><header class="post-header"><h1 class="post-title" itemprop="name headline">降维02 - 主成分分析 (PCA)</h1></header><div class="post-body"><p>PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了<strong>线性代数</strong>之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。<a id="more"></a></p><p>PCA是最易于理解的<strong>特征提取</strong>过程：通过对原始特征的<strong>线性组合</strong>构造新的“特征”，这些特征不同于原始特征，但是又能与原始特征一样表达原始数据的信息。</p><p><strong>PCA (Primary Component Analysis, 主成分分析)</strong> 为什么叫做主成分分析呢？因为PCA构造出的新特征地位并不是等同的，即这些新特征的重要程度存在差异：</p><ul><li><strong>第一主成分 (the first component)</strong> 是新特征中最重要的特征，它在所有新特征中方差最大，这意味着它对数据变异的贡献是最大的；</li><li><strong>第二主成分 (the second component)</strong> 在保证不影响第一主成分的基础上试图解释剩下的变异（即总变异 - 第一主成分引起的变异）；</li><li><strong>第三主成分 (the third component)</strong> 在不保证第一和第二主成分呢的基础上试图解释剩下的变异（即总变异 - 第一主成分引起的变异 - 第二主成分引起的变异）;</li><li>依次类推……</li></ul><h1 id="线代原理"><a href="#线代原理" class="headerlink" title="线代原理"></a>线代原理</h1><p>预备知识：线性代数（矩阵运算、特征值&amp;特征向量、特征值分解）</p><h2 id="可对角化"><a href="#可对角化" class="headerlink" title="可对角化"></a>可对角化</h2><p>如果一个n阶方阵A相似于对角矩阵，即存在可逆矩阵$P$使得$P^{-1}AP$是对角矩阵，则称方阵A是<strong>可对角化</strong>的。</p><p><strong>n阶方阵A可对角化的充要条件是A每个特征值的几何重数与代数重数相等</strong>：<strong>代数重数</strong>指<strong>特征多项式</strong>中该特征值的幂次，<strong>几何重数</strong>指特征值对应的线性无关的特征向量的个数。</p><p><strong>n阶方阵A可对角化的充要条件是A有n个线性无关的特征向量</strong>：几何重数与代数重数相等意味着n个线性无关的特征向量。</p><p>即使方阵A可逆也不能保证每个特征值的代数重数与几何重数相等，因此A可逆不是A可对角化的充要条件！</p><h2 id="特征值分解"><a href="#特征值分解" class="headerlink" title="特征值分解"></a>特征值分解</h2><p>如果矩阵A是一个<strong>可对角化</strong>的方阵，它就可以进行特征值分解，即A可表示为：<br>$$A=Q{\Lambda}Q^{-1}$$<br>其中</p><ul><li>$Q$ 是n阶方阵，它的n个列向量是方阵A的n个特征向量</li><li>$\Lambda$ 是对角方阵，对角线元素是方阵A的特征值，其位置与 $Q$ 中的特征向量位置相对应</li></ul><p>特征值分解的应用？求逆。<br>如果方阵A是<strong>非奇异矩阵</strong>（即可以进行特征值分解且特征值不含0），则 $A^{-1}=Q{\Lambda}^{-1}Q^{-1}$，其中 $[{\Lambda}^{-1}]_{ii}=\frac1{\lambda_i}$。</p><h2 id="奇异值分解"><a href="#奇异值分解" class="headerlink" title="奇异值分解"></a>奇异值分解</h2><p>特征值分解对A的要求格外严格：可逆、特征值不含0、方阵……<br>放松特征值分解的限制，将A扩展到任意 $m{\times}n$ 的矩阵即得到 <strong>奇异值分解 (Singular Value Decomposition, SVD)</strong> 。</p><p>假设M是定义在<strong>实数域</strong>或者<strong>复数域</strong>上的 $m{\times}n$ 阶的矩阵：<br>$$M=U{\Sigma}V^\ast$$<br>其中</p><ul><li>U是 $m{\times}m$ 阶<strong>酉矩阵</strong>：U的m个列向量实际上是 $M^{\ast}M$ 的特征向量，称为M的<strong>左奇异向量</strong>。</li><li>$\Sigma$ 是 $m{\times}n$ 阶<strong>非负实数对角矩阵</strong>：对角线元素称为M的<strong>奇异值</strong>，一般情况下奇异值按<strong>从大到小</strong>的顺序排列！</li><li>$V^\ast$ 是 $V$ 的<strong>共轭转置</strong>，是 $n{\times}n$ 阶<strong>酉矩阵</strong>：V的n个列向量实际上是 $MM^\ast$ 的特征向量，称为M的<strong>右奇异向量</strong>。</li></ul><blockquote><p><strong>共轭转置</strong>：共轭转置与转置是两个概念，当矩阵定义在实数域上时二者结果相同，矩阵A的共轭转置记为 $A^\ast$，定义如下：<br>$$A^\ast=(\overline{A})^T=\overline{A^T}$$<br>其中，$\overline{A}$ 表示对A的元素<strong>复共轭</strong>，当A定义在实数域时 $\overline{A}=A$。</p></blockquote><p>当矩阵M定义在实数域时有：<br>$$M=U{\Sigma}V^T$$<br>我们在应用SVD时一般都是定义在实数域上的哟~</p><h2 id="主成分分析"><a href="#主成分分析" class="headerlink" title="主成分分析"></a>主成分分析</h2><p>上面提到了对于任意 $m{\times}n$ 阶矩阵M的SVD分解：<br>$$M_{m{\times}n}=U_{m{\times}m}{\Sigma_{m{\times}n}}V_{n{\times}n}^T$$<br>直观图如下（这里假设样本数量m多于特征数量n，这意味着M有n个奇异值）：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/19.png" alt=""><br>其中 $\Sigma$ 矩阵很有意思，当m&gt;n时，矩阵 $\Sigma_{m{\times}n}$ 中只有子矩阵 $\Sigma_{n{\times}n}$ 的对角线上的值不为0，如下图所示：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/20.png" alt=""></p><p>以scRNA测序为例：假设在表达谱矩阵中，一行表示一个细胞中不同基因的表达量，一列表示一个基因在不同细胞中的表达量。这与我们的习惯（一列表示一个细胞，一行表示一个基因）有所不同！</p><p>对应到上述SVD分解式我们发现，n表示细胞数量，m表示基因数量。我们降维的结果肯定是要保证细胞总数m不变，而将基因数目从n减小到k。</p><p>具体的，取 $\Sigma$ 中最大的k个奇异值，即取 $\Sigma_{k{\times}k}$ 子矩阵，相应的取U的前k列和V的前k列（即$V^\ast$的前k行），即：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/21.png" alt=""><br>此时<br>$$M_{m{\times}n}=U_{m{\times}k}{\Sigma_{k{\times}k}}V_{k{\times}n}^T$$<br>上式中的 $U_{m{\times}k}$ 就是 $M_{m{\times}n}$ 从n维特征空间降到k维特征空间的结果。注意矩阵 $U_{m{\times}k}$ 的k个列向量并不在矩阵 $M_{m{\times}n}$ 中，而是M中的n个列向量线性组合的结果。</p><h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in python</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br></pre></td></tr></table></figure></div></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg" alt="Barwe"><p class="site-author-name" itemprop="name">Barwe</p><p class="site-description motion-element" itemprop="description">青梅煮茶，阔落煮酒</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">80</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">12</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">17</span> <span class="site-state-item-name">标签</span></a></div></nav></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线代原理"><span class="nav-number">1.</span> <span class="nav-text">线代原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可对角化"><span class="nav-number">1.1.</span> <span class="nav-text">可对角化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征值分解"><span class="nav-number">1.2.</span> <span class="nav-text">特征值分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#奇异值分解"><span class="nav-number">1.3.</span> <span class="nav-text">奇异值分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主成分分析"><span class="nav-number">1.4.</span> <span class="nav-text">主成分分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; <span itemprop="copyrightYear">2019</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">阔落煮酒</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-area-chart"></i></span> <span class="post-meta-item-text">站点总字数：</span> <span title="Site words total count">64.9k</span></div><div class="footer-custom">流光容易把人抛，红了樱桃，绿了芭蕉</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script>"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script src="/lib/jquery/index.js?v=2.1.3"></script><script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script src="/lib/canvas-nest/canvas-nest.min.js"></script><script src="/js/src/utils.js?v=5.1.4"></script><script src="/js/src/motion.js?v=5.1.4"></script><script src="/js/src/affix.js?v=5.1.4"></script><script src="/js/src/schemes/pisces.js?v=5.1.4"></script><script src="/js/src/scrollspy.js?v=5.1.4"></script><script src="/js/src/post-details.js?v=5.1.4"></script><script src="/js/src/bootstrap.js?v=5.1.4"></script><script>!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script>// Popup Window;
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+    <meta name="baidu-site-verification" content="93qdDuu84i" />
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="[object Object]/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hj.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hj.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content=",," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了线性代数之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。">
+<meta name="keywords" content="降维,PCA">
+<meta property="og:type" content="website">
+<meta property="og:title" content="降维02 - 主成分分析 (PCA)">
+<meta property="og:url" content="http://chenyin.top/BACKUP/posts_2019_04_15_20_54_24/02.机器学习与算法基础/降维02-主成分分析-PCA.html">
+<meta property="og:site_name" content="阔落煮酒">
+<meta property="og:description" content="PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了线性代数之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/19.png">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/20.png">
+<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/21.png">
+<meta property="og:updated_time" content="2019-04-14T16:02:20.109Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="降维02 - 主成分分析 (PCA)">
+<meta name="twitter:description" content="PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了线性代数之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。">
+<meta name="twitter:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/19.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chenyin.top/BACKUP/posts_2019_04_15_20_54_24/02.机器学习与算法基础/降维02-主成分分析-PCA.html"/>
+
+
+
+
+
+  <title>降维02 - 主成分分析 (PCA) | 阔落煮酒</title>
+  
+
+
+
+
+
+
+
+
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<!-- fork me on github begin -->
+			<!-- 左上角 -->
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250"
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0;" aria-hidden="true">
+					 <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+					 <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+					 <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+				</svg>
+			</a>
+			<style>
+				.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+				@media (max-width:500px){
+					.github-corner:hover .octo-arm{animation:none}
+					.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				}
+			</style>
+			<!-- 左上角
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250" 
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0; transform: scale(-1, 1);" aria-hidden="true">
+						<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+						<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+						<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+					</svg>
+					<style>
+						.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+						@media (max-width:500px){
+							.github-corner:hover .octo-arm{animation:none}
+							.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						}
+					</style>
+				</a>
+			-->
+		<!-- fork me on github end -->
+		<header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阔落煮酒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reading">
+          <a href="/reading/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            阅读
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cargo">
+          <a href="/cargo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-truck"></i> <br />
+            
+            仓库
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+		
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">降维02 - 主成分分析 (PCA)</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+		
+        
+          <p>PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了<strong>线性代数</strong>之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。<a id="more"></a></p>
+<p>PCA是最易于理解的<strong>特征提取</strong>过程：通过对原始特征的<strong>线性组合</strong>构造新的“特征”，这些特征不同于原始特征，但是又能与原始特征一样表达原始数据的信息。</p>
+<p><strong>PCA (Primary Component Analysis, 主成分分析)</strong> 为什么叫做主成分分析呢？因为PCA构造出的新特征地位并不是等同的，即这些新特征的重要程度存在差异：</p>
+<ul>
+<li><strong>第一主成分 (the first component)</strong> 是新特征中最重要的特征，它在所有新特征中方差最大，这意味着它对数据变异的贡献是最大的；</li>
+<li><strong>第二主成分 (the second component)</strong> 在保证不影响第一主成分的基础上试图解释剩下的变异（即总变异 - 第一主成分引起的变异）；</li>
+<li><strong>第三主成分 (the third component)</strong> 在不保证第一和第二主成分呢的基础上试图解释剩下的变异（即总变异 - 第一主成分引起的变异 - 第二主成分引起的变异）;</li>
+<li>依次类推……</li>
+</ul>
+<h1 id="线代原理"><a href="#线代原理" class="headerlink" title="线代原理"></a>线代原理</h1><p>预备知识：线性代数（矩阵运算、特征值&amp;特征向量、特征值分解）</p>
+<h2 id="可对角化"><a href="#可对角化" class="headerlink" title="可对角化"></a>可对角化</h2><p>如果一个n阶方阵A相似于对角矩阵，即存在可逆矩阵$P$使得$P^{-1}AP$是对角矩阵，则称方阵A是<strong>可对角化</strong>的。</p>
+<p><strong>n阶方阵A可对角化的充要条件是A每个特征值的几何重数与代数重数相等</strong>：<strong>代数重数</strong>指<strong>特征多项式</strong>中该特征值的幂次，<strong>几何重数</strong>指特征值对应的线性无关的特征向量的个数。</p>
+<p><strong>n阶方阵A可对角化的充要条件是A有n个线性无关的特征向量</strong>：几何重数与代数重数相等意味着n个线性无关的特征向量。</p>
+<p>即使方阵A可逆也不能保证每个特征值的代数重数与几何重数相等，因此A可逆不是A可对角化的充要条件！</p>
+<h2 id="特征值分解"><a href="#特征值分解" class="headerlink" title="特征值分解"></a>特征值分解</h2><p>如果矩阵A是一个<strong>可对角化</strong>的方阵，它就可以进行特征值分解，即A可表示为：<br>$$A=Q{\Lambda}Q^{-1}$$<br>其中</p>
+<ul>
+<li>$Q$ 是n阶方阵，它的n个列向量是方阵A的n个特征向量</li>
+<li>$\Lambda$ 是对角方阵，对角线元素是方阵A的特征值，其位置与 $Q$ 中的特征向量位置相对应</li>
+</ul>
+<p>特征值分解的应用？求逆。<br>如果方阵A是<strong>非奇异矩阵</strong>（即可以进行特征值分解且特征值不含0），则 $A^{-1}=Q{\Lambda}^{-1}Q^{-1}$，其中 $[{\Lambda}^{-1}]_{ii}=\frac1{\lambda_i}$。</p>
+<h2 id="奇异值分解"><a href="#奇异值分解" class="headerlink" title="奇异值分解"></a>奇异值分解</h2><p>特征值分解对A的要求格外严格：可逆、特征值不含0、方阵……<br>放松特征值分解的限制，将A扩展到任意 $m{\times}n$ 的矩阵即得到 <strong>奇异值分解 (Singular Value Decomposition, SVD)</strong> 。</p>
+<p>假设M是定义在<strong>实数域</strong>或者<strong>复数域</strong>上的 $m{\times}n$ 阶的矩阵：<br>$$M=U{\Sigma}V^\ast$$<br>其中</p>
+<ul>
+<li>U是 $m{\times}m$ 阶<strong>酉矩阵</strong>：U的m个列向量实际上是 $M^{\ast}M$ 的特征向量，称为M的<strong>左奇异向量</strong>。</li>
+<li>$\Sigma$ 是 $m{\times}n$ 阶<strong>非负实数对角矩阵</strong>：对角线元素称为M的<strong>奇异值</strong>，一般情况下奇异值按<strong>从大到小</strong>的顺序排列！</li>
+<li>$V^\ast$ 是 $V$ 的<strong>共轭转置</strong>，是 $n{\times}n$ 阶<strong>酉矩阵</strong>：V的n个列向量实际上是 $MM^\ast$ 的特征向量，称为M的<strong>右奇异向量</strong>。</li>
+</ul>
+<blockquote>
+<p><strong>共轭转置</strong>：共轭转置与转置是两个概念，当矩阵定义在实数域上时二者结果相同，矩阵A的共轭转置记为 $A^\ast$，定义如下：<br>$$A^\ast=(\overline{A})^T=\overline{A^T}$$<br>其中，$\overline{A}$ 表示对A的元素<strong>复共轭</strong>，当A定义在实数域时 $\overline{A}=A$。</p>
+</blockquote>
+<p>当矩阵M定义在实数域时有：<br>$$M=U{\Sigma}V^T$$<br>我们在应用SVD时一般都是定义在实数域上的哟~</p>
+<h2 id="主成分分析"><a href="#主成分分析" class="headerlink" title="主成分分析"></a>主成分分析</h2><p>上面提到了对于任意 $m{\times}n$ 阶矩阵M的SVD分解：<br>$$M_{m{\times}n}=U_{m{\times}m}{\Sigma_{m{\times}n}}V_{n{\times}n}^T$$<br>直观图如下（这里假设样本数量m多于特征数量n，这意味着M有n个奇异值）：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/19.png" alt=""><br>其中 $\Sigma$ 矩阵很有意思，当m&gt;n时，矩阵 $\Sigma_{m{\times}n}$ 中只有子矩阵 $\Sigma_{n{\times}n}$ 的对角线上的值不为0，如下图所示：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/20.png" alt=""></p>
+<p>以scRNA测序为例：假设在表达谱矩阵中，一行表示一个细胞中不同基因的表达量，一列表示一个基因在不同细胞中的表达量。这与我们的习惯（一列表示一个细胞，一行表示一个基因）有所不同！</p>
+<p>对应到上述SVD分解式我们发现，n表示细胞数量，m表示基因数量。我们降维的结果肯定是要保证细胞总数m不变，而将基因数目从n减小到k。</p>
+<p>具体的，取 $\Sigma$ 中最大的k个奇异值，即取 $\Sigma_{k{\times}k}$ 子矩阵，相应的取U的前k列和V的前k列（即$V^\ast$的前k行），即：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/21.png" alt=""><br>此时<br>$$M_{m{\times}n}=U_{m{\times}k}{\Sigma_{k{\times}k}}V_{k{\times}n}^T$$<br>上式中的 $U_{m{\times}k}$ 就是 $M_{m{\times}n}$ 从n维特征空间降到k维特征空间的结果。注意矩阵 $U_{m{\times}k}$ 的k个列向量并不在矩阵  $M_{m{\times}n}$ 中，而是M中的n个列向量线性组合的结果。</p>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in python</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br></pre></td></tr></table></figure>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div>
+    </div>
+
+  
+
+
+ 
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg"
+                alt="Barwe" />
+            
+              <p class="site-author-name" itemprop="name">Barwe</p>
+              <p class="site-description motion-element" itemprop="description">青梅煮茶，阔落煮酒</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线代原理"><span class="nav-number">1.</span> <span class="nav-text">线代原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可对角化"><span class="nav-number">1.1.</span> <span class="nav-text">可对角化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征值分解"><span class="nav-number">1.2.</span> <span class="nav-text">特征值分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#奇异值分解"><span class="nav-number">1.3.</span> <span class="nav-text">奇异值分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主成分分析"><span class="nav-number">1.4.</span> <span class="nav-text">主成分分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+
+&copy; 
+<span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阔落煮酒</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      
+	  <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="Site words total count">64.9k</span>
+  
+</div>
+
+
+
+
+
+
+	<div class="footer-custom">
+		流光容易把人抛，红了樱桃，绿了芭蕉
+	</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
     var isfetched = false;
     var isXml = true;
     // Search DB path;
@@ -311,15 +1082,48 @@
       if (shouldDismissSearchPopup) {
         onPopupClose();
       }
-    });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
         tex2jax: {
           inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
           processEscapes: true,
           skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
-      });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
-      });</script><script src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

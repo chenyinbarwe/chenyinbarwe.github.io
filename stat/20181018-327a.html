@@ -1,4 +1,999 @@
-<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta name="baidu-site-verification" content="93qdDuu84i"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet"><link href="[object Object]/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet"><link href="/css/main.css?v=5.1.4" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hj.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hj.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="UCAS生物统计与实验设计,"><meta name="description" content="不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！"><meta name="keywords" content="UCAS生物统计与实验设计"><meta property="og:type" content="article"><meta property="og:title" content="假设检验-显著性假设检验"><meta property="og:url" content="http://chenyin.top/stat/20181018-327a.html"><meta property="og:site_name" content="阔落煮酒"><meta property="og:description" content="不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/02.png"><meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/03.png"><meta property="og:updated_time" content="2019-04-14T16:02:20.170Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="假设检验-显著性假设检验"><meta name="twitter:description" content="不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！"><meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/02.png"><script id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"5.1.4",sidebar:{position:"left",display:"hide",offset:12,b2t:!1,scrollpercent:!0,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://chenyin.top/stat/20181018-327a.html"><title>假设检验-显著性假设检验 | 阔落煮酒</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" class="fork-me-on-github" style="position:absolute;border:0" aria-hidden="true"><path d="M0 0 115 115 130 115 142 142 250 250 250 0Z"></path><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4L133.7 101.6C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">阔落煮酒</span><span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle"></p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-reading"><a href="/reading/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i><br>阅读</a></li><li class="menu-item menu-item-cargo"><a href="/cargo/" rel="section"><i class="menu-item-icon fa fa-fw fa-truck"></i><br>仓库</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i></span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://chenyin.top/stat/20181018-327a.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Barwe"><meta itemprop="description" content=""><meta itemprop="image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="阔落煮酒"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">假设检验-显著性假设检验</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T15:35:04+08:00">2018-10-18</time> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span> <span class="post-meta-item-text">更新于&#58;</span> <time title="更新于" itemprop="dateModified" datetime="2019-04-15T00:02:20+08:00">2019-04-15</time></span> <span class="post-category"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/stat/" itemprop="url" rel="index"><span itemprop="name">统计学基础</span></a></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span> <span class="post-meta-item-text">字数统计&#58;</span> <span title="字数统计">1.8k</span></div></div></header><div class="post-body" itemprop="articleBody"><p>不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！<a id="more"></a></p><h1 id="1-单样本平均数-bar-x-的差异显著性检验"><a href="#1-单样本平均数-bar-x-的差异显著性检验" class="headerlink" title="1. 单样本平均数$\bar{x}$的差异显著性检验"></a>1. <strong>单样本平均数$\bar{x}$的差异显著性检验</strong></h1><p>这里指的实际上是一个样本（的平均数）和总体（的平均数）间的差异显著性，因为我们只有一个样本，这就要求总体参数（这里是均值）已知，这通常是一个理论值、经验值或者期望值。</p><h2 id="1-大样本（n≥30）的均数检验"><a href="#1-大样本（n≥30）的均数检验" class="headerlink" title="(1). 大样本（n≥30）的均数检验"></a>(1). <strong>大样本（n≥30）的均数检验</strong></h2><p><strong>大样本</strong>通常指的是n≥30，此时<strong>样本的均值</strong>将服从于<strong>正态分布</strong>，我们可以将其标准化为<strong>标准正态分布</strong>，进而使用<strong>u检验</strong>进行假设检验。</p><h3 id="a-总体方差-sigma-2-已知时"><a href="#a-总体方差-sigma-2-已知时" class="headerlink" title="a. 总体方差$\sigma^2$已知时"></a>a. <strong>总体方差$\sigma^2$已知时</strong></h3><p>总体方差$\sigma^2$已知时直接计算相应的u值：</p><p>$$\sigma_{\bar{x}}=\sqrt{\frac{\sigma^2}{n}}=\frac{\sigma}{\sqrt{n}}$$</p><p>$$u=\frac{\bar{x}-\mu_0}{\sigma_{\bar{x}}}=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}{\sim}N(0,1)$$</p><p>式中$\bar{x}$是<strong>样本均值</strong>，$\mu_0$是<strong>总体均值</strong>，$\sigma$是<strong>总体方差</strong>，$n$是<strong>样本容量</strong>。</p><h3 id="b-总体方差-sigma-2-未知时"><a href="#b-总体方差-sigma-2-未知时" class="headerlink" title="b. 总体方差$\sigma^2$未知时"></a>b. <strong>总体方差$\sigma^2$未知时</strong></h3><p>在<strong>大样本</strong>的条件下直接用<strong>样本方差$s^2$</strong>代替<strong>总体方差$\sigma^2$</strong>，计算u值的方法同上：</p><p>$$s_{\bar{x}}=\sqrt{\frac{s^2}{n}}=\frac{s}{\sqrt{n}}$$</p><p>$$u=\frac{\bar{x}-\mu_0}{s_{\bar{x}}}=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}{\sim}N(0,1)$$</p><p>样本方差$s^2$的计算：</p><p>$$s^2=\frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\bar{x})^2}$$</p><h2 id="2-小样本（n-lt-30）的均数检验"><a href="#2-小样本（n-lt-30）的均数检验" class="headerlink" title="(2). 小样本（n&lt;30）的均数检验"></a>(2). <strong>小样本（n&lt;30）的均数检验</strong></h2><p>小样本只能使用<strong>t检验</strong>，此时我们要求的是<strong>t值</strong>而不是u值。</p><p>小样本的方差$s^2$与总体的方差$\sigma^2$往往差距较大。</p><p>t检验时查临界值表依据的是自由度<strong>df</strong>，这个值通常是n-1。</p><p>$$s^2=\frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\bar{x})^2}$$</p><p>$$s_{\bar{x}}=\sqrt{\frac{s^2}{n}}=\frac{s}{\sqrt{n}}$$</p><p>$$t=\frac{\bar{x}-\mu_0}{s_{\bar{x}}}=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}{\sim}t(n-1)$$</p><hr><h1 id="2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验"><a href="#2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验" class="headerlink" title="2. 两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验"></a>2. <strong>两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验</strong></h1><h2 id="1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验"><a href="#1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验" class="headerlink" title="(1). 两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验"></a>(1). <strong>两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验</strong></h2><p>当两个样本都是<strong>大样本</strong>时，与单样本检验类似，仍可以使用<strong>u检验</strong>。</p><h3 id="a-如果两个样本的方差-sigma-1-和-sigma-2-已知"><a href="#a-如果两个样本的方差-sigma-1-和-sigma-2-已知" class="headerlink" title="a. 如果两个样本的方差$\sigma^1$和$\sigma^2$已知"></a>a. <strong>如果两个样本的方差$\sigma^1$和$\sigma^2$已知</strong></h3><p>$$\sigma_{\bar{x_1}-\bar{x_2}}=\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$$</p><p>$$u=\frac{\bar{x_1}-\bar{x_2}}{\sigma_{\bar{x_1}-\bar{x_2}}}{\sim}N(0,1)$$</p><h3 id="b-如果两个样本的方差-sigma-1-和-sigma-2-未知"><a href="#b-如果两个样本的方差-sigma-1-和-sigma-2-未知" class="headerlink" title="b. 如果两个样本的方差$\sigma^1$和$\sigma^2$未知"></a>b. <strong>如果两个样本的方差$\sigma^1$和$\sigma^2$未知</strong></h3><p>使用$s_{\bar{x_1}-\bar{x_2}}$来代替$\sigma_{\bar{x_1}-\bar{x_2}}$:</p><p>$$s_{\bar{x_1}-\bar{x_2}}=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$</p><p>$$u=\frac{\bar{x_1}-\bar{x_2}}{s_{\bar{x_1}-\bar{x_2}}}{\sim}N(0,1)$$</p><h2 id="2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验"><a href="#2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验" class="headerlink" title="(2). 两个小样本（$n_1\le30$且$n_2\le30$）的均数检验"></a>(2). <strong>两个小样本（$n_1\le30$且$n_2\le30$）的均数检验</strong></h2><p>小样本使用t检验。</p><p>按照实验设计的不同，两个样本可以是<strong>独立样本</strong>，也可以是<strong>配对样本</strong>。</p><h3 id="A-配对样本均数的t检验"><a href="#A-配对样本均数的t检验" class="headerlink" title="A. 配对样本均数的t检验"></a><strong>A. 配对样本均数的t检验</strong></h3><p>此时两组数据将形成对子，因此两个样本的样本容量是一样的，即$n_1=n_2$。</p><p>配对可以减少<strong>个体差异</strong>对实验的影响，但是也会增加数据处理的复杂度。</p><p>配对情况通常有以下三类：</p><ol><li>两个相似个体组成一对进行不同的实验处理：此时并没有完全消除个体差异的影响。</li><li>同一个个体同时进行两种不同的处理：处理的空间位置不同。</li><li>同一个个体先后进行两种不同的处理：不同时间个体的状态可能不同。</li></ol><p>简单理解就是：第一类使用相似的两个个体，第二类同时使用同一个个体不同的部位，第三类先后使用同一个体相同的部位。</p><p>计算过程如下：</p><p>$$d_i=x_i-y_i$$</p><p>$$\bar{d}=\frac1n\sum_{i=1}^{n}d_i$$</p><p>$$s_d^2=\frac{1}{n-1}\sum_{i=1}^{n}(d_i-\bar{d})^2$$</p><p>$$t=\frac{\bar{d}}{s_d/\sqrt{n}}$$</p><p>$$df=n-1$$</p><p>查<strong>t检验临界值表</strong>时注意使用df值而不是n值。</p><h3 id="B-独立样本均数的t检验"><a href="#B-独立样本均数的t检验" class="headerlink" title="B. 独立样本均数的t检验"></a><strong>B. 独立样本均数的t检验</strong></h3><p>对于独立样本不存在配对情况，因此$n_1$和$n_2$往往不同。</p><p>两独立样本对应的<strong>总体方差</strong>可能不同，因此：</p><h4 id="a-当两样本方差相同或者假设相同时"><a href="#a-当两样本方差相同或者假设相同时" class="headerlink" title="(a). 当两样本方差相同或者假设相同时"></a><strong>(a). 当两样本方差相同或者假设相同时</strong></h4><p>此时计算自由度$v=n_1+n_2-2$</p><p>计算两个样本的均值$\bar{x_1}$和$\bar{x_2}$、方差$S_1^2$和$S_2^2$。</p><p>$$S_c^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{v}$$</p><p>$$S_{\overline{X_1}-\overline{X_2}}=\sqrt{(\frac{1}{n_1}+\frac{1}{n_2})S_c^2}$$</p><p>$$t=\frac{\overline{x_1}-\overline{x_2}}{S_{\overline{X_1}-\overline{X_2}}}$$</p><h4 id="b-经过F检验两样本方差不同时"><a href="#b-经过F检验两样本方差不同时" class="headerlink" title="(b). 经过F检验两样本方差不同时"></a><strong>(b). 经过F检验两样本方差不同时</strong></h4><p>如果$n_1=n_2=n$:</p><p>计算方法与假设方差相同时一致，只是自由度为$n-1$而不是$2n-2$。</p><p>没看懂，先抄下来……</p><hr><h1 id="3-u分布与t分布的区别和联系"><a href="#3-u分布与t分布的区别和联系" class="headerlink" title="3. u分布与t分布的区别和联系"></a>3. <strong>u分布与t分布的区别和联系</strong></h1><p>u检验理论上要求大样本（即$n\to+\infty$），但是这在实际情况中是不可能的，所以教科书设置标准为n=30。</p><p>按照<a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86" target="_blank" rel="noopener"><strong>中心极限定理</strong></a>：在适当的条件下，大量相互独立随机变量的均值经适当标准化后<strong>依分布收敛</strong>于正态分布。这就是说，只有在大（无穷）样本时，样本的均值才会服从正态分布。按照正态分布的概率密度函数：</p><p>$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2{\sigma}^2}}$$</p><p>它只与总体的参数$\mu$和$\sigma$有关，而与样本容量n无关。</p><p>有限样本特别是小样本下样本均值是不严格服从正态分布的，此时有个更好的分布可以刻画样本均值，这就是t分布。</p><p>$$f(t)=\frac{\Gamma(\frac{\nu+1}{2})}{\sqrt{\nu\pi}\Gamma(\frac{\nu}{2})}(1+\frac{t^2}{\nu})^{\frac{-(\nu+1)}{2}}$$</p><p>$$\nu=n-1$$</p><p>它只与样本容量n有关！</p><p>但是请注意，当$n\to+\infty$时，t分布将会十分接近<strong>标准正态分布</strong>，有图为证：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/02.png" alt=""></p><p>所以我们可以说，<strong>标准正态分布</strong>只是<strong>t分布</strong>在$n\to+\infty$时的一个特例！</p><p>因此在有限样本容量情况下，t检验应该更合理和精确，所以在t检验可行的情况下应该优先采用t检验。什么时候不可行呢？t检验是要根据自由度查表的，如果自由度值不合适导致无法查表，此时就比较尴尬了。也不知道现在这个问题是怎么解决的~。</p><p>下面是一张常见的<strong>t分布临界值表</strong>，我们可以发现当自由度超过30以后就不连续了~（不是绝对的，但道理大抵如此吧）</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/03.png" alt=""></p><p>同时由上图我们知道，当n=30的时候，t分布和u分布已经十分近似了，所以才有了这个<strong>样本容量大于30时用u检验</strong>的规则。</p><p>所以</p><p>▶ u检验适用于大样本的情景，t检验适用于小样本的情景。</p><p>▶ t分布更加符合有限样本的场景，理论上t检验更加精确。</p><hr><h1 id="4-两独立样本的方差的齐性检验"><a href="#4-两独立样本的方差的齐性检验" class="headerlink" title="4. 两独立样本的方差的齐性检验"></a>4. <strong>两独立样本的方差的齐性检验</strong></h1><p>原假设$H_0$: $\sigma_1=\sigma_2$ (方差齐性)</p><p>备择假设$H_1$: $\sigma_1\ne\sigma_2$ (方差不齐性)</p><p>$$F=\frac{max(S_1^2,S_2^2)}{min(S_1^2,S_2^2)}$$</p><p>$$v_1=n_1-1$$</p><p>$$v_2=n_2-1$$</p><p>查<strong>F检验临界值表</strong>。</p></div><div></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束！<i class="fa fa-paw"></i>没想到吧？-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/UCAS生物统计与实验设计/" rel="tag"><i class="fa fa-tag"></i> UCAS生物统计与实验设计</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/stat/20181017-aa04.html" rel="prev" title="方差分析1-基本原理、F检验、多重比较"><i class="fa fa-chevron-left"></i> 方差分析1-基本原理、F检验、多重比较</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/stat/20181017-aa04.html" rel="next" title="假设检验-假设检验的基本原理">假设检验-假设检验的基本原理<i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg" alt="Barwe"><p class="site-author-name" itemprop="name">Barwe</p><p class="site-description motion-element" itemprop="description">青梅煮茶，阔落煮酒</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">80</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">12</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">17</span> <span class="site-state-item-name">标签</span></a></div></nav></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-单样本平均数-bar-x-的差异显著性检验"><span class="nav-number">1.</span> <span class="nav-text">1. 单样本平均数$\bar{x}$的差异显著性检验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-大样本（n≥30）的均数检验"><span class="nav-number">1.1.</span> <span class="nav-text">(1). 大样本（n≥30）的均数检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-总体方差-sigma-2-已知时"><span class="nav-number">1.1.1.</span> <span class="nav-text">a. 总体方差$\sigma^2$已知时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-总体方差-sigma-2-未知时"><span class="nav-number">1.1.2.</span> <span class="nav-text">b. 总体方差$\sigma^2$未知时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-小样本（n-lt-30）的均数检验"><span class="nav-number">1.2.</span> <span class="nav-text">(2). 小样本（n&lt;30）的均数检验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验"><span class="nav-number">2.</span> <span class="nav-text">2. 两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验"><span class="nav-number">2.1.</span> <span class="nav-text">(1). 两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-如果两个样本的方差-sigma-1-和-sigma-2-已知"><span class="nav-number">2.1.1.</span> <span class="nav-text">a. 如果两个样本的方差$\sigma^1$和$\sigma^2$已知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-如果两个样本的方差-sigma-1-和-sigma-2-未知"><span class="nav-number">2.1.2.</span> <span class="nav-text">b. 如果两个样本的方差$\sigma^1$和$\sigma^2$未知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验"><span class="nav-number">2.2.</span> <span class="nav-text">(2). 两个小样本（$n_1\le30$且$n_2\le30$）的均数检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-配对样本均数的t检验"><span class="nav-number">2.2.1.</span> <span class="nav-text">A. 配对样本均数的t检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-独立样本均数的t检验"><span class="nav-number">2.2.2.</span> <span class="nav-text">B. 独立样本均数的t检验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-当两样本方差相同或者假设相同时"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">(a). 当两样本方差相同或者假设相同时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-经过F检验两样本方差不同时"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">(b). 经过F检验两样本方差不同时</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-u分布与t分布的区别和联系"><span class="nav-number">3.</span> <span class="nav-text">3. u分布与t分布的区别和联系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-两独立样本的方差的齐性检验"><span class="nav-number">4.</span> <span class="nav-text">4. 两独立样本的方差的齐性检验</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; <span itemprop="copyrightYear">2019</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">阔落煮酒</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-area-chart"></i></span> <span class="post-meta-item-text">站点总字数：</span> <span title="Site words total count">64.9k</span></div><div class="footer-custom">流光容易把人抛，红了樱桃，绿了芭蕉</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script>"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script src="/lib/jquery/index.js?v=2.1.3"></script><script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script src="/lib/canvas-nest/canvas-nest.min.js"></script><script src="/js/src/utils.js?v=5.1.4"></script><script src="/js/src/motion.js?v=5.1.4"></script><script src="/js/src/affix.js?v=5.1.4"></script><script src="/js/src/schemes/pisces.js?v=5.1.4"></script><script src="/js/src/scrollspy.js?v=5.1.4"></script><script src="/js/src/post-details.js?v=5.1.4"></script><script src="/js/src/bootstrap.js?v=5.1.4"></script><script>!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script>// Popup Window;
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+    <meta name="baidu-site-verification" content="93qdDuu84i" />
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="[object Object]/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hj.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hj.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="UCAS生物统计与实验设计," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！">
+<meta name="keywords" content="UCAS生物统计与实验设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="假设检验-显著性假设检验">
+<meta property="og:url" content="http://chenyin.top/stat/20181018-327a.html">
+<meta property="og:site_name" content="阔落煮酒">
+<meta property="og:description" content="不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/02.png">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/03.png">
+<meta property="og:updated_time" content="2019-04-14T16:02:20.170Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="假设检验-显著性假设检验">
+<meta name="twitter:description" content="不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！">
+<meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/02.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chenyin.top/stat/20181018-327a.html"/>
+
+
+
+
+
+  <title>假设检验-显著性假设检验 | 阔落煮酒</title>
+  
+
+
+
+
+
+
+
+
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<!-- fork me on github begin -->
+			<!-- 左上角 -->
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250"
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0;" aria-hidden="true">
+					 <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+					 <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+					 <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+				</svg>
+			</a>
+			<style>
+				.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+				@media (max-width:500px){
+					.github-corner:hover .octo-arm{animation:none}
+					.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				}
+			</style>
+			<!-- 左上角
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250" 
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0; transform: scale(-1, 1);" aria-hidden="true">
+						<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+						<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+						<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+					</svg>
+					<style>
+						.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+						@media (max-width:500px){
+							.github-corner:hover .octo-arm{animation:none}
+							.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						}
+					</style>
+				</a>
+			-->
+		<!-- fork me on github end -->
+		<header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阔落煮酒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-reading">
+          <a href="/reading/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            阅读
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cargo">
+          <a href="/cargo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-truck"></i> <br />
+            
+            仓库
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+		
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenyin.top/stat/20181018-327a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Barwe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阔落煮酒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">假设检验-显著性假设检验</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-18T15:35:04+08:00">
+                2018-10-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T00:02:20+08:00">
+                2019-04-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/stat/" itemprop="url" rel="index">
+                    <span itemprop="name">统计学基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>不管是下面的单样本还是双样本都有两个大前提：总体服从正态分布、方差齐性！<a id="more"></a></p>
+<h1 id="1-单样本平均数-bar-x-的差异显著性检验"><a href="#1-单样本平均数-bar-x-的差异显著性检验" class="headerlink" title="1. 单样本平均数$\bar{x}$的差异显著性检验"></a>1. <strong>单样本平均数$\bar{x}$的差异显著性检验</strong></h1><p>这里指的实际上是一个样本（的平均数）和总体（的平均数）间的差异显著性，因为我们只有一个样本，这就要求总体参数（这里是均值）已知，这通常是一个理论值、经验值或者期望值。</p>
+<h2 id="1-大样本（n≥30）的均数检验"><a href="#1-大样本（n≥30）的均数检验" class="headerlink" title="(1). 大样本（n≥30）的均数检验"></a>(1). <strong>大样本（n≥30）的均数检验</strong></h2><p><strong>大样本</strong>通常指的是n≥30，此时<strong>样本的均值</strong>将服从于<strong>正态分布</strong>，我们可以将其标准化为<strong>标准正态分布</strong>，进而使用<strong>u检验</strong>进行假设检验。</p>
+<h3 id="a-总体方差-sigma-2-已知时"><a href="#a-总体方差-sigma-2-已知时" class="headerlink" title="a. 总体方差$\sigma^2$已知时"></a>a. <strong>总体方差$\sigma^2$已知时</strong></h3><p>总体方差$\sigma^2$已知时直接计算相应的u值：</p>
+<p>$$\sigma_{\bar{x}}=\sqrt{\frac{\sigma^2}{n}}=\frac{\sigma}{\sqrt{n}}$$</p>
+<p>$$u=\frac{\bar{x}-\mu_0}{\sigma_{\bar{x}}}=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}{\sim}N(0,1)$$</p>
+<p>式中$\bar{x}$是<strong>样本均值</strong>，$\mu_0$是<strong>总体均值</strong>，$\sigma$是<strong>总体方差</strong>，$n$是<strong>样本容量</strong>。</p>
+<h3 id="b-总体方差-sigma-2-未知时"><a href="#b-总体方差-sigma-2-未知时" class="headerlink" title="b. 总体方差$\sigma^2$未知时"></a>b. <strong>总体方差$\sigma^2$未知时</strong></h3><p>在<strong>大样本</strong>的条件下直接用<strong>样本方差$s^2$</strong>代替<strong>总体方差$\sigma^2$</strong>，计算u值的方法同上：</p>
+<p>$$s_{\bar{x}}=\sqrt{\frac{s^2}{n}}=\frac{s}{\sqrt{n}}$$</p>
+<p>$$u=\frac{\bar{x}-\mu_0}{s_{\bar{x}}}=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}{\sim}N(0,1)$$</p>
+<p>样本方差$s^2$的计算：</p>
+<p>$$s^2=\frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\bar{x})^2}$$</p>
+<h2 id="2-小样本（n-lt-30）的均数检验"><a href="#2-小样本（n-lt-30）的均数检验" class="headerlink" title="(2). 小样本（n&lt;30）的均数检验"></a>(2). <strong>小样本（n&lt;30）的均数检验</strong></h2><p>小样本只能使用<strong>t检验</strong>，此时我们要求的是<strong>t值</strong>而不是u值。</p>
+<p>小样本的方差$s^2$与总体的方差$\sigma^2$往往差距较大。</p>
+<p>t检验时查临界值表依据的是自由度<strong>df</strong>，这个值通常是n-1。</p>
+<p>$$s^2=\frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\bar{x})^2}$$</p>
+<p>$$s_{\bar{x}}=\sqrt{\frac{s^2}{n}}=\frac{s}{\sqrt{n}}$$</p>
+<p>$$t=\frac{\bar{x}-\mu_0}{s_{\bar{x}}}=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}{\sim}t(n-1)$$</p>
+<hr>
+<h1 id="2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验"><a href="#2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验" class="headerlink" title="2. 两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验"></a>2. <strong>两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验</strong></h1><h2 id="1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验"><a href="#1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验" class="headerlink" title="(1). 两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验"></a>(1). <strong>两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验</strong></h2><p>当两个样本都是<strong>大样本</strong>时，与单样本检验类似，仍可以使用<strong>u检验</strong>。</p>
+<h3 id="a-如果两个样本的方差-sigma-1-和-sigma-2-已知"><a href="#a-如果两个样本的方差-sigma-1-和-sigma-2-已知" class="headerlink" title="a. 如果两个样本的方差$\sigma^1$和$\sigma^2$已知"></a>a. <strong>如果两个样本的方差$\sigma^1$和$\sigma^2$已知</strong></h3><p>$$\sigma_{\bar{x_1}-\bar{x_2}}=\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}$$</p>
+<p>$$u=\frac{\bar{x_1}-\bar{x_2}}{\sigma_{\bar{x_1}-\bar{x_2}}}{\sim}N(0,1)$$</p>
+<h3 id="b-如果两个样本的方差-sigma-1-和-sigma-2-未知"><a href="#b-如果两个样本的方差-sigma-1-和-sigma-2-未知" class="headerlink" title="b. 如果两个样本的方差$\sigma^1$和$\sigma^2$未知"></a>b. <strong>如果两个样本的方差$\sigma^1$和$\sigma^2$未知</strong></h3><p>使用$s_{\bar{x_1}-\bar{x_2}}$来代替$\sigma_{\bar{x_1}-\bar{x_2}}$:</p>
+<p>$$s_{\bar{x_1}-\bar{x_2}}=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$</p>
+<p>$$u=\frac{\bar{x_1}-\bar{x_2}}{s_{\bar{x_1}-\bar{x_2}}}{\sim}N(0,1)$$</p>
+<h2 id="2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验"><a href="#2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验" class="headerlink" title="(2). 两个小样本（$n_1\le30$且$n_2\le30$）的均数检验"></a>(2). <strong>两个小样本（$n_1\le30$且$n_2\le30$）的均数检验</strong></h2><p>小样本使用t检验。</p>
+<p>按照实验设计的不同，两个样本可以是<strong>独立样本</strong>，也可以是<strong>配对样本</strong>。</p>
+<h3 id="A-配对样本均数的t检验"><a href="#A-配对样本均数的t检验" class="headerlink" title="A. 配对样本均数的t检验"></a><strong>A. 配对样本均数的t检验</strong></h3><p>此时两组数据将形成对子，因此两个样本的样本容量是一样的，即$n_1=n_2$。</p>
+<p>配对可以减少<strong>个体差异</strong>对实验的影响，但是也会增加数据处理的复杂度。</p>
+<p>配对情况通常有以下三类：</p>
+<ol>
+<li>两个相似个体组成一对进行不同的实验处理：此时并没有完全消除个体差异的影响。</li>
+<li>同一个个体同时进行两种不同的处理：处理的空间位置不同。</li>
+<li>同一个个体先后进行两种不同的处理：不同时间个体的状态可能不同。</li>
+</ol>
+<p>简单理解就是：第一类使用相似的两个个体，第二类同时使用同一个个体不同的部位，第三类先后使用同一个体相同的部位。</p>
+<p>计算过程如下：</p>
+<p>$$d_i=x_i-y_i$$</p>
+<p>$$\bar{d}=\frac1n\sum_{i=1}^{n}d_i$$</p>
+<p>$$s_d^2=\frac{1}{n-1}\sum_{i=1}^{n}(d_i-\bar{d})^2$$</p>
+<p>$$t=\frac{\bar{d}}{s_d/\sqrt{n}}$$</p>
+<p>$$df=n-1$$</p>
+<p>查<strong>t检验临界值表</strong>时注意使用df值而不是n值。</p>
+<h3 id="B-独立样本均数的t检验"><a href="#B-独立样本均数的t检验" class="headerlink" title="B. 独立样本均数的t检验"></a><strong>B. 独立样本均数的t检验</strong></h3><p>对于独立样本不存在配对情况，因此$n_1$和$n_2$往往不同。</p>
+<p>两独立样本对应的<strong>总体方差</strong>可能不同，因此：</p>
+<h4 id="a-当两样本方差相同或者假设相同时"><a href="#a-当两样本方差相同或者假设相同时" class="headerlink" title="(a). 当两样本方差相同或者假设相同时"></a><strong>(a). 当两样本方差相同或者假设相同时</strong></h4><p>此时计算自由度$v=n_1+n_2-2$</p>
+<p>计算两个样本的均值$\bar{x_1}$和$\bar{x_2}$、方差$S_1^2$和$S_2^2$。</p>
+<p>$$S_c^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{v}$$</p>
+<p>$$S_{\overline{X_1}-\overline{X_2}}=\sqrt{(\frac{1}{n_1}+\frac{1}{n_2})S_c^2}$$</p>
+<p>$$t=\frac{\overline{x_1}-\overline{x_2}}{S_{\overline{X_1}-\overline{X_2}}}$$</p>
+<h4 id="b-经过F检验两样本方差不同时"><a href="#b-经过F检验两样本方差不同时" class="headerlink" title="(b). 经过F检验两样本方差不同时"></a><strong>(b). 经过F检验两样本方差不同时</strong></h4><p>如果$n_1=n_2=n$:</p>
+<p>计算方法与假设方差相同时一致，只是自由度为$n-1$而不是$2n-2$。</p>
+<p>没看懂，先抄下来……</p>
+<hr>
+<h1 id="3-u分布与t分布的区别和联系"><a href="#3-u分布与t分布的区别和联系" class="headerlink" title="3. u分布与t分布的区别和联系"></a>3. <strong>u分布与t分布的区别和联系</strong></h1><p>u检验理论上要求大样本（即$n\to+\infty$），但是这在实际情况中是不可能的，所以教科书设置标准为n=30。</p>
+<p>按照<a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86" target="_blank" rel="noopener"><strong>中心极限定理</strong></a>：在适当的条件下，大量相互独立随机变量的均值经适当标准化后<strong>依分布收敛</strong>于正态分布。这就是说，只有在大（无穷）样本时，样本的均值才会服从正态分布。按照正态分布的概率密度函数：</p>
+<p>$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2{\sigma}^2}}$$</p>
+<p>它只与总体的参数$\mu$和$\sigma$有关，而与样本容量n无关。</p>
+<p>有限样本特别是小样本下样本均值是不严格服从正态分布的，此时有个更好的分布可以刻画样本均值，这就是t分布。</p>
+<p>$$f(t)=\frac{\Gamma(\frac{\nu+1}{2})}{\sqrt{\nu\pi}\Gamma(\frac{\nu}{2})}(1+\frac{t^2}{\nu})^{\frac{-(\nu+1)}{2}}$$</p>
+<p>$$\nu=n-1$$</p>
+<p>它只与样本容量n有关！</p>
+<p>但是请注意，当$n\to+\infty$时，t分布将会十分接近<strong>标准正态分布</strong>，有图为证：</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/02.png" alt=""></p>
+<p>所以我们可以说，<strong>标准正态分布</strong>只是<strong>t分布</strong>在$n\to+\infty$时的一个特例！</p>
+<p>因此在有限样本容量情况下，t检验应该更合理和精确，所以在t检验可行的情况下应该优先采用t检验。什么时候不可行呢？t检验是要根据自由度查表的，如果自由度值不合适导致无法查表，此时就比较尴尬了。也不知道现在这个问题是怎么解决的~。</p>
+<p>下面是一张常见的<strong>t分布临界值表</strong>，我们可以发现当自由度超过30以后就不连续了~（不是绝对的，但道理大抵如此吧）</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/18/10/03.png" alt=""></p>
+<p>同时由上图我们知道，当n=30的时候，t分布和u分布已经十分近似了，所以才有了这个<strong>样本容量大于30时用u检验</strong>的规则。</p>
+<p>所以</p>
+<p>▶ u检验适用于大样本的情景，t检验适用于小样本的情景。</p>
+<p>▶ t分布更加符合有限样本的场景，理论上t检验更加精确。</p>
+<hr>
+<h1 id="4-两独立样本的方差的齐性检验"><a href="#4-两独立样本的方差的齐性检验" class="headerlink" title="4. 两独立样本的方差的齐性检验"></a>4. <strong>两独立样本的方差的齐性检验</strong></h1><p>原假设$H_0$: $\sigma_1=\sigma_2$ (方差齐性)</p>
+<p>备择假设$H_1$: $\sigma_1\ne\sigma_2$ (方差不齐性)</p>
+<p>$$F=\frac{max(S_1^2,S_2^2)}{min(S_1^2,S_2^2)}$$</p>
+<p>$$v_1=n_1-1$$</p>
+<p>$$v_2=n_2-1$$</p>
+<p>查<strong>F检验临界值表</strong>。</p>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+      
+        
+      
+	</div>
+	
+    
+
+    
+
+    
+
+	<div> <!-- 在文章末尾添加“文章结束”标记 -->
+	
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束！<i class="fa fa-paw"></i>没想到吧？-------------</div>
+    
+</div>
+	
+	</div>
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UCAS生物统计与实验设计/" rel="tag"><i class="fa fa-tag"></i> UCAS生物统计与实验设计</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/stat/20181017-aa04.html" rel="prev" title="方差分析1-基本原理、F检验、多重比较">
+                <i class="fa fa-chevron-left"></i> 方差分析1-基本原理、F检验、多重比较
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/stat/20181017-aa04.html" rel="next" title="假设检验-假设检验的基本原理">
+                假设检验-假设检验的基本原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div>
+    </div>
+
+  
+
+
+ 
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg"
+                alt="Barwe" />
+            
+              <p class="site-author-name" itemprop="name">Barwe</p>
+              <p class="site-description motion-element" itemprop="description">青梅煮茶，阔落煮酒</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-单样本平均数-bar-x-的差异显著性检验"><span class="nav-number">1.</span> <span class="nav-text">1. 单样本平均数$\bar{x}$的差异显著性检验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-大样本（n≥30）的均数检验"><span class="nav-number">1.1.</span> <span class="nav-text">(1). 大样本（n≥30）的均数检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-总体方差-sigma-2-已知时"><span class="nav-number">1.1.1.</span> <span class="nav-text">a. 总体方差$\sigma^2$已知时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-总体方差-sigma-2-未知时"><span class="nav-number">1.1.2.</span> <span class="nav-text">b. 总体方差$\sigma^2$未知时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-小样本（n-lt-30）的均数检验"><span class="nav-number">1.2.</span> <span class="nav-text">(2). 小样本（n&lt;30）的均数检验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-两个样本平均数-bar-x-1-和-bar-x-2-间的差异显著性检验"><span class="nav-number">2.</span> <span class="nav-text">2. 两个样本平均数$\bar{x_1}$和$\bar{x_2}$间的差异显著性检验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-两个大样本（-n-1-ge30-且-n-2-ge30-）的均数检验"><span class="nav-number">2.1.</span> <span class="nav-text">(1). 两个大样本（$n_1\ge30$且$n_2\ge30$）的均数检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-如果两个样本的方差-sigma-1-和-sigma-2-已知"><span class="nav-number">2.1.1.</span> <span class="nav-text">a. 如果两个样本的方差$\sigma^1$和$\sigma^2$已知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-如果两个样本的方差-sigma-1-和-sigma-2-未知"><span class="nav-number">2.1.2.</span> <span class="nav-text">b. 如果两个样本的方差$\sigma^1$和$\sigma^2$未知</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-两个小样本（-n-1-le30-且-n-2-le30-）的均数检验"><span class="nav-number">2.2.</span> <span class="nav-text">(2). 两个小样本（$n_1\le30$且$n_2\le30$）的均数检验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-配对样本均数的t检验"><span class="nav-number">2.2.1.</span> <span class="nav-text">A. 配对样本均数的t检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-独立样本均数的t检验"><span class="nav-number">2.2.2.</span> <span class="nav-text">B. 独立样本均数的t检验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-当两样本方差相同或者假设相同时"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">(a). 当两样本方差相同或者假设相同时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-经过F检验两样本方差不同时"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">(b). 经过F检验两样本方差不同时</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-u分布与t分布的区别和联系"><span class="nav-number">3.</span> <span class="nav-text">3. u分布与t分布的区别和联系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-两独立样本的方差的齐性检验"><span class="nav-number">4.</span> <span class="nav-text">4. 两独立样本的方差的齐性检验</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+
+&copy; 
+<span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阔落煮酒</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      
+	  <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="Site words total count">64.9k</span>
+  
+</div>
+
+
+
+
+
+
+	<div class="footer-custom">
+		流光容易把人抛，红了樱桃，绿了芭蕉
+	</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
     var isfetched = false;
     var isXml = true;
     // Search DB path;
@@ -311,15 +1306,48 @@
       if (shouldDismissSearchPopup) {
         onPopupClose();
       }
-    });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
         tex2jax: {
           inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
           processEscapes: true,
           skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
-      });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
         var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
-      });</script><script src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
