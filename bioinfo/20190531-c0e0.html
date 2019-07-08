@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+    <meta name="baidu-site-verification" content="93qdDuu84i" />
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="[object Object]/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hj.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hj.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="paper,single cell," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原文【Nature Biotechnology】【PubMed】">
+<meta name="keywords" content="paper,single cell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="综合转录&amp;表观数据的细胞分型">
+<meta property="og:url" content="http://chenyin.top/bioinfo/20190531-c0e0.html">
+<meta property="og:site_name" content="阔落煮酒">
+<meta property="og:description" content="原文【Nature Biotechnology】【PubMed】">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaTitle.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa01.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa02.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa03.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa07.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa08.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa09.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa10.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa11.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa12.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa13.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa14.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa15.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa16.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa17.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa18.jpg">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/MyelinSheath.jpg">
+<meta property="og:updated_time" content="2019-05-31T04:45:09.381Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="综合转录&amp;表观数据的细胞分型">
+<meta name="twitter:description" content="原文【Nature Biotechnology】【PubMed】">
+<meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaTitle.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chenyin.top/bioinfo/20190531-c0e0.html"/>
+
+
+
+
+
+  <title>综合转录&表观数据的细胞分型 | 阔落煮酒</title>
+  
+
+
+
+
+
+
+
+
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<!-- fork me on github begin -->
+			<!-- 左上角 -->
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250"
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0;" aria-hidden="true">
+					 <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+					 <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+					 <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+				</svg>
+			</a>
+			<style>
+				.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+				@media (max-width:500px){
+					.github-corner:hover .octo-arm{animation:none}
+					.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				}
+			</style>
+			<!-- 左上角
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250" 
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0; transform: scale(-1, 1);" aria-hidden="true">
+						<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+						<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+						<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+					</svg>
+					<style>
+						.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+						@media (max-width:500px){
+							.github-corner:hover .octo-arm{animation:none}
+							.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						}
+					</style>
+				</a>
+			-->
+		<!-- fork me on github end -->
+		<header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阔落煮酒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cargo">
+          <a href="/cargo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-truck"></i> <br />
+            
+            仓库
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+		
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenyin.top/bioinfo/20190531-c0e0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Barwe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阔落煮酒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">综合转录&表观数据的细胞分型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-31T11:49:11+08:00">
+                2019-05-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-31T12:45:09+08:00">
+                2019-05-31
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bioinfo/" itemprop="url" rel="index">
+                    <span itemprop="name">生信工具和算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7.4k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaTitle.jpg" alt="">原文【<a href="https://www.nature.com/articles/nbt.4038" target="_blank" rel="noopener">Nature Biotechnology</a>】【<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5951394/" target="_blank" rel="noopener">PubMed</a>】</p>
+<a id="more"></a>
+<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>对人脑细胞进行<strong>更加细致</strong>的分类需要<strong>设计大量的实验从细胞的各个角度研究细胞</strong>或者<strong>设计数据处理方法整合现有数据对细胞进行注释</strong>。本文即从后者出发思考怎么综合多组学数据。这里提出了两个改良的高通量测序方法：</p>
+<ul>
+<li><strong>snDrop-seq</strong>: single-nucleus droplet-based sequencing </li>
+<li><strong>scTHS-seq</strong>: single-cell transposome hypersensitive site sequencing</li>
+</ul>
+<p>基于两种方法获得了&gt;60000个单细胞核（成人视觉皮质、额皮质、小脑）的<strong>转录</strong>数据和<strong>开放</strong>数据。</p>
+<p>这两组数据内蕴与细胞类型差异相关的调控元件和转录因子信息，可用于</p>
+<ul>
+<li>研究大脑复杂机制，本文研究了髓鞘再生（remyelination）</li>
+<li>将疾病相关的风险变异关联到特定的细胞群，帮助认识大脑的病理</li>
+</ul>
+<p>多组学方法<strong>综合</strong>分析能够对<strong>复杂</strong>组织器官的的单细胞进行更加细致的研究（~interrogation）。</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="转录组分析的不足"><a href="#转录组分析的不足" class="headerlink" title="转录组分析的不足"></a>转录组分析的不足</h2><p><strong>@ 人脑是个极其复杂的结构</strong></p>
+<p>人脑是一个庞大、复杂的网络，它由大约一万亿个神经元组成，这些神经元在空间上有序组织，在功能上相互联系，它们镶嵌在更加庞大的神经胶质（glia）和非神经元细胞中。</p>
+<p><strong>@ 分析细胞核比分析完整细胞更好</strong></p>
+<p>建立完整的人脑细胞图谱，需要良好扩展性和无偏性的单细胞分析方法，这些方法不仅限于分析活体完整细胞，也能分析提取出来的细胞核信息。</p>
+<p>如果能分析细胞核数据，将会好处多多$^{[1-4]}$：</p>
+<ol>
+<li>细胞可以是活体采集的，也可以是保存性的，例如尸体样本、冷冻样本</li>
+<li>可以获得大量的RNA数据，能得到更加准确的分析结果</li>
+<li>减小<strong>组织解离</strong>的误差$^{[5]}$</li>
+</ol>
+<p><strong>@ snRNA测序技术及后续分析方法</strong></p>
+<p>单核转录组测序（SNS）能够以较大的测序深度（每个细胞大约八百万reads）分析多个人类大脑皮层区域上丰富的神经元亚型$^{[4]}$，但是它也有许多限制，例如</p>
+<ul>
+<li>低通量：每张微流芯片理论上只能对64个细胞测序</li>
+<li>高成本</li>
+<li>样本误差：微流芯片对十分少量的非神经细胞的细胞核的捕获能力很差</li>
+</ul>
+<p>本文提出了一个能够处理<strong>保存性样本</strong>、分析高通量<strong>snRNA-seq</strong>数据的方法。</p>
+<h2 id="表观组锦上添花"><a href="#表观组锦上添花" class="headerlink" title="表观组锦上添花"></a>表观组锦上添花</h2><p>转录图谱能够鉴定复杂组织器官中<strong>功能差异显著</strong>的细胞类型，额外的<strong>表观信息</strong>能够使我们对表达图谱的受调节方式有更加全面的认识 —— 如虎添翼。</p>
+<p>全基因组水平的研究已经建立了<strong>调控位点</strong>到了染色质开放性区域（同下文的调节子，如启动子内、增强子内）的映射，因此顺式调控位点能够区分细胞类型和谱系$^{[6,7]}$。这种细胞类型特异性的<strong>调节子</strong>的鉴定有利于强化我们对基因程序（如细胞分化、细胞定型、功能化）的理解。</p>
+<p>进一步地，与多样性和疾病相关的基因变异大多数都位于内含子内或者基因间区域$^{[8]}$。与<strong>组织特异性</strong>调控位点$^{[6,7]}$的富集分析结合绘制的<strong>细胞类型特异性</strong>调控子图谱能够提供额外的信息帮助我们了解发病机理。</p>
+<p>与转录组实验相比，表观组实验的一个障碍就是难以获得大量的单细胞样本。</p>
+<p>最近的一些工作提高了实验灵敏度，将细胞需求减少到了几百个$^{[9]}$甚至是一个细胞$^{[10-13]}$；<br>然而，这类单细胞精度的分析方法是否适用于异质性的、保存性的人类组织（例如大脑）仍需验证。</p>
+<h2 id="解决了什么问题"><a href="#解决了什么问题" class="headerlink" title="解决了什么问题"></a>解决了什么问题</h2><p>构建&lt;包括表观遗传信息在内的&gt;人脑细胞类型的综合图谱，需要&lt;用于分析<u>核转录数据</u>和<u>保存性样本数据</u>的&gt;更加高效的方法。</p>
+<p>首先单细胞基因组研究中<strong>核分离技术</strong>是可信的（~amenable）$^{[14,15]}$。因此本文提出了两个优化的测序方法，在单细胞水平上帮助量化<u>核转录本</u>和<u>DNA的开放性</u>。因此我们可以在同一个<strong>保存性样本</strong>中同时对基因的<strong>表达</strong>和<strong>调节</strong>进行综合性分析。</p>
+<p>本文前面部分解决了下面三个问题：</p>
+<ul>
+<li>描述人类<u>大脑皮质</u>和<u>小脑脑区</u>的细胞多样性</li>
+<li>鉴定具有<strong>脑区特异性</strong>的<u>神经元/非神经细胞</u>类型</li>
+<li>大规模地鉴定<u>转录因子的活性</u>和<u>目标基因的表达谱</u></li>
+</ul>
+<p>最后，还将<strong>疾病风险变异</strong>（risk variants）映射到了<u>细胞类型特异性的</u>调控区域，从概念上验证（proof-of-concept）出了一些可能与大脑疾病相关的病变细胞类型。</p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h1><h2 id="人类大脑皮质和小脑脑区的单细胞分析"><a href="#人类大脑皮质和小脑脑区的单细胞分析" class="headerlink" title="人类大脑皮质和小脑脑区的单细胞分析"></a>人类大脑皮质和小脑脑区的单细胞分析</h2><h3 id="介绍了两种改进的测序方法"><a href="#介绍了两种改进的测序方法" class="headerlink" title="介绍了两种改进的测序方法"></a>介绍了两种改进的测序方法</h3><h4 id="snDrop-seq"><a href="#snDrop-seq" class="headerlink" title="snDrop-seq"></a>snDrop-seq</h4><p><strong>single-nucleus Droplet-bases sequencing</strong> <img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa01.jpg" alt="snDrop-seq实验步骤"></p>
+<p>基于<strong>微滴</strong>实验技术$^{[16-18]}$的<strong>snDrop-seq</strong>，实现了高通量的单细胞转录组并行测序。<br>将此技术应用于六个成年人类遗体的大脑分析（包括视觉皮质、额皮质、侧小脑半球）。<br>=&gt; 这是一种<strong>转录组测序</strong>方法！！！</p>
+<h4 id="scTHS-seq"><a href="#scTHS-seq" class="headerlink" title="scTHS-seq"></a>scTHS-seq</h4><p><strong>single-cell Transposome Hypersensitive Site sequence</strong> <img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa02.jpg" alt="scTHS-seq overview"></p>
+<p>为了同时研究<strong>表观遗传</strong>，本文设计了一种定量<strong>单细胞DNA开放性</strong>的实验方法。<br>=&gt; 表观遗传 表型遗传 DNA/染色质开放性 ATAC</p>
+<p>scTHS-seq利用了<strong>体外转录组线性扩增</strong>和<strong>人为设计Tn5转座酶突变</strong>$^{[15]}$的优势，实现比ATAC-seq$^{[20]}$灵敏度更高的测序方式，能较高覆盖远端具有细胞类型特异性的增强子$^{[21]}$。</p>
+<p>联合这两个测序方法可以从同一个脑区样本中同时得到<strong>表达</strong>和<strong>调节</strong>特征，从而对<strong>细胞多样性</strong>进行独立无偏的分析。</p>
+<h3 id="基因表达分析"><a href="#基因表达分析" class="headerlink" title="基因表达分析"></a>基因表达分析</h3><p>对snDrop-seq的结果进行基因的<strong>表达</strong>分析，质控后一共<strong>36,166</strong>个核，其中<strong>35,289</strong>个核（=视觉皮质<strong>19,368</strong>+额皮质<strong>10,319</strong>+小脑半球<strong>5,602</strong>）被成功分型。<img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa03.jpg" alt="snDrop-seq data sets"></p>
+<p><strong>跨物种混合分析</strong>的证明了很小比例（2~11%）的<strong>双峰</strong>（doublets），这与全细胞测量结果相似。 （<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa04.jpg" target="_blank" rel="noopener">图</a>）</p>
+<p>测序结果平均到每个细胞核有<strong>6,200</strong>个reads，这些reads大部分都落入了<strong>内含子区域</strong>，并且主要位于转录本的3’端，这是因为转录本和前体RNA都是依靠poly(A)捕获的。（<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa05.jpg" target="_blank" rel="noopener">图</a>）</p>
+<blockquote>
+<p>与<strong>全细胞转录组</strong>方法相比较，<u>仅含细胞核</u>的Drop-seq和<u>完整细胞</u>的Drop-seq的覆盖度更低，但是却能产生相似的结果（例如检测到的基因比例）。尽管细胞核和完整细胞结果具有一致性，核测序结果还是存在一定的系统误差，特别是对于较长的基因，这可能是可变剪切导致的。</p>
+</blockquote>
+<p>总的来说，每核测到了<strong>928</strong>个不重复的转录本和<strong>719</strong>个基因（中值）。随着样本数量的增加，这一深度可以有效解决<u>细胞类型多样性</u>和<u>基因表达动态变化</u>的问题。</p>
+<p>实际分型结果为<strong>35</strong>个明显的聚类簇，包括</p>
+<ul>
+<li>神经细胞<ul>
+<li>皮质兴奋性神经元（Ex）</li>
+<li>皮质抑制性神经元（In）</li>
+<li>小脑颗粒细胞（Gran）</li>
+<li>浦肯野神经元（Purk）</li>
+</ul>
+</li>
+<li>非神经细胞<ul>
+<li>内皮细胞（End）</li>
+<li>平滑肌细胞或者周皮细胞</li>
+<li>星形胶质细胞（Ast）</li>
+<li>少突胶质细胞（Oli）以及他们的前体细胞（OPCs）</li>
+<li>小星形胶质细胞（Mic）</li>
+</ul>
+</li>
+</ul>
+<p>还研究了这些簇在脑区分布上的异质性，例如</p>
+<ul>
+<li>小脑特异性的Ast（Ast_Cer）、OPCs</li>
+<li>在视觉皮质和额皮质检测到了不同的兴奋性神经元（<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa06.jpg" target="_blank" rel="noopener">图</a>）</li>
+</ul>
+<h3 id="基因调控分析"><a href="#基因调控分析" class="headerlink" title="基因调控分析"></a>基因调控分析</h3><p>为了<u>识别相应的调控信号</u>，基于<strong>scTHS-seq</strong>进行了基因的<strong>调控</strong>分析。</p>
+<p>一共测定了<strong>32,869</strong>个细胞核。对每个脑区单独聚类，其中<strong>27,906</strong>个核（=视觉皮质<strong>13,232</strong>+额皮质<strong>4,753</strong>+小脑<strong>9,921</strong>）能成功分型。（这里没有给出聚类图，只给出结果表）</p>
+<p>27906个核中，<strong>15,786</strong>个核映射到了snDrop-seq的聚类结果上。<img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa07.jpg" alt="F1d"></p>
+<p>鉴定出了覆盖了大约144百万碱基对共<strong>287,381</strong>个与染色质开放性相关的peak。</p>
+<p>每个细胞覆盖染色质开放性区域的reads个数（median）为<strong>10,168</strong>。</p>
+<p>人鼠数据混合分析的<strong>低比例双峰</strong>特性说明可以使用<strong>combinatorial indexing protocols</strong>。</p>
+<p>为了<u>鉴定出scTHS-seq数据中表观遗传差异显著的亚型</u>，本文采用了一种<strong>无偏聚类策略</strong>：将每个细胞每个基因组位点上观察到read的概率建模为<strong>censored poisson process</strong>。<br>这个方法解释了：即使是开放性最强位点的信号也会在匹配到少量reads时饱和。【Q】</p>
+<blockquote>
+<p>The scTHS-seq signal from even the most accessible site will saturate after only a few reads.</p>
+</blockquote>
+<h3 id="总结：解决了什么问题"><a href="#总结：解决了什么问题" class="headerlink" title="总结：解决了什么问题"></a>总结：解决了什么问题</h3><p>从表观组对细胞分型比从转录组对细胞分型更加困难，因为许多调控元件的功能仍然是未知的。<br>但是借助于邻近开放性位点的基因的信息，就能够区分皮质和小脑脑区的许多细胞类型。.<br>具体来说，调控分析主要解决了下面两个问题</p>
+<ul>
+<li>与额皮质、视觉皮质之间主要细胞类型相关的表观特征</li>
+<li>尚未深入研究的小脑Gran神经细胞的神经元特征</li>
+</ul>
+<h2 id="转录组-gt-细胞类型-amp-脑区异质性"><a href="#转录组-gt-细胞类型-amp-脑区异质性" class="headerlink" title="转录组 =&gt; 细胞类型 &amp; 脑区异质性"></a>转录组 =&gt; 细胞类型 &amp; 脑区异质性</h2><p>转录组数据来源于snDrop-seq</p>
+<h3 id="marker表达一致性"><a href="#marker表达一致性" class="headerlink" title="marker表达一致性"></a>marker表达一致性</h3><p><strong>1. 基于snDrop-seq的marker表达情况</strong></p>
+<p>不同的脑区都使用<strong>转录本数据</strong>对细胞的归属和身份进行鉴定，检测到了<strong>细胞类型/细胞亚型特异性</strong>的marker基因的<strong>预期表达</strong>，表达谱与从人、鼠脑区的混池数据推出的结论高度一致。<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa08.jpg" alt="F2AB"><br>$$\text{Figure 2 - A \&amp; B}$$<br>A图是<strong>marker基因-细胞类型</strong>基因表达的小提琴图，从图中明显可以看到每个marker都在某一类细胞中大量表达。A图右侧的三列数据分别表示：细胞核数目、转录本数目、不同脑区采样的相对比例。B图是<strong>marker基因-细胞亚型</strong>的表达图谱。</p>
+<p><strong>2. snDrop-seq的一致性验证</strong></p>
+<p>比较小鼠视觉皮层和人颞叶数据，基于<strong>核</strong>的数据与基于<strong>全细胞</strong>的数据具有一致性。<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa09.jpg" alt="09"><br>$$\text{Supplementary Figure 7 - A \&amp; B}$$</p>
+<p>神经元的过表达是以牺牲非神经细胞例如Ast和End为代价的。【Q】</p>
+<blockquote>
+<p>However, we observed over-representation of neurons at the expense of non-neuronal types such as Ast and End cells.</p>
+</blockquote>
+<p>从snDrop-seq数据计算细胞组成时仍然存在技术上的误差，可能是因为细胞转录本数量太少<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa10.jpg" alt="F2A1"><br>$$\text{Figure 2 - A}$$</p>
+<p>Ex和In按照（先前对6个皮质区域进行单细胞核测序鉴定出的）细胞亚型的相关性进行注释<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa11.jpg" alt="Ex和In的细胞亚型的相关性热图"><br>$$\text{Supplementary Figure 7 - C}$$<br>从上图还可以看出，除了<strong>高度的一致性</strong>，snDrop-seq还能对<strong>细胞亚型</strong>的分型进行优化。例如，视觉皮质层Ex的细胞亚型Ex3细化为了Exa-d四种亚型。相比于作者之前的一项研究$^{[4]}$，snDrop-seq通过复杂组织的少量采样解决<strong>神经细胞亚型多样性</strong>问题灵敏度更高。（神奇般的引用了自己）</p>
+<h3 id="细胞亚型的空间特异性（皮质层分布）"><a href="#细胞亚型的空间特异性（皮质层分布）" class="headerlink" title="细胞亚型的空间特异性（皮质层分布）"></a>细胞亚型的空间特异性（皮质层分布）</h3><h4 id="Ex和Gran"><a href="#Ex和Gran" class="headerlink" title="Ex和Gran"></a>Ex和Gran</h4><p>将Ex和Gran（通过<strong>SLC17A7</strong>和<strong>GRM4</strong>筛选）进一步分解为<strong>14种</strong>细胞亚型（13Ex+1Gran），如图Figure2A。</p>
+<p>【好长的一句话，看图比较容易】除了对<strong>皮质层</strong>细胞进行更加细致的<strong>亚型分型</strong>（此处的皮质层包括第5层中不同的亚型$\text{HS3ST5}^-\text{PCP4}^+\text{/ Ex5a}$、$\text{HS3ST5}^+\text{PCP4}^-\text{/ Ex5b}$ 和 $\text{HTR2C}^+\text{PCP4}^+\text{TLE4}^+\text{/ Ex6a}$，Ex6a与第6层中的$\text{HTR2C}^-\text{TLE4}^+\text{/ Ex6b}$相邻），随着<u>可视的<strong>皮质层特异性</strong>的细胞亚型</u>的数量的增加，我们还可以解决巨大的<strong>脑区异质性</strong>问题，包括亚型$\text{RORB}^+\text{PCP4}^+\text{/ Ex3b}$、$\text{RORB}^+\text{NEFM}^{hi}\text{/ Ex3c}$、$\text{RORB}^+\text{PHACTR2}^+\text{EYA4}^+\text{/ Ex3d}$。如图Figure2C<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa12.jpg" alt="Ex的marker在不同皮质层的分布"><br>$$\text{Figure 2 - C}$$</p>
+<p>从上图，Ex3d神经元的marker是<strong>EYA4</strong>，它在第4皮质层的视觉皮质中特异性表达，在额皮质中没有表达。</p>
+<h4 id="In和Purk"><a href="#In和Purk" class="headerlink" title="In和Purk"></a>In和Purk</h4><p>我们将In和Purk（利用<strong>GAD1</strong>筛选，如图Figure2A）按照权威的中间神经元marker（例如<strong>VIP, RELN, PVALB, SST</strong>）和在单一亚型中表达的基因（例如<strong>THSD7B, CA8, GLCE</strong>）分解为<strong>13种</strong>细胞亚型（11In+2Purk），如下图。<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa13.jpg" alt="In和Purk神经元的亚型"><br>$$\text{Figure 2 - B - Bottom}$$</p>
+<p>进一步研究了In神经元亚型的空间分布差异，如下图<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa14.jpg" alt="In神经元亚型的空间分布差异"><br>$$\text{Supplementary Figure 8 - E}$$</p>
+<h3 id="小脑细胞类型分析"><a href="#小脑细胞类型分析" class="headerlink" title="小脑细胞类型分析"></a>小脑细胞类型分析</h3><p>前面做的都是大脑皮质，现在开始研究小脑</p>
+<h4 id="小脑结构"><a href="#小脑结构" class="headerlink" title="小脑结构"></a>小脑结构</h4><p>相比于大脑皮质，小脑具有更加明显的细胞结构<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa15.jpg" alt="小脑的细胞类型"><br>$$\text{Figure 2 - E}$$</p>
+<h4 id="marker的表达及空间特异性"><a href="#marker的表达及空间特异性" class="headerlink" title="marker的表达及空间特异性"></a>marker的表达及空间特异性</h4><p>本文解决了多个主要的细胞群，包括Gran和Purk神经元以及它们的支持类型<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa16.jpg" alt="小脑中各marker在各细胞类型中的表达情况"><br>$$\text{Figure 2 - F}$$<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa17.jpg" alt="小脑中各marker的蛋白质表达情况"><br>$$\text{Figure 2 - G}$$</p>
+<h4 id="Purk神经元亚型"><a href="#Purk神经元亚型" class="headerlink" title="Purk神经元亚型"></a>Purk神经元亚型</h4><p>发现了两个明显的Purk神经元亚型Purk1和Purk2：它们都表达了抑制性的marker基因GAD1/GAD2（如图Figure 2F），但是可以通过marker基因SORCS3进行区分（SORCS3在Purk2中不表达）。</p>
+<h4 id="Ast神经元亚型"><a href="#Ast神经元亚型" class="headerlink" title="Ast神经元亚型"></a>Ast神经元亚型</h4><p>鉴定出了已被证明存在的Ast的亚群（如图Figure 2F）：</p>
+<ul>
+<li><strong>Velate Astrocytes, VAs</strong>：表现出与皮质星形胶质细胞相似的转录特征，对Gran神经元起支持作用</li>
+<li><strong>Bergmann Glia, Ast_Cer</strong>：一种特殊的星形胶质细胞，在小脑层状结构的发育过程中起着重要作用，支持和调节Purk神经元的突出活动。通过marker基因ALDH1A1筛选出来的Ast_Cer细胞丰富表达了AMPA受体编码基因GRIA1和SLC1A3（或者叫GLAST）。</li>
+</ul>
+<h4 id="OPCs神经元亚型"><a href="#OPCs神经元亚型" class="headerlink" title="OPCs神经元亚型"></a>OPCs神经元亚型</h4><p>进一步分解出了两个明显的OPCs细胞亚群：</p>
+<ul>
+<li>$\text{LUZP2}^+\text{CASK}^+$：表现出与皮质OPC相似的转录特点</li>
+<li>$\text{ORAOV1}^+\text{LRP6}^+\text{RCN2}^+$：只在小脑中发现，未介绍功能</li>
+</ul>
+<h4 id="Oli神经元"><a href="#Oli神经元" class="headerlink" title="Oli神经元"></a>Oli神经元</h4><p>大部分小脑Oli起源于小脑外部，少数起源于local祖细胞。【很莫名的一句话】</p>
+<blockquote>
+<p> This is consistent with the majority of the cerebellar Oli originating from outside the cerebellum, and only a minority being derived from local progenitors$^{[30]}$.</p>
+</blockquote>
+<h4 id="形态学区分法的限制"><a href="#形态学区分法的限制" class="headerlink" title="形态学区分法的限制"></a>形态学区分法的限制</h4><p>也有人提出了基于形态学区分小脑半球的不同类型，但是其局限性很大：</p>
+<ol>
+<li>这些易于区分的细胞数量有限</li>
+<li>小脑组织中Gran神经元极其丰富，形态学并不能帮助我我们完美地区分亚型。</li>
+</ol>
+<h2 id="转录表观联合模型"><a href="#转录表观联合模型" class="headerlink" title="转录表观联合模型"></a>转录表观联合模型</h2><h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><p>为了建立不同亚型<strong>转录状态</strong>和<strong>表观状态</strong>之间更加准确的<strong>对应关系</strong>，进行如下操作：</p>
+<ul>
+<li>从<strong>ATAC数据</strong>中寻找（与通过<strong>转录组数据</strong>求出的细胞亚群相对应的）细胞</li>
+<li>从<strong>转录组数据</strong>中寻找（与通过<strong>ATAC数据</strong>求出的细胞亚群相对应的）细胞</li>
+</ul>
+<p>为了实现上述操作，进行了下面两个工作【Q】：</p>
+<ul>
+<li>以<strong>差异表达模式</strong>为基础，训练一个GBM预测<strong>差异开放</strong>的基因组位点</li>
+<li>以<strong>差异开放性</strong>为基础，训练另外一个GBM预测<strong>差异表达</strong></li>
+</ul>
+<p>量化依据：</p>
+<ul>
+<li>一个<strong>位点</strong>到一个<strong>基因</strong>的<strong>距离</strong></li>
+<li>某个位点或基因<strong>差异表达</strong>或者<strong>差异开放</strong>的程度</li>
+</ul>
+<p>模型示意图如下<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isa18.jpg" alt="表达and开放综合模型示意图"><br>$$\text{Figure 3 - a}$$</p>
+<h3 id="可行性"><a href="#可行性" class="headerlink" title="可行性"></a>可行性</h3><p>尽管预测单个基因或者位点的差异表达或者差异开放的程度有点困难，联合考虑多个基因或者位点来对细胞分类的可信度还是挺高的。<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaSF10.jpg" target="_blank" rel="noopener">Supplementary Figure 10</a></p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>考虑到转录组数据的高精度特性，我们试图通过识别<u>观察到的转录组亚群</u>的染色质开放性特征，将该模型应用于进一步地划分染色质开放性聚类簇【Q】</p>
+<ol>
+<li>通过<strong>积累表达信号</strong>对已识别的细胞类型进行<strong>层次聚类</strong>，建立一个细胞类型关系的系统树图</li>
+<li>在系统树图上进行<strong>迭代二分</strong>，识别出两个分支上<strong>差异表达</strong>的基因</li>
+<li>使用GBM分类器预测<strong>差异开放</strong>的基因组位点</li>
+<li>考虑所有预测的差异开放的位点将scTHS-seq的细胞分类到其中一个分支，其染色质开放模式与该分支的染色质开放模式一致</li>
+<li>从起始的分类结果我们可以定义一个refined差异开放信号，综合二者判断最终所属分支，同时通过交叉验证评估分支注释的稳定性【Q】</li>
+</ol>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>通过这种方法，我们从<strong>转录数据</strong>中识别出了（新的？）非神经元细胞和神经元细胞类型之间的差异表达基因。</p>
+<p>通过预测的<strong>差异开放性位点</strong>，细化（染色质开放性数据中的）非神经元和神经元细胞类型置信度更高。</p>
+<p>解决了神经元细胞类型的问题，我们可以重复这个过程来区分兴奋性神经元和抑制性神经元。<br>然后再次重复这个过程来区分抑制神经元中不同的细胞亚型（<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaF3b.jpg" target="_blank" rel="noopener">Figure 3b</a> &amp; <a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaF3c.jpg" target="_blank" rel="noopener">Figure 3c</a>）。<br>依此类推。</p>
+<p>通过这种方法，我们能够识别与抑制性神经元亚型（InA, InB）相关的表观遗传（开放性）差异</p>
+<blockquote>
+<p>InA和InB的差异：发育来源不同（<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaF3b.jpg" target="_blank" rel="noopener">Figure 3b</a>）</p>
+<ul>
+<li>InA起源于内侧神经节的皮质下区域</li>
+<li>InB起源于外侧/尾侧神经节的皮质下区域</li>
+</ul>
+</blockquote>
+<p>然而，因为差异开放位点的数量不够，尝试从InA和InB中分解出更多的细胞亚型时结果<strong>不稳定</strong>。（<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaF3b.jpg" target="_blank" rel="noopener">Figure 3b</a> &amp; <a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaF3c.jpg" target="_blank" rel="noopener">Figure 3c</a>）</p>
+<p>仅仅通过差异<strong>开放</strong>信息区分ExL4和ExL5&amp;ExL6的差异是很难的，此时结合来自更高精度的转录本数据的差异<strong>表达</strong>信息能够帮助我们识别（更多的？）相关<strong>差异开放性</strong>位点，从而将<u>基于染色质开放性的</u>聚类簇分解成更加细致的亚型。</p>
+<p>鉴定出主要细胞类型的置信度较高，如</p>
+<ul>
+<li>Oli, OPC, Ast, End, In, and Ex cells as expected from the visual cortex（<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaF3c.jpg" target="_blank" rel="noopener">Figure 3c</a>）</li>
+<li>Ast, Oli, In, and Ex cells in the frontal cortex and Gran, Oli, and End cells in the cerebellum（<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaSF6.jpg" target="_blank" rel="noopener">Supplementary Figure 6</a>）</li>
+</ul>
+<p>我们进一步证实了，分解出来的细胞类型/亚型在marker的<strong>启动子</strong>位置出现了开放性富集，这表明了：表达和调控的一致性。（<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/isaF3g.jpg" target="_blank" rel="noopener">Figure 3g</a>）</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>相比于转录组数据，表观组数据的细胞分型精度较低。但是整合两类数据能够重构出较为详细的大脑细胞类型开放性图谱，简单研究每个细胞类型调控过程的活性。</p>
+<h2 id="髓鞘再生"><a href="#髓鞘再生" class="headerlink" title="髓鞘再生"></a>髓鞘再生</h2><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/05/MyelinSheath.jpg" alt=""></p>
+<p>中枢神经系统的髓鞘是由少突胶质细胞缠绕神经轴突形成</p>
+<h3 id="找TFs"><a href="#找TFs" class="headerlink" title="找TFs"></a>找TFs</h3><p>前面建立了可以根据表观组数据区分细胞类型/亚型的模型，现在寻找与每一种细胞类型/亚型特异性相关的TFs。</p>
+<p>我们要找的是这样一些TFs：它们的预测结合位点在<u>具有细胞类型差异性的</u>开放性区域内<strong>过度表达</strong>。（Figure 4a）</p>
+<p>扫描379个TFs（来自于JSPAR数据库，带有PWM），然后找到了<u>与至少一种细胞类型统计显著相关</u>的TFs。（Figure 4b）</p>
+<p>深入研究了<u>不同空间位置的Ex和In特异性的</u>TF的活性。</p>
+<p>使用snDrop-seq数据进行交叉验证，确保细胞类型特异性的TF也会在相应的细胞类型中高表达。</p>
+<h3 id="成年人脑中OPCs向Oli的转变过程"><a href="#成年人脑中OPCs向Oli的转变过程" class="headerlink" title="成年人脑中OPCs向Oli的转变过程"></a>成年人脑中OPCs向Oli的转变过程</h3><p><strong>一个转录因子引发的惨案：新的中间细胞、人鼠转变差异</strong></p>
+<p>【机翻】<u>为了证明前面提到的综合性分析方法具有一定的生物学实用价值，深入研究了成年人脑中OPCs向Oli的转变过程。</u>髓鞘再生是通过<strong>OPCs</strong>的神经元<strong>活化</strong>和<strong>分化</strong>成<strong>有髓少突胶质细胞</strong>而发生的，这些细胞重新包裹神经元轴突，以恢复跳跃传导和正常功能。这一过程的失调可导致严重的神经系统疾病，例如多发性硬化症（MS）。值得注意的是，我们发现了区分<strong>OPC</strong>和<strong>Oli</strong>细胞群的特异转录因子（<strong>F4b</strong>）。为了确定这些【Q】是否能揭示<strong>成人髓鞘再形成</strong>的关键调控过程，我们评估了视觉皮质中这些谱系的分化状态和相关基因表达特征。利用Destiny的扩散图谱，我们可以将<strong>OPC</strong>和<strong>Oli</strong>细胞沿着发育轨迹<strong>定位</strong>（F4C、SF12），并评估细胞在开始、中间和结束时的差异表达。在此过程中，我们发现了独立于实验批次的中间细胞（未成熟的<strong>Oli</strong>，称之为<strong>iOli</strong>），它们具有独特的表达特征（图4C-D，图S12，表S6），可以深入了解人类成年<strong>Oli</strong>成熟的早期机制。与小鼠实验结果一致，我们的人类<strong>OPC</strong>细胞群表达了与小鼠<strong>OPCs</strong>相关的marker（<strong>PDGFRA</strong>, <strong>CSPG4</strong>, <strong>SOX6</strong>, <strong>VCAN</strong>），但他们也表达了更忠诚的小鼠祖细胞的marker(<strong>ITPR2</strong>, <strong>NEU4</strong>)，表明我们的人类数据无法区分这些微妙的状态（图4D，表S6）。此外，成熟的<strong>Oli</strong>（<strong>mOli</strong>）细胞群表达了与髓鞘形成相关的marker（<strong>PLP1</strong>, <strong>MBP</strong>, <strong>MOG</strong>）（图4D，表S6），并没有像小鼠那样分解成进一步的亚型，这可能是成年人脑中缺乏幼年状态的原因。</p>
+<h3 id="渐进表达特征-gt-OPC谷氨酸激活反应"><a href="#渐进表达特征-gt-OPC谷氨酸激活反应" class="headerlink" title="渐进表达特征 =&gt; OPC谷氨酸激活反应"></a>渐进表达特征 =&gt; OPC谷氨酸激活反应</h3><p>结合其他研究</p>
+<p><u>然而，在OPCs、iOli和mOli中发现的渐进表达特征（表达量？），是跨脑区域保守且独立于排序方法的，可以进一步细化为OPC谷氨酸激活反应的各个阶段（图S13）</u>。最近的研究表明，<strong>AMPA</strong>和<strong>红藻氨酸</strong>受体介导了一种对谷氨酸的初始<strong>轴突-OPC突触反应</strong>，该反应将<strong>OPCs</strong>导向暴露的轴突位置，<strong>NMDA</strong>受体的激活将在轴突位置上引导髓鞘再生。与这一发现一致，我们的数据显示<strong>AMPA</strong>和红藻氨酸受体编码基因（<strong>GRIN/GRIK</strong>）在<strong>OPCs</strong>和<strong>iOli</strong>中富集，而<strong>NMDA受体</strong>编码基因（<strong>GRIN2A, GRIN2B</strong>）仅在<strong>iOli</strong>亚群中富集（图4D，表S6）。<strong>OPC</strong>成熟过程中所鉴定的基因集的功能个体发育经历了六个阶段，这些结果为神经细胞在髓鞘再生中的活动机制提供了独立的支持：(图S13)</p>
+<ol>
+<li>神经发生（祖细胞marker表达）</li>
+<li>谷氨酸受体活性</li>
+<li>突触传递</li>
+<li>离子通道活性</li>
+<li>膜组装</li>
+<li>轴突鞘形成。</li>
+</ol>
+<h3 id="OPC和Oli亚群的差异上调基因的开放性"><a href="#OPC和Oli亚群的差异上调基因的开放性" class="headerlink" title="OPC和Oli亚群的差异上调基因的开放性"></a>OPC和Oli亚群的差异上调基因的开放性</h3><p>差异开放、开放互斥、保守调控</p>
+<p><strong>为了了解这些基因表达动态的调控机制，我们基于scTHS-seq数据联合评估了视觉皮质中OPC和Oli亚群的差异上调基因的开放性。</strong> 与我们的表达数据一致，<strong>OPC</strong>、<strong>iOli</strong>和<strong>mOli</strong>基因的调控位点显示出差异开放性(图4E)。此外，<strong>OPC</strong>和<strong>iOli</strong>基因的开放性显示出<strong>几乎完全的互斥性</strong>，表明可能存在维持这两种状态的活跃调控机制。<strong>OPC</strong>开放性区域内最显著的转录因子活动与<strong>SOX9</strong>有关(图4F，表S7)（已知<strong>SOX9</strong>与小鼠<strong>OPC</strong>的特化、生存和迁移有关）。此外，我们发现<strong>iOli</strong>特异的开放性位点表现出了重要的<strong>TCF4</strong>转录因子的结合富集（图4 g、表S7）（<strong>TCF4</strong>在调节Wnt/β-catenin以促进小鼠髓鞘再生中扮演着很重要的角色）。因此，我们的转录因子分析揭示了<u>维持成年少突胶质细胞祖细胞并协调其成熟以进行再髓鞘化的</u>保守调控机制。</p>
+<h2 id="将病变风险映射到大脑特定的细胞类型"><a href="#将病变风险映射到大脑特定的细胞类型" class="headerlink" title="将病变风险映射到大脑特定的细胞类型"></a>将病变风险映射到大脑特定的细胞类型</h2><p>细胞类型特异性表观基因组信息对于许多常见遗传疾病的致病细胞类型和特异性调控机制的识别具有重要价值，但对脑疾病的认识仍不充分。</p>
+<p>为了解决这一问题，我们通过<strong>美国国立卫生研究院</strong>（NIH）的<a href="https://grasp.nhlbi.nih.gov/Search.aspx" target="_blank" rel="noopener"><strong>GRASP搜索工具</strong></a>（Genome-Wide Repository of Associations Between SNPs and Phenotypes）获取了$p&lt;10^{-6}$的SNPs，这些SNPs与10个大脑疾病相关，同时还选取了7个非大脑疾病相关SNPs作为对照。</p>
+<p>由于致病突变常位于与GWAS SNPs连锁不平衡的不同位置，我们以某一特定疾病的所有GWAS SNPs为中心，在100 kb窗口中寻找富集的dna开放性区域，并通过<strong>随机排列</strong>评估其意义。</p>
+<p>该分析证明了（在多种细胞类型和亚型中）很强的疾病特异性富集，与另一种可能（即一致性）形成对比。</p>
+<p>值得注意的是，我们发现阿尔茨海默病(AD)风险变异在Mic中高度富集，这与在晚发性AD皮质和AD风险中被发现激活的显著Mic信号一致。</p>
+<p>与ATAC-seq data批量数据的比较表明，我们的单细胞数据对于预测Mic调控位点及其相关的疾病特异性风险变异富集具有敏感性。</p>
+<p>我们没有发现任何与大脑无关的疾病变异的显著富集神经元，这进一步支持了我们对疾病致病性的预测细胞类型。</p>
+<p>事实上，大多数与大脑无关的富集都是与这些疾病密切相关的细胞类型，如自身免疫性疾病中的Mic和End细胞。</p>
+<p>因此，我们的单细胞调控图与大量研究高度一致，可能与细胞类型特异性疾病风险相关。</p>
+<p>尽管进一步地验证需要更多的样本和其它疾病的数据，发病机理尚未研究，我们的染色质图谱提供了一个细胞类型或细胞亚型特异性数据集，通过这些数据集可以从新的角度了解大脑疾病。</p>
+<p><strong>总结：</strong></p>
+<p>在线搜索疾病相关的SNPs，观察它们是否有细胞类型特异性：验证出了AD在Mic中富集，与大脑无关的疾病不会富集。</p>
+<h1 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h1><p>细胞类型组成的重构有利于加深我们对<u>人脑正常功能</u>和<u>功能失调以及发病机理</u>的理解。</p>
+<p>本文使用了两个扩展性较强的方法（snDrop-seq和scTHS-seq）在单细胞水平上综合分析了成年遗体大脑的转录组和表观组数据。</p>
+<p>使用核分离技术克服活体采样或者保存性样本预处理的阻碍，我们鉴定出了大脑皮质和小脑脑区神经细胞/非神经细胞一共35个细胞亚群。</p>
+<p>我们的结果强调了<u>在复杂组织中进行单细胞稀疏采样的</u>价值：只要单细胞数据内含用于聚类和排序的所有信息，它们就能被整合起来，起到与混池测序相同的效果。</p>
+<p>这一结论也能应用于染色质开放性数据，用来解释基于视觉皮质数据分解出了大量的细胞亚型。</p>
+<p>然而，尽管可以增加scTHS的测序深度，染色质开放性数据本身用于比较精细的细胞类型分解比较困难，其灵敏度需要提高。</p>
+<p>尽管snDrop-seq能够用于更加广泛的组织建谱，但是我们在小鼠的皮质Ast和Oli的细胞亚型的寻找过程中没有成功！！！然后分析了可能的原因。</p>
+<p>还是解决了一些问题：细胞分型、髓鞘再生</p>
+<p><strong>para2</strong></p>
+<p>提出了一种整合转录组和表观组数据的策略，进行更加精细的细胞分型。</p>
+<h1 id="Glossary"><a href="#Glossary" class="headerlink" title="Glossary"></a>Glossary</h1><p>提供……的视角 provide insights into …<br>综合分析 integrative analysis<br>最终 ultimately<br>使……成为必需 necessitate [vt]<br>总的来说 overall<br>与……相关 underlying<br>解释，诠释，解调 interrogation<br>被进一步的分解为 be further resolved into<br>起源于 stem from / derive from<br>uneven/even 不均匀的，奇数/偶数<br>notably 特别地，尤其地，引人注目地<br>be in line with 与……一致 corresponding with</p>
+<p>基因内区域 intronic region<br>基因间区域 intergenic region<br>表观遗传构型 epigenetic configuration<br>髓鞘再生 remyelination</p>
+<p><strong>cerebellum</strong> 英 [,serɪ’beləm]  美 [‘sɛrə’bɛləm] n. [解剖] <strong>小脑</strong> [ 复数 cerebellus或cerebella ]<br><strong>temporal lobe</strong> [解剖] <strong>颞叶</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+      
+        
+      
+	</div>
+	
+    
+
+    
+
+    
+
+	<div> <!-- 在文章末尾添加“文章结束”标记 -->
+	
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束！<i class="fa fa-paw"></i>没想到吧？-------------</div>
+    
+</div>
+	
+	</div>
+	
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/paper/" rel="tag"><i class="fa fa-tag"></i> paper</a>
+          
+            <a href="/tags/single-cell/" rel="tag"><i class="fa fa-tag"></i> single cell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/cargo/20190529-94df.html" rel="next" title="收藏夹">
+                收藏夹 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div>
+    </div>
+
+  
+
+
+ 
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg"
+                alt="Barwe" />
+            
+              <p class="site-author-name" itemprop="name">Barwe</p>
+              <p class="site-description motion-element" itemprop="description">青梅煮茶，阔落煮酒</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#转录组分析的不足"><span class="nav-number">2.1.</span> <span class="nav-text">转录组分析的不足</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表观组锦上添花"><span class="nav-number">2.2.</span> <span class="nav-text">表观组锦上添花</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决了什么问题"><span class="nav-number">2.3.</span> <span class="nav-text">解决了什么问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Results"><span class="nav-number">3.</span> <span class="nav-text">Results</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#人类大脑皮质和小脑脑区的单细胞分析"><span class="nav-number">3.1.</span> <span class="nav-text">人类大脑皮质和小脑脑区的单细胞分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍了两种改进的测序方法"><span class="nav-number">3.1.1.</span> <span class="nav-text">介绍了两种改进的测序方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#snDrop-seq"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">snDrop-seq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scTHS-seq"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">scTHS-seq</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基因表达分析"><span class="nav-number">3.1.2.</span> <span class="nav-text">基因表达分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基因调控分析"><span class="nav-number">3.1.3.</span> <span class="nav-text">基因调控分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结：解决了什么问题"><span class="nav-number">3.1.4.</span> <span class="nav-text">总结：解决了什么问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转录组-gt-细胞类型-amp-脑区异质性"><span class="nav-number">3.2.</span> <span class="nav-text">转录组 =&gt; 细胞类型 &amp; 脑区异质性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#marker表达一致性"><span class="nav-number">3.2.1.</span> <span class="nav-text">marker表达一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#细胞亚型的空间特异性（皮质层分布）"><span class="nav-number">3.2.2.</span> <span class="nav-text">细胞亚型的空间特异性（皮质层分布）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ex和Gran"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">Ex和Gran</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#In和Purk"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">In和Purk</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小脑细胞类型分析"><span class="nav-number">3.2.3.</span> <span class="nav-text">小脑细胞类型分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#小脑结构"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">小脑结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#marker的表达及空间特异性"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">marker的表达及空间特异性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Purk神经元亚型"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">Purk神经元亚型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ast神经元亚型"><span class="nav-number">3.2.3.4.</span> <span class="nav-text">Ast神经元亚型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OPCs神经元亚型"><span class="nav-number">3.2.3.5.</span> <span class="nav-text">OPCs神经元亚型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Oli神经元"><span class="nav-number">3.2.3.6.</span> <span class="nav-text">Oli神经元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#形态学区分法的限制"><span class="nav-number">3.2.3.7.</span> <span class="nav-text">形态学区分法的限制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转录表观联合模型"><span class="nav-number">3.3.</span> <span class="nav-text">转录表观联合模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思想"><span class="nav-number">3.3.1.</span> <span class="nav-text">思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可行性"><span class="nav-number">3.3.2.</span> <span class="nav-text">可行性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">3.3.3.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用"><span class="nav-number">3.3.4.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.3.4.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#髓鞘再生"><span class="nav-number">3.4.</span> <span class="nav-text">髓鞘再生</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#找TFs"><span class="nav-number">3.4.1.</span> <span class="nav-text">找TFs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成年人脑中OPCs向Oli的转变过程"><span class="nav-number">3.4.2.</span> <span class="nav-text">成年人脑中OPCs向Oli的转变过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渐进表达特征-gt-OPC谷氨酸激活反应"><span class="nav-number">3.4.3.</span> <span class="nav-text">渐进表达特征 =&gt; OPC谷氨酸激活反应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OPC和Oli亚群的差异上调基因的开放性"><span class="nav-number">3.4.4.</span> <span class="nav-text">OPC和Oli亚群的差异上调基因的开放性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将病变风险映射到大脑特定的细胞类型"><span class="nav-number">3.5.</span> <span class="nav-text">将病变风险映射到大脑特定的细胞类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Discussion"><span class="nav-number">4.</span> <span class="nav-text">Discussion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Glossary"><span class="nav-number">5.</span> <span class="nav-text">Glossary</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+
+&copy; 
+<span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阔落煮酒</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      
+	  <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="Site words total count">72.3k</span>
+  
+</div>
+
+
+
+
+
+
+	<div class="footer-custom">
+		流光容易把人抛，红了樱桃，绿了芭蕉
+	</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
