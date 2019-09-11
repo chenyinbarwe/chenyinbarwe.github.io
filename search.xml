@@ -44,10 +44,10 @@
         <category>bioinfo</category>
       </categories>
       <tags>
-        <tag>paper</tag>
         <tag>深度学习</tag>
         <tag>卷积神经网络</tag>
         <tag>基因组开放位点</tag>
+        <tag>paper</tag>
       </tags>
   </entry>
   <entry>
@@ -149,9 +149,9 @@
       <tags>
         <tag>paper</tag>
         <tag>降维</tag>
+        <tag>t-SNE</tag>
         <tag>非线性降维</tag>
         <tag>SNE</tag>
-        <tag>t-SNE</tag>
       </tags>
   </entry>
   <entry>
