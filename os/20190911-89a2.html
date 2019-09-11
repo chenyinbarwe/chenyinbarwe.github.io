@@ -113,17 +113,20 @@
 
 
 
-<meta name="description" content="【注】 下面两类语句不能正常书写，正确写法时需要去掉如下所示空格（空格的HTML字符实体码为 &amp;amp; n b s p ;）：    &amp;gt; {&amp;amp;nbsp;{ ... }&amp;amp;nbsp;}    &amp;gt; {&amp;amp;nbsp;% ... %&amp;amp;nbsp;}   绝大部分的模板定制是以自定义标签/过滤器的方式来完成的 怎么编写自己的模板库文件？这里的自定义模板库指的就是自定义">
+<meta name="description" content="有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在前台运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模板 - 扩展模板系统">
-<meta property="og:url" content="http://chenyin.top/Django/20180317-717d.html">
+<meta property="og:title" content="screen-SSH终端离线持久化工具">
+<meta property="og:url" content="http://chenyin.top/os/20190911-89a2.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="【注】 下面两类语句不能正常书写，正确写法时需要去掉如下所示空格（空格的HTML字符实体码为 &amp;amp; n b s p ;）：    &amp;gt; {&amp;amp;nbsp;{ ... }&amp;amp;nbsp;}    &amp;gt; {&amp;amp;nbsp;% ... %&amp;amp;nbsp;}   绝大部分的模板定制是以自定义标签/过滤器的方式来完成的 怎么编写自己的模板库文件？这里的自定义模板库指的就是自定义">
+<meta property="og:description" content="有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在前台运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-15T08:20:32.998Z">
+<meta property="og:image" content="c:/Users/Lenovo/AppData/Roaming/Typora/typora-user-images/1568169427259.png">
+<meta property="og:image" content="c:/Users/Lenovo/AppData/Roaming/Typora/typora-user-images/1568170930312.png">
+<meta property="og:updated_time" content="2019-09-11T03:11:57.548Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="模板 - 扩展模板系统">
-<meta name="twitter:description" content="【注】 下面两类语句不能正常书写，正确写法时需要去掉如下所示空格（空格的HTML字符实体码为 &amp;amp; n b s p ;）：    &amp;gt; {&amp;amp;nbsp;{ ... }&amp;amp;nbsp;}    &amp;gt; {&amp;amp;nbsp;% ... %&amp;amp;nbsp;}   绝大部分的模板定制是以自定义标签/过滤器的方式来完成的 怎么编写自己的模板库文件？这里的自定义模板库指的就是自定义">
+<meta name="twitter:title" content="screen-SSH终端离线持久化工具">
+<meta name="twitter:description" content="有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在前台运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
+<meta name="twitter:image" content="c:/Users/Lenovo/AppData/Roaming/Typora/typora-user-images/1568169427259.png">
 
 
 
@@ -153,13 +156,13 @@
 
 
 
-  <link rel="canonical" href="http://chenyin.top/Django/20180317-717d.html"/>
+  <link rel="canonical" href="http://chenyin.top/os/20190911-89a2.html"/>
 
 
 
 
 
-  <title>模板 - 扩展模板系统 | 阔落煮酒</title>
+  <title>screen-SSH终端离线持久化工具 | 阔落煮酒</title>
   
 
 
@@ -360,7 +363,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenyin.top/Django/20180317-717d.html">
+    <link itemprop="mainEntityOfPage" href="http://chenyin.top/os/20190911-89a2.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Barwe">
@@ -377,7 +380,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">模板 - 扩展模板系统</h1>
+          <h1 class="post-title" itemprop="name headline">screen-SSH终端离线持久化工具</h1>
         
 
         <div class="post-meta">
@@ -389,8 +392,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T23:02:31+08:00">
-                2018-03-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-11T11:03:26+08:00">
+                2019-09-11
               </time>
             
 
@@ -405,8 +408,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T16:20:32+08:00">
-                2019-04-15
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-11T11:11:57+08:00">
+                2019-09-11
               </time>
             
           </span>
@@ -424,8 +427,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index">
-                    <span itemprop="name">Django学习笔记</span>
+                  <a href="/categories/os/" itemprop="url" rel="index">
+                    <span itemprop="name">OS学习手册</span>
                   </a>
                 </span>
 
@@ -455,7 +458,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  773
+                  986
                 </span>
               
 
@@ -480,50 +483,23 @@
       
 
       
-        <p style="border:2px dashed gray;padding:20px">【注】 下面两类语句不能正常书写，正确写法时需要去掉如下所示<strong>空格</strong><br>（空格的HTML字符实体码为 <strong>&amp; n b s p ;</strong>）：<br>    &gt; <code>{&amp;nbsp;{ ... }&amp;nbsp;}</code><br>    &gt; <code>{&amp;nbsp;% ... %&amp;nbsp;}</code><br></p>
-
-<hr>
-<p>绝大部分的<strong>模板定制</strong>是以<strong>自定义标签/过滤器</strong>的方式来完成的</p>
-<h1 id="怎么编写自己的模板库文件？"><a href="#怎么编写自己的模板库文件？" class="headerlink" title="怎么编写自己的模板库文件？"></a>怎么编写自己的模板库文件？</h1><p>这里的<strong>自定义模板库</strong>指的就是<strong>自定义模板标签/过滤器</strong>。</p>
-<p>模板库文件显然有他固定的书写格式，我们需要在模块开头写上：</p>
-<pre><code>from django import template
-register = template.Library()
-</code></pre><p>模块级变量<code>register</code>是自定义模板标签/过滤器的<strong>基础数据结构</strong>。</p>
-<blockquote>
-<p>实际上我们在定义自己的模板库文件时可以参考官方的写法，查看<code>django/template/defaultfilters.py</code>文件或者<code>django/template/defaulttags.py</code>文件。</p>
-</blockquote>
-<p>然后我们基于<code>register</code>来自<strong>定义模板标签/过滤器</strong>:</p>
-<h2 id="自定义模板过滤器：定义-注册"><a href="#自定义模板过滤器：定义-注册" class="headerlink" title="自定义模板过滤器：定义 + 注册"></a>自定义模板过滤器：定义 + 注册</h2><p>过滤器本质上就是带参数的python函数（哈哈，没想到吧）。<br>第一个参数应该传递<strong>管道符(|)</strong>入口的值，其他参数通过<code>:</code>进行传递。<br>例如下面的这个过滤器：</p>
-<pre><code>def cut(value, arg):
-    return value.replace(arg, &apos;&apos;)
-</code></pre><p>在模板中可以用来去掉<strong>模板变量</strong>值中的字符’A’:</p>
-<pre><code>{ { somevalue|cut:&quot;A&quot; } }
-</code></pre><p>过滤器总是有<strong>可正常使用的</strong>返回值，不能<strong>触发异常</strong>（关于触发异常我的理解是：使用<code>raise</code>抛出一个异常，而不是使用<code>try...except...</code>进行异常捕获）。</p>
-<p>不知道你发现没有，在上面我们定义<strong>模板过滤器</strong>的过程中还没有用到<code>register</code>，实际上当我们定义好模板过滤器后需要对他们进行注册才能正常使用，使用一下语句注册：</p>
-<pre><code>register.filter(&apos;cut&apos;, cut) //(过滤器名称，函数本身)
-</code></pre><blockquote>
-<p>实际上我们可以还可以使用<strong>@修饰器</strong>在定义的时候进行注册：</p>
-</blockquote>
-<pre><code>//无参时直接@register.filter
-@register.filter(name=&apos;cut&apos;) 
-def cut(value, arg):
-    return value.replace(arg, &apos;&apos;)
-</code></pre><h2 id="自定义模板标签"><a href="#自定义模板标签" class="headerlink" title="自定义模板标签"></a>自定义模板标签</h2><p>先略过,有需要再研究。。<a href="https://www.w3cschool.cn/django/cqoetozt.html" target="_blank" rel="noopener">POTAL</a></p>
-<hr>
-<h1 id="模板库文件放在哪里好？"><a href="#模板库文件放在哪里好？" class="headerlink" title="模板库文件放在哪里好？"></a>模板库文件放在哪里好？</h1><p><strong>模板库</strong>是Django能够导入的基本结构。</p>
-<p>建议的目录结构如下：</p>
-<ol>
-<li>为自定义的模板库单独建一个app并在<code>INSTALLED_APPS</code>中注册（只有注册的模板库才能被导入）。</li>
-<li>在合适的<strong>app根目录</strong>下为模板们建一个单独的文件夹。</li>
-<li>在这个文件夹下建立<code>__init__.py</code>文件和自定义模板库文件。</li>
-</ol>
-<hr>
-<h1 id="自定义的模板库怎么导入到模板中？"><a href="#自定义的模板库怎么导入到模板中？" class="headerlink" title="自定义的模板库怎么导入到模板中？"></a>自定义的模板库怎么导入到模板中？</h1><blockquote>
-<p>这里注意对<strong>模板库</strong>和<strong>模板</strong>的概念进行区分</p>
-</blockquote>
-<p>我们在编写<strong>模板</strong>时可以使用如下语句来导入我们自定义的<strong>模板库</strong>：</p>
-<pre><code>{ % load 模板库名 % }
-</code></pre><p>load模板标签会检查<code>INSTALLED_APPS</code>，只有已安装的app内的模板库才能被加载。<br>这里<strong>模板库</strong>虽然是存放在某个特定的APP内的，但是<code>load</code>加载模板库时并没有涉及到这个APP。</p>
+        <p>有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在<strong>前台</strong>运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。</p>
+<a id="more"></a>
+<p>screen工具不仅可以保证在断开远程连接的情况下当前前台任务继续保持运行，还可以实现单个实际窗口中操纵多个工作窗口。简单来说，新建一个<strong>screen会话</strong>会创建一个主进程，这个主进程对应着一个会话窗口。这个主进程是存储在服务器上的，它不受我们连接服务器的SSH进程的影响，因此当我们断开SSH连接时这个进程依旧存在，在下次重新连接服务器时依然可以恢复。而我们连接服务器时的工作环境中的任务实际上受SSH连接进程的影响，当我们断开连接时相关联的任务自然而然也就停止了。（PS: 以下一个虚拟窗口也称之为一个<strong>会话</strong>）</p>
+<p>screen的用法如下：</p>
+<ul>
+<li><strong>怎么查询当前服务器中建立了哪些会话？</strong> <code>screen -ls</code> 即可</li>
+<li><strong>怎么建立一个会话？</strong> <code>screen -S &lt;SOCKNAME&gt;</code> 可以建立一个虚拟会话，查看会话信息如下：<br><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\1568169427259.png" alt="1568169427259"><br>由上可知，一个虚拟窗口的ID标识由<strong>进程号PID</strong>和<strong>会话名（SOCKNAME）</strong>组成，我们可以通过这两个信息恢复会话。除了 <code>screen -s ...</code> 之外，<code>screen -R ...</code> 也能建立一个新的虚拟窗口，与<code>-S</code>不同的是，<code>-R</code>是去尝试着恢复一个已有的会话，如果在已有会话中没有找到，他就会建立一个新的会话，跟“若目录不存在则创建目录”是一个意思。</li>
+<li><strong>怎么恢复一个会话？</strong> <code>screen -r ...</code>可以恢复一个会话，当会话不存在时会报错；<code>screen -R ...</code>也能恢复一个会话，但是当会话不存在时会创建一个新的会话。注意：同一时间一个会话只能在一个实际窗口中打开（例如你可能会在不同的电脑上连接服务器或者在一台电脑上打开多个SSH会话）。当会话被挂起时（意味着此时没有窗口打开这个会话），会话信息中每个ID后面会标识出<code>(Detached)</code>，此时意味着你可以在当前窗口中打开这个会话继续工作；如果标识的是<code>(Attached)</code>，那么标识这个虚拟窗口已经在其它的地方被打开了，你将不能打开这个会话。如果你确定这属于异常情况，你可以使用<code>screen -d ...</code>强制挂起一个会话，此时状态会变成<code>(Detached)</code>，这表示你单方面终止了在某个位置地方打开的虚拟窗口。<br><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\1568170930312.png" alt="1568170930312"><br>screen对你命令传入的会话名与会话ID进行智能匹配，例如你可以：<ul>
+<li>只指定进程号PID，例如<code>screen -r 23288</code></li>
+<li>再不引起歧义的情况下只指定会话名的首字母，例如<code>screen -r n</code>将恢复<code>23288.net</code></li>
+<li>当然你也可以传入完整的<code>&lt;SOCKNAME&gt;</code>或者<code>&lt;PID&gt;.&lt;SOCKNAME&gt;</code></li>
+</ul>
+</li>
+<li><strong>怎么退出并挂起当前会话？</strong> 依次摁下<code>Ctrl A D</code>三个键即可退出并挂起当前会话</li>
+<li><strong>怎么挂起当前窗口中创建的指定会话？</strong>上面已经提到了，<code>screen -d ...</code>可强制挂起指定会话</li>
+<li><strong>怎么删除一个会话？</strong>请确认你的虚拟窗口使命完成后再删除它，不然后悔莫及。直接<code>kill &lt;PID&gt;</code>可删除相应的会话</li>
+</ul>
 
       
     </div>
@@ -564,18 +540,14 @@ def cut(value, arg):
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Django/20180317-df12.html" rel="prev" title="HttpRequest对象">
-                <i class="fa fa-chevron-left"></i> HttpRequest对象
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Django/20180317-df12.html" rel="next" title="模板 - 自动转义">
-                模板 - 自动转义 <i class="fa fa-chevron-right"></i>
+              <a href="/bioinfo/20190531-c0e0.html" rel="next" title="综合转录&表观数据的细胞分型">
+                综合转录&表观数据的细胞分型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -633,17 +605,8 @@ def cut(value, arg):
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -705,22 +668,6 @@ def cut(value, arg):
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#怎么编写自己的模板库文件？"><span class="nav-number">1.</span> <span class="nav-text">怎么编写自己的模板库文件？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义模板过滤器：定义-注册"><span class="nav-number">1.1.</span> <span class="nav-text">自定义模板过滤器：定义 + 注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义模板标签"><span class="nav-number">1.2.</span> <span class="nav-text">自定义模板标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模板库文件放在哪里好？"><span class="nav-number">2.</span> <span class="nav-text">模板库文件放在哪里好？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义的模板库怎么导入到模板中？"><span class="nav-number">3.</span> <span class="nav-text">自定义的模板库怎么导入到模板中？</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

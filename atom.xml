@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chenyin.top/"/>
-  <updated>2019-05-31T04:45:09.381Z</updated>
+  <updated>2019-09-11T03:11:57.548Z</updated>
   <id>http://chenyin.top/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>screen-SSH终端离线持久化工具</title>
+    <link href="http://chenyin.top/os/20190911-89a2.html"/>
+    <id>http://chenyin.top/os/20190911-89a2.html</id>
+    <published>2019-09-11T03:03:26.000Z</published>
+    <updated>2019-09-11T03:11:57.548Z</updated>
+    
+    <content type="html"><![CDATA[<p>有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在<strong>前台</strong>运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。</p><a id="more"></a><p>screen工具不仅可以保证在断开远程连接的情况下当前前台任务继续保持运行，还可以实现单个实际窗口中操纵多个工作窗口。简单来说，新建一个<strong>screen会话</strong>会创建一个主进程，这个主进程对应着一个会话窗口。这个主进程是存储在服务器上的，它不受我们连接服务器的SSH进程的影响，因此当我们断开SSH连接时这个进程依旧存在，在下次重新连接服务器时依然可以恢复。而我们连接服务器时的工作环境中的任务实际上受SSH连接进程的影响，当我们断开连接时相关联的任务自然而然也就停止了。（PS: 以下一个虚拟窗口也称之为一个<strong>会话</strong>）</p><p>screen的用法如下：</p><ul><li><strong>怎么查询当前服务器中建立了哪些会话？</strong> <code>screen -ls</code> 即可</li><li><strong>怎么建立一个会话？</strong> <code>screen -S &lt;SOCKNAME&gt;</code> 可以建立一个虚拟会话，查看会话信息如下：<br><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\1568169427259.png" alt="1568169427259"><br>由上可知，一个虚拟窗口的ID标识由<strong>进程号PID</strong>和<strong>会话名（SOCKNAME）</strong>组成，我们可以通过这两个信息恢复会话。除了 <code>screen -s ...</code> 之外，<code>screen -R ...</code> 也能建立一个新的虚拟窗口，与<code>-S</code>不同的是，<code>-R</code>是去尝试着恢复一个已有的会话，如果在已有会话中没有找到，他就会建立一个新的会话，跟“若目录不存在则创建目录”是一个意思。</li><li><strong>怎么恢复一个会话？</strong> <code>screen -r ...</code>可以恢复一个会话，当会话不存在时会报错；<code>screen -R ...</code>也能恢复一个会话，但是当会话不存在时会创建一个新的会话。注意：同一时间一个会话只能在一个实际窗口中打开（例如你可能会在不同的电脑上连接服务器或者在一台电脑上打开多个SSH会话）。当会话被挂起时（意味着此时没有窗口打开这个会话），会话信息中每个ID后面会标识出<code>(Detached)</code>，此时意味着你可以在当前窗口中打开这个会话继续工作；如果标识的是<code>(Attached)</code>，那么标识这个虚拟窗口已经在其它的地方被打开了，你将不能打开这个会话。如果你确定这属于异常情况，你可以使用<code>screen -d ...</code>强制挂起一个会话，此时状态会变成<code>(Detached)</code>，这表示你单方面终止了在某个位置地方打开的虚拟窗口。<br><img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\1568170930312.png" alt="1568170930312"><br>screen对你命令传入的会话名与会话ID进行智能匹配，例如你可以：<ul><li>只指定进程号PID，例如<code>screen -r 23288</code></li><li>再不引起歧义的情况下只指定会话名的首字母，例如<code>screen -r n</code>将恢复<code>23288.net</code></li><li>当然你也可以传入完整的<code>&lt;SOCKNAME&gt;</code>或者<code>&lt;PID&gt;.&lt;SOCKNAME&gt;</code></li></ul></li><li><strong>怎么退出并挂起当前会话？</strong> 依次摁下<code>Ctrl A D</code>三个键即可退出并挂起当前会话</li><li><strong>怎么挂起当前窗口中创建的指定会话？</strong>上面已经提到了，<code>screen -d ...</code>可强制挂起指定会话</li><li><strong>怎么删除一个会话？</strong>请确认你的虚拟窗口使命完成后再删除它，不然后悔莫及。直接<code>kill &lt;PID&gt;</code>可删除相应的会话</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在&lt;strong&gt;前台&lt;/strong&gt;运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="os" scheme="http://chenyin.top/categories/os/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>综合转录&amp;表观数据的细胞分型</title>
@@ -37,26 +57,6 @@
       <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
     
       <category term="single cell" scheme="http://chenyin.top/tags/single-cell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>收藏夹</title>
-    <link href="http://chenyin.top/cargo/20190529-94df.html"/>
-    <id>http://chenyin.top/cargo/20190529-94df.html</id>
-    <published>2019-05-29T12:05:35.000Z</published>
-    <updated>2019-05-31T02:45:40.335Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是一个不智能的收藏夹……<a id="more"></a></p><p><a href="http://wap.sciencenet.cn/blog-3406804-1162384.html" target="_blank" rel="noopener">k-mer频数分布统计图解读</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是一个不智能的收藏夹……
-    
-    </summary>
-    
-      <category term="cargo" scheme="http://chenyin.top/categories/cargo/"/>
-    
     
   </entry>
   
@@ -123,13 +123,13 @@
       <category term="bioinfo" scheme="http://chenyin.top/categories/bioinfo/"/>
     
     
+      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
+    
       <category term="深度学习" scheme="http://chenyin.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="卷积神经网络" scheme="http://chenyin.top/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
       <category term="基因组开放位点" scheme="http://chenyin.top/tags/%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%BC%80%E6%94%BE%E4%BD%8D%E7%82%B9/"/>
-    
-      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
     
   </entry>
   
@@ -159,16 +159,13 @@
     <link href="http://chenyin.top/stat/20190417-ea8c.html"/>
     <id>http://chenyin.top/stat/20190417-ea8c.html</id>
     <published>2019-04-17T03:07:54.000Z</published>
-    <updated>2019-04-22T02:09:27.004Z</updated>
+    <updated>2019-07-09T01:07:01.007Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="细致平稳条件"><a href="#细致平稳条件" class="headerlink" title="细致平稳条件"></a>细致平稳条件</h1><p><strong>&gt; 细致平稳条件（Detailed Banlance Condition）</strong></p><p>当一个系统微观上达到平衡时满足 <strong>细致平稳条件</strong>：$\pi_i​$ 表示系统处于状态 $i​$ 的概率，$P_{i{\to}j}​$ 表示系统从状态 $i​$ 转移到状态 $j​$ 的概率，一个反应（转移）应该与它的逆反应（逆转移）达到平衡，即<br>$$<br>\pi_i P_{i \to j} = \pi_j P_{j \to i} \tag{1}<br>$$<br><a href="https://en.wikipedia.org/wiki/Detailed_balance" target="_blank" rel="noopener">细致平稳条件</a> 是 Ludwig Boltzmann 于1872年提出来的。</p><p><strong>&gt; 马尔可夫链具有平稳分布的充分条件</strong></p><p>假设马尔可夫链的状态分布为 $\pi$，状态转移矩阵为 $P$，如果存在某一个时间节点使得对于任意的状态 $i$ 和 $j$ 有<br>$$<br>\pi_i P_{ij} = \pi_j P_{ji} \tag{2}<br>$$<br>上述细致平稳条件成立，则该马尔可夫链具有<strong>平稳分布</strong> $\pi$（Stationary Distribution）。</p><p>细致平稳条件是马氏链收敛的充分条件，而不是必要条件。</p><blockquote><p>充分性证明：</p><p>因为 $\sum_i \pi_i P_{ij} = \sum_i \pi_j P_{ji} = \pi_j \sum_i P_{ji} = \pi_j$</p><p>所以 $ \sum_i \pi_i P_{ij} = \pi P = \pi $</p></blockquote><p>仅在二状态系统下，细致平稳条件也是马氏链收敛的必要条件，即充要条件。</p><p><strong>&gt; 从目标平稳分布 $\pi(x)$ 出发寻找转移矩阵 $P$</strong></p><p>假设目标平稳分布 $\pi(x)$ 已知，根据细致平稳条件，我们只需要确定一个矩阵 $P$ 作为相应的状态转移概率矩阵，就能确定这样一个马尔可夫链：转移矩阵为 $P$，平稳分布为 $\pi(x)$。</p><p>但是，矩阵 $P$ 的确定并不是一件很容易的事情，MCMC采样算法很巧妙的解决了这个问题。</p><h1 id="MCMC采样"><a href="#MCMC采样" class="headerlink" title="MCMC采样"></a>MCMC采样</h1><p><strong>&gt; 马尔可夫蒙特卡洛采样（Markov Chain Monte Carlo，MCMC）的基本思想</strong></p><p>我们随机确定一个马尔可夫链的状态转移矩阵 $Q$，它并不满足细致平衡条件，即<br>$$<br>\pi_i Q_{ij} \ne \pi_j Q_{ji} \tag{3}<br>$$<br>为了使等式成立，引入非零 $\alpha_{ij}$ 项，即<br>$$<br>\pi_i Q_{ij} \alpha_{ij} = \pi_j Q_{ji} \alpha_{ji} \tag{4}<br>$$<br>取<br>$$<br>\begin{cases}<br>\alpha_{ij} &amp;= \pi_j Q_{ji} \<br>\alpha_{ji} &amp;= \pi_i Q_{ij}<br>\end{cases} \tag{5}<br>$$<br>此时目标平稳分布 $\pi(x)$ 对应的马氏链的状态转移概率矩阵 $P$ 可表示为<br>$$<br>P_{ij} = Q_{ij} \alpha_{ij} \tag{6}<br>$$<br>由(5)式可知，$0 \le \alpha_{ij}^{(k)} \le 1$，对于特定的 $Q_{ij}$，$\alpha_{ij}$ 越小，则相应的 $P_{ij}$ 越小：这可以解释为 $\alpha_{ij}$ 是对 $Q_{ij}$ 的接受率，目标状态转移矩阵 $P$ 可以通过任意一个马尔可夫链的状态转移矩阵 $Q$ 以一定概率 $\alpha$ 接受获得。</p><p><strong>&gt; MCMC采样算法过程</strong></p><blockquote><ol><li>初始化状态分布 $\pi_0$ 并采样 $x_0$</li><li>循环采样直到获得 $m$ 个样本：<ol><li>$t$ 时刻马氏链的状态分布为 $\pi_t$（未知，我们也不关系纯向量的值），从 $Q(x|x_t)$ 采样得样本 $x^*$</li><li>从均匀分布中采样 $u \sim uniform(0,\;1)​$</li><li>如果 $u &lt; \alpha_{x_t \to x^<em>} = \pi_(x^</em>)Q(x^<em>,\;x_t)$ 则接受转移 $x_t \to x^</em>$，即 $x_{t+1}=x^*$；否则不接受转移，即 $x_{t+1}=x_t$</li><li>舍弃第 $0$ 到第 $n-1$ 共 $n$ 个样本，保留第 $n$ 到第 $n+m-1$ 共 $m$ 个样本作为采样样本 </li></ol></li></ol></blockquote><p>上面的 $\alpha_{ij}$ 实际上很小，这导致大部分采样都会被拒绝，这意味着我们的 $n$ 要预设的非常大。</p><p>基于这个困境，<strong>M-H采样</strong> 对 <strong>MCMC采样</strong> 进行了优化。</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/07/01.jpg" alt=""><br><a id="more"></a></p><h1 id="细致平稳条件"><a href="#细致平稳条件" class="headerlink" title="细致平稳条件"></a>细致平稳条件</h1><p><strong>&gt; 细致平稳条件（Detailed Banlance Condition）</strong></p><p>当一个系统微观上达到平衡时满足 <strong>细致平稳条件</strong>：$\pi_i​$ 表示系统处于状态 $i​$ 的概率，$P_{i{\to}j}​$ 表示系统从状态 $i​$ 转移到状态 $j​$ 的概率，一个反应（转移）应该与它的逆反应（逆转移）达到平衡，即<br>$$<br>\pi_i P_{i \to j} = \pi_j P_{j \to i} \tag{1}<br>$$<br><a href="https://en.wikipedia.org/wiki/Detailed_balance" target="_blank" rel="noopener">细致平稳条件</a> 是 Ludwig Boltzmann 于1872年提出来的。</p><p><strong>&gt; 马尔可夫链具有平稳分布的充分条件</strong></p><p>假设马尔可夫链的状态分布为 $\pi$，状态转移矩阵为 $P$，如果存在某一个时间节点使得对于任意的状态 $i$ 和 $j$ 有<br>$$<br>\pi_i P_{ij} = \pi_j P_{ji} \tag{2}<br>$$<br>上述细致平稳条件成立，则该马尔可夫链具有<strong>平稳分布</strong> $\pi$（Stationary Distribution）。</p><p>细致平稳条件是马氏链收敛的充分条件，而不是必要条件。</p><blockquote><p>充分性证明：</p><p>因为 $\sum_i \pi_i P_{ij} = \sum_i \pi_j P_{ji} = \pi_j \sum_i P_{ji} = \pi_j$</p><p>所以 $ \sum_i \pi_i P_{ij} = \pi P = \pi $</p></blockquote><p>仅在二状态系统下，细致平稳条件也是马氏链收敛的必要条件，即充要条件。</p><p><strong>&gt; 从目标平稳分布 $\pi(x)$ 出发寻找转移矩阵 $P$</strong></p><p>假设目标平稳分布 $\pi(x)$ 已知，根据细致平稳条件，我们只需要确定一个矩阵 $P$ 作为相应的状态转移概率矩阵，就能确定这样一个马尔可夫链：转移矩阵为 $P$，平稳分布为 $\pi(x)$。</p><p>但是，矩阵 $P$ 的确定并不是一件很容易的事情，MCMC采样算法很巧妙的解决了这个问题。</p><h1 id="MCMC采样"><a href="#MCMC采样" class="headerlink" title="MCMC采样"></a>MCMC采样</h1><p><strong>&gt; 马尔可夫蒙特卡洛采样（Markov Chain Monte Carlo，MCMC）的基本思想</strong></p><p>我们随机确定一个马尔可夫链的状态转移矩阵 $Q$，它并不满足细致平衡条件，即<br>$$<br>\pi_i Q_{ij} \ne \pi_j Q_{ji} \tag{3}<br>$$<br>为了使等式成立，引入非零 $\alpha_{ij}$ 项，即<br>$$<br>\pi_i Q_{ij} \alpha_{ij} = \pi_j Q_{ji} \alpha_{ji} \tag{4}<br>$$<br>取<br>$$<br>\begin{cases}<br>\alpha_{ij} &amp;= \pi_j Q_{ji} \<br>\alpha_{ji} &amp;= \pi_i Q_{ij}<br>\end{cases} \tag{5}<br>$$<br>此时目标平稳分布 $\pi(x)$ 对应的马氏链的状态转移概率矩阵 $P$ 可表示为<br>$$<br>P_{ij} = Q_{ij} \alpha_{ij} \tag{6}<br>$$<br>由(5)式可知，$0 \le \alpha_{ij}^{(k)} \le 1$，对于特定的 $Q_{ij}$，$\alpha_{ij}$ 越小，则相应的 $P_{ij}$ 越小：这可以解释为 $\alpha_{ij}$ 是对 $Q_{ij}$ 的接受率，目标状态转移矩阵 $P$ 可以通过任意一个马尔可夫链的状态转移矩阵 $Q$ 以一定概率 $\alpha$ 接受获得。</p><p><strong>&gt; MCMC采样算法过程</strong></p><blockquote><ol><li>初始化状态分布 $\pi_0$ 并采样 $x_0$</li><li>循环采样直到获得 $m$ 个样本：<ol><li>$t$ 时刻马氏链的状态分布为 $\pi_t$（未知，我们也不关系纯向量的值），从 $Q(x|x_t)$ 采样得样本 $x^*$</li><li>从均匀分布中采样 $u \sim uniform(0,\;1)​$</li><li>如果 $u &lt; \alpha_{x_t \to x^<em>} = \pi_(x^</em>)Q(x^<em>,\;x_t)$ 则接受转移 $x_t \to x^</em>$，即 $x_{t+1}=x^*$；否则不接受转移，即 $x_{t+1}=x_t$</li><li>舍弃第 $0$ 到第 $n-1$ 共 $n$ 个样本，保留第 $n$ 到第 $n+m-1$ 共 $m$ 个样本作为采样样本 </li></ol></li></ol></blockquote><p>上面的 $\alpha_{ij}$ 实际上很小，这导致大部分采样都会被拒绝，这意味着我们的 $n$ 要预设的非常大。</p><p>基于这个困境，<strong>M-H采样</strong> 对 <strong>MCMC采样</strong> 进行了优化。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;细致平稳条件&quot;&gt;&lt;a href=&quot;#细致平稳条件&quot; class=&quot;headerlink&quot; title=&quot;细致平稳条件&quot;&gt;&lt;/a&gt;细致平稳条件&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&amp;gt; 细致平稳条件（Detailed Banlance Condition）&lt;/stro
-      
+      &lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/07/01.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
     
     </summary>
     
@@ -207,16 +204,13 @@
     <link href="http://chenyin.top/stat/20190416-ea6c.html"/>
     <id>http://chenyin.top/stat/20190416-ea6c.html</id>
     <published>2019-04-16T03:05:25.000Z</published>
-    <updated>2019-04-17T03:11:30.838Z</updated>
+    <updated>2019-07-09T01:12:19.268Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="状态间的互通性"><a href="#状态间的互通性" class="headerlink" title="状态间的互通性"></a>状态间的互通性</h1><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/15.jpg" alt=""></p><p>互通性的三个性质：</p><ol><li>自返律（假设状态有<strong>自环</strong>）：$\mathbf{i} \leftrightarrow \mathbf{i}​$</li><li>对称律：$\mathbf{i} \leftrightarrow \mathbf{j}​$当且仅当$\mathbf{j} \leftrightarrow \mathbf{i}​$</li><li>传递律：如果$\mathbf{i} \leftrightarrow \mathbf{k}$且$\mathbf{k} \leftrightarrow \mathbf{j}$，那么$\mathbf{i} \leftrightarrow \mathbf{j}$ </li></ol><h1 id="链的可约性"><a href="#链的可约性" class="headerlink" title="链的可约性"></a>链的可约性</h1><p><strong>不可约性</strong>：如果一个马氏链的任意两个状态都互通，则这个马氏链不可约；否则可约。</p><p>不可约的马氏链：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/16.jpg" alt=""></p><p>可约的马氏链：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/17.jpg" alt=""></p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/18.jpg" alt=""></p><h1 id="状态的周期性"><a href="#状态的周期性" class="headerlink" title="状态的周期性"></a>状态的周期性</h1><p>状态的周期性有个挠头的定义（$from$ 张波《应用随机过程》）：</p><blockquote><p>记$d_i$为数集$\lbrace{n : n \geq 1, p_{i i}^{(n)}&gt;0}\rbrace$的最大公约数，则称它为状态$i$的周期。</p><p>若对一切$n{\ge}1$有$p_{i i}^{(n)}=0$，则约定$d_{i}=\infty$。</p><p>当$d_i&gt;1​$时，称$i​$是有周期的状态；当$d_i=1​$时，称$i​$是非周期的状态。</p></blockquote><p>数集$\lbrace{n : n \geq 1, p_{i i}^{(n)}&gt;0}\rbrace$指的是从状态$i$出发再次回到状态$i​$的<strong>步数</strong>的集合。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/19.jpg" alt=""></p><p>上图状态1再次回到状态1的方式有：</p><ol><li>$1{\to}1$：步数为1</li><li>$1\to2\to1$：步数为2</li><li>重复方式1，或者重复方式2，或者方式1和方式2的组合，例如$1\to1\to1$，$1\to2\to1\to1$</li></ol><p>因此状态1回到状态1的步数集合是{1, 2, 3, 4, 5, …}，$d_i=1$，状态1是非周期的；</p><p>状态2回到状态2的基本方式是{$2\to1\to2$：2步，$2\to1\to1\to2$：3步}，步数集合是{2，3，4，5，…}，最大公约数$d_i=1$，因此状态2是非周期的。</p><p>再看下图：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/21.jpg" alt=""></p><p>状态1自返的基本方式是：</p><ul><li>$1\to2\to3\to4\to1$，步数为4</li><li>$1\to5\to6\to7\to8\to9\to1$，步数为6</li></ul><p>状态1自返的步数集合是{4，6，8，10，…}，最大公约数$d_i=2$，所以状态1是周期的。</p><p>状态2，3，4的步数集合是{4，8，10，12，14，…}，都是周期的。</p><p>状态5，6，7，8，9的步数集合是{6，10，12，18，…}，都是周期的。</p><p>如何简单判断一个状态是<strong>周期/非周期</strong>的？</p><ul><li>带有<strong>自环</strong>的状态一定是非周期的（因为$d_i=1$），但不是所有非周期的状态都有自环，如下条</li><li>与非周期状态互通的状态一定是非周期的</li></ul><h1 id="状态的常返性"><a href="#状态的常返性" class="headerlink" title="状态的常返性"></a>状态的常返性</h1><p><strong>常返性</strong>即：马氏链由一个状态出发之后能否再次回归到本状态的特性。</p><p>常返性分为三种：</p><ul><li><strong>正</strong>常返（必定会返回，平均返回时间为有限值）</li><li><strong>零</strong>常返（必定会返回，平均返回时间为 $\infty​$ ）</li><li><strong>非</strong>常返（可能不再返回）</li></ul><p>定义略</p><p><strong>不可约马氏链的状态一致性</strong>定理：不可约马氏链的状态集全为正常返，或者全为零常返，或者全为非常返，并且每个状态的周期相同。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/20.jpg" alt=""></p><p>上图不可约马氏链中：</p><ul><li>如果 $p&lt;q$，那么全为正常返；</li><li>如果 $p=q$，那么全为零常返；</li><li>如果 $p&gt;q$，那么全为非常返。</li></ul><h1 id="状态-链的遍历性"><a href="#状态-链的遍历性" class="headerlink" title="状态/链的遍历性"></a>状态/链的遍历性</h1><p>如果齐次马氏链中的某个状态是非周期、正常返状态，称这个状态是<strong>可遍历</strong>的。</p><p>如果马氏链所有状态全互通（不可约）、可遍历（非周期、正常返），称这个马氏链为<strong>遍历链</strong>。</p><p>遍历链存在一个<strong>平稳分布</strong>：</p><ul><li>平稳分布与初始状态无关</li><li>平稳分布是唯一的</li><li>平稳分布全部大于0</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>互通、可约、周期、常返、遍历<br><a id="more"></a></p><h1 id="状态间的互通性"><a href="#状态间的互通性" class="headerlink" title="状态间的互通性"></a>状态间的互通性</h1><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/15.jpg" alt=""></p><p>互通性的三个性质：</p><ol><li>自返律（假设状态有<strong>自环</strong>）：$\mathbf{i} \leftrightarrow \mathbf{i}​$</li><li>对称律：$\mathbf{i} \leftrightarrow \mathbf{j}​$当且仅当$\mathbf{j} \leftrightarrow \mathbf{i}​$</li><li>传递律：如果$\mathbf{i} \leftrightarrow \mathbf{k}$且$\mathbf{k} \leftrightarrow \mathbf{j}$，那么$\mathbf{i} \leftrightarrow \mathbf{j}$ </li></ol><h1 id="链的可约性"><a href="#链的可约性" class="headerlink" title="链的可约性"></a>链的可约性</h1><p><strong>不可约性</strong>：如果一个马氏链的任意两个状态都互通，则这个马氏链不可约；否则可约。</p><p>不可约的马氏链：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/16.jpg" alt=""></p><p>可约的马氏链：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/17.jpg" alt=""></p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/18.jpg" alt=""></p><h1 id="状态的周期性"><a href="#状态的周期性" class="headerlink" title="状态的周期性"></a>状态的周期性</h1><p>状态的周期性有个挠头的定义（$from$ 张波《应用随机过程》）：</p><blockquote><p>记$d_i$为数集$\lbrace{n : n \geq 1, p_{i i}^{(n)}&gt;0}\rbrace$的最大公约数，则称它为状态$i$的周期。</p><p>若对一切$n{\ge}1$有$p_{i i}^{(n)}=0$，则约定$d_{i}=\infty$。</p><p>当$d_i&gt;1​$时，称$i​$是有周期的状态；当$d_i=1​$时，称$i​$是非周期的状态。</p></blockquote><p>数集$\lbrace{n : n \geq 1, p_{i i}^{(n)}&gt;0}\rbrace$指的是从状态$i$出发再次回到状态$i​$的<strong>步数</strong>的集合。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/19.jpg" alt=""></p><p>上图状态1再次回到状态1的方式有：</p><ol><li>$1{\to}1$：步数为1</li><li>$1\to2\to1$：步数为2</li><li>重复方式1，或者重复方式2，或者方式1和方式2的组合，例如$1\to1\to1$，$1\to2\to1\to1$</li></ol><p>因此状态1回到状态1的步数集合是{1, 2, 3, 4, 5, …}，$d_i=1$，状态1是非周期的；</p><p>状态2回到状态2的基本方式是{$2\to1\to2$：2步，$2\to1\to1\to2$：3步}，步数集合是{2，3，4，5，…}，最大公约数$d_i=1$，因此状态2是非周期的。</p><p>再看下图：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/21.jpg" alt=""></p><p>状态1自返的基本方式是：</p><ul><li>$1\to2\to3\to4\to1$，步数为4</li><li>$1\to5\to6\to7\to8\to9\to1$，步数为6</li></ul><p>状态1自返的步数集合是{4，6，8，10，…}，最大公约数$d_i=2$，所以状态1是周期的。</p><p>状态2，3，4的步数集合是{4，8，10，12，14，…}，都是周期的。</p><p>状态5，6，7，8，9的步数集合是{6，10，12，18，…}，都是周期的。</p><p>如何简单判断一个状态是<strong>周期/非周期</strong>的？</p><ul><li>带有<strong>自环</strong>的状态一定是非周期的（因为$d_i=1$），但不是所有非周期的状态都有自环，如下条</li><li>与非周期状态互通的状态一定是非周期的</li></ul><h1 id="状态的常返性"><a href="#状态的常返性" class="headerlink" title="状态的常返性"></a>状态的常返性</h1><p><strong>常返性</strong>即：马氏链由一个状态出发之后能否再次回归到本状态的特性。</p><p>常返性分为三种：</p><ul><li><strong>正</strong>常返（必定会返回，平均返回时间为有限值）</li><li><strong>零</strong>常返（必定会返回，平均返回时间为 $\infty​$ ）</li><li><strong>非</strong>常返（可能不再返回）</li></ul><p>定义略</p><p><strong>不可约马氏链的状态一致性</strong>定理：不可约马氏链的状态集全为正常返，或者全为零常返，或者全为非常返，并且每个状态的周期相同。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/20.jpg" alt=""></p><p>上图不可约马氏链中：</p><ul><li>如果 $p&lt;q$，那么全为正常返；</li><li>如果 $p=q$，那么全为零常返；</li><li>如果 $p&gt;q$，那么全为非常返。</li></ul><h1 id="状态-链的遍历性"><a href="#状态-链的遍历性" class="headerlink" title="状态/链的遍历性"></a>状态/链的遍历性</h1><p>如果齐次马氏链中的某个状态是非周期、正常返状态，称这个状态是<strong>可遍历</strong>的。</p><p>如果马氏链所有状态全互通（不可约）、可遍历（非周期、正常返），称这个马氏链为<strong>遍历链</strong>。</p><p>遍历链存在一个<strong>平稳分布</strong>：</p><ul><li>平稳分布与初始状态无关</li><li>平稳分布是唯一的</li><li>平稳分布全部大于0</li></ul>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;状态间的互通性&quot;&gt;&lt;a href=&quot;#状态间的互通性&quot; class=&quot;headerlink&quot; title=&quot;状态间的互通性&quot;&gt;&lt;/a&gt;状态间的互通性&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyu
-      
+      &lt;p&gt;互通、可约、周期、常返、遍历&lt;br&gt;
     
     </summary>
     
