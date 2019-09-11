@@ -113,19 +113,19 @@
 
 
 
-<meta name="description" content="有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在前台运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
+<meta name="description" content="有时候我们使用自己的电脑远程连接服务器（例如SSH）进行工作，某些任务我们希望放在前台运行但是其运行时间可能很长，如果程序运行期间我们需要断开连接，一般情况下这个前台任务也会随之中断。例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="screen-SSH终端离线持久化工具">
 <meta property="og:url" content="http://chenyin.top/os/20190911-89a2.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在前台运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
+<meta property="og:description" content="有时候我们使用自己的电脑远程连接服务器（例如SSH）进行工作，某些任务我们希望放在前台运行但是其运行时间可能很长，如果程序运行期间我们需要断开连接，一般情况下这个前台任务也会随之中断。例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/01.png">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/02.png">
-<meta property="og:updated_time" content="2019-09-11T03:26:23.678Z">
+<meta property="og:updated_time" content="2019-09-11T03:38:34.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="screen-SSH终端离线持久化工具">
-<meta name="twitter:description" content="有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在前台运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
+<meta name="twitter:description" content="有时候我们使用自己的电脑远程连接服务器（例如SSH）进行工作，某些任务我们希望放在前台运行但是其运行时间可能很长，如果程序运行期间我们需要断开连接，一般情况下这个前台任务也会随之中断。例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。">
 <meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/01.png">
 
 
@@ -408,7 +408,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-11T11:26:23+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-11T11:38:34+08:00">
                 2019-09-11
               </time>
             
@@ -458,7 +458,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  990
+                  1k
                 </span>
               
 
@@ -483,9 +483,9 @@
       
 
       
-        <p>有时候我们使用自己的电脑远程连接（例如SSH）服务器进行工作，某些任务我们希望放在<strong>前台</strong>运行但是其运行时间很长，如果程序运行期间我们需要断开服务器连接，一般情况下这个前台任务也会随之中断。典型的例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。</p>
+        <p>有时候我们使用自己的电脑远程连接服务器（例如SSH）进行工作，某些任务我们希望放在<strong>前台</strong>运行但是其运行时间可能很长，如果程序运行期间我们需要断开连接，一般情况下这个前台任务也会随之中断。例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。</p>
 <a id="more"></a>
-<p>screen工具不仅可以保证在断开远程连接的情况下当前前台任务继续保持运行，还可以实现单个实际窗口中操纵多个工作窗口。简单来说，新建一个<strong>screen会话</strong>会创建一个主进程，这个主进程对应着一个会话窗口。这个主进程是存储在服务器上的，它不受我们连接服务器的SSH进程的影响，因此当我们断开SSH连接时这个进程依旧存在，在下次重新连接服务器时依然可以恢复。而我们连接服务器时的工作环境中的任务实际上受SSH连接进程的影响，当我们断开连接时相关联的任务自然而然也就停止了。（PS: 以下一个虚拟窗口也称之为一个<strong>会话</strong>）</p>
+<p>screen工具不仅可以保证在断开远程连接的情况下继续运行当前任务，还可以实现单个<strong>实际窗口</strong>中操纵多个<strong>工作窗口</strong>。简单来说，新建一个<strong>screen会话</strong>会创建一个主进程，这个主进程对应着一个会话窗口。这个主进程是存储在服务器上的，它不受我们连接服务器的SSH进程的影响，因此当我们断开SSH连接时这个进程依旧存在，在下次重新连接服务器时依然可以恢复。而我们连接服务器时的工作环境中的任务实际上受SSH连接进程的影响，当我们断开连接时相关联的任务自然而然也就停止了。（PS: 下面提到的<strong>会话</strong>就是指一个虚拟窗口）</p>
 <p>screen的用法如下：</p>
 <ul>
 <li><strong>怎么查询当前服务器中建立了哪些会话？</strong> <code>screen -ls</code> 即可</li>
@@ -498,7 +498,11 @@
 </li>
 <li><strong>怎么退出并挂起当前会话？</strong> 依次摁下<code>Ctrl A D</code>三个键即可退出并挂起当前会话</li>
 <li><strong>怎么挂起当前窗口中创建的指定会话？</strong>上面已经提到了，<code>screen -d ...</code>可强制挂起指定会话</li>
-<li><strong>怎么删除一个会话？</strong>请确认你的虚拟窗口完成使命后再删除它，不然追悔莫及。直接<code>kill &lt;PID&gt;</code>可删除相应的会话</li>
+<li><strong>怎么删除一个会话？</strong>请确认你的虚拟窗口完成使命后再删除它，不然追悔莫及。<ul>
+<li>直接<code>kill &lt;PID&gt;</code>可删除相应的会话</li>
+<li>摁下<code>Ctrl A K D</code>可删除当前会话中的所有任务并退出当前会话</li>
+</ul>
+</li>
 </ul>
 
       
