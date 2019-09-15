@@ -122,7 +122,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/05.jpg">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/ascii.png">
-<meta property="og:updated_time" content="2019-04-14T16:02:20.276Z">
+<meta property="og:updated_time" content="2019-09-15T02:22:19.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python3中的字符串与编码问题">
 <meta name="twitter:description" content="python3的编码方式比python2已经简单很多了，不过还是让我等菜鸟头疼。廖老师的教程写的着实通俗易懂，恍然大悟。">
@@ -408,8 +408,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T00:02:20+08:00">
-                2019-04-15
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-15T10:22:19+08:00">
+                2019-09-15
               </time>
             
           </span>
@@ -458,7 +458,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.6k
+                  1.7k
                 </span>
               
 
@@ -539,9 +539,9 @@
 <p>当我们浏览某些网页的时候，服务器会自动生成信息，这些字符串是Unicode编码；服务器使用UTF-8编码这些字符串传输至浏览器并显示。</p>
 <h1 id="python3中的字符串"><a href="#python3中的字符串" class="headerlink" title="python3中的字符串"></a>python3中的字符串</h1><p>python中字符串类型是<code>str</code>，它们以Unicode方式编码。</p>
 <p><strong>字符</strong>通过Unicode编码可以与数字（二进制、十进制、十六进制…）进行转换：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 获取字符的Unicode编码的十进制整数值</span></span><br><span class="line">ord(<span class="string">'A'</span>) <span class="comment"># 65</span></span><br><span class="line">ord(<span class="string">'中'</span>) <span class="comment"># 20013</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 将十进制整数通过Unicode编码方式转化为字符</span></span><br><span class="line">chr(<span class="number">65</span>) <span class="comment"># 'A'</span></span><br><span class="line">chr(<span class="number">20013</span>) <span class="comment"># '中'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 注意：</span></span><br><span class="line"><span class="comment"># ord()只能转换字符，传递字符串会报错</span></span><br><span class="line"><span class="comment"># 传入()接收的整数如果超过Unicode编码的范围也会报错</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 获取字符的Unicode编码的十进制整数值</span></span><br><span class="line">ord(<span class="string">'A'</span>) <span class="comment"># 65</span></span><br><span class="line">ord(<span class="string">'中'</span>) <span class="comment"># 20013</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 将十进制整数通过Unicode编码方式转化为字符</span></span><br><span class="line">chr(<span class="number">65</span>) <span class="comment"># 'A'</span></span><br><span class="line">chr(<span class="number">20013</span>) <span class="comment"># '中'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 注意：</span></span><br><span class="line"><span class="comment"># ord()只能转换单个字符，传递字符串会报错</span></span><br><span class="line"><span class="comment"># 传入chr()接收的整数如果超过Unicode编码的范围也会报错</span></span><br></pre></td></tr></table></figure>
 <p>我们在程序中处理的字符串都是Unicode编码的，一个字符占据了多个字节。</p>
-<p>当进行网络传输或者本地存储时，<code>str</code>类型的字符串需要被转换为字节数据：</p>
+<p>当进行网络传输或者本地存储时，<code>str类型</code>的字符串需要被转换为字节数据：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单单一个'中'是Unicode编码的，直观上就没有反映出字节信息</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'中'</span>.encode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="string">b'\xe4\xb8\xad'</span></span><br><span class="line"><span class="comment"># 从encode结果我们可以看到'中'包含了三个字节</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'中'</span>.encode(<span class="string">'gbk'</span>)</span><br><span class="line"><span class="string">b'\xd6\xd0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面两种方式军会报错LookupError</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'中'</span>.encode(<span class="string">'unicode'</span>) <span class="comment"># 因为'中'本来就是Unicode编码了</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'中'</span>.encode(<span class="string">'ascii'</span>) <span class="comment"># ASCII不能编码汉字字符</span></span><br></pre></td></tr></table></figure>
 <p>python中</p>
 <ol>
@@ -558,7 +558,7 @@
 <p><strong>.py源文件</strong>也是文本，我们在保存是应该保存为UTF-8编码。为了使python解释器能正确读取源文件，我们需要指定解释器读取源文件的编码方式：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br></pre></td></tr></table></figure>
 <p>notepad++应该选择 <strong>Encoding in UTF-8 without BOM</strong> 编码文件！</p>
-<h1 id="中文文件的读写"><a href="#中文文件的读写" class="headerlink" title="中文文件的读写"></a>中文文件的读写</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding参数指定原文件的编码格式，可设置errors='ignore'</span></span><br><span class="line"><span class="keyword">with</span> open(INPUT_FP, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> reader:</span><br><span class="line">    OUTPUT_STRING = ...</span><br><span class="line">    </span><br><span class="line"><span class="comment"># encoding指定新文件的编码格式</span></span><br><span class="line"><span class="keyword">with</span> open(OUPUT_FP, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> writer:</span><br><span class="line">    writer.write(OUTPUT_STRING)</span><br></pre></td></tr></table></figure>
+<h1 id="中文文件的读写"><a href="#中文文件的读写" class="headerlink" title="中文文件的读写"></a>中文文件的读写</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding参数指定原文件的编码格式，可设置errors='ignore'</span></span><br><span class="line"><span class="keyword">with</span> open(INPUT_FP, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> reader:</span><br><span class="line">    OUTPUT_STRING = ...</span><br><span class="line">    </span><br><span class="line"><span class="comment"># encoding指定新文件的编码格式</span></span><br><span class="line"><span class="keyword">with</span> open(OUPUT_FP, <span class="string">'w'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> writer:</span><br><span class="line">    writer.write(OUTPUT_STRING)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 不要将这里的encoding参数和上面的.encode/.decode混淆：</span></span><br><span class="line"><span class="comment"># |- encoding参数指定输入文件/输出文件的编码类型，一般在读文件（本地/网络）的时候才用到</span></span><br><span class="line"><span class="comment"># |- .encode/.decode方法指定unicode编码字符串与其它编码字符串间的转换方式</span></span><br></pre></td></tr></table></figure>
 <p>参考自<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431664106267f12e9bef7ee14cf6a8776a479bdec9b9000" target="_blank" rel="noopener">廖雪峰的python教程-python基础-字符串和编码</a></p>
 
       
@@ -709,7 +709,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -720,7 +720,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -790,7 +790,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">73.3k</span>
+    <span title="Site words total count">67.4k</span>
   
 </div>
 
