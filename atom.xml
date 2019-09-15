@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chenyin.top/"/>
-  <updated>2019-09-11T03:38:34.610Z</updated>
+  <updated>2019-09-15T02:46:48.323Z</updated>
   <id>http://chenyin.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://chenyin.top/os/20190911-89a2.html"/>
     <id>http://chenyin.top/os/20190911-89a2.html</id>
     <published>2019-09-11T03:03:26.000Z</published>
-    <updated>2019-09-11T03:38:34.610Z</updated>
+    <updated>2019-09-15T02:46:48.323Z</updated>
     
     <content type="html"><![CDATA[<p>有时候我们使用自己的电脑远程连接服务器（例如SSH）进行工作，某些任务我们希望放在<strong>前台</strong>运行但是其运行时间可能很长，如果程序运行期间我们需要断开连接，一般情况下这个前台任务也会随之中断。例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。</p><a id="more"></a><p>screen工具不仅可以保证在断开远程连接的情况下继续运行当前任务，还可以实现单个<strong>实际窗口</strong>中操纵多个<strong>工作窗口</strong>。简单来说，新建一个<strong>screen会话</strong>会创建一个主进程，这个主进程对应着一个会话窗口。这个主进程是存储在服务器上的，它不受我们连接服务器的SSH进程的影响，因此当我们断开SSH连接时这个进程依旧存在，在下次重新连接服务器时依然可以恢复。而我们连接服务器时的工作环境中的任务实际上受SSH连接进程的影响，当我们断开连接时相关联的任务自然而然也就停止了。（PS: 下面提到的<strong>会话</strong>就是指一个虚拟窗口）</p><p>screen的用法如下：</p><ul><li><strong>怎么查询当前服务器中建立了哪些会话？</strong> <code>screen -ls</code> 即可</li><li><strong>怎么建立一个会话？</strong> <code>screen -S &lt;SOCKNAME&gt;</code> 可以建立一个虚拟会话，查看会话信息如下：<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/01.png" alt="screen_info_1"><br>由上可知，一个虚拟窗口的ID标识由<strong>进程号PID</strong>和<strong>会话名（SOCKNAME）</strong>组成，我们可以通过这两个信息恢复会话。除了 <code>screen -s ...</code> 之外，<code>screen -R ...</code> 也能建立一个新的虚拟窗口，与<code>-S</code>不同的是，<code>-R</code>是去尝试着恢复一个已有的会话，如果在已有会话中没有找到，他就会建立一个新的会话，跟“若目录不存在则创建目录”是一个意思。</li><li><strong>怎么恢复一个会话？</strong> <code>screen -r ...</code>可以恢复一个会话，当会话不存在时会报错；<code>screen -R ...</code>也能恢复一个会话，但是当会话不存在时会创建一个新的会话。注意：同一时间一个会话只能在一个实际窗口中打开（例如你可能会在不同的电脑上连接服务器或者在一台电脑上打开多个SSH会话）。当会话被挂起时（意味着此时没有窗口打开这个会话），会话信息中每个ID后面会标识出<code>(Detached)</code>，此时意味着你可以在当前窗口中打开这个会话继续工作；如果标识的是<code>(Attached)</code>，那么标识这个虚拟窗口已经在其它的地方被打开了，你将不能打开这个会话。如果你确定这属于异常情况，你可以使用<code>screen -d ...</code>强制挂起一个会话，此时状态会变成<code>(Detached)</code>，这表示你单方面终止了在某个未知地方打开的虚拟窗口。<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/02.png" alt="screen_info_2"><br>screen对你命令传入的会话名与会话ID进行匹配，例如你可以：<ul><li>只指定进程号PID，例如<code>screen -r 23288</code></li><li>在不引起歧义的情况下只指定会话名的首字母或前几个字母，例如<code>screen -r n</code>将恢复<code>23288.net</code></li><li>当然你也可以传入完整的<code>&lt;SOCKNAME&gt;</code>或者<code>&lt;PID&gt;.&lt;SOCKNAME&gt;</code></li></ul></li><li><strong>怎么退出并挂起当前会话？</strong> 依次摁下<code>Ctrl A D</code>三个键即可退出并挂起当前会话</li><li><strong>怎么挂起当前窗口中创建的指定会话？</strong>上面已经提到了，<code>screen -d ...</code>可强制挂起指定会话</li><li><strong>怎么删除一个会话？</strong>请确认你的虚拟窗口完成使命后再删除它，不然追悔莫及。<ul><li>直接<code>kill &lt;PID&gt;</code>可删除相应的会话</li><li>摁下<code>Ctrl A K D</code>可删除当前会话中的所有任务并退出当前会话</li></ul></li></ul>]]></content>
     
@@ -33,6 +33,8 @@
     
       <category term="os" scheme="http://chenyin.top/categories/os/"/>
     
+    
+      <category term="Linux实用命令" scheme="http://chenyin.top/tags/Linux%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
@@ -53,6 +55,58 @@
     
       <category term="C++" scheme="http://chenyin.top/categories/C/"/>
     
+    
+  </entry>
+  
+  <entry>
+    <title>Linux三个常见的压缩打包命令</title>
+    <link href="http://chenyin.top/os/20190515-feae.html"/>
+    <id>http://chenyin.top/os/20190515-feae.html</id>
+    <published>2019-05-15T01:32:02.000Z</published>
+    <updated>2019-09-15T02:49:22.373Z</updated>
+    
+    <content type="html"><![CDATA[<p>常见压缩文件扩展名</p><table><thead><tr><th style="text-align:center">扩展名</th><th style="text-align:center">解释</th></tr></thead><tbody><tr><td style="text-align:center">*.gz</td><td style="text-align:center">gzip压缩文件</td></tr><tr><td style="text-align:center">*.bz2</td><td style="text-align:center">bzip2压缩文件</td></tr><tr><td style="text-align:center">*.tar</td><td style="text-align:center">tar打包的文件，没有压缩</td></tr><tr><td style="text-align:center">*.tar.gz</td><td style="text-align:center">tar打包文件。经过gzip压缩</td></tr><tr><td style="text-align:center">*.tar.bz2</td><td style="text-align:center">tar打包文件，经过bzip2压缩</td></tr></tbody></table><a id="more"></a><h1 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h1><p>压缩并<strong>删除</strong>本地文件：<code>gzip -v SOURCE</code></p><p>压缩但<strong>保留</strong>本地文件：<code>gzip -c SOURCE &gt; TARGET</code></p><p>解压缩：<code>gzip -d SOURCE</code></p><p>不解压缩但查看文件内容：<code>zcat SOURCE</code></p><h1 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2"></a>bzip2</h1><p>取代gzip，压缩比例高于gzip</p><p>压缩并<strong>删除</strong>本地文件：<code>bzip2 -zv SOURCE</code></p><p>压缩但<strong>保留</strong>本地文件：<code>bzip2 -kv SOURCE</code></p><p>解压缩：<code>bzip2 -d SOURCE</code></p><p>不解压缩但查看文件内容：<code>bzcat SOURCE</code></p><h1 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h1><p>将（多个）文件打包（压缩）成一个文件</p><p>压缩 <code>-c</code>：</p><ul><li>创建bzip2压缩文件：<code>tar -jcvf TARGET.tar.bz2 SOURCE</code></li><li>创建gzip压缩文件：<code>tar -zcvf TARGET.tar.gz SOURCE</code></li></ul><p>不解压缩查看文件列表 <code>-t</code>：</p><ul><li><code>tar -jtvf SOUTCE.tar.bz2</code></li><li><code>tar -ztvf SOURCE.tar.gz</code></li></ul><p>解压缩 <code>-x</code>：</p><ul><li><code>tar -jxvf SOURCE.tar.bz2</code></li><li><code>tar -zxvf SOURCE.tar.gz</code></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;常见压缩文件扩展名&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;扩展名&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;*.gz&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;gzip压缩文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;*.bz2&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;bzip2压缩文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;*.tar&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;tar打包的文件，没有压缩&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;*.tar.gz&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;tar打包文件。经过gzip压缩&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;*.tar.bz2&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;tar打包文件，经过bzip2压缩&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+    
+    </summary>
+    
+      <category term="os" scheme="http://chenyin.top/categories/os/"/>
+    
+    
+      <category term="Linux实用命令" scheme="http://chenyin.top/tags/Linux%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
@@ -119,13 +173,13 @@
       <category term="bioinfo" scheme="http://chenyin.top/categories/bioinfo/"/>
     
     
+      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
+    
       <category term="深度学习" scheme="http://chenyin.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="卷积神经网络" scheme="http://chenyin.top/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
       <category term="基因组开放位点" scheme="http://chenyin.top/tags/%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%BC%80%E6%94%BE%E4%BD%8D%E7%82%B9/"/>
-    
-      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
     
   </entry>
   
@@ -456,26 +510,6 @@
     </summary>
     
       <category term="bioinfo" scheme="http://chenyin.top/categories/bioinfo/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>model.matrix(...)</title>
-    <link href="http://chenyin.top/R/20190319-1548.html"/>
-    <id>http://chenyin.top/R/20190319-1548.html</id>
-    <published>2019-03-19T03:34:18.000Z</published>
-    <updated>2019-04-14T16:02:20.221Z</updated>
-    
-    <content type="html"><![CDATA[<p>R中的模型矩阵函数。<a id="more"></a></p><h1 id="分类变量"><a href="#分类变量" class="headerlink" title="分类变量"></a>分类变量</h1><p><strong>分类变量</strong>（Factors）：R中用来存储分类数据的类别信息。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; f = factor(c(<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>))</span><br><span class="line"><span class="comment"># 检查变量是否是分类变量（因子）</span></span><br><span class="line">&gt; class(f)</span><br><span class="line">[<span class="number">1</span>] <span class="string">"factor"</span></span><br><span class="line"><span class="comment"># 查看分类变量中有哪些类别</span></span><br><span class="line">&gt; levels(f)</span><br><span class="line">[<span class="number">1</span>] <span class="string">"a"</span> <span class="string">"b"</span> <span class="string">"c"</span></span><br><span class="line"><span class="comment"># 查看分类变量中有几类</span></span><br><span class="line">&gt; nlevels(f)</span><br><span class="line">[<span class="number">1</span>] <span class="number">3</span></span><br></pre></td></tr></table></figure></p><h1 id="哑变量"><a href="#哑变量" class="headerlink" title="哑变量"></a>哑变量</h1><p><strong>虚拟变量</strong>/<strong>哑变量</strong>（dummy variable）：量化非数值类型的变量，通常取0/1。例如，衡量一个人的性别：男 -&gt; 1，女 -&gt; 0。</p><h1 id="解释变量"><a href="#解释变量" class="headerlink" title="解释变量"></a>解释变量</h1><p><strong>解释变量</strong>（explanatory variable）：单纯从数理角度来看，解释变量等同于控制变量/自变量，与之相对的是<strong>被解释变量</strong>（反应变量/因变量）。<a href="http://blog.sciencenet.cn/blog-334577-426759.html" target="_blank" rel="noopener">REF</a></p><h1 id="设计矩阵"><a href="#设计矩阵" class="headerlink" title="设计矩阵"></a>设计矩阵</h1><p><strong>设计矩阵</strong>（design matrix）：又叫<strong>模型矩阵</strong>（model matrix）或者<strong>回归矩阵</strong>（regressor matrix）。由解释变量值组成的矩阵：一行代表一个独立的观测对象（样本），一列代表对应的变量（特征值、元数据），通常记为$X$。简单理解，就是我们所说的<strong>输入矩阵</strong>，可以是元数据的，也可以是数据的。</p><h1 id="model-matrix-…"><a href="#model-matrix-…" class="headerlink" title="model.matrix(…)"></a>model.matrix(…)</h1><p>定义：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># S3 method for default </span></span><br><span class="line">model.matrix(object, data = environment(object), contrasts.arg = <span class="literal">NULL</span>, xlev = <span class="literal">NULL</span>, …)</span><br><span class="line"><span class="comment"># 函数依据 object 创建设计矩阵，矩阵的创建必须借助于数据集 data</span></span><br><span class="line"><span class="comment"># data 必须能提供与 object 相同名字的变量！</span></span><br></pre></td></tr></table></figure></p><p>以膀胱癌去批次效应为例，元数据形式如下<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/22.png" alt="model.matrix.pheno"></p><p>下面是部分列处理后的结果：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt; model &lt;- model.matrix(~batch, data = pheno)</span><br><span class="line">                  (Intercept)batch</span><br><span class="line">GSM71019.CEL           <span class="number">1</span>     <span class="number">3</span></span><br><span class="line">GSM71020.CEL           <span class="number">1</span>     <span class="number">2</span></span><br><span class="line"><span class="comment"># pheno$batch 是数值型变量，相当于提取列</span></span><br><span class="line"><span class="comment"># 此时新的变量名仍然是 batch</span></span><br><span class="line"><span class="comment">#---------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">&gt;model &lt;-  model.matrix(~cancer, data = pheno)</span><br><span class="line">             (Intercept) cancerCancer cancerNormal</span><br><span class="line">GSM71019.CEL           <span class="number">1</span>            <span class="number">0</span>            <span class="number">1</span></span><br><span class="line">GSM71020.CEL           <span class="number">1</span>            <span class="number">0</span>            <span class="number">1</span></span><br><span class="line"><span class="comment"># pheno$cancer 被处理成分类变量，每一类将单独作为列（哑变量），取值为0/1</span></span><br><span class="line"><span class="comment"># 此时新的变量名为 cancerCancer 和 cancerNormal</span></span><br><span class="line"><span class="comment">#---------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">&gt; model &lt;- model.matrix(~cancer==<span class="string">"Cancer"</span>, data = pheno)</span><br><span class="line">             (Intercept) cancer == <span class="string">"Cancer"</span><span class="literal">TRUE</span></span><br><span class="line">GSM71019.CEL           <span class="number">1</span>                            <span class="number">0</span></span><br><span class="line">GSM71020.CEL           <span class="number">1</span>                            <span class="number">0</span></span><br><span class="line"><span class="comment"># cancer=="Cancer" 是一个 logical 类型</span></span><br><span class="line"><span class="comment"># 这种写法极不优雅！我们应该先定好名字</span></span><br><span class="line">&gt; pheno$hasCancer &lt;- pheno$cancer == <span class="string">"Cancer"</span></span><br><span class="line">&gt; model &lt;- model.matrix(~hasCancer, data=pheno)</span><br><span class="line">             (Intercept) hasCancer</span><br><span class="line">GSM71019.CEL           <span class="number">1</span>         <span class="number">0</span></span><br><span class="line">GSM71020.CEL           <span class="number">1</span>         <span class="number">0</span></span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;R中的模型矩阵函数。
-    
-    </summary>
-    
-      <category term="R" scheme="http://chenyin.top/categories/R/"/>
     
     
   </entry>
