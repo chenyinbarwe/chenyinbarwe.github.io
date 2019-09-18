@@ -120,7 +120,7 @@
 <meta property="og:site_name" content="阔落煮酒">
 <meta property="og:description" content="强大的网页解析工具！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-14T03:21:53.692Z">
+<meta property="og:updated_time" content="2019-09-18T15:14:23.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BeautifulSoup包">
 <meta name="twitter:description" content="强大的网页解析工具！">
@@ -405,8 +405,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-14T11:21:53+08:00">
-                2019-05-14
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-18T23:14:23+08:00">
+                2019-09-18
               </time>
             
           </span>
@@ -455,7 +455,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  964
                 </span>
               
 
@@ -481,90 +481,57 @@
 
       
         <p>强大的网页解析工具！<a id="more"></a></p>
-<h1 id="创建、查看"><a href="#创建、查看" class="headerlink" title="创建、查看"></a>创建、查看</h1><p>导入<strong>BeautifulSoup</strong>：</p>
+<p>你知道吗？其实HTML就是一棵树…… <!-- more --></p>
+<h1 id="一、创建BeautifulSoup对象"><a href="#一、创建BeautifulSoup对象" class="headerlink" title="一、创建BeautifulSoup对象"></a>一、创建BeautifulSoup对象</h1><p>导入<strong>BeautifulSoup类</strong>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br></pre></td></tr></table></figure>
-<p>创建<strong>BeautifulSoup对象</strong>：</p>
-<p>1.传入<strong>字符串</strong>: html是源代码文本字符串。如</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">html = requests.get(URL, headers=HEADERS, cookies=COOKIES).text</span><br><span class="line">bsobj = BeautifulSoup(html, <span class="string">'lxml'</span>)</span><br></pre></td></tr></table></figure>
-<p>2.传入<strong>本地文件对象</strong>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bsobj = BeautifulSoup(open(LOCAL_FILE))</span><br></pre></td></tr></table></figure>
+<p>初始化<strong>BeautifulSoup对象</strong>：传入一个html纯文本，可以open一个本地文件或者requests获取一个在线html文本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">html = requests.get(&lt;URL&gt;, headers = &lt;HEADERS&gt;, cookies = &lt;COOKIES&gt;).text</span><br><span class="line">bsobj = BeautifulSoup(html, <span class="string">'lxml'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 一个例子</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_html</span><span class="params">(url, encoding = <span class="string">'gbk'</span>)</span>:</span></span><br><span class="line">    headers = [</span><br><span class="line">        <span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64)'</span>,</span><br><span class="line">        <span class="string">'AppleWebKit/537.36 (KHTML, like Gecko)'</span>,</span><br><span class="line">        <span class="string">'Chrome/70.0.3538.67'</span>,</span><br><span class="line">        <span class="string">'Safari/537.36'</span>]</span><br><span class="line">    headers = &#123;<span class="string">'User-Agent'</span>: <span class="string">' '</span>.join(headers)&#125;</span><br><span class="line">    html = requests.get(url = url, headers = headers)</span><br><span class="line">    html.encoding = encoding</span><br><span class="line">    html = html.text</span><br><span class="line">    <span class="keyword">return</span> html</span><br></pre></td></tr></table></figure>
 <p>格式化打印<strong>BeautifulSoup对象</strong>内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print( bsobj.prettify() )</span><br></pre></td></tr></table></figure>
-<h1 id="四大对象"><a href="#四大对象" class="headerlink" title="四大对象"></a>四大对象</h1><ul>
-<li><code>bs4.element.Tag</code>: 标签，具有 <code>name</code> 属性（标签名）和 <code>attrs</code>属性 （标签的属性字典）：如 <code>bsobj.title</code> 或者下文的 <code>SOME_TAG</code>;</li>
-<li><code>bs4.element.NavigableString</code>: 标签内的字符串，通过 <code>SOME_TAG.string</code> 访问；</li>
-<li><code>bs4.BeautifulSoup</code>: BeautifulSoup对象，即<code>bsobj</code>，相当于内容是<strong>html</strong>标签的一个tag，<code>name</code>值为<code>[document]</code>;</li>
-<li><code>bs4.element.Comment</code>: 注释掉的内容，容易与<strong>NavigableString</strong>混淆</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(bsobj.prettify())</span><br></pre></td></tr></table></figure>
+<h1 id="二、bs4包的四种基本类型"><a href="#二、bs4包的四种基本类型" class="headerlink" title="二、bs4包的四种基本类型"></a>二、bs4包的四种基本类型</h1><ul>
+<li><strong>element.Tag</strong>：HTML标签，具有<strong>name</strong>属性（标签名）和<strong>attrs</strong>属性 （标签的属性字典）</li>
+<li><strong>element.NavigableString</strong>：标签包含的文本</li>
+<li><strong>BeautifulSoup</strong>：初始化的BeautifulSoup对象，name属性值为<strong>[document]</strong>，它只有一个元素即<strong>.html</strong>;</li>
+<li><strong>element.Comment</strong>：注释内容</li>
 </ul>
-<h1 id="遍历文档树"><a href="#遍历文档树" class="headerlink" title="遍历文档树"></a>遍历文档树</h1><h2 id="1-标签对象的属性"><a href="#1-标签对象的属性" class="headerlink" title="1.标签对象的属性"></a>1.标签对象的属性</h2><p>遍历标签的直接子节点，返回列表：<code>SOME_TAG.contents</code></p>
-<p>遍历标签的直接子节点，返回<strong>listiterator对象</strong>：<code>SOME_TAG.children</code></p>
-<p>遍历标签的所有子孙节点，返回<strong>listiterator对象</strong>：<code>SOME_TAG.descendants</code></p>
-<p>标签内的字符串<strong>只有一个时</strong>获取这个字符串：<code>SOME_TAG.string</code></p>
-<p>标签内的字符串<strong>有很多个时</strong>获取这些字符串：<code>SOME_TAG.strings</code></p>
-<p>标签内的字符串<strong>有很多个时</strong>获取这些字符串并去掉其中的空白部分：<code>SOME_TAG.striped_strings</code></p>
-<p>父节点(还是一个tag对象)：<code>SOME_TAG.parent</code></p>
-<p>全部父节点，返回<strong>generator</strong>：<code>SOME_TAG.parents</code></p>
-<p>兄弟节点：<code>SOME_TAG.previous_sibling</code> 或 <code>SOME_TAG.next_sibling</code></p>
-<p>全部兄弟节点：<code>SOME_TAG.previous_siblings</code> 或 <code>SOME_TAG.next_siblings</code></p>
-<p>前后节点：<code>SOME_TAG.previous_element</code> 或 <code>SOME_TAG.next_element</code></p>
-<p>全部前后节点：<code>SOME_TAG.previous_elements</code> 或 <code>SOME_TAG.next_elements</code></p>
-<h2 id="2-标签对象的方法"><a href="#2-标签对象的方法" class="headerlink" title="2.标签对象的方法"></a>2.标签对象的方法</h2><h3 id="1-find簇方法"><a href="#1-find簇方法" class="headerlink" title="(1) find簇方法"></a>(1) find簇方法</h3><h4 id="find-all-name-attrs-recursive-text-kwargs"><a href="#find-all-name-attrs-recursive-text-kwargs" class="headerlink" title="find_all( name , attrs , recursive , text , **kwargs )"></a><span style="color:red">find_all( name , attrs , recursive , text , **kwargs )</span></h4><p>在<strong>直接子节点/所有子孙节点</strong>中搜索，返回一个tag对象的列表</p>
-<p>● 形参<strong>name</strong>限制搜索的html标签范围<br>可以是：</p>
+<h1 id="三、遍历文档树"><a href="#三、遍历文档树" class="headerlink" title="三、遍历文档树"></a>三、遍历文档树</h1><h2 id="1-使用点号-遍历标签的属性"><a href="#1-使用点号-遍历标签的属性" class="headerlink" title="1. 使用点号(.)遍历标签的属性"></a>1. 使用点号(.)遍历标签的属性</h2><ul>
+<li><p><strong>TAG.contents</strong>：list对象，直接子标签</p>
+</li>
+<li><p><strong>TAG.children</strong>：iterator对象，直接子标签</p>
+</li>
+<li><p><strong>TAG.descendants</strong>：iterator对象，所有子孙标签</p>
+</li>
+<li><p><strong>TAG.string</strong>：标签内只有一个字符串，获取它</p>
+</li>
+<li><p><strong>TAG.strings</strong>：标签内不止一个字符串，获取它们</p>
+</li>
+<li><p><strong>TAG.striped_strings</strong>：标签内不止一个字符串，获取它们并去掉空白符</p>
+</li>
+<li><p><strong>TAG.parent</strong>：当前标签的直接父标签，很明显只会有一个</p>
+</li>
+<li><p><strong>TAG.parents</strong>：iterator对象，当前标签的所有祖先标签，很明显可能不止一个</p>
+</li>
+</ul>
+<p>下面的四个感觉用途不大，因为不够精准：</p>
 <ul>
-<li>直接指定标签，如 <code>name=&#39;title&#39;</code>限制为title标签；</li>
-<li>正则表达式，如 <code>name=re.compile(r&#39;^b&#39;)</code> 限制为所有以b开头的标签;</li>
-<li>标签的列表，如 <code>name=[&#39;a&#39;,&#39;p&#39;]</code>限制为a标签和p标签；</li>
-<li>布尔值True，<code>name=True</code>将返回所有<strong>子孙</strong>标签；</li>
-<li>一个<strong>特定规则的函数</strong>：形参为<strong>SOME_TAG</strong>，返回布尔值，如下：</li>
+<li><p><strong>TAG.previous_sibling</strong>或<strong>TAG.next_sibling</strong>：并列的上一个/下一个兄弟节点</p>
+</li>
+<li><p><strong>TAG.previous_siblings</strong>或<strong>TAG.next_siblings</strong>：</p>
+</li>
+<li><p><strong>TAG.previous_element</strong>或<strong>TAG.next_element</strong>：前后节点</p>
+</li>
+<li><p><strong>TAG.previous_elements</strong>或<strong>TAG.next_elements</strong></p>
+</li>
 </ul>
-<p>这个函数接受一个SOME_TAG，判断它是否具有class属性并且没有id属性：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">has_class_but_no_id</span><span class="params">(tag)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> tag.has_attr(<span class="string">'class'</span>) <span class="keyword">and</span> <span class="keyword">not</span> tag.has_attr(<span class="string">'id'</span>)</span><br></pre></td></tr></table></figure></p>
-<p>● 形参<strong>attrs</strong>对name限定的标签进行属性上的过滤</p>
-<p>实际上为一个<strong>html属性字典</strong>，如 <code>attrs={&#39;class&#39;:&#39;goodslist&#39;, &#39;id&#39;: &#39;gold&#39;}</code></p>
-<p>● 形参<strong>recursive</strong>为布尔值</p>
-<p>True（默认）表示搜索<strong>子孙节点</strong>，False表示只搜索<strong>直接子节点</strong></p>
-<p>● 形参<strong>text</strong>对标签内的字符串内容进行限制以达到过滤目的</p>
-<p>与形参<strong>name</strong>相似，可以传入字符串、正则表达式、字符串列表、布尔值、特定规则的函数</p>
-<p><strong>NavigableString</strong>和<strong>Comment</strong>都在text参数过滤的范围内</p>
-<p>● <strong>kwargs</strong>中常用关键字参数</p>
-<ol>
-<li><strong>非内置的过滤形参</strong>会被解析为属性值过滤行为</li>
-</ol>
-<p>上面的<code>attrs={&#39;class&#39;:&#39;goodslist&#39;, &#39;id&#39;: &#39;gold&#39;}</code>还可以写做 <code>class_=&#39;goodslist&#39;, id=&#39;gold&#39;</code></p>
-<p>并不是所有html属性都可以这样写的，比如 <code>data-*</code> 属性，因为不符合python变量命名规范</p>
-<p>我觉得还是用attrs字典比较靠谱！！！</p>
-<ol start="2">
-<li><strong>limit</strong>关键字限制搜索结果的数量，当达到指定数量时即停止搜索，避免在文档树十分庞大时拖慢程序速度</li>
-</ol>
-<h4 id="find-name-attrs-recursive-text-kwargs"><a href="#find-name-attrs-recursive-text-kwargs" class="headerlink" title="find( name , attrs , recursive , text , **kwargs )"></a><span style="color:red">find( name , attrs , recursive , text , **kwargs )</span></h4><p>在<strong>直接子节点/所有子孙节点</strong>中搜索，只返回找到的第一个结果</p>
-<h4 id="find-parents-…-or-find-parent-…"><a href="#find-parents-…-or-find-parent-…" class="headerlink" title="find_parents(…) or find_parent(…)"></a><span style="color:red">find_parents(…)</span> or <span style="color:red">find_parent(…)</span></h4><p>通过 <code>.parents</code> 或者 <code>.parent</code> 对<strong>父节点</strong>进行遍历</p>
-<h4 id="find-previous-siblings-…-or-find-previous-sibling-…"><a href="#find-previous-siblings-…-or-find-previous-sibling-…" class="headerlink" title="find_previous_siblings(…) or find_previous_sibling(…)"></a><span style="color:red">find_previous_siblings(…)</span> or <span style="color:red">find_previous_sibling(…)</span></h4><p>通过 <code>.previous_siblings</code> 或者 <code>.previous_sibling</code> 对<strong>前文兄弟节点</strong>进行遍历</p>
-<h4 id="find-next-siblings-…-or-find-next-sibling-…"><a href="#find-next-siblings-…-or-find-next-sibling-…" class="headerlink" title="find_next_siblings(…) or find_next_sibling(…)"></a><span style="color:red">find_next_siblings(…)</span> or <span style="color:red">find_next_sibling(…)</span></h4><p>通过 <code>.next_siblings</code> 或者 <code>.next_sibling</code> 对<strong>后文兄弟节点</strong>进行遍历</p>
-<h4 id="find-all-previous-…-or-find-previous-…"><a href="#find-all-previous-…-or-find-previous-…" class="headerlink" title="find_all_previous(…) or find_previous(…)"></a><span style="color:red">find_all_previous(…)</span> or <span style="color:red">find_previous(…)</span></h4><p>通过 <code>.previous_elements</code> 或者 <code>.previous_element</code> 对<strong>前文所有节点</strong>进行遍历</p>
-<h4 id="find-all-next-…-or-find-next-…"><a href="#find-all-next-…-or-find-next-…" class="headerlink" title="find_all_next(…) or find_next(…)"></a><span style="color:red">find_all_next(…)</span> or <span style="color:red">find_next(…)</span></h4><p>通过 <code>.next_elements</code> 或者 <code>.next_element</code> 对<strong>所有后文节点</strong>进行遍历</p>
-<h3 id="2-select方法"><a href="#2-select方法" class="headerlink" title="(2) select方法"></a>(2) select方法</h3><p>遵循CSS标签选择器的语法规则</p>
-<p>select方法通过一定的规则构造查询字符串，而find类方法则是通过关键字参数传入信息</p>
-<ul>
-<li>通过<strong>标签名</strong>查找，返回tag列表，如 <code>SOME_TAG.select(&#39;title&#39;)</code></li>
-<li>通过<strong>class名</strong>查找，返回tag列表，如 <code>SOME_TAG.select(&#39;.goodslist&#39;)</code></li>
-<li>通过<strong>id名</strong>查找，返回tag列表，如 <code>SOME_TAG.select(&#39;#gold&#39;)</code></li>
-</ul>
-<p>上述基本规则可以进行组合：</p>
-<ul>
-<li>满足标签从属关系的查找(使用<code>&gt;</code>)：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOME_TAG.select(<span class="string">'head &gt; title'</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>标签、类名、id名联合查找(1)：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOME_TAG.select(<span class="string">'table .goodslist #gold'</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>标签、类名、id名联合查找(2)：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOME_TAG.select(<span class="string">'table[class="goodslist",id="gold"]'</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>标签从属、类名、id名联合查找：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOME_TAG.select(<span class="string">'div[class="containor"] &gt; table[id="gold"]'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="2-通过标签的方法查找特定的子标签"><a href="#2-通过标签的方法查找特定的子标签" class="headerlink" title="2. 通过标签的方法查找特定的子标签"></a>2. 通过标签的方法查找特定的子标签</h2><p>$\blacksquare$ 表示该方法很常用，$\square$ 表示该方式不是很常用</p>
+<hr>
+<h3 id="blacksquare-find-all-…）"><a href="#blacksquare-find-all-…）" class="headerlink" title="$\blacksquare$.find_all(…）"></a>$\blacksquare$.find_all(…）</h3><p>在所有子孙节点中搜索特定标签，返回一个list对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">TAG.find_all(name, attrs, recursive, text, **kwargs)</span><br><span class="line"><span class="comment"># name 限制标签名，形式丰富多样：</span></span><br><span class="line"><span class="comment"># |- 1. 特定名称，如 name = 'title'</span></span><br><span class="line"><span class="comment"># |- 2. 正则表达式，如 name = re.compile(r'^b')</span></span><br><span class="line"><span class="comment"># |- 3. 标签列表，如 name = ['a', 'img', 'p']</span></span><br><span class="line"><span class="comment"># |- 4. name = True 会返回所有子孙节点</span></span><br><span class="line"><span class="comment"># |- 5. 一个特殊的函数：接受一个TAG，返回布尔值表示这个TAG是否被选择，例如</span></span><br><span class="line"><span class="comment">#		def has_class_but_no_id(tag):</span></span><br><span class="line"><span class="comment">#			return tag.has_attr('class') and not tag.has_attr('id')</span></span><br><span class="line"><span class="comment"># attr 一个字典，根据属性进行过滤，例如</span></span><br><span class="line"><span class="comment">#		attr = &#123;'class': '...', 'id': '...'&#125;</span></span><br><span class="line"><span class="comment"># recursive 布尔值，True搜索子孙标签，False只搜索直接子标签</span></span><br><span class="line"><span class="comment"># text 匹配标签内的字符串，包含了NavigableString和Comment</span></span><br><span class="line"><span class="comment"># |- 与name类似，可以传入正则表达式、字符串列表、特殊函数</span></span><br><span class="line"><span class="comment"># kwargs 不建议使用</span></span><br><span class="line"><span class="comment"># limit 限制返回结果的数量，当文档树过大时有用</span></span><br></pre></td></tr></table></figure>
+<h3 id="blacksquare-find-…"><a href="#blacksquare-find-…" class="headerlink" title="$\blacksquare$.find(…)"></a>$\blacksquare$.find(…)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只返回搜索到第一个结果</span></span><br><span class="line">TAG.find(name, attrs, recursive, text, **kwargs)</span><br></pre></td></tr></table></figure>
+<h3 id="square-find-parent-…"><a href="#square-find-parent-…" class="headerlink" title="$\square$.find_parent(…)"></a>$\square$.find_parent(…)</h3><h3 id="square-find-parents-…"><a href="#square-find-parents-…" class="headerlink" title="$\square$.find_parents(…)"></a>$\square$.find_parents(…)</h3><h3 id="square-find-previous-sibling-…"><a href="#square-find-previous-sibling-…" class="headerlink" title="$\square$.find_previous_sibling(…)"></a>$\square$.find_previous_sibling(…)</h3><h3 id="square-find-next-sibling-…"><a href="#square-find-next-sibling-…" class="headerlink" title="$\square$.find_next_sibling(…)"></a>$\square$.find_next_sibling(…)</h3><h3 id="square-find-previous-siblings-…"><a href="#square-find-previous-siblings-…" class="headerlink" title="$\square$.find_previous_siblings(…)"></a>$\square$.find_previous_siblings(…)</h3><h3 id="square-find-next-siblings-…"><a href="#square-find-next-siblings-…" class="headerlink" title="$\square$.find_next_siblings(…)"></a>$\square$.find_next_siblings(…)</h3><h3 id="square-find-previous-…"><a href="#square-find-previous-…" class="headerlink" title="$\square$.find_previous(…)"></a>$\square$.find_previous(…)</h3><h3 id="square-find-all-previous-…"><a href="#square-find-all-previous-…" class="headerlink" title="$\square$.find_all_previous(…)"></a>$\square$.find_all_previous(…)</h3><h3 id="square-find-next-…"><a href="#square-find-next-…" class="headerlink" title="$\square$.find_next(…)"></a>$\square$.find_next(…)</h3><h3 id="square-find-all-next-…"><a href="#square-find-all-next-…" class="headerlink" title="$\square$.find_all_next(…)"></a>$\square$.find_all_next(…)</h3><h3 id="blacksquare-select-…"><a href="#blacksquare-select-…" class="headerlink" title="$\blacksquare$.select(…)"></a>$\blacksquare$.select(…)</h3><p><strong>select</strong>方法接收一个特殊的字符串，该字符串的形式应按照CSS标签选择器的语法书写。</p>
+<p>常见的CSS标签选择器语法有：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 标签名、样式、id是查找标签的三个常用的属性</span></span><br><span class="line">TAG.select(<span class="string">'title'</span>) <span class="comment"># 查找名为title的所有标签，返回list</span></span><br><span class="line">TAG.select(<span class="string">'.cls'</span>) <span class="comment"># 查找样式中包含cls的所有标签，返回list</span></span><br><span class="line">TAG.select(<span class="string">'#myid'</span>) <span class="comment"># 查找id为myid的所有标签，返回list</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 三个常用属性可以进行自由组合</span></span><br><span class="line">TAG.select(<span class="string">'head &gt; title'</span>) <span class="comment"># '&gt;'连接的标签从属关系</span></span><br><span class="line">TAG.select(<span class="string">'table .cls #myid'</span>) <span class="comment"># 并列查找，同时满足</span></span><br><span class="line">TAG.select(<span class="string">'table[class="cls",id="myid"]'</span>) <span class="comment">#联合查找的另一种格式</span></span><br><span class="line">TAG.select(<span class="string">'div[class="cls"] &gt; table[id="gold"]'</span>) <span class="comment"># 联合查找可以和从属标签结合</span></span><br></pre></td></tr></table></figure>
+<p>其实掌握上面的几种CSS标签选择语法就足以应付大多数标签查找了，更多CSS选择器语法参考<a href="https://www.w3school.com.cn/cssref/css_selectors.asp" title="CSS选择器语法" target="_blank" rel="noopener">w3school教程</a>。</p>
 
       
     </div>
@@ -756,7 +723,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建、查看"><span class="nav-number">1.</span> <span class="nav-text">创建、查看</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四大对象"><span class="nav-number">2.</span> <span class="nav-text">四大对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遍历文档树"><span class="nav-number">3.</span> <span class="nav-text">遍历文档树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-标签对象的属性"><span class="nav-number">3.1.</span> <span class="nav-text">1.标签对象的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-标签对象的方法"><span class="nav-number">3.2.</span> <span class="nav-text">2.标签对象的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-find簇方法"><span class="nav-number">3.2.1.</span> <span class="nav-text">(1) find簇方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#find-all-name-attrs-recursive-text-kwargs"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">find_all( name , attrs , recursive , text , **kwargs )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-name-attrs-recursive-text-kwargs"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">find( name , attrs , recursive , text , **kwargs )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-parents-…-or-find-parent-…"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">find_parents(…) or find_parent(…)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-previous-siblings-…-or-find-previous-sibling-…"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">find_previous_siblings(…) or find_previous_sibling(…)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-next-siblings-…-or-find-next-sibling-…"><span class="nav-number">3.2.1.5.</span> <span class="nav-text">find_next_siblings(…) or find_next_sibling(…)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-all-previous-…-or-find-previous-…"><span class="nav-number">3.2.1.6.</span> <span class="nav-text">find_all_previous(…) or find_previous(…)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-all-next-…-or-find-next-…"><span class="nav-number">3.2.1.7.</span> <span class="nav-text">find_all_next(…) or find_next(…)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-select方法"><span class="nav-number">3.2.2.</span> <span class="nav-text">(2) select方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、创建BeautifulSoup对象"><span class="nav-number">1.</span> <span class="nav-text">一、创建BeautifulSoup对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、bs4包的四种基本类型"><span class="nav-number">2.</span> <span class="nav-text">二、bs4包的四种基本类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、遍历文档树"><span class="nav-number">3.</span> <span class="nav-text">三、遍历文档树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用点号-遍历标签的属性"><span class="nav-number">3.1.</span> <span class="nav-text">1. 使用点号(.)遍历标签的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-通过标签的方法查找特定的子标签"><span class="nav-number">3.2.</span> <span class="nav-text">2. 通过标签的方法查找特定的子标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#blacksquare-find-all-…）"><span class="nav-number">3.2.1.</span> <span class="nav-text">$\blacksquare$.find_all(…）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blacksquare-find-…"><span class="nav-number">3.2.2.</span> <span class="nav-text">$\blacksquare$.find(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-parent-…"><span class="nav-number">3.2.3.</span> <span class="nav-text">$\square$.find_parent(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-parents-…"><span class="nav-number">3.2.4.</span> <span class="nav-text">$\square$.find_parents(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-previous-sibling-…"><span class="nav-number">3.2.5.</span> <span class="nav-text">$\square$.find_previous_sibling(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-next-sibling-…"><span class="nav-number">3.2.6.</span> <span class="nav-text">$\square$.find_next_sibling(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-previous-siblings-…"><span class="nav-number">3.2.7.</span> <span class="nav-text">$\square$.find_previous_siblings(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-next-siblings-…"><span class="nav-number">3.2.8.</span> <span class="nav-text">$\square$.find_next_siblings(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-previous-…"><span class="nav-number">3.2.9.</span> <span class="nav-text">$\square$.find_previous(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-all-previous-…"><span class="nav-number">3.2.10.</span> <span class="nav-text">$\square$.find_all_previous(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-next-…"><span class="nav-number">3.2.11.</span> <span class="nav-text">$\square$.find_next(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#square-find-all-next-…"><span class="nav-number">3.2.12.</span> <span class="nav-text">$\square$.find_all_next(…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blacksquare-select-…"><span class="nav-number">3.2.13.</span> <span class="nav-text">$\blacksquare$.select(…)</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -795,7 +762,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">67.7k</span>
+    <span title="Site words total count">67.5k</span>
   
 </div>
 
