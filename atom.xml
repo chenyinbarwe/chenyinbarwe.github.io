@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chenyin.top/"/>
-  <updated>2019-10-16T16:30:30.892Z</updated>
+  <updated>2019-11-18T15:49:32.976Z</updated>
   <id>http://chenyin.top/</id>
   
   <author>
@@ -15,6 +15,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>requests</title>
+    <link href="http://chenyin.top/spider/20191118-23bd.html"/>
+    <id>http://chenyin.top/spider/20191118-23bd.html</id>
+    <published>2019-11-18T15:42:00.000Z</published>
+    <updated>2019-11-18T15:49:32.976Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/requests-post.png" alt=""></p><p>在python里面，<strong>requests包</strong>足够应付简单的爬虫需求，具有很强的用户友好性。一般情况下，我们只需要向服务器请求数据，此时使用<strong>GET请求</strong>，如果需要向服务器提交数据则使用<strong>POST请求</strong>。</p><a id="more"></a><h2 id="GET请求的基本格式"><a href="#GET请求的基本格式" class="headerlink" title="GET请求的基本格式"></a>GET请求的基本格式</h2><p>get请求通过 <code>requests.get(...)</code> 实现，正常情况下将返回一个<strong>requests.models.Response对象</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response = requests.get(<span class="string">"https://api.github.com/events"</span>)</span><br><span class="line">type(response) <span class="comment"># requests.models.Response</span></span><br></pre></td></tr></table></figure></p><h3 id="URL参数"><a href="#URL参数" class="headerlink" title="URL参数"></a>URL参数</h3><p>如果get访问的服务器需要参数需要在URL中加入参数，常见的方式有两种：</p><ol><li>直接构建带参数的URL字符串，通过<strong>问号</strong>分隔，例如 <code>http://xxx.com/?key=value</code></li><li>通过<strong>param参数</strong>传递URL参数，该参数接受一个<strong>字典</strong>，如 <code>response = requests.get(..., param = {&#39;k&#39;: &#39;v&#39;})</code><ol><li>可以是简单的字典，如 <code>{&quot;key1&quot;: &quot;value1&quot;, &quot;key2&quot;: &quot;value2&quot;}</code>构造出的参数字符串为 <code>?key1=value1&amp;key2=value2</code></li><li>可以有多个值，如 <code>{&quot;key1&quot;: &quot;value1&quot;, &quot;key2&quot;: [&quot;key21&quot;, &quot;key22&quot;]}</code>构造出的参数字符串为<code>?key1=value1&amp;key2=value21&amp;key2=value22</code> </li><li>可以是空值，此时会忽略这个参数，如 <code>{&quot;key1&quot;: &quot;value1&quot;, &quot;key2&quot;: None}</code>构造出的参数字符串为 <code>?key1=value1</code></li></ol></li></ol><h3 id="用户代理"><a href="#用户代理" class="headerlink" title="用户代理"></a>用户代理</h3><p>部分网站需要设置正确的<strong>用户代理</strong>（<code>User-Agent</code>）用来模仿真人使用浏览器的行为。用户代理信息存储在<strong>头部信息</strong>中，因此可以通过 <code>headers</code> 参数设定：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">"https://www.zhihu.com"</span></span><br><span class="line">headers = &#123;<span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"</span>&#125;</span><br><span class="line">response = requests.get(url, headers = headers)</span><br></pre></td></tr></table></figure></p><p>使用chrome可以通过访问 <code>chrome://version</code> 查询到<strong>用户代理</strong>信息。<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/01.png" alt=""></p><h3 id="超时请求"><a href="#超时请求" class="headerlink" title="超时请求"></a>超时请求</h3><p>客户端通过get请求服务器响应时需要等待时间，假设服务器突然傲娇，短时间不打算响应或者根本不打算回应你，如果此时没有一些约束条件客户端就会永远等下去，子子孙孙无穷尽矣。通过设置参数<code>timeout</code>（单位：秒）告诉客户端等待多长时间即可放弃等待。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response = requests.get(<span class="string">'...'</span>, timeout = <span class="number">5</span>)</span><br></pre></td></tr></table></figure></p><p>如果服务器在指定时间（秒）内没有做出应答，get将会抛出异常。</p><h3 id="Response对象"><a href="#Response对象" class="headerlink" title="Response对象"></a>Response对象</h3><p>每一个请求成功的 <code>requests.get(...)</code> 都会返回一个<strong>Response对象</strong>，它有一些基本属性：</p><ul><li><code>.url</code>：包含URL参数的字符串</li><li><code>.status_code</code>：状态码，<strong>int类型</strong></li><li><code>.headers</code>：头部信息</li><li><code>.cookies</code>：cookie信息</li><li><code>.encoding</code>：编码方式，如utf-8</li><li><code>.text</code> ：内容，<strong>str类型</strong>（python3）</li><li><code>.content</code>：内容，<strong>bytes类型</strong></li></ul><p>requests为每个<strong>HTTP状态码</strong>分配了相应的<strong>常量</strong>，这些状态码值存储在 <code>requests.codes</code> 中，例如200对应的常量是 <code>requests.codes.ok</code>。</p><blockquote><p>常见HTTP状态码对应的requests常量：<a href="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/doc/HTTPStatusCodeKeys.txt" target="_blank" rel="noopener">点此查看</a><br>常见的HTTP状态码：<a href="https://www.runoob.com/http/http-status-codes.html" target="_blank" rel="noopener">点此查看</a></p></blockquote><p>当访问 <code>.text</code> 时，requests会自动识别头部信息中的编码方式并解码文本，编码方式可以通过 <code>.encoding</code> 查看。<code>.text</code> 返回一个字符串类型（str）。相应的，<code>.content</code> 返回的是<strong>bytes类型</strong>的字节串。</p><p>对于普通的文本网页，<code>.text</code> 能够正确解码，但是对于那些<strong>二进制文件</strong>的URL，<code>.text</code> 并不能正确解析内容，如下：<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/02.png" alt=""><br>此时需要使用 <code>.content</code> 读取请求内容：<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/03.png" alt=""></p><h3 id="如果返回了json数据"><a href="#如果返回了json数据" class="headerlink" title="如果返回了json数据"></a>如果返回了json数据</h3><p><strong>get请求</strong>结果中如果有json数据需要进行解码，requests包中内置了json数据解码器用于处理服务器返回的json数据。但是<u>成功获取到了json数据并不意味着响应成功</u>，因为有些服务器即使没有正常相应，仍然会返回包含了例如错误状态码在内的信息。服务器正常响应请求也不一定会返回json数据，如：<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/04.png" alt=""></p><h3 id="如果返回了cookie数据"><a href="#如果返回了cookie数据" class="headerlink" title="如果返回了cookie数据"></a>如果返回了cookie数据</h3><p>get请求的结果如果包含了cookie，可以通过 <code>.cookies</code> 属性访问cookie内容<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> response.cookies.items(): <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/05.png" alt=""></p><h2 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h2><p>暂时用不上~</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/requests-post.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在python里面，&lt;strong&gt;requests包&lt;/strong&gt;足够应付简单的爬虫需求，具有很强的用户友好性。一般情况下，我们只需要向服务器请求数据，此时使用&lt;strong&gt;GET请求&lt;/strong&gt;，如果需要向服务器提交数据则使用&lt;strong&gt;POST请求&lt;/strong&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="spider" scheme="http://chenyin.top/categories/spider/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>R读取内容为空的文件报错怎么办？</title>
+    <link href="http://chenyin.top/R/20191112-e00c.html"/>
+    <id>http://chenyin.top/R/20191112-e00c.html</id>
+    <published>2019-11-12T07:29:42.000Z</published>
+    <updated>2019-11-12T07:37:08.372Z</updated>
+    
+    <content type="html"><![CDATA[<p>一般我们用R处理的多半都是表格文件，但是当文件内容为空时（准确的描述应该是没有有效的表格内容，这意味着可以有许多<code>#</code>注释的行），直接使用<code>read.table</code>函数读取文件会报错。</p><a id="more"></a><p>报错如下：</p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; read.table(<span class="string">'kws_included.txt'</span>, sep = <span class="string">','</span>, stringsAsFactors = <span class="literal">F</span>)</span><br><span class="line">Error <span class="keyword">in</span> read.table(<span class="string">"kws_included.txt"</span>, sep = <span class="string">","</span>, stringsAsFactors = <span class="literal">F</span>) : </span><br><span class="line">  输入中没有多出的行</span><br></pre></td></tr></table></figure><p><strong>解决办法：</strong></p><p>用<code>try(...)</code>函数捕获异常，只是R中的<code>try(...)</code>函数功能比较简单，但是用来判断一下语句执行是否报错还是没有什么问题的。用法如下：</p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = <span class="keyword">try</span>(read.table(<span class="string">'kws_included.txt'</span>, sep = <span class="string">','</span>, stringsAsFactors = <span class="literal">F</span>), silent = <span class="literal">T</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="string">'try-error'</span> %<span class="keyword">in</span>% class(df)) <span class="keyword">...</span> <span class="comment"># 语句执行出错</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">...</span> <span class="comment"># 语句执行1正常</span></span><br></pre></td></tr></table></figure><p><strong>其他解决办法</strong>：</p><p>未知~</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一般我们用R处理的多半都是表格文件，但是当文件内容为空时（准确的描述应该是没有有效的表格内容，这意味着可以有许多&lt;code&gt;#&lt;/code&gt;注释的行），直接使用&lt;code&gt;read.table&lt;/code&gt;函数读取文件会报错。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="R" scheme="http://chenyin.top/categories/R/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用parallel包的apply并行计算函数</title>
+    <link href="http://chenyin.top/R/20191112-d180.html"/>
+    <id>http://chenyin.top/R/20191112-d180.html</id>
+    <published>2019-11-12T07:24:12.000Z</published>
+    <updated>2019-11-12T07:26:07.622Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>apply</code>系列的函数（例如常见的<code>lapply</code>, <code>sapply</code>）都是可以并行计算的，这在计算单位数较多且每个计算单位非常耗时时，能大大加快计算速度。这里简单记录内建的<code>parallel</code>包如何进行并行计算。</p><a id="more"></a><p><strong>1. 加载R包</strong></p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(parallel)</span><br></pre></td></tr></table></figure><p><strong>2. 查看当前节点可用CPU数，确定任务所需CPU数</strong></p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">detectCores()</span><br></pre></td></tr></table></figure><p><strong>3. 指定任务所需CPU数，初始化资源调度器</strong></p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 这里假设调度10核</span></span><br><span class="line">mkc = makeCluster(<span class="number">10</span>)</span><br></pre></td></tr></table></figure><p><strong>4. 运行主程序</strong></p><p>并行运算的<code>apply</code>家族的函数与原函数都是一一对应的，如</p><ul><li><code>apply</code> $\to$ <code>parApply</code></li><li><code>lapply</code> $\to$ <code>parLapply</code></li><li><code>sapply</code> $\to$ <code>parSapply</code></li></ul><p>代码示例如下：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xs = parLapply(mkc, xs, func()&#123;<span class="keyword">...</span>&#125;)</span><br></pre></td></tr></table></figure></p><p>注意，<code>func(){...}</code>中的所有第三方包都需要在函数内导入，因为<code>parLapply</code>会启动R的额外进程，在新的进程里面不会自动导入当前环境中已经导入的第三方包。</p><p><strong>4. 关闭资源调度器</strong></p><p>结束并行运算后一定要关闭资源调度器<code>mkc</code></p><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stopCluster(mkc)</span><br></pre></td></tr></table></figure><p>不然<code>top</code>之后你会发现自己刷屏了~</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;apply&lt;/code&gt;系列的函数（例如常见的&lt;code&gt;lapply&lt;/code&gt;, &lt;code&gt;sapply&lt;/code&gt;）都是可以并行计算的，这在计算单位数较多且每个计算单位非常耗时时，能大大加快计算速度。这里简单记录内建的&lt;code&gt;parallel&lt;/code&gt;包如何进行并行计算。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="R" scheme="http://chenyin.top/categories/R/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>从因变量类型对回归分类</title>
@@ -61,9 +122,9 @@
     <link href="http://chenyin.top/os/20190911-89a2.html"/>
     <id>http://chenyin.top/os/20190911-89a2.html</id>
     <published>2019-09-11T03:03:26.000Z</published>
-    <updated>2019-09-28T02:56:35.523Z</updated>
+    <updated>2019-11-08T08:43:11.960Z</updated>
     
-    <content type="html"><![CDATA[<p>有时候我们使用自己的电脑远程连接服务器（例如SSH）进行工作，某些任务我们希望放在<strong>前台</strong>运行但是其运行时间可能很长，如果程序运行期间我们需要断开连接，一般情况下这个前台任务也会随之中断。例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。</p><a id="more"></a><p>screen工具不仅可以保证在断开远程连接的情况下继续运行当前任务，还可以实现单个<strong>实际窗口</strong>中操纵多个<strong>工作窗口</strong>。简单来说，新建一个<strong>screen会话</strong>会创建一个主进程，这个主进程对应着一个会话窗口。这个主进程是存储在服务器上的，它不受我们连接服务器的SSH进程的影响，因此当我们断开SSH连接时这个进程依旧存在，在下次重新连接服务器时依然可以恢复。而我们连接服务器时的工作环境中的任务实际上受SSH连接进程的影响，当我们断开连接时相关联的任务自然而然也就停止了。（PS: 下面提到的<strong>会话</strong>就是指一个虚拟窗口）</p><p>screen的用法如下：</p><ul><li><strong>怎么查询当前服务器中建立了哪些会话？</strong> <code>screen -ls</code> 即可</li><li><strong>怎么建立一个会话？</strong> <code>screen -S &lt;SOCKNAME&gt;</code> 可以建立一个虚拟会话，查看会话信息如下：<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/01.png" alt="screen_info_1"><br>由上可知，一个虚拟窗口的ID标识由<strong>进程号PID</strong>和<strong>会话名（SOCKNAME）</strong>组成，我们可以通过这两个信息恢复会话。除了 <code>screen -s ...</code> 之外，<code>screen -R ...</code> 也能建立一个新的虚拟窗口，与<code>-S</code>不同的是，<code>-R</code>是去尝试着恢复一个已有的会话，如果在已有会话中没有找到，他就会建立一个新的会话，跟“若目录不存在则创建目录”是一个意思。</li><li><strong>怎么恢复一个会话？</strong> <code>screen -r ...</code>可以恢复一个会话，当会话不存在时会报错；<code>screen -R ...</code>也能恢复一个会话，但是当会话不存在时会创建一个新的会话。注意：同一时间一个会话只能在一个实际窗口中打开（例如你可能会在不同的电脑上连接服务器或者在一台电脑上打开多个SSH会话）。当会话被挂起时（意味着此时没有窗口打开这个会话），会话信息中每个ID后面会标识出<code>(Detached)</code>，此时意味着你可以在当前窗口中打开这个会话继续工作；如果标识的是<code>(Attached)</code>，那么标识这个虚拟窗口已经在其它的地方被打开了，你将不能打开这个会话。如果你确定这属于异常情况，你可以使用<code>screen -d ...</code>强制挂起一个会话，此时状态会变成<code>(Detached)</code>，这表示你单方面终止了在某个未知地方打开的虚拟窗口。<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/02.png" alt="screen_info_2"><br>screen对你命令传入的会话名与会话ID进行匹配，例如你可以：<ul><li>只指定进程号PID，例如<code>screen -r 23288</code></li><li>在不引起歧义的情况下只指定会话名的首字母或前几个字母，例如<code>screen -r n</code>将恢复<code>23288.net</code></li><li>当然你也可以传入完整的<code>&lt;SOCKNAME&gt;</code>或者<code>&lt;PID&gt;.&lt;SOCKNAME&gt;</code></li></ul></li><li><strong>怎么退出并挂起当前会话？</strong> 依次摁下<code>Ctrl A D</code>三个键即可退出并挂起当前会话</li><li><strong>怎么挂起当前窗口中创建的指定会话？</strong>上面已经提到了，<code>screen -d ...</code>可强制挂起指定会话</li><li><strong>怎么删除一个会话？</strong>请确认你的虚拟窗口完成使命后再删除它，不然追悔莫及。<ul><li>直接<code>kill &lt;PID&gt;</code>可删除相应的会话</li><li>摁下<code>Ctrl A K D</code>可删除当前会话中的所有任务并退出当前会话</li></ul></li></ul><p>总结一下，screen常用的命令有：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">screen -ls</span><br><span class="line">screen -r</span><br><span class="line">screen -R</span><br><span class="line">screen -S</span><br><span class="line">screen -d</span><br><span class="line">Ctrl + A + D 组合键</span><br><span class="line">Ctrl + A + K + D 组合键</span><br><span class="line">kill &lt;PID&gt;</span><br></pre></td></tr></table></figure><p>下面是我设置的alias（使用极其频繁，根据奥卡姆剃刀原则，越频繁越简洁）：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> sr=<span class="string">"screen -r"</span></span><br><span class="line"><span class="built_in">alias</span> sl=<span class="string">"screen -ls"</span></span><br><span class="line"><span class="comment"># 还可以设置几个快捷窗口</span></span><br><span class="line"><span class="built_in">alias</span> srq=<span class="string">'sr q'</span></span><br><span class="line"><span class="built_in">alias</span> srr=<span class="string">'sr r'</span></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>有时候我们使用自己的电脑远程连接服务器（例如SSH）进行工作，某些任务我们希望放在<strong>前台</strong>运行但是其运行时间可能很长，如果程序运行期间我们需要断开连接，一般情况下这个前台任务也会随之中断。例如R交互式环境中的程序。screen工具就是为了解决这样一个问题。</p><a id="more"></a><p>screen工具不仅可以保证在断开远程连接的情况下继续运行当前任务，还可以实现单个<strong>实际窗口</strong>中操纵多个<strong>工作窗口</strong>。简单来说，新建一个<strong>screen会话</strong>会创建一个主进程，这个主进程对应着一个会话窗口。这个主进程是存储在服务器上的，它不受我们连接服务器的SSH进程的影响，因此当我们断开SSH连接时这个进程依旧存在，在下次重新连接服务器时依然可以恢复。而我们连接服务器时的工作环境中的任务实际上受SSH连接进程的影响，当我们断开连接时相关联的任务自然而然也就停止了。（PS: 下面提到的<strong>会话</strong>就是指一个虚拟窗口）</p><p>screen的用法如下：</p><ul><li><strong>怎么查询当前服务器中建立了哪些会话？</strong> <code>screen -ls</code> 即可</li><li><strong>怎么建立一个会话？</strong> <code>screen -S &lt;SOCKNAME&gt;</code> 可以建立一个虚拟会话，查看会话信息如下：<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/01.png" alt="screen_info_1"><br>由上可知，一个虚拟窗口的ID标识由<strong>进程号PID</strong>和<strong>会话名（SOCKNAME）</strong>组成，我们可以通过这两个信息恢复会话。除了 <code>screen -s ...</code> 之外，<code>screen -R ...</code> 也能建立一个新的虚拟窗口，与<code>-S</code>不同的是，<code>-R</code>是去尝试着恢复一个已有的会话，如果在已有会话中没有找到，他就会建立一个新的会话，跟“若目录不存在则创建目录”是一个意思。</li><li><strong>怎么恢复一个会话？</strong> <code>screen -r ...</code>可以恢复一个会话，当会话不存在时会报错；<code>screen -R ...</code>也能恢复一个会话，但是当会话不存在时会创建一个新的会话。注意：同一时间一个会话只能在一个实际窗口中打开（例如你可能会在不同的电脑上连接服务器或者在一台电脑上打开多个SSH会话）。当会话被挂起时（意味着此时没有窗口打开这个会话），会话信息中每个ID后面会标识出<code>(Detached)</code>，此时意味着你可以在当前窗口中打开这个会话继续工作；如果标识的是<code>(Attached)</code>，那么标识这个虚拟窗口已经在其它的地方被打开了，你将不能打开这个会话。如果你确定这属于异常情况，你可以使用<code>screen -d ...</code>强制挂起一个会话，此时状态会变成<code>(Detached)</code>，这表示你单方面终止了在某个未知地方打开的虚拟窗口。<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/09/02.png" alt="screen_info_2"><br>screen对你命令传入的会话名与会话ID进行匹配，例如你可以：<ul><li>只指定进程号PID，例如<code>screen -r 23288</code></li><li>在不引起歧义的情况下只指定会话名的首字母或前几个字母，例如<code>screen -r n</code>将恢复<code>23288.net</code></li><li>当然你也可以传入完整的<code>&lt;SOCKNAME&gt;</code>或者<code>&lt;PID&gt;.&lt;SOCKNAME&gt;</code></li></ul></li><li><strong>怎么退出并挂起当前会话？</strong> 依次摁下<code>Ctrl A D</code>三个键即可退出并挂起当前会话</li><li><strong>怎么挂起当前窗口中创建的指定会话？</strong>上面已经提到了，<code>screen -d ...</code>可强制挂起指定会话</li><li><strong>怎么删除一个会话？</strong>请确认你的虚拟窗口完成使命后再删除它，不然追悔莫及。<ul><li>直接<code>kill &lt;PID&gt;</code>可删除相应的会话</li><li>摁下<code>Ctrl A K D</code>可删除当前会话中的所有任务并退出当前会话</li></ul></li></ul><p>总结一下，screen常用的命令有：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">screen -ls</span><br><span class="line">screen -r</span><br><span class="line">screen -R</span><br><span class="line">screen -S</span><br><span class="line">screen -d</span><br><span class="line">Ctrl + A + D 组合键</span><br><span class="line">Ctrl + A + K + D 组合键</span><br><span class="line">kill &lt;PID&gt;</span><br></pre></td></tr></table></figure><p>下面是我设置的alias（使用极其频繁，根据奥卡姆剃刀原则，越频繁越简洁）：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> sr=<span class="string">"screen -r"</span></span><br><span class="line"><span class="built_in">alias</span> sl=<span class="string">"screen -ls"</span></span><br><span class="line"><span class="comment"># 还可以设置几个快捷窗口</span></span><br><span class="line"><span class="built_in">alias</span> srq=<span class="string">'sr q'</span></span><br><span class="line"><span class="built_in">alias</span> srr=<span class="string">'sr r'</span></span><br></pre></td></tr></table></figure><p>其它命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 重命名已经存在的会话名称</span></span><br><span class="line">screen -S &lt;OLDNAME&gt; -X sessionname &lt;NEWNAME&gt;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -213,13 +274,13 @@
       <category term="bioinfo" scheme="http://chenyin.top/categories/bioinfo/"/>
     
     
-      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
-    
       <category term="深度学习" scheme="http://chenyin.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="卷积神经网络" scheme="http://chenyin.top/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
       <category term="基因组开放位点" scheme="http://chenyin.top/tags/%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%BC%80%E6%94%BE%E4%BD%8D%E7%82%B9/"/>
+    
+      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
     
   </entry>
   
@@ -425,86 +486,6 @@
       <category term="降维" scheme="http://chenyin.top/tags/%E9%99%8D%E7%BB%B4/"/>
     
       <category term="t-SNE" scheme="http://chenyin.top/tags/t-SNE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>降维03 - SNE原理</title>
-    <link href="http://chenyin.top/ml/20190325-80ae.html"/>
-    <id>http://chenyin.top/ml/20190325-80ae.html</id>
-    <published>2019-03-25T12:44:14.000Z</published>
-    <updated>2019-04-14T16:02:20.120Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/01.png" width="100%"></p><blockquote><p><a href="http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf" target="_blank" rel="noopener">Hinton, G. E., &amp; Roweis, S. T. (2003). <strong>Stochastic neighbor embedding</strong>. In Advances in neural information processing systems (pp. 857-864).</a></p></blockquote><p><strong>随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 </p><a id="more"></a><h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}$$</p><p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}} $$<br>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p><h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 k (perplexity)</strong> ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$H(P_i)=-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p><p><strong>熵 $H(P_i)$ 的理解</strong></p><ul><li><strong>不确定性</strong>：熵本身就意味着不确定性，当区域点密集时，中心点位置的不确定性就小；</li><li><strong>能量</strong>：不确定性大意味着能量大，拉不住中心点，它要到处跑；</li><li><strong>有效邻居数</strong>：点密集时中心点的有效邻居就多。</li></ul><h1 id="映射到低维空间"><a href="#映射到低维空间" class="headerlink" title="映射到低维空间"></a>映射到低维空间</h1><p>在低维空间（二维或者三维）确定一点 $y_i$，它与高维空间的点 $x_i$ 对应，我们手动设置点 $y_i$ 的条件概率分布，即固定以 $y_i$ 为中心点的高斯分布对应的方差为 $\frac12$，当 $j{\ne}i$ 时：<br>$$ q_{ij}=q(y_j|y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{k{\ne}i}{\exp{(-||y_i-y_k||^2)}}} $$<br>当j=i时 $q(y_j|y_i)=0$ 。</p><p>此时，如果低维点 $y_i$ 能够正确表示高维点 $x_i$，意味着 $q(y_j|y_i)=p(x_j|x_i)$。为了使两个概率（近似）相等，我们可以最小化<strong>KL散度</strong>。损失函数如下：<br>$$C=\sum_iKL(P_i|Q_i)=\sum_i\sum_jp_{ij}\log\frac{p_{ij}}{q_{ij}}$$</p><ul><li>$P_i$ 表示：给定点 $x_i$，其它所有点的条件概率分布；</li><li>$Q_i$ 表示：给定低维空间映射点 $y_i$，其它所有低维映射点的条件概率分布。</li></ul><p>KL散度又叫<strong>相对熵</strong>，用来度量两个分布间的距离。假设P是真实分布，Q是模型分布，$KL(P|Q)$ 表示用Q表示P分布的数据所需的额外信息。   </p><p><strong>KL散度是不对称的</strong> </p><p>KL散度中包含 $\log\frac{p_{ij}}{q_{ij}}$ 意味着这个映射不是对称的，即：</p><ul><li>使用距离较小的低维点表示距离较大的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于小于0，则损失C较小；</li><li>使用距离较大的低维点表示距离较小的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于大于0，则损失C较大。</li></ul><p>这里就存在一个问题：当两个高维点距离很远，而我构造两个距离很近的低维点能够使损失函数更小，却与实际的目的不相符！所以，SNE算法使得高维空间中距离近的点在低维空间中距离仍然很近，但是远的点就嘿嘿嘿了。</p><h1 id="最小化损失函数"><a href="#最小化损失函数" class="headerlink" title="最小化损失函数"></a>最小化损失函数</h1><p>从 $q_{ij}$ 的定义式的分母部分可知，低维空间中点 $y_i$ 选择点 $y_j$ 的概率 $q_{ij}$ 与低维空间中的每一个映射点都有关系（分母起到了normalization的作用），但是求导结果却十分简洁：<br>$$\frac{\partial{C}}{\partial{y_i}}=2\sum_k{(y_i-y_k)[(p_{ik}-q_{ik})+(p_{ki}-q_{ki})]}$$</p><p>想沿着所有点以最陡梯度下降是不现实的，不仅低效，还可能陷入糟糕费解的局部最优。上面的梯度公式右边理论上是针对所有低维映射点进行迭代，但是实际上，相距较远的一堆点间的影响十分小（抽象），在计算时往往可以忽略不计，也就是说：仅仅计算与中心点相距较近的一部分点，即<strong>邻居</strong> ，这也是为什么算法中含有单词neighbour的原因了吧。</p><p>选择中心点的部分较近的邻居参与计算表示，我们只保留了中心点附近区域的特性，而忽略了整体局势，所以说SNE是保留局部特征而非全局特征的算法。这个局部特性主要反应为 $\sigma_i^2$：局部点密集方差小，局部点稀疏方法大。方差确定的方法前面已经陈述了~。</p><h2 id="带动量项的梯度更新"><a href="#带动量项的梯度更新" class="headerlink" title="带动量项的梯度更新"></a>带动量项的梯度更新</h2><p>为了加速优化过程、避免很一般的局部解，可以在每次下降时添加动量项。<strong>动量 (momentum)</strong> 的作用就是在下降到局部最优时，小球仍然具有沿切线方向的分量，这使得小球将继续朝前运动，这会有两种结果：</p><ul><li>小球越过障碍，继续前行；</li><li>小球回退，返回局部最优解；<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/08.png" alt=""><br>具体的，更新公式如下：<br>$$\gamma^{(t)}=\gamma^{(t-1)}-{\eta}\frac{\partial{C}}{\partial{\gamma}}+\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$$</li></ul><p>式中 $\alpha(t)$ 即动量，动量项 ($\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$) 还与上一次运动幅度有关，直观的看，上一次运动越剧烈，下一次就越刹不住车。</p><h2 id="随机抖动"><a href="#随机抖动" class="headerlink" title="随机抖动"></a>随机抖动</h2><p><strong>随机抖动</strong> (random jitter) 是一种初始化技巧，即将低维空间中的所有数据点初始化在离坐标原点极近的地方。在迭代的过程中，它们将抖抖抖抖抖动直至收敛。尽管还是很慢，不过在节约时间和选择更优局部解时还是有明显提升的。</p><h2 id="模拟退火"><a href="#模拟退火" class="headerlink" title="模拟退火"></a>模拟退火</h2><p>在优化早期给每一步迭代加上高斯噪音，这可以帮助避免不好的局部最优解。随着迭代次数变多，噪音方差将逐渐减小。当方差变化非常慢时，这表明开始形成全局结构。（玄学）</p><p>然而，高斯噪音的数量和衰减速率是十分难以确定的，它们不仅与动量相关，也受学习率的影响。怎么办？多算几次！666</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/01.png&quot; width=&quot;100%&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hinton, G. E., &amp;amp; Roweis, S. T. (2003). &lt;strong&gt;Stochastic neighbor embedding&lt;/strong&gt;. In Advances in neural information processing systems (pp. 857-864).&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE)&lt;/strong&gt; 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 &lt;/p&gt;
-    
-    </summary>
-    
-      <category term="ml" scheme="http://chenyin.top/categories/ml/"/>
-    
-    
-      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
-    
-      <category term="降维" scheme="http://chenyin.top/tags/%E9%99%8D%E7%BB%B4/"/>
-    
-      <category term="非线性降维" scheme="http://chenyin.top/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E9%99%8D%E7%BB%B4/"/>
-    
-      <category term="SNE" scheme="http://chenyin.top/tags/SNE/"/>
-    
-      <category term="t-SNE" scheme="http://chenyin.top/tags/t-SNE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>降维02 - 主成分分析 (PCA)</title>
-    <link href="http://chenyin.top/ml/20190325-c024.html"/>
-    <id>http://chenyin.top/ml/20190325-c024.html</id>
-    <published>2019-03-25T07:13:19.000Z</published>
-    <updated>2019-04-14T16:02:20.109Z</updated>
-    
-    <content type="html"><![CDATA[<p>PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了<strong>线性代数</strong>之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。<a id="more"></a></p><p>PCA是最易于理解的<strong>特征提取</strong>过程：通过对原始特征的<strong>线性组合</strong>构造新的“特征”，这些特征不同于原始特征，但是又能与原始特征一样表达原始数据的信息。</p><p><strong>PCA (Primary Component Analysis, 主成分分析)</strong> 为什么叫做主成分分析呢？因为PCA构造出的新特征地位并不是等同的，即这些新特征的重要程度存在差异：</p><ul><li><strong>第一主成分 (the first component)</strong> 是新特征中最重要的特征，它在所有新特征中方差最大，这意味着它对数据变异的贡献是最大的；</li><li><strong>第二主成分 (the second component)</strong> 在保证不影响第一主成分的基础上试图解释剩下的变异（即总变异 - 第一主成分引起的变异）；</li><li><strong>第三主成分 (the third component)</strong> 在不保证第一和第二主成分呢的基础上试图解释剩下的变异（即总变异 - 第一主成分引起的变异 - 第二主成分引起的变异）;</li><li>依次类推……</li></ul><h1 id="线代原理"><a href="#线代原理" class="headerlink" title="线代原理"></a>线代原理</h1><p>预备知识：线性代数（矩阵运算、特征值&amp;特征向量、特征值分解）</p><h2 id="可对角化"><a href="#可对角化" class="headerlink" title="可对角化"></a>可对角化</h2><p>如果一个n阶方阵A相似于对角矩阵，即存在可逆矩阵$P$使得$P^{-1}AP$是对角矩阵，则称方阵A是<strong>可对角化</strong>的。</p><p><strong>n阶方阵A可对角化的充要条件是A每个特征值的几何重数与代数重数相等</strong>：<strong>代数重数</strong>指<strong>特征多项式</strong>中该特征值的幂次，<strong>几何重数</strong>指特征值对应的线性无关的特征向量的个数。</p><p><strong>n阶方阵A可对角化的充要条件是A有n个线性无关的特征向量</strong>：几何重数与代数重数相等意味着n个线性无关的特征向量。</p><p>即使方阵A可逆也不能保证每个特征值的代数重数与几何重数相等，因此A可逆不是A可对角化的充要条件！</p><h2 id="特征值分解"><a href="#特征值分解" class="headerlink" title="特征值分解"></a>特征值分解</h2><p>如果矩阵A是一个<strong>可对角化</strong>的方阵，它就可以进行特征值分解，即A可表示为：<br>$$A=Q{\Lambda}Q^{-1}$$<br>其中</p><ul><li>$Q$ 是n阶方阵，它的n个列向量是方阵A的n个特征向量</li><li>$\Lambda$ 是对角方阵，对角线元素是方阵A的特征值，其位置与 $Q$ 中的特征向量位置相对应</li></ul><p>特征值分解的应用？求逆。<br>如果方阵A是<strong>非奇异矩阵</strong>（即可以进行特征值分解且特征值不含0），则 $A^{-1}=Q{\Lambda}^{-1}Q^{-1}$，其中 $[{\Lambda}^{-1}]_{ii}=\frac1{\lambda_i}$。</p><h2 id="奇异值分解"><a href="#奇异值分解" class="headerlink" title="奇异值分解"></a>奇异值分解</h2><p>特征值分解对A的要求格外严格：可逆、特征值不含0、方阵……<br>放松特征值分解的限制，将A扩展到任意 $m{\times}n$ 的矩阵即得到 <strong>奇异值分解 (Singular Value Decomposition, SVD)</strong> 。</p><p>假设M是定义在<strong>实数域</strong>或者<strong>复数域</strong>上的 $m{\times}n$ 阶的矩阵：<br>$$M=U{\Sigma}V^\ast$$<br>其中</p><ul><li>U是 $m{\times}m$ 阶<strong>酉矩阵</strong>：U的m个列向量实际上是 $M^{\ast}M$ 的特征向量，称为M的<strong>左奇异向量</strong>。</li><li>$\Sigma$ 是 $m{\times}n$ 阶<strong>非负实数对角矩阵</strong>：对角线元素称为M的<strong>奇异值</strong>，一般情况下奇异值按<strong>从大到小</strong>的顺序排列！</li><li>$V^\ast$ 是 $V$ 的<strong>共轭转置</strong>，是 $n{\times}n$ 阶<strong>酉矩阵</strong>：V的n个列向量实际上是 $MM^\ast$ 的特征向量，称为M的<strong>右奇异向量</strong>。</li></ul><blockquote><p><strong>共轭转置</strong>：共轭转置与转置是两个概念，当矩阵定义在实数域上时二者结果相同，矩阵A的共轭转置记为 $A^\ast$，定义如下：<br>$$A^\ast=(\overline{A})^T=\overline{A^T}$$<br>其中，$\overline{A}$ 表示对A的元素<strong>复共轭</strong>，当A定义在实数域时 $\overline{A}=A$。</p></blockquote><p>当矩阵M定义在实数域时有：<br>$$M=U{\Sigma}V^T$$<br>我们在应用SVD时一般都是定义在实数域上的哟~</p><h2 id="主成分分析"><a href="#主成分分析" class="headerlink" title="主成分分析"></a>主成分分析</h2><p>上面提到了对于任意 $m{\times}n$ 阶矩阵M的SVD分解：<br>$$M_{m{\times}n}=U_{m{\times}m}{\Sigma_{m{\times}n}}V_{n{\times}n}^T$$<br>直观图如下（这里假设样本数量m多于特征数量n，这意味着M有n个奇异值）：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/19.png" alt=""><br>其中 $\Sigma$ 矩阵很有意思，当m&gt;n时，矩阵 $\Sigma_{m{\times}n}$ 中只有子矩阵 $\Sigma_{n{\times}n}$ 的对角线上的值不为0，如下图所示：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/20.png" alt=""></p><p>以scRNA测序为例：假设在表达谱矩阵中，一行表示一个细胞中不同基因的表达量，一列表示一个基因在不同细胞中的表达量。这与我们的习惯（一列表示一个细胞，一行表示一个基因）有所不同！</p><p>对应到上述SVD分解式我们发现，n表示细胞数量，m表示基因数量。我们降维的结果肯定是要保证细胞总数m不变，而将基因数目从n减小到k。</p><p>具体的，取 $\Sigma$ 中最大的k个奇异值，即取 $\Sigma_{k{\times}k}$ 子矩阵，相应的取U的前k列和V的前k列（即$V^\ast$的前k行），即：<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/21.png" alt=""><br>此时<br>$$M_{m{\times}n}=U_{m{\times}k}{\Sigma_{k{\times}k}}V_{k{\times}n}^T$$<br>上式中的 $U_{m{\times}k}$ 就是 $M_{m{\times}n}$ 从n维特征空间降到k维特征空间的结果。注意矩阵 $U_{m{\times}k}$ 的k个列向量并不在矩阵  $M_{m{\times}n}$ 中，而是M中的n个列向量线性组合的结果。</p><h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in python</span></span><br><span class="line"><span class="keyword">from</span> sklearn.decomposition <span class="keyword">import</span> PCA</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;PCA的大名如雷贯耳，曾经的我也以为PCA是个什么很复杂的东西，但是学习了&lt;strong&gt;线性代数&lt;/strong&gt;之后才发现，PCA的原理简单而不失优雅，粗暴而不失趣味。
-    
-    </summary>
-    
-      <category term="ml" scheme="http://chenyin.top/categories/ml/"/>
-    
-    
-      <category term="降维" scheme="http://chenyin.top/tags/%E9%99%8D%E7%BB%B4/"/>
-    
-      <category term="PCA" scheme="http://chenyin.top/tags/PCA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>降维01 - 特征选择和特征提取</title>
-    <link href="http://chenyin.top/ml/20190325-d2ce.html"/>
-    <id>http://chenyin.top/ml/20190325-d2ce.html</id>
-    <published>2019-03-25T07:13:10.000Z</published>
-    <updated>2019-04-14T16:02:20.106Z</updated>
-    
-    <content type="html"><![CDATA[<p>大数据包含了丰富的先验知识，即几乎包含了一切我们感兴趣的信息。但是数据量过大也会使我们在分析时感到茫然无措。特征过多使得我们不可能对单个特征进行详细解析，大部分时候我们是将所有特征当成一个整体进行考虑，或者分析特征之间的关系。对高维数据数据进行预处理是一种不错的选择，此时各种各样的<strong>降维</strong>浓缩技术应运而生。<a id="more"></a></p><p>降维的好处有哪些？</p><ol><li>减少数据维度，存储数据需要的空间也会减少（盘霸可忽略~）；</li><li>低维数据可以减少计算量，缩短模型训练时间；</li><li>很多算法在高维数据上的表现远远没有在低维数据上好；</li><li>去掉冗余特征（强相关特征），提高数据的质量；</li><li>有助于可视化，我们只能形象观察三维及以下的数据！</li></ol><h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>降维总是围绕着减少特征数进行的，根据对特征的操作可分为：</p><ul><li><strong>特征选择</strong>：保留原始特征集的子集，即选取部分原始特征；</li><li><strong>特征提取</strong>：构造不同于原始特征的新特征，新特征往往是原始特征的组合，替代原始特征表达原始数据想表达的信息。<br>特征提取是降维算法研究的核心内容。</li></ul><h1 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h1><p>特征选择只是对每个特征进行评估，去掉不重要的或者选出重要的：</p><ol><li>缺失值比率：按缺失值比率删除特征；</li><li>低方差滤波：删除方差小的特征；</li><li>高相关滤波：只保留高相关特征中的一个；</li><li>随机森林：计算每个特征的重要性；</li><li>前向特征选择：依次增加特征数检验模型性能；</li><li>反向特征消除：依次减少特征数检验模型性能。</li></ol><h1 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h1><p>特征提取才是降维思想的核心内容，降维算法家族枝繁叶茂，先做一个总体分类：<img src="" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;大数据包含了丰富的先验知识，即几乎包含了一切我们感兴趣的信息。但是数据量过大也会使我们在分析时感到茫然无措。特征过多使得我们不可能对单个特征进行详细解析，大部分时候我们是将所有特征当成一个整体进行考虑，或者分析特征之间的关系。对高维数据数据进行预处理是一种不错的选择，此时各种各样的&lt;strong&gt;降维&lt;/strong&gt;浓缩技术应运而生。
-    
-    </summary>
-    
-      <category term="ml" scheme="http://chenyin.top/categories/ml/"/>
-    
-    
-      <category term="降维" scheme="http://chenyin.top/tags/%E9%99%8D%E7%BB%B4/"/>
     
   </entry>
   
