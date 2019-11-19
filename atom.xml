@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chenyin.top/"/>
-  <updated>2019-11-19T05:19:39.242Z</updated>
+  <updated>2019-11-19T08:27:48.404Z</updated>
   <id>http://chenyin.top/</id>
   
   <author>
@@ -21,17 +21,13 @@
     <link href="http://chenyin.top/it/20191119-a377.html"/>
     <id>http://chenyin.top/it/20191119-a377.html</id>
     <published>2019-11-19T05:18:50.000Z</published>
-    <updated>2019-11-19T05:19:39.242Z</updated>
+    <updated>2019-11-19T08:27:48.404Z</updated>
     
-    <content type="html"><![CDATA[<p>搬瓦工上能买到带IPv6的服务器。此服务器位于LOS ANGELES，IPv4地址是xxx.xxx.xxx.xxx。如下</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/06.jpg" alt=""></p><p>注册并登陆<a href="https://www.tunnelbroker.net" target="_blank" rel="noopener">tunnelbroker</a>，如下</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/07.jpg" alt=""></p><p>点击<strong>Create Regular Tunnel</strong>，在2处输入服务器的IPv4地址，确定后自动检查该IP是否支持IPv6。</p><p>如果3处变为绿色并显示”IP is apotential tunnel endpoint”表示该IP支持IPv6服务。</p><p>在4处选择服务器所在的地区。</p><p>点击页面底部的<strong>确认</strong>。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/08.jpg" alt=""></p><p>点击<strong>Example Configurations</strong>，在1处选择服务器的操作系统（本服务器操作系统是Ubuntu16.04，选择”Linux-net-tools”），确认后在2处会显示相关命令。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/09.jpg" alt=""></p><p>打开服务器终端，依次执行上述命令。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/10.jpg" alt=""></p><p>输入<code>ping6 google.com</code>检查IPv6是否可用。</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/ipv6.jpg" alt=""></p><a id="more"></a><p>搬瓦工上能买到带IPv6的服务器。此服务器位于LOS ANGELES，IPv4地址是xxx.xxx.xxx.xxx。如下</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/06.jpg" alt=""></p><p>注册并登陆<a href="https://www.tunnelbroker.net" target="_blank" rel="noopener">tunnelbroker</a>，如下</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/07.jpg" alt=""></p><p>点击<strong>Create Regular Tunnel</strong>，在2处输入服务器的IPv4地址，确定后自动检查该IP是否支持IPv6。</p><p>如果3处变为绿色并显示”IP is apotential tunnel endpoint”表示该IP支持IPv6服务。</p><p>在4处选择服务器所在的地区。</p><p>点击页面底部的<strong>确认</strong>。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/08.jpg" alt=""></p><p>点击<strong>Example Configurations</strong>，在1处选择服务器的操作系统（本服务器操作系统是Ubuntu16.04，选择”Linux-net-tools”），确认后在2处会显示相关命令。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/09.jpg" alt=""></p><p>打开服务器终端，依次执行上述命令。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/10.jpg" alt=""></p><p>输入<code>ping6 google.com</code>检查IPv6是否可用。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;搬瓦工上能买到带IPv6的服务器。此服务器位于LOS ANGELES，IPv4地址是xxx.xxx.xxx.xxx。如下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/0
-      
+      &lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/ipv6.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
