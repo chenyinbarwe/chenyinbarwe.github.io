@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="BT, ML" />
+  <meta name="keywords" content="迭代器与生成器,异步协程," />
 
 
 
@@ -113,21 +113,19 @@
 
 
 
-<meta name="description" content="携程简单协程难">
+<meta name="keywords" content="迭代器与生成器,异步协程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从生成器到协程">
 <meta property="og:url" content="http://chenyin.top/spider/20191120-1aaa.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="携程简单协程难">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/1aaa_1.png">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/1aaa_2.png">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/1aaa_3.png">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/1aaa_3.png">
-<meta property="og:updated_time" content="2019-11-20T04:39:34.711Z">
+<meta property="og:updated_time" content="2019-11-26T09:30:59.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从生成器到协程">
-<meta name="twitter:description" content="携程简单协程难">
 <meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/1aaa_1.png">
 
 
@@ -410,8 +408,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-20T12:39:34+08:00">
-                2019-11-20
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-26T17:30:59+08:00">
+                2019-11-26
               </time>
             
           </span>
@@ -485,12 +483,11 @@
       
 
       
-        <p><strong>携程</strong>简单<strong>协程</strong>难</p>
+        <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/1aaa_1.png" alt=""></p>
 <a id="more"></a>
 <h1 id="可迭代对象和迭代器"><a href="#可迭代对象和迭代器" class="headerlink" title="可迭代对象和迭代器"></a>可迭代对象和迭代器</h1><p><strong>可迭代对象</strong>（Iterable）指的是能够使用<strong>for循环</strong>进行遍历的对象，如字符串、数组、迭代器、生成器等。</p>
 <p><strong>可迭代对象</strong>实现了<code>__iter__()</code>方法。</p>
 <p><strong>迭代器</strong>（Iterator）是一种特殊的<strong>可迭代对象</strong>，实现了<code>__next__()</code>方法。</p>
-<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/1aaa_1.png" alt=""></p>
 <p>判断一个对象<code>obj</code>是否是<strong>可迭代对象/迭代器</strong>:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterable, Iterator</span><br><span class="line"></span><br><span class="line">isinstance(obj, Iterable)</span><br><span class="line">isinstance(obj, Iterator)</span><br></pre></td></tr></table></figure></p>
 <p><code>iter()</code>函数称之为<strong>迭代器工厂</strong>函数，它能将一个<strong>可迭代对象</strong>转化为<strong>迭代器</strong>，通过给非迭代器的可迭代对象添加<code>__next__()</code>方法，实现工厂式的加工和包装功能。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">print(isinstance(x, Iterable)) <span class="comment"># True</span></span><br><span class="line">print(isinstance(x, Iterator)) <span class="comment"># False</span></span><br><span class="line">x_iter = iter(x)</span><br><span class="line">print(isinstance(x_iter, Iterable)) <span class="comment"># True</span></span><br><span class="line">print(isinstance(x_iter, Iterator)) <span class="comment"># True</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h1><p><strong>生成器</strong>（Generator）本质上还是<strong>迭代器</strong>，因此<strong>迭代器</strong>的所有特性都适合于<strong>生成器</strong>。他们的区别在于实现方式不同：实现一个<strong>迭代器</strong>往往需要定义一个<strong>类</strong>并且实现其<code>__iter__()</code>方法和<code>__next__()</code>方法；实现一个生成器只需要在函数中使用<code>yield</code>关键字。后者的实现方式更加简洁，性能与迭代器一样高效。</p>
@@ -529,7 +526,15 @@
 	
 	</div>
 	
-    <footer class="post-footer">
+    <!-- <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/迭代器与生成器/" rel="tag"><i class="fa fa-tag"></i> 迭代器与生成器</a>
+          
+            <a href="/tags/异步协程/" rel="tag"><i class="fa fa-tag"></i> 异步协程</a>
+          
+        </div>
       
 
       
@@ -560,7 +565,7 @@
 
       
       
-    </footer>
+    </footer> -->
   </div>
   
   
@@ -638,7 +643,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">93</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -660,7 +665,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -730,7 +735,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">75.8k</span>
+    <span title="Site words total count">77.4k</span>
   
 </div>
 

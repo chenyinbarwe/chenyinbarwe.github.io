@@ -113,22 +113,20 @@
 
 
 
-<meta name="description" content="Breiman等在1984年提出了 分类与回归树模型（CART, Classification and regression tree）。 CART能够输出随机变量$Y$的 条件概率分布。 CART的一个重要特点是假设决策树是二叉树，这意味着不论特征是连续型随机变量还是多个取值的离散型随机变量，都将被处理成二元变量，即需要确定一个 阈值。">
 <meta name="keywords" content="决策树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="决策树 - CART">
 <meta property="og:url" content="http://chenyin.top/ml/20191122-edcd.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="Breiman等在1984年提出了 分类与回归树模型（CART, Classification and regression tree）。 CART能够输出随机变量$Y$的 条件概率分布。 CART的一个重要特点是假设决策树是二叉树，这意味着不论特征是连续型随机变量还是多个取值的离散型随机变量，都将被处理成二元变量，即需要确定一个 阈值。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/cart.jpg">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/14.jpg">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/11.jpg">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/15.jpg">
-<meta property="og:updated_time" content="2019-11-22T04:10:28.252Z">
+<meta property="og:updated_time" content="2019-11-26T09:24:56.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="决策树 - CART">
-<meta name="twitter:description" content="Breiman等在1984年提出了 分类与回归树模型（CART, Classification and regression tree）。 CART能够输出随机变量$Y$的 条件概率分布。 CART的一个重要特点是假设决策树是二叉树，这意味着不论特征是连续型随机变量还是多个取值的离散型随机变量，都将被处理成二元变量，即需要确定一个 阈值。">
-<meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/14.jpg">
+<meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/cart.jpg">
 
 
 
@@ -410,8 +408,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-22T12:10:28+08:00">
-                2019-11-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-26T17:24:56+08:00">
+                2019-11-26
               </time>
             
           </span>
@@ -485,10 +483,11 @@
       
 
       
-        <p>Breiman等在1984年提出了 <strong>分类与回归树模型</strong>（CART, Classification and regression tree）。</p>
+        <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/cart.jpg" alt="CART"></p>
+<a id="more"></a>
+<p>Breiman等在1984年提出了 <strong>分类与回归树模型</strong>（CART, Classification and regression tree）。</p>
 <p>CART能够输出随机变量$Y$的 <strong>条件概率分布</strong>。</p>
 <p>CART的一个重要特点是假设决策树是二叉树，这意味着不论特征是连续型随机变量还是多个取值的离散型随机变量，都将被处理成二元变量，即需要确定一个 <strong>阈值</strong>。</p>
-<a id="more"></a>
 <h1 id="CART生成"><a href="#CART生成" class="headerlink" title="CART生成"></a>CART生成</h1><h2 id="生成回归树"><a href="#生成回归树" class="headerlink" title="生成回归树"></a>生成回归树</h2><p>给定训练数据集<br>$$<br>D = { (x_1, y_1),(x_2,y_2), \cdots, (x_N,y_N) }<br>$$<br>如果选定第$j$个特征和该特征的某个取值$s$，我们就能将所有样本的第$j$个特征的取值与$s$分别进行比较，从而将数据集$D$划分为两部分。对于这两个划分的子数据集$D_1$和$D_2$，我们再次执行上面的操作进行进一步的划分……</p>
 <p>最终我们将数据集$D$划分成了$M$个子集，或者说将输入空间（特征空间）划分成了$M$个区域。对于划分的每一个子区域$R_m$（$m=1,2,\cdots,M$）我们可以通过某种方法求出这样一个值$c_m$，于是就可以定义 <strong>回归模型</strong><br>$$<br>f(x) = \sum_{m=1}^M c_m I(x \in R_m)<br>$$<br>其中$I(x \in R_m)$称为 <strong>指示函数</strong>，样本$x$只会属于子区域中的某一个，而不会同时被划分到多个子区域，因为互斥完备。</p>
 <p>这里产生了两个问题：</p>
@@ -552,7 +551,7 @@
 	
 	</div>
 	
-    <footer class="post-footer">
+    <!-- <footer class="post-footer">
       
         <div class="post-tags">
           
@@ -568,6 +567,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/spider/20191120-1aaa.html" rel="prev" title="asyncio与异步协程爬虫">
+                <i class="fa fa-chevron-left"></i> asyncio与异步协程爬虫
+              </a>
             
           </div>
 
@@ -585,7 +588,7 @@
 
       
       
-    </footer>
+    </footer> -->
   </div>
   
   
@@ -663,7 +666,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">93</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -685,7 +688,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -755,7 +758,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">75.8k</span>
+    <span title="Site words total count">77.4k</span>
   
 </div>
 

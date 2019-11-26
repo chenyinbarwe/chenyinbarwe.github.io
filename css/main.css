@@ -2013,7 +2013,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffe516;
+  background: #e38a46;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3185,6 +3185,21 @@ img:hover {
   --author-bg-color: #19caad;
   --author-font-color: #fff;
   --linked-txt-color: #0072ff;
+}
+.pagination {
+  border-top: 0;
+  margin: 20px 0 20px;
+}
+.next,
+.page-number,
+.prev {
+  border-top: 0 !important;
+}
+.post-header {
+  border-bottom: 0 !important;
+}
+.posts-expand .post-body img {
+  border: 0 !important;
 }
 code {
   color: #ff7600;

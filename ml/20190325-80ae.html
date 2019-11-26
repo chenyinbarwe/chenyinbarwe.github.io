@@ -123,7 +123,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/01.png">
 <meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/08.png">
-<meta property="og:updated_time" content="2019-04-14T16:02:20.120Z">
+<meta property="og:updated_time" content="2019-11-22T10:08:46.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="降维03 - SNE原理">
 <meta name="twitter:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
@@ -409,8 +409,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T00:02:20+08:00">
-                2019-04-15
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-22T18:08:46+08:00">
+                2019-11-22
               </time>
             
           </span>
@@ -490,8 +490,9 @@
 </blockquote>
 <p><strong>随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 </p>
 <a id="more"></a>
-<h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}$$</p>
-<p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}} $$<br>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p>
+<h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$<br>d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}<br>$$</p>
+<p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$<br>p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}}<br>$$</p>
+<p>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p>
 <h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 k (perplexity)</strong> ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$H(P_i)=-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p>
 <p><strong>熵 $H(P_i)$ 的理解</strong></p>
 <ul>
@@ -554,7 +555,7 @@
 	
 	</div>
 	
-    <footer class="post-footer">
+    <!-- <footer class="post-footer">
       
         <div class="post-tags">
           
@@ -599,7 +600,7 @@
 
       
       
-    </footer>
+    </footer> -->
   </div>
   
   
@@ -677,7 +678,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">93</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -699,7 +700,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -769,7 +770,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">75.8k</span>
+    <span title="Site words total count">77.4k</span>
   
 </div>
 
