@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="paper,降维,非线性降维,SNE,t-SNE," />
+  <meta name="keywords" content="paper,降维,t-SNE,非线性降维,SNE," />
 
 
 
@@ -114,7 +114,7 @@
 
 
 <meta name="description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
-<meta name="keywords" content="paper,降维,非线性降维,SNE,t-SNE">
+<meta name="keywords" content="paper,降维,t-SNE,非线性降维,SNE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="降维03 - SNE原理">
 <meta property="og:url" content="http://chenyin.top/ml/20190325-80ae.html">
@@ -122,8 +122,9 @@
 <meta property="og:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/01.png">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/lx.jpg">
 <meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/08.png">
-<meta property="og:updated_time" content="2019-11-22T10:08:46.779Z">
+<meta property="og:updated_time" content="2019-11-27T09:39:28.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="降维03 - SNE原理">
 <meta name="twitter:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
@@ -409,8 +410,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-22T18:08:46+08:00">
-                2019-11-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-27T17:39:28+08:00">
+                2019-11-27
               </time>
             
           </span>
@@ -459,7 +460,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.7k
+                  2.1k
                 </span>
               
 
@@ -490,7 +491,21 @@
 </blockquote>
 <p><strong>随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 </p>
 <a id="more"></a>
-<h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$<br>d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}<br>$$</p>
+<h1 id="流形"><a href="#流形" class="headerlink" title="流形"></a>流形</h1><p>先看一张图</p>
+<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/lx.jpg" alt=""></p>
+<p>上图描述了一个<strong>曲面</strong>，颜色相同的点聚为一类。</p>
+<p>曲面上有三个点$A$, $B$, $C$，我们将该曲面置于<strong>三维空间</strong>中，曲面上每个点都可以用一个三维坐标$(x,y,z)$表示。</p>
+<p>考虑三维空间中的欧式距离，有$\overline{AC}&lt;\overline{AB}$，这表示相对于$B$点而言，$C$点离$A$点更近。</p>
+<p>但是很明显$A$点更倾向于与$B$点聚为一类。</p>
+<p>我们用曲面上两点间最短线段的长度来表示两点间的距离，如图$\widehat{AB}$和$\widehat{AC}$，有$\widehat{AB} &lt; \widehat{AC}$，这表示在曲面空间上$B$点离$A$点更近。</p>
+<p>我们在三维空间中去描述这个曲面的特征，我们使用的是 <strong>欧式空间</strong>（欧几里得空间）；</p>
+<p>我们直接在曲面上去描述点与点的远近，我们使用的是 <strong>黎曼空间</strong>（流行空间）。</p>
+<p><strong>流行学习</strong> 的观点认为，我们观察到的数据实际上是 <strong>低维流形</strong> 映射到 <strong>高维空间</strong> 中的形式，因为维度间的冗余，高维数据都能用较低的维度去描述。</p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/24015486" target="_blank" rel="noopener">流形学习的基本思想</a></p>
+</blockquote>
+<h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p><strong>欧式距离</strong> 计算的是两个点间的直线距离。在 <strong>欧式空间</strong> 中，ju</p>
+<p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$<br>d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}<br>$$</p>
 <p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$<br>p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}}<br>$$</p>
 <p>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p>
 <h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 k (perplexity)</strong> ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$H(P_i)=-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p>
@@ -563,11 +578,11 @@
           
             <a href="/tags/降维/" rel="tag"><i class="fa fa-tag"></i> 降维</a>
           
+            <a href="/tags/t-SNE/" rel="tag"><i class="fa fa-tag"></i> t-SNE</a>
+          
             <a href="/tags/非线性降维/" rel="tag"><i class="fa fa-tag"></i> 非线性降维</a>
           
             <a href="/tags/SNE/" rel="tag"><i class="fa fa-tag"></i> SNE</a>
-          
-            <a href="/tags/t-SNE/" rel="tag"><i class="fa fa-tag"></i> t-SNE</a>
           
         </div>
       
@@ -678,7 +693,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -689,7 +704,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -700,7 +715,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -731,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义条件概率"><span class="nav-number">1.</span> <span class="nav-text">定义条件概率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#确定方差的确定"><span class="nav-number">2.</span> <span class="nav-text">确定方差的确定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#映射到低维空间"><span class="nav-number">3.</span> <span class="nav-text">映射到低维空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小化损失函数"><span class="nav-number">4.</span> <span class="nav-text">最小化损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#带动量项的梯度更新"><span class="nav-number">4.1.</span> <span class="nav-text">带动量项的梯度更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机抖动"><span class="nav-number">4.2.</span> <span class="nav-text">随机抖动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火"><span class="nav-number">4.3.</span> <span class="nav-text">模拟退火</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#流形"><span class="nav-number">1.</span> <span class="nav-text">流形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义条件概率"><span class="nav-number">2.</span> <span class="nav-text">定义条件概率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#确定方差的确定"><span class="nav-number">3.</span> <span class="nav-text">确定方差的确定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#映射到低维空间"><span class="nav-number">4.</span> <span class="nav-text">映射到低维空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小化损失函数"><span class="nav-number">5.</span> <span class="nav-text">最小化损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#带动量项的梯度更新"><span class="nav-number">5.1.</span> <span class="nav-text">带动量项的梯度更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机抖动"><span class="nav-number">5.2.</span> <span class="nav-text">随机抖动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火"><span class="nav-number">5.3.</span> <span class="nav-text">模拟退火</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -770,7 +785,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">77.4k</span>
+    <span title="Site words total count">82.2k</span>
   
 </div>
 

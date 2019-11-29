@@ -113,18 +113,17 @@
 
 
 
-<meta name="description" content="Python版本：Python 3.7 logging基础教程日志指的是一些软件运行时我们记录下的事件的发生轨迹。软件的开发者在他们的代码里加入日志调用来查看哪些事件跟随着软件的运行发生了。一个事件通过一条描述性的消息进行记录，这条消息可以选择性地包括各种各样的数据（例如这些数据可能描述了某个事件在不同时刻的差异等）。事件也是开发者归咎错误等级的重要手段，这也叫做严重等级（日志等级）。">
 <meta name="keywords" content="python模块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logging内建模块（入门）">
 <meta property="og:url" content="http://chenyin.top/python/20180724-1605.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="Python版本：Python 3.7 logging基础教程日志指的是一些软件运行时我们记录下的事件的发生轨迹。软件的开发者在他们的代码里加入日志调用来查看哪些事件跟随着软件的运行发生了。一个事件通过一条描述性的消息进行记录，这条消息可以选择性地包括各种各样的数据（例如这些数据可能描述了某个事件在不同时刻的差异等）。事件也是开发者归咎错误等级的重要手段，这也叫做严重等级（日志等级）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-14T16:02:20.247Z">
+<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/logging.jpg">
+<meta property="og:updated_time" content="2019-11-27T08:23:27.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="logging内建模块（入门）">
-<meta name="twitter:description" content="Python版本：Python 3.7 logging基础教程日志指的是一些软件运行时我们记录下的事件的发生轨迹。软件的开发者在他们的代码里加入日志调用来查看哪些事件跟随着软件的运行发生了。一个事件通过一条描述性的消息进行记录，这条消息可以选择性地包括各种各样的数据（例如这些数据可能描述了某个事件在不同时刻的差异等）。事件也是开发者归咎错误等级的重要手段，这也叫做严重等级（日志等级）。">
+<meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/logging.jpg">
 
 
 
@@ -406,8 +405,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T00:02:20+08:00">
-                2019-04-15
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-27T16:23:27+08:00">
+                2019-11-27
               </time>
             
           </span>
@@ -481,8 +480,10 @@
       
 
       
-        <p>Python版本：Python 3.7</p>
-<h1 id="logging基础教程"><a href="#logging基础教程" class="headerlink" title="logging基础教程"></a>logging基础教程</h1><p>日志指的是一些软件运行时我们记录下的事件的发生轨迹。软件的开发者在他们的代码里加入日志调用来查看哪些事件跟随着软件的运行发生了。一个事件通过一条描述性的消息进行记录，这条消息可以选择性地包括各种各样的数据（例如这些数据可能描述了某个事件在不同时刻的差异等）。事件也是开发者归咎错误等级的重要手段，这也叫做<strong>严重等级（日志等级）</strong>。<a id="more"></a></p>
+        <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/logging.jpg" alt="logging"></p>
+<a id="more"></a>
+<p>Python版本：Python 3.7</p>
+<h1 id="logging基础教程"><a href="#logging基础教程" class="headerlink" title="logging基础教程"></a>logging基础教程</h1><p>日志指的是一些软件运行时我们记录下的事件的发生轨迹。软件的开发者在他们的代码里加入日志调用来查看哪些事件跟随着软件的运行发生了。一个事件通过一条描述性的消息进行记录，这条消息可以选择性地包括各种各样的数据（例如这些数据可能描述了某个事件在不同时刻的差异等）。事件也是开发者归咎错误等级的重要手段，这也叫做<strong>严重等级（日志等级）</strong>。<!-- more --></p>
 <h2 id="什么时候使用日志？"><a href="#什么时候使用日志？" class="headerlink" title="什么时候使用日志？"></a>什么时候使用日志？</h2><p>日志模块提供了一些简单便利的函数以实现简单的日志功能，他们是<code>debug()</code>, <code>info()</code>, <code>warning()</code>, <code>error()</code>,和<code>critical()</code>。什么时候使用什么等级的日志函数见下表：</p>
 <table>
 <thead>
@@ -520,11 +521,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.warning(<span class="string">'Watch out!'</span>) <span class="comment"># 将会打印信息到控制台</span></span><br><span class="line">logging.info(<span class="string">'I told you so'</span>) <span class="comment"># 将不会打印任何东西</span></span><br></pre></td></tr></table></figure>
 <p>如果你将这些语句写入脚本并且运行它，你将看到：</p>
 <pre>WARNING:root:Watch out!</pre>
+当打印到控制台时，`INFO`信息并没有出现，原因是默认的严重等级是`WARNING`。我们看到的打印消息实际上包含了严重等级以及调用日志函数时提供的描述信息，比如"Watch out!"。别担心打印消息中的'root'部分，我们接下来将会对其进行解释。实际的输出结果可以灵活地定制格式以满足各自的需要；格式的定制也将在后面部分进行介绍。
 
-<p>当打印到控制台时，<code>INFO</code>信息并没有出现，原因是默认的严重等级是<code>WARNING</code>。我们看到的打印消息实际上包含了严重等级以及调用日志函数时提供的描述信息，比如”Watch out!”。别担心打印消息中的’root’部分，我们接下来将会对其进行解释。实际的输出结果可以灵活地定制格式以满足各自的需要；格式的定制也将在后面部分进行介绍。</p>
-<h2 id="将日志写入到文件"><a href="#将日志写入到文件" class="headerlink" title="将日志写入到文件"></a>将日志写入到文件</h2><p>一种非常典型的情景就是在文件中记录日志事件，我们接下来详细说说这种情况。确保接下来的语句在一个新打开的Python解释器中运行，千万不要使用上一部分的环境，否则你可能得到与我们不一样的结果：</p>
+## 将日志写入到文件
+
+一种非常典型的情景就是在文件中记录日志事件，我们接下来详细说说这种情况。确保接下来的语句在一个新打开的Python解释器中运行，千万不要使用上一部分的环境，否则你可能得到与我们不一样的结果：
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(filename=<span class="string">'example.log'</span>, level=logging.DEBUG)</span><br><span class="line">logging.debug(<span class="string">'This message should go to the log file'</span>)</span><br><span class="line">logging.info(<span class="string">'So should this'</span>)</span><br><span class="line">logging.warning(<span class="string">'And this, too'</span>)</span><br></pre></td></tr></table></figure>
-<p>现在如果我们打开文件看看里面有什么，我们会发现以下日志信息：</p>
+
+现在如果我们打开文件看看里面有什么，我们会发现以下日志信息：
+
 <pre>
 DEBUG:root:This message should go to the log file
 INFO:root:So should this
@@ -534,19 +540,32 @@ WARNING:root:And this, too
 <p>这个例子也展示了你应该如何设置日志的<strong>等级</strong>，这个等级将作为是否跟踪事件的阀门。在这个例子中因为我们将阀门设置为了<code>DEBUG</code>，所有的信息都将被打印出来。</p>
 <p>如果你想在命令行选项参数里设置日志等级，请使用如下格式：</p>
 <pre>--log=INFO</pre>
+你也可以通过变量 *loglevel* 获取`--log`参数传递的值：
 
-<p>你也可以通过变量 <em>loglevel</em> 获取<code>--log</code>参数传递的值：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getattr(logging, loglevel.upper())</span><br></pre></td></tr></table></figure>
-<p>获取你想要传递给<code>basicConfig()</code>的 <em>level</em> 参数的值，检查以下用户从命令行传入的参数是否合法：</p>
+
+获取你想要传递给`basicConfig()`的 *level* 参数的值，检查以下用户从命令行传入的参数是否合法：
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设loglevel一定是从命令行参数获取的字符串，后台自动将其转换为大写的形式，</span></span><br><span class="line"><span class="comment"># 这样用户就可以在命令行中指定 --log=DEBUG 或者 --log=debug</span></span><br><span class="line">numeric_level = getattr(logging, loglevel.upper(), <span class="keyword">None</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> isinstance(numeric_level, int):</span><br><span class="line">	<span class="keyword">raise</span> ValueError(<span class="string">'Invalid log level: %s'</span> % loglevel)</span><br><span class="line">logging.basicConfig(level=numeric_level, ...)</span><br></pre></td></tr></table></figure>
-<p>调用<code>basicConfig()</code>应该在调用<code>debug()</code>, <code>info()</code>等方法之前。这种方式被有意设计成一次性的配置，只有第一次配置发挥作用，接下来再进行子参数的配置将起不到任何作用。</p>
-<p>如果你多次运行上面的脚本，来自连续运行脚本的日志信息都将被添加到文件 <em>example.log</em> 中。如果你想要每个程序运行时都使用全新的日志文件而不是记住之前的日志信息，你可以指定 <em>fielmode</em> 参数，我们修改上面对<code>basicConfig()</code>的调用：</p>
+
+调用`basicConfig()`应该在调用`debug()`, `info()`等方法之前。这种方式被有意设计成一次性的配置，只有第一次配置发挥作用，接下来再进行子参数的配置将起不到任何作用。
+
+如果你多次运行上面的脚本，来自连续运行脚本的日志信息都将被添加到文件 *example.log* 中。如果你想要每个程序运行时都使用全新的日志文件而不是记住之前的日志信息，你可以指定 *fielmode* 参数，我们修改上面对`basicConfig()`的调用：
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logging.basicConfig(</span><br><span class="line">	filename=<span class="string">'example.log'</span>, </span><br><span class="line">	filename=<span class="string">'w'</span>, </span><br><span class="line">	level=logging.DEBUG</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>输出将和以前一样，但是日志文件将不再是<strong>末尾添加</strong>模式，先前运行的日志信息已经丢失。</p>
-<h2 id="多个模块的日志信息"><a href="#多个模块的日志信息" class="headerlink" title="多个模块的日志信息"></a>多个模块的日志信息</h2><p>如果你的程序是由多个模块组成的，这里有个例子展示你该如何在多个模块中组织的你的日志记录：</p>
+
+输出将和以前一样，但是日志文件将不再是**末尾添加**模式，先前运行的日志信息已经丢失。
+
+## 多个模块的日志信息
+
+如果你的程序是由多个模块组成的，这里有个例子展示你该如何在多个模块中组织的你的日志记录：
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># myapp.py</span></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> mylib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">	logging.basicConfig(filename=<span class="string">'myapp.log'</span>, level=logging.INFO)</span><br><span class="line">	logging.info(<span class="string">'Started'</span>)</span><br><span class="line">	mylib.do_something()</span><br><span class="line">	logging.info(<span class="string">'Finished'</span>)</span><br><span class="line">	</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mylib.py</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_something</span><span class="params">()</span>:</span></span><br><span class="line">	logging.info(<span class="string">'Doing something'</span>)</span><br></pre></td></tr></table></figure>
-<p>如果你运行 <em>myapp.py</em>，你将在 <em>myapp.log</em> 中看到如下内容：</p>
+
+如果你运行 *myapp.py*，你将在 *myapp.log* 中看到如下内容：
+
 <pre>
 INFO:root:Started
 INFO:root:Doing something
@@ -558,11 +577,16 @@ INFO:root:Finished
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.warning(<span class="string">'%s before you %s'</span>, <span class="string">'look'</span>, <span class="string">'leap!'</span>)</span><br></pre></td></tr></table></figure>
 <p>将会显示：</p>
 <pre>WARNING:root:Look before you leap!</pre>
+正如你所看到的，将变量中的信息合并到日志描述信息中可以使用老式的%风格的格式化字符串。事实上，格式化字符串是向后兼容的，也就是说，你也可以使用`str.format()`或者`string,Template`。这些新的格式化字符串也被支持，这里不做详细探讨。
 
-<p>正如你所看到的，将变量中的信息合并到日志描述信息中可以使用老式的%风格的格式化字符串。事实上，格式化字符串是向后兼容的，也就是说，你也可以使用<code>str.format()</code>或者<code>string,Template</code>。这些新的格式化字符串也被支持，这里不做详细探讨。</p>
-<h2 id="改变消息显示的格式"><a href="#改变消息显示的格式" class="headerlink" title="改变消息显示的格式"></a>改变消息显示的格式</h2><p>为了改变用于显示的消息的格式，你需要指定你想用的格式：</p>
+## 改变消息显示的格式
+
+为了改变用于显示的消息的格式，你需要指定你想用的格式：
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(</span><br><span class="line">	format=<span class="string">'%(levelname)s:%(message)s'</span>, </span><br><span class="line">	level=logging.DEBUG</span><br><span class="line">)</span><br><span class="line">logging.debug(<span class="string">'This message should appear on the console'</span>)</span><br><span class="line">logging.info(<span class="string">'So should this'</span>)</span><br><span class="line">logging.warning(<span class="string">'And this, too'</span>)</span><br></pre></td></tr></table></figure>
-<p>将打印：</p>
+
+将打印：
+
 <pre>
 DEBUG:This message should appear on the console
 INFO:So should this
@@ -573,14 +597,10 @@ WARNING:And this, too
 <h2 id="在消息中显示时间"><a href="#在消息中显示时间" class="headerlink" title="在消息中显示时间"></a>在消息中显示时间</h2><p>如果需要在日志消息中显示时间，你需要在<strong>格式化字符串</strong>中放置 ‘%(asctime)s’：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(format=<span class="string">'%(asctime)s %(message)s'</span>)</span><br><span class="line">logging.warning(<span class="string">'is when this event was logged.'</span>)</span><br></pre></td></tr></table></figure>
 <p>将打印如下消息：</p>
-<pre>2010-12-12 11:41:42,612 is when this event was logged.</pre>
-
-<p>上面这种默认时间显示格式被称之为 ISO8601。如果你想要更加自由的控制时间格式，请提供一个 <em>datefmt</em> 参数给 <code>basicConfig</code> ：</p>
+<p><pre>2010-12-12 11:41:42,612 is when this event was logged.</pre><br>上面这种默认时间显示格式被称之为 ISO8601。如果你想要更加自由的控制时间格式，请提供一个 <em>datefmt</em> 参数给 <code>basicConfig</code> ：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.basicConfig(</span><br><span class="line">	format=<span class="string">'%(asctime)s %(message)s'</span>, </span><br><span class="line">	datefmt=<span class="string">'%m/%d/%Y %I:%M:%S %p'</span></span><br><span class="line">)</span><br><span class="line">logging.warning(<span class="string">'is when this event was logged.'</span>)</span><br></pre></td></tr></table></figure>
 <p>将打印如下消息：</p>
-<pre>12/12/2010 11:46:36 AM is when this event was logged.</pre>
-
-<p><em>datefmt</em> 的格式控制原理与 <code>time.strftime()</code> 相同。</p>
+<p><pre>12/12/2010 11:46:36 AM is when this event was logged.</pre><br><em>datefmt</em> 的格式控制原理与 <code>time.strftime()</code> 相同。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>上面的作为基础教程，应该能够使你开始将日志功能添加到自己的代码中。事实上，logging包还提供了许多更为丰富的内容，如果你想更加熟练的应用日志功能，你需要花一点时间阅读<a href="https://docs.python.org/2.7/howto/logging.html#advanced-logging-tutorial" target="_blank" rel="noopener">高级教程(英)</a>。</p>
 <p>如果你对日志功能的需求十分简单，你可以阅读上面的例子，将简单的日志记录融入到自己的代码中去。如果遇到任何问题或者对某些东西不太理解欢迎光临<a href="https://groups.google.com/group/comp.lang.python" target="_blank" rel="noopener">论坛</a>。</p>
 <p>如果你看过了高级教程，也可以读读 <a href="https://docs.python.org/2.7/howto/logging-cookbook.html#logging-cookbook" target="_blank" rel="noopener">Logging Cookbook</a>。</p>
@@ -729,7 +749,7 @@ WARNING:And this, too
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -740,7 +760,7 @@ WARNING:And this, too
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -751,7 +771,7 @@ WARNING:And this, too
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -782,7 +802,7 @@ WARNING:And this, too
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#logging基础教程"><span class="nav-number">1.</span> <span class="nav-text">logging基础教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候使用日志？"><span class="nav-number">1.1.</span> <span class="nav-text">什么时候使用日志？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个简单的例子"><span class="nav-number">1.2.</span> <span class="nav-text">一个简单的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将日志写入到文件"><span class="nav-number">1.3.</span> <span class="nav-text">将日志写入到文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个模块的日志信息"><span class="nav-number">1.4.</span> <span class="nav-text">多个模块的日志信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记录变化的数据"><span class="nav-number">1.5.</span> <span class="nav-text">记录变化的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变消息显示的格式"><span class="nav-number">1.6.</span> <span class="nav-text">改变消息显示的格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在消息中显示时间"><span class="nav-number">1.7.</span> <span class="nav-text">在消息中显示时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.8.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#logging基础教程"><span class="nav-number">1.</span> <span class="nav-text">logging基础教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候使用日志？"><span class="nav-number">1.1.</span> <span class="nav-text">什么时候使用日志？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个简单的例子"><span class="nav-number">1.2.</span> <span class="nav-text">一个简单的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#记录变化的数据"><span class="nav-number">1.3.</span> <span class="nav-text">记录变化的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在消息中显示时间"><span class="nav-number">1.4.</span> <span class="nav-text">在消息中显示时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.5.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -821,7 +841,7 @@ WARNING:And this, too
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">77.4k</span>
+    <span title="Site words total count">82.2k</span>
   
 </div>
 
