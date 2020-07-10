@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+    <meta name="baidu-site-verification" content="93qdDuu84i" />
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="[object Object]/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hj.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hj.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="BT, ML" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="pandas是基于numpy构建的高级数据结构和操作工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas模块-Series类和DataFrame类">
+<meta property="og:url" content="http://chenyin.top/python/20180307-3057.html">
+<meta property="og:site_name" content="阔落煮酒">
+<meta property="og:description" content="pandas是基于numpy构建的高级数据结构和操作工具。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-14T16:02:20.265Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pandas模块-Series类和DataFrame类">
+<meta name="twitter:description" content="pandas是基于numpy构建的高级数据结构和操作工具。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chenyin.top/python/20180307-3057.html"/>
+
+
+
+
+
+  <title>pandas模块-Series类和DataFrame类 | 阔落煮酒</title>
+  
+
+
+
+
+
+
+
+
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+		<!-- fork me on github begin -->
+			<!-- 左上角 -->
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250"
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0;" aria-hidden="true">
+					 <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+					 <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+					 <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+				</svg>
+			</a>
+			<style>
+				.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+				@media (max-width:500px){
+					.github-corner:hover .octo-arm{animation:none}
+					.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+				}
+			</style>
+			<!-- 左上角
+			<a href="https://github.com/barwe" class="github-corner" aria-label="View source on GitHub">
+				<svg width="80" height="80" viewBox="0 0 250 250" 
+					 class="fork-me-on-github"
+					 style="position: absolute; border: 0; transform: scale(-1, 1);" aria-hidden="true">
+						<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+						<path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+						<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+					</svg>
+					<style>
+						.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+						@media (max-width:500px){
+							.github-corner:hover .octo-arm{animation:none}
+							.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+						}
+					</style>
+				</a>
+			-->
+		<!-- fork me on github end -->
+		<header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阔落煮酒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cargo">
+          <a href="/cargo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-truck"></i> <br />
+            
+            仓库
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+		
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal index-article-dec" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chenyin.top/python/20180307-3057.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Barwe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阔落煮酒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">pandas模块-Series类和DataFrame类</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T16:06:12+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T00:02:20+08:00">
+                2019-04-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>pandas是基于numpy构建的高级数据结构和操作工具。<a id="more"></a></p>
+<h1 id="pandas的数据结构"><a href="#pandas的数据结构" class="headerlink" title="pandas的数据结构"></a>pandas的数据结构</h1><h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><p>类似于<strong>一维数组</strong>的<strong>对象</strong>，索引即标签<br>导入： <code>from pandas import Series</code><br>初始化：</p>
+<ul>
+<li><code>obj = Series([-1, 3, 1, 4])</code></li>
+<li><code>obj = Series([-1, 3, 1, 4], index=[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;])</code><br>pandas可以被当做字典使用~</li>
+<li><code>obj = Series({&#39;a&#39;:-1, &#39;b&#39;:3, &#39;c&#39;:1})</code>：不指定index使用传入字典的键</li>
+<li><code>obj = Series({&#39;a&#39;:-1, &#39;b&#39;:3, &#39;c&#39;:1}, index=[&#39;a&#39;,&#39;b&#39;])</code>：使用index时将按照index去字典中挑选，如果该字典中键值对不存在则设为NaN（缺失值）。<ul>
+<li>使用 <code>obj.isnull()</code> 和 <code>obj.notnull()</code> 检测是否为缺失值</li>
+<li><code>obj.isnull()</code> 等价于 <code>pd.isnull(obj)</code> , <code>notnull()</code> 类似</li>
+</ul>
+</li>
+</ul>
+<p>基本属性：</p>
+<ul>
+<li><code>obj.values</code> 查看值</li>
+<li><code>obj.index</code> 查看索引</li>
+<li><code>obj.name</code></li>
+<li><code>obj.index.name</code></li>
+</ul>
+<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2><p>表格型数据结构<br>数据以<strong>二维块</strong>存放，行列操作比较平衡，因为存放结构并不是简单的复合一维数据结构（如原生的嵌套列表，行的操作比列简单）<br>导入：<code>from pandas import DataFrame</code><br>初始化：</p>
+<ul>
+<li><p>传入字典：键为列的名称，值为等长的列表或者ndarray<br>此时索引默认为自然数0到N-1；或者通过 <code>index</code> 传入索引值。索引值对应的列如果没有值将设为NaN</p>
+<p>↓↓↓ 未指定列的顺序，将按照列名称自动排序：传入的<strong>列名</strong>是<code>name age</code>, 实际存储的顺序是<code>age name</code><br><code>frame = DataFrame({&#39;name&#39;:[&#39;aa&#39;,&#39;cc&#39;,&#39;bb&#39;], &#39;age&#39;:[21, 24, 18]})</code></p>
+<p>↓↓↓ 或者通过 <code>columns</code> 指定列的顺序：按照columnszhiding的顺序进行存储<br><code>frame = DataFrame({&#39;name&#39;:[&#39;aa&#39;,&#39;cc&#39;,&#39;bb&#39;], &#39;age&#39;:[21, 24, 18]}, columns=[&#39;name&#39;, &#39;age&#39;])</code></p>
+</li>
+<li><p>传入嵌套字典：外键被解释为列名(columns)，内键被解释为索引(index)，自动填充缺失数据<br>内键将会被重新排序形成<strong>有序的</strong>索引，可以使用<code>index=</code>显示指定索引的顺序，同时还能起到<strong>筛选</strong>的作用</p>
+</li>
+<li><p>实际上可以传入由<strong>列表</strong>、<strong>元组</strong>、<strong>ndarray</strong>、<strong>Series</strong>、<strong>字典</strong>复合而成的多种数据结构</p>
+</li>
+</ul>
+<p>基本操作：</p>
+<ul>
+<li>获取列：<code>frame[&#39;name&#39;]</code> or <code>frame.name</code>，实际上是一个Series<br><span style="color:red">索引获取的列是原数据的<strong>视图</strong>，修改Series将反馈到原数据，复制请使用<strong>Series.copy()</strong></span></li>
+<li>修改列：直接给列赋值<strong>标量</strong>或者<strong>向量</strong><ul>
+<li>赋标量将自动广播</li>
+<li>赋列表或者数组<strong>一定</strong>要保证长度一致</li>
+<li>赋Series会对索引进行精确匹配，空位填上NaN</li>
+</ul>
+</li>
+<li>添加列：用<code>frame[&quot;new_column_name&quot;]=...</code>进行赋值将自动添加新列，<code>frame.new_column_name</code>不可以</li>
+<li>删除列：<code>del frame[&quot;existed_column_name&quot;]</code>，<code>del frame.existed_column_name</code>不可以</li>
+<li>获取列名：<code>frame.columns</code></li>
+<li>表的转置：<code>frame.T</code>，Q:是否是视图？</li>
+<li>获取ndarray数组：<code>frame.values</code><br><span style="color:green">当列的数据类型不一致时返回数组的数据类型将使用能兼容所有列的数据类型的类型</span></li>
+</ul>
+<h1 id="索引对象"><a href="#索引对象" class="headerlink" title="索引对象"></a>索引对象</h1><p>管理轴标签、轴名称等额外数据<br>字符串索引：<code>&lt;class &#39;pandas.core.indexes.base.Index&#39;&gt;</code><br>自然数索引：<code>&lt;class &#39;pandas.core.indexes.range.RangeIndex&#39;&gt;</code></p>
+<p>index可以整体替换掉，但不能单个修改(immutable) → 安全共享</p>
+<p>。。。。。。</p>
+<h1 id="操作Seies和DataFrame中的数据"><a href="#操作Seies和DataFrame中的数据" class="headerlink" title="操作Seies和DataFrame中的数据"></a>操作Seies和DataFrame中的数据</h1><h2 id="重新索引-obj-reindex-…"><a href="#重新索引-obj-reindex-…" class="headerlink" title="重新索引 obj.reindex(…)"></a>重新索引 obj.reindex(…)</h2><ol>
+<li><p>如果新索引中包含原索引中没有的值将产生缺失值，可以使用关键字<code>fill_value</code>指定缺失默认值</p>
+</li>
+<li><p><strong>时间序列</strong>的<strong>前向插值</strong>：时间轴上缺失的索引对应的值与比它<strong>大</strong>的<strong>原来存在</strong>的索引对应的值的相同（前向插值）</p>
+<ul>
+<li>使用前向差值：<code>obj.reindex(NEW_INDEX, method=&#39;ffill&#39;)</code></li>
+<li>使用后向差值：<code>obj.reindex(NEW_INDEX, method=&#39;bfill&#39;)</code></li>
+<li>实际上还有更精确的插值方式…</li>
+</ul>
+</li>
+<li><p>DataFrame的重新索引</p>
+<ul>
+<li>行重新索引: <code>frame.reindex(NEW_INDEX)</code></li>
+<li>列重新索引: <code>frame.reindex(columns=NEW_INDEX)</code></li>
+<li>行列同时重新索引：<code>frame.reindex(NEW_ROW_INDEX, columns=NEW_COLUMN_INDEX)</code></li>
+<li>插值：只能按行插，即按行索引插</li>
+</ul>
+</li>
+</ol>
+<h2 id="丢弃指定轴上的项-obj-drop-…"><a href="#丢弃指定轴上的项-obj-drop-…" class="headerlink" title="丢弃指定轴上的项 obj.drop(…)"></a>丢弃指定轴上的项 obj.drop(…)</h2><p><strong>将返回一个新对象！！</strong></p>
+<p>原来的索引：[‘a’,’b’,’c’,’d’,’e’]<br>丢弃：<code>obj.drop(&#39;c&#39;)</code>，新索引：[‘a’,’b’,’d’,’e’]<br>丢弃：<code>obj.drop([&#39;c&#39;,&#39;d&#39;])</code>，新索引：[‘a’,’b’,’e’] </p>
+<h2 id="索引、选取、过滤"><a href="#索引、选取、过滤" class="headerlink" title="索引、选取、过滤"></a>索引、选取、过滤</h2><ol>
+<li>直接索引：<code>obj[&#39;c&#39;]</code></li>
+<li><strong>切片包含末端！！！</strong></li>
+<li>结合列的切片和布尔运算来选取行<ul>
+<li><code>frame[frame[&#39;three&#39;] &gt; 3]</code>将以”three”列为依据选取”three”列中所有值大于3的行 → 所以实际选取的是特定的某些行</li>
+<li><code>frame[frame &lt; 5 = 0]</code>给表中所有小于5的位置重新赋值为0</li>
+<li><code>frame &lt; 5</code> 本身应该是布尔值（逻辑运算），所以会得到一个由布尔值组成的新DataFrame<br><span style="color:red">布尔运算的特性实际上应该继承自numpy</span></li>
+</ul>
+</li>
+<li>索引关键字ix</li>
+</ol>
+<h2 id="算数运算和数据对齐"><a href="#算数运算和数据对齐" class="headerlink" title="算数运算和数据对齐"></a>算数运算和数据对齐</h2><p><strong>数据对齐</strong>：Series或者DataFrame对象间的加法会自动合并相同轴上的索引并自动填充NaN → 取并集</p>
+<h3 id="DataFrame对象的算数运算（以加法为例）"><a href="#DataFrame对象的算数运算（以加法为例）" class="headerlink" title="DataFrame对象的算数运算（以加法为例）"></a>DataFrame对象的算数运算（以加法为例）</h3><pre><code>* `df = df1 + df2` 以df1为主表，将df2的行、列索引加到df1里面去：df1中存在的将执行加法，不存在的为NaN
+* `df = df1.add(df2, fill_value=0)` 可以这样理解：
+    * 先将df2的行列索引合并到df1中得到并集表df（暂时假设将所有值设为NaN）
+    * 再将主表df1中的存在的值填入df（去掉一部分NaN）
+    * 再将df中剩余的NaN位置改成`fill_value`（去掉所有NaN）
+    * 再将df2中所有元素加到df的相关位置（df2中所有索引必定已经存在于df中）
+    * （括号内的内容纯属方便理解，尚未验证，算不得数）
+* 其他运算类似：
+    * 减法 sub -
+    * 乘法 mul *
+    * 除法 div /
+</code></pre><h3 id="DataFrame和Series间的运算"><a href="#DataFrame和Series间的运算" class="headerlink" title="DataFrame和Series间的运算"></a>DataFrame和Series间的运算</h3><p>涉及广播机制（broadcasting），熟悉numpy的话应该也熟悉广播机制。。。</p>
+<pre><code>* 最简单的广播：Series的索引与DataFrame的行/列索引相同
+* 上述索引不完全相同时，先对索引取并集，再进行广播
+</code></pre><h2 id="函数应用和映射"><a href="#函数应用和映射" class="headerlink" title="函数应用和映射"></a>函数应用和映射</h2><pre><code>* numpy中操纵数组元素的方法（如np.abs)也可以用来操纵pandas对象
+* 操纵pandas对象的行/列数组使用 `obj.apply(lambda x: x.min(), axis=1)`（一般用不上）
+* 使用元素级的python函数操纵pandas元素：例如`obj.applymap(lambda x: &quot;{:.2f}&quot;.format(x))`
+</code></pre><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><pre><code>* Series按index排序：`obj.sort_index()`
+* Series按values排序：`obj.order()`,缺失值将按index排序后丢到末尾
+* DataFrame按指定轴的index排序：`df.sort_index(axis=0)`,默认为0
+* DataFrame按某列值排序：例如 `df.sort_index(by=&apos;a&apos;)`
+* DataFrame按多列值排序：例如 `df.sort_index(by=[&apos;a&apos;,&apos;b&apos;])`
+* 默认升序，降序设置 `ascending=False`
+</code></pre><h2 id="排名-ranking"><a href="#排名-ranking" class="headerlink" title="排名(ranking)"></a>排名(ranking)</h2><p><span style="color:red">根据某种规则破坏评级关系</span>。原著是这么说的，不过很费解不是吗</p>
+<p>以 <code>obj = Series([7, -5, 7, 4, 2, 0, 4])</code> 为例，<code>obj.rank()</code> 返回的实际上是 <code>Series([6.5, 1.0, 6.5, 4.5, 3.0, 2.0, 4.5])</code>。<br>首先我们可以获取一个类似于argsort的序列[6, 1，7, 4, 3, 2, 5]，然后考虑相同的值：两个‘7’的位置分别为7和6，因此都改为均值(7+6)/2=6.5，两个‘4’的位置分别为7和6，因此都改为均值(5+4)/2=4.5，因此算出结果。（至于有什么用，现在我还不知道。。。）</p>
+<p>关键词 <code>method : {&#39;average&#39;, &#39;min&#39;, &#39;max&#39;, &#39;first&#39;, &#39;dense&#39;}</code> 指定排名方法：</p>
+<ul>
+<li>average：默认值，如上取相同值索引的平均值以保证每个相同的元素具有相同的排名<br>  <code>return Series([6.5, 1.0, 6.5, 4.5, 3.0, 2.0, 4.5])</code></li>
+<li>first：与argsort功能相同，按值出现顺序排名，结果应该是连续的正整数<br>  <code>return Series([6.0, 1.0, 7.0, 4.0, 3.0, 2.0, 5.0])</code></li>
+<li>min：相同值的排名全部取最小的那个<br>  <code>return Series([6.5, 1.0, 6.0, 4.0, 3.0, 2.0, 4.0])</code></li>
+<li>max：相同值的排名全部取最大的那个<br>  <code>return Series([7.0, 1.0, 7.0, 5.0, 3.0, 2.0, 5.0])</code></li>
+<li>dense：min和max会跳值，dense不会<br>  <code>return Series([5.0, 1.0, 5.0, 4.0, 3.0, 2.0, 4.0])</code></li>
+</ul>
+<h2 id="带有重复值的轴索引"><a href="#带有重复值的轴索引" class="headerlink" title="带有重复值的轴索引"></a>带有重复值的轴索引</h2><p>一般情况下轴索引的值唯一（类似于“键”的概念），但这并不是硬性要求。也就是说，轴索引可以重复@_@。（一般应该也用不上吧？）</p>
+<p>判断pandas对象的索引值是否唯一：<code>obj.index.is_unique: bool</code>。（pandas对象指的是Series对象或者DataFrame对象）</p>
+<p>对不唯一的索引进行访问将返回所有符合值构成的pandas对象，访问唯一索引返回标量</p>
+<h1 id="常用的数学和统计方法"><a href="#常用的数学和统计方法" class="headerlink" title="常用的数学和统计方法"></a>常用的数学和统计方法</h1><h2 id="约简方法"><a href="#约简方法" class="headerlink" title="约简方法"></a>约简方法</h2><ul>
+<li>求和：默认按列求和，自动排除NaN值：<code>df.sum(axis=0, skipna=True)</code>。按行求和指定 <code>axis=1</code>;禁用自动跳过NaN指定 <code>skipna=False</code></li>
+<li><code>count</code>,<code>min</code>,<code>max</code>,<code>argmin</code>,<code>argmax</code>,<code>idxmin</code>,<code>idxmax</code>,<code>sum</code>,<code>mean</code>,<code>media</code>,<code>mad</code>,<code>var</code>,<code>std</code>,…</li>
+</ul>
+<h2 id="累计方法"><a href="#累计方法" class="headerlink" title="累计方法"></a>累计方法</h2><ul>
+<li>累计求和：<code>df.cumsum()</code></li>
+</ul>
+<h2 id="特殊方法"><a href="#特殊方法" class="headerlink" title="特殊方法"></a>特殊方法</h2><ul>
+<li><code>df.describe()</code>：一次性产生多个统计结果（统计量)</li>
+</ul>
+<h2 id="有趣的统计量"><a href="#有趣的统计量" class="headerlink" title="有趣的统计量"></a>有趣的统计量</h2><ul>
+<li>corr、corrwith：相关系数</li>
+<li>cov：协方差（矩阵）</li>
+</ul>
+<p>。。。。</p>
+<p>改天再看，顺便练习盲打。。。</p>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+      
+        
+      
+	</div>
+	
+    
+
+    
+
+    
+
+	<div> <!-- 在文章末尾添加“文章结束”标记 -->
+	
+		<div>
+    
+        <div style="text-align:center;color: red;font-size:16px;">
+            >>>>>>>>>>>>> 转载请注明出处 <<<<<<<<<<<<<
+        </div>
+    
+</div>
+	
+	</div>
+	
+    <!-- <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ml/20180306-c444.html" rel="prev" title="pandas模块-加载数据">
+                <i class="fa fa-chevron-left"></i> pandas模块-加载数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ml/20180306-c444.html" rel="next" title="回归模型结果度量指标">
+                回归模型结果度量指标 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer> -->
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div>
+    </div>
+
+  
+
+
+ 
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg"
+                alt="Barwe" />
+            
+              <p class="site-author-name" itemprop="name">Barwe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pandas的数据结构"><span class="nav-number">1.</span> <span class="nav-text">pandas的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Series"><span class="nav-number">1.1.</span> <span class="nav-text">Series</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame"><span class="nav-number">1.2.</span> <span class="nav-text">DataFrame</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引对象"><span class="nav-number">2.</span> <span class="nav-text">索引对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作Seies和DataFrame中的数据"><span class="nav-number">3.</span> <span class="nav-text">操作Seies和DataFrame中的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重新索引-obj-reindex-…"><span class="nav-number">3.1.</span> <span class="nav-text">重新索引 obj.reindex(…)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#丢弃指定轴上的项-obj-drop-…"><span class="nav-number">3.2.</span> <span class="nav-text">丢弃指定轴上的项 obj.drop(…)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引、选取、过滤"><span class="nav-number">3.3.</span> <span class="nav-text">索引、选取、过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算数运算和数据对齐"><span class="nav-number">3.4.</span> <span class="nav-text">算数运算和数据对齐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame对象的算数运算（以加法为例）"><span class="nav-number">3.4.1.</span> <span class="nav-text">DataFrame对象的算数运算（以加法为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DataFrame和Series间的运算"><span class="nav-number">3.4.2.</span> <span class="nav-text">DataFrame和Series间的运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数应用和映射"><span class="nav-number">3.5.</span> <span class="nav-text">函数应用和映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.6.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排名-ranking"><span class="nav-number">3.7.</span> <span class="nav-text">排名(ranking)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#带有重复值的轴索引"><span class="nav-number">3.8.</span> <span class="nav-text">带有重复值的轴索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用的数学和统计方法"><span class="nav-number">4.</span> <span class="nav-text">常用的数学和统计方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#约简方法"><span class="nav-number">4.1.</span> <span class="nav-text">约简方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#累计方法"><span class="nav-number">4.2.</span> <span class="nav-text">累计方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊方法"><span class="nav-number">4.3.</span> <span class="nav-text">特殊方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有趣的统计量"><span class="nav-number">4.4.</span> <span class="nav-text">有趣的统计量</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">
+
+&copy; 
+<span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">阔落煮酒</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      
+	  <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="Site words total count">86.2k</span>
+  
+</div>
+
+
+
+
+
+
+	<div class="footer-custom">
+		流光容易把人抛，红了樱桃，绿了芭蕉
+	</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
