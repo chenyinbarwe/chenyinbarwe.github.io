@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chenyin.top/"/>
-  <updated>2019-11-29T17:30:04.588Z</updated>
+  <updated>2020-07-10T06:14:39.941Z</updated>
   <id>http://chenyin.top/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++标准库-fstream文件流</title>
+    <link href="http://chenyin.top/Cpp/20200710-111f.html"/>
+    <id>http://chenyin.top/Cpp/20200710-111f.html</id>
+    <published>2020-07-10T06:12:45.000Z</published>
+    <updated>2020-07-10T06:14:39.941Z</updated>
+    
+    <content type="html"><![CDATA[<p>C++标准库 <strong>fstream</strong> 用来读写文件。</p><a id="more"></a><h1 id="文件流"><a href="#文件流" class="headerlink" title="文件流"></a>文件流</h1><p>C++标准库头文件 <code>#include &lt;fstream&gt;</code> 中包含了三个重要的文件流类：</p><ul><li><strong>fstream</strong>：既可以读文件，也可以写文件</li><li><strong>ifstream</strong>：只能读文件</li><li><strong>ofstream</strong>：只能写文件</li></ul><p>文件读写的基本步骤是：</p><ol><li>初始化文件流对象：声明，例如 <code>fstream f</code> 声明了读写文件流对象f</li><li>打开文件：调用 <strong>open</strong> 方法，例如 <code>f.open(&quot;xxx.txt&quot;, ios::in)</code></li><li>读/写文件：读取内容或者写入内容</li><li>关闭文件：调用 <strong>close</strong> 方法，<code>f.close()</code></li></ol><h2 id="1-声明文件流对象"><a href="#1-声明文件流对象" class="headerlink" title="1. 声明文件流对象"></a>1. 声明文件流对象</h2><p>如果只是对文件进行 <strong>读</strong> 操作，请使用 <strong>ifstream</strong>；如果只是对文件进行写操作，请使用 <strong>ofstream</strong>。语法如下：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::ifstream in;</span><br><span class="line"><span class="built_in">std</span>::ofstream out;</span><br><span class="line"><span class="built_in">std</span>::fstream in_out;</span><br></pre></td></tr></table></figure><h2 id="2-打开文件"><a href="#2-打开文件" class="headerlink" title="2. 打开文件"></a>2. 打开文件</h2><h3 id="open-方法打开"><a href="#open-方法打开" class="headerlink" title="open 方法打开"></a>open 方法打开</h3><p><strong>open</strong> 是三个文件流类的成员方法，可被文件流对象调用以打开文件，实现文件流对象与具体文件的绑定。</p><p><strong>open</strong> 方法接收两个参数：文件路径，文件操纵模式。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">in.open(<span class="string">"xxx.txt"</span>, <span class="built_in">std</span>::ios::in);</span><br><span class="line">out.open(<span class="string">"yyy.txt"</span>, <span class="built_in">std</span>::ios::app);</span><br><span class="line">in_out.open(<span class="string">"zzz.txt"</span>, <span class="built_in">std</span>::ios::in | <span class="built_in">std</span>::ios::out)</span><br></pre></td></tr></table></figure><p>读文件流对象的模式默认为 <code>ios::in</code>，可以缺省。</p><p><strong>ios标准库</strong> 内置了日常所需的文件操纵模式，包括：</p><ul><li><code>ios::in</code> 打开文件用于读取</li><li><code>ios::out</code> 打开文件用于写入</li><li><code>ios::ate</code> 文件打开后定位到末尾</li><li><code>ios::app</code> 追加模式，所有写入添加到文件末尾</li><li><code>ios::binary</code> 二进制方式</li><li><code>ios::trunc</code> 如果文件已存在则先删除文件</li></ul><p>常见的文件操纵模式组合：</p><ul><li>读取文本文件：<code>ios::in</code></li><li>读取二进制文件：<code>ios::in | ios::binary</code></li><li>写入为文本文件，文件存在时覆盖写入：<code>ios::out</code></li><li>写入为文本文件，文件存在时追加写入：<code>ios::out | ios::ate</code> 或者 <code>ios::app</code></li><li>写入为文本文件，文件存在时先删除再写入：<code>ios::out | ios::trunc</code></li><li>写入为二进制文件，文件存在时覆盖写入：<code>ios::out | ios::binary</code></li></ul><p>关于写入文件的三种情形，假设我有一个文件内容如下，想要写入的内容是 Fuzhou 和 Guangzhou：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Nanjing</span><br><span class="line">Shanghai</span><br><span class="line">Shenzhen</span><br></pre></td></tr></table></figure><table><thead><tr><th style="text-align:center">文件写入方式</th><th>结果</th></tr></thead><tbody><tr><td style="text-align:center">覆盖式</td><td><u>Fuzhou</u><br><u>Guangzhou</u><br>Shenzhen</td></tr><tr><td style="text-align:center">追加式</td><td>Nanjing<br>Shanghai<br>Shenzhen<br><u>Fuzhou</u><br><u>Guangzhou</u></td></tr><tr><td style="text-align:center">删除式</td><td><u>Fuzhou</u><br><u>Guangzhou</u></td></tr></tbody></table><h3 id="在声明时打开"><a href="#在声明时打开" class="headerlink" title="在声明时打开"></a>在声明时打开</h3><p>除了使用 <strong>open</strong> 方法，在声明文件流对象时可以直接打开文件，语法如下：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function">ifstream <span class="title">in</span><span class="params">(<span class="string">"xxx.txt"</span>)</span></span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="function">ofstream <span class="title">out</span><span class="params">(<span class="string">"yyy.txt"</span>, <span class="built_in">std</span>::ios::out)</span></span>;</span><br></pre></td></tr></table></figure><h3 id="检查文件打开是否成功"><a href="#检查文件打开是否成功" class="headerlink" title="检查文件打开是否成功"></a>检查文件打开是否成功</h3><p>通过 <code>if(in_out)</code> 来判断文件是否打开成功。</p><h2 id="3-读取文件"><a href="#3-读取文件" class="headerlink" title="3. 读取文件"></a>3. 读取文件</h2><p>在某些编程语言中，文件流对象打开文件后又叫做 <strong>文件句柄</strong>。文件句柄本身不存储文件的内容，但我们可以从文件句柄访问整个文件的内容或者写入内容到文件。文件句柄相当于程序和文件之间的一个通道。</p><p>文件句柄的读取方法很多。</p><h3 id="1-逐个单词读取至string变量"><a href="#1-逐个单词读取至string变量" class="headerlink" title="(1) 逐个单词读取至string变量"></a>(1) 逐个单词读取至string变量</h3><p>流运算符的一个特点就是从空白符后的第一个非空白字符开始，读取到下一个空白符为止。所以只能一个单词一个单词的提取。</p><p>常见的空白符有空格、制表符、换行符。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line">    <span class="function">ifstream <span class="title">in</span><span class="params">(<span class="string">"data.txt"</span>)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (in) <span class="keyword">while</span> (in &gt;&gt; x) vec.push_back(x);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> x : vec) <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="2-逐行读取至string变量"><a href="#2-逐行读取至string变量" class="headerlink" title="(2) 逐行读取至string变量"></a>(2) 逐行读取至string变量</h3><p><strong>getline</strong> 函数可以按行（换行符分割）读取文件，并将每行的内容保存在字符串类型的变量var里面：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (getline(文件句柄fh, 迭代变量var)) &#123; ... &#125;</span><br></pre></td></tr></table></figure><p>🐖：var中的行字符串不包含末尾的换行符。</p><p><strong>这个getline函数从哪里来的？</strong> getline函数用于从 <strong>ifstream</strong> 中按行读取文件内容，<strong>ifstream</strong> 派生自 <strong>istream</strong>，<code>&lt;istream&gt;</code> 头文件中就定义了这个 <strong>getline</strong> 函数。</p><h3 id="3-逐行读取至char数组"><a href="#3-逐行读取至char数组" class="headerlink" title="(3) 逐行读取至char数组"></a>(3) 逐行读取至char数组</h3><p>此外，文件输入流本身也提供了一个 <strong>getline</strong> 方法：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LINE_LENGTH = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">char</span> var[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">while</span> (in.getline(var, LINE_LENGTH)) &#123; ... &#125;</span><br></pre></td></tr></table></figure><p>这个 getline 方法就显得笨重了许多，我们需要先预设一个 LINE_LENGTH，这个值要比文件最长的那一行的长度还要长（假设最长行的长度为99，则这个值最小应该设置为100）。然后我们需要声明一个迭代变量var，它是一个长为 LINE_LENGTH 的 <strong>字符数组</strong>。</p><p>getline 方法的第一个参数是迭代变量，第二个参数是 LINE_LENGTH。</p><p>所以这个 getline 方法实际上是将文件的每一行读进了一个等长的字符数组里面。</p><h2 id="4-写入文件"><a href="#4-写入文件" class="headerlink" title="4. 写入文件"></a>4. 写入文件</h2><h3 id="流运算符"><a href="#流运算符" class="headerlink" title="流运算符"></a>流运算符</h3><p>流运算符可以用于写入文本文件，用于二进制文件可能会产生错误。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ofstream <span class="title">out</span><span class="params">(<span class="string">"output.txt"</span>)</span></span>;</span><br><span class="line">out &lt;&lt; setw(<span class="number">20</span>) &lt;&lt; setfill(<span class="string">'#'</span>) &lt;&lt; setiosflags(ios::left) &lt;&lt; <span class="string">"name: "</span> &lt;&lt; <span class="string">"barwe"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure><h2 id="5-关闭文件"><a href="#5-关闭文件" class="headerlink" title="5. 关闭文件"></a>5. 关闭文件</h2><p>尽管程序结束时会自动关闭打开的文件，但为了安全起见，建议手动关闭。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">in.close();</span><br><span class="line">out.close();</span><br><span class="line">in_out.close();</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;C++标准库 &lt;strong&gt;fstream&lt;/strong&gt; 用来读写文件。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Cpp" scheme="http://chenyin.top/categories/Cpp/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>C++标准库索引</title>
+    <link href="http://chenyin.top/Cpp/20200710-e3c6.html"/>
+    <id>http://chenyin.top/Cpp/20200710-e3c6.html</id>
+    <published>2020-07-10T01:27:17.000Z</published>
+    <updated>2020-07-10T06:16:37.796Z</updated>
+    
+    <content type="html"><![CDATA[<p>C++标准库总共51个头文件，按照内容可分为10个类，按照来源可分为3个类。</p><a id="more"></a><table><thead><tr><th style="text-align:center">51</th><th style="text-align:left">C++ （20）</th><th style="text-align:left">C (18)</th><th style="text-align:left">STL (13)</th></tr></thead><tbody><tr><td style="text-align:center">语言支持 (11)</td><td style="text-align:left">limits：C++数值类型特性<br>new：动态内存管理<br>typeinfo：运行时内存信息<br>exception：异常处理</td><td style="text-align:left">cstddef：C标准定义<br>climits：整型大小<br>cfloat：浮点型特性<br>cstdlib：C标准实用工具<br>cstdarg：可变参数<br>csetjmp：非局部跳转<br>csignal：C中断处理</td><td style="text-align:left">-</td></tr><tr><td style="text-align:center">输入输出 (10)</td><td style="text-align:left">iostream：标准输入输出流<br>istream：标准输入流<br>ostream：标准输出流<br>sstream：字符串流<br><a href="http://chenyin.top/Cpp/20200710-111f.html">fstream</a>：文件流<br><a href="https://baike.baidu.com/item/iomanip/3319954" target="_blank" rel="noopener">iomanip</a>：输入输出操纵器<br>ios：iostream的基类<br>iosfwd：输入输出前向声明<br>streambuf：流缓存</td><td style="text-align:left">cstdio：C标准输入输出</td><td style="text-align:left">-</td></tr><tr><td style="text-align:center">诊断功能 (3)</td><td style="text-align:left">stdexcept：异常类</td><td style="text-align:left">cassert：C断言验证<br>cerrno：C出错码</td><td style="text-align:left">-</td></tr><tr><td style="text-align:center">通用工具(4)</td><td style="text-align:left">-</td><td style="text-align:left">ctime：C时间日期</td><td style="text-align:left">utility：实用元件<br>functional：函数对象<br>memory：内存管理器</td></tr><tr><td style="text-align:center">字符串 (6)</td><td style="text-align:left">string：字符串类<br>strstream：C字符串流类</td><td style="text-align:left">cstring：C字符串<br>cctype：单字节字符类型<br>cwctype：多字节字符类型<br>cwchar：扩展多字节宽字符</td><td style="text-align:left">-</td></tr><tr><td style="text-align:center">容器 (8)</td><td style="text-align:left">bitset：位集</td><td style="text-align:left">-</td><td style="text-align:left"><a href="https://chenyin-rss.online" target="_blank" rel="noopener">vector</a>：向量<br>list：列表<br>queue：队列<br>deque：双队<br>stack：堆栈<br>map：映射<br>set：集合</td></tr><tr><td style="text-align:center">迭代器 (1)</td><td style="text-align:left">-</td><td style="text-align:left">-</td><td style="text-align:left">iterator：迭代器</td></tr><tr><td style="text-align:center">算法 (2)</td><td style="text-align:left">-</td><td style="text-align:left">cios646：ISO646字符集替换</td><td style="text-align:left">algorithm：算法</td></tr><tr><td style="text-align:center">数值操作 (4)</td><td style="text-align:left">complex：复数<br>valarray：数值矢量</td><td style="text-align:left">cmath：C数学库</td><td style="text-align:left">numeric：数学运算</td></tr><tr><td style="text-align:center">本地化 (2)</td><td style="text-align:left">locale：本地化</td><td style="text-align:left">clocale：C本地化</td><td style="text-align:left">-</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;C++标准库总共51个头文件，按照内容可分为10个类，按照来源可分为3个类。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Cpp" scheme="http://chenyin.top/categories/Cpp/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>OD的基本使用2 - demo修改</title>
+    <link href="http://chenyin.top/cracking/20191130-9c79.html"/>
+    <id>http://chenyin.top/cracking/20191130-9c79.html</id>
+    <published>2019-11-30T09:04:21.000Z</published>
+    <updated>2020-07-10T01:46:27.888Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A00.jpg" alt="A00"></p><a id="more"></a><p>ODBG110: <a href="https://pan.baidu.com/s/1VklVhE7wH7qrEW2OOLElqw" target="_blank" rel="noopener">https://pan.baidu.com/s/1VklVhE7wH7qrEW2OOLElqw</a> 提取码：uuhg<br>ODBG110BasicPlugins:  <a href="https://pan.baidu.com/s/1QG0ealpvKTTtjd26U9himQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1QG0ealpvKTTtjd26U9himQ</a> 提取码：6fym<br>ODBG Very More Plugins: <a href="https://pan.baidu.com/s/1VQoodK3ArkiGYzJazUToiw" target="_blank" rel="noopener">https://pan.baidu.com/s/1VQoodK3ArkiGYzJazUToiw</a> 提取码：daoo<br>[教程]使用OllyDbg从零开始Cracking: <a href="https://pan.baidu.com/s/1l094huv-bQvka-QOhgNhhg" target="_blank" rel="noopener">https://pan.baidu.com/s/1l094huv-bQvka-QOhgNhhg</a> 提取码：65jv</p><h1 id="了解软件"><a href="#了解软件" class="headerlink" title="了解软件"></a>了解软件</h1><p>我们直接运行打开CRACKME.EXE文件进行注册，随机输入用户名和注册码，点击注册，软件报错，序列号不对，好吧，这才是正常的逻辑。现在尝试着修改软件，使我们输入任意的用户名和序列号，均通过验证。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A01.jpg" alt="A01"></p><p>程序弹出验证错误的消息框，调用的是系统的 <code>MessageBoxA</code> 方法，其它软件应该也是类似的吧。</p><p>消息框的标题是“No luck!”，文本是“No luck there, mate!”。</p><p>以上这是我们已知的重要信息，也是我们破解的关键地方。</p><h1 id="开始破解"><a href="#开始破解" class="headerlink" title="开始破解"></a>开始破解</h1><p>使用OD打开CRACKME.EXE，界面如下：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A02.jpg" alt="A02"></p><p>我们通过插件Command Bar（位于OD最下方）对消息弹窗函数 <code>MessageBoxA()</code> 加断点，断点的位置位于该函数的第一个指令处，这意味着如果程序遇到调用该函数的指令，会在跳转到该函数所在的内存区域后停留在第一个指令处。</p><p>加断点的命令为：<code>bp MessageBoxA</code></p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A03.jpg" alt="A03"></p><p>加断点后点击B按钮查看断点标记情况，可以看到背景自动变灰的哪一行就是我们上一步加断点的地方。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A04.jpg" alt="A04"></p><p>我们可以看出，<code>MessageBoxA()</code> 函数的一些基本信息：</p><ul><li>该函数存储的位置为 750F8700 到某个未知位置</li><li>该函数的代码位于 USER32 模块中</li><li>该函数的第一个指令是 <code>MOV EDI, EDI</code></li></ul><p>我们在该条目上右键选择 Follw in Disassembler 或者直接按回车键进入该函数存储的指令区域。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A05.jpg" alt="A05"></p><p>如下图，指令区域跳转至 750F8700 处并自动高亮显示。第一列地址处红色高亮，说明此处添加了断点。</p><p>我们往下数直到第一个 <strong>RETN</strong> 出现的区域为 <code>MessageBoxA()</code> 函数的内存区域。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A06.jpg" alt="A06"></p><p>如果我们此时执行程序，程序会运行到端点处暂停，因为没有实际执行 <code>MessageBoxA()</code> 函数，所以不会有注册成功或者注册失败的消息弹出。</p><p>第一次按下 F9 会跳转到 00401000，这个位置是程序执行的入口。</p><p>再次按下 F9 运行程序。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A07.jpg" alt="A07"></p><p>此时弹出了一个笑脸窗口，这个就是模拟软件的主窗口。</p><p>同时我们观察 EIP = 777BA8FC，说明程序并未执行到我们设置的断点（750F8700）处，为什么呢？因为执行 <code>MessageBoxA()</code> 函数的前提是进行注册，而注册是用户手动完成的。因此我们需要在模拟软件中手动注册。</p><p>点击 Help 按钮选择注册，这里我们特定随机输入用户名“123qwe”，密码为“asdzxc”，点击 OK。</p><p>接着OD中程序暂停在我们设置的断点上，注意此时 EIP = 750F8700。<img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A08.jpg" alt="A08"></p><p>观察堆栈的信息：</p><ul><li>当前栈顶位置为 0019FDB8，存储在寄存器 ESP 中</li><li>当前子程序执行完之后会跳回到 004013C1</li><li>程序是从 004013BC 跳转到当前断点位置的，004013BC 处进行了 <code>MessageBoxA()</code> 函数的调用（CALL）</li><li>在调用 004013BC 处的 <code>MessageBoxA()</code> 函数之前，该函数的参数也被压入栈中。调用该函数提供了四个参数，分别是 Style, Title, Text, hOwner。观察它们的值可以发现，调用这个函数将会告诉用户注册失败。</li></ul><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A09.jpg" alt="A09"></p><p>我们在栈顶位置右键选择 Follw in Disassembler 或者直接按回车打开 004013BC 处调用 <code>MessageBoxA()</code> 函数的位置<img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A10.jpg" alt="A10"></p><p>指令区域显示的并不是 004013BC 处调用 <code>MessageBoxA()</code> 函数的位置，而是调用结束后跳转继续执行的位置 004013C1</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A11.jpg" alt="A11"></p><p>滑动滚轮或者拉动滑条，观察 004013C1 上面的几行命令</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A12.jpg" alt="A12"></p><p>004013C1 处调用了 <code>MessageBoxA()</code> 函数，该函数需要的参数在 004013AD ~ 004013B9。</p><p>可以预见的是，程序会在这里调用 <code>MessageBoxA()</code> 函数，对我们输入的注册码做出回应，并且告诉我们很遗憾。</p><p>那么是什么导致程序会选择在这里调用 <code>MessageBoxA()</code> 函数呢？</p><p>因为指令都是按顺序执行的，我们去 004013C1 上面找寻答案。</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A13.jpg" alt="A13"></p><p>因为 004013AD ~ 004013BC 是在定义 <code>MessageBoxA()</code> 函数的参数和调用，我们点击它们上面的 <code>POP ESI</code>，哎，我们在下面的信息栏中发现了一条重要信息：“Jump from 0040138B”，说明 <code>POP ESI</code> 指令从 0040138B 跳转而来，并且之后继续执行了 <code>MessageBoxA()</code> 函数。</p><p>我们跳转到 0040138B 位置，查看附近的指令：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A14.jpg" alt="A14"></p><p>0040138B 是一条 <strong>JB</strong> 跳转指令，而且在它的上面有这么一条 <code>CMP AL, 41</code> 指令。这表示：当前仅当寄存器 AL 的值 <strong>小于</strong> 41 时才会跳转到 004013AC 处执行 <code>POP ESI</code> 和调用 <code>MessageBoxA()</code> 函数。</p><p>那如果不管 <code>CMP AL, 41</code> 的结果如何，下面都不进行跳转是不是就不会弹出让人遗憾的消息框了？</p><p>这里我们将 <code>CMP AL, 41</code> 篡改成 <code>CMP AL, AL</code> ，这使得 <strong>JB</strong> 跳转永远不会执行。</p><p>双击 <code>CMP AL, 41</code> 指令即可修改。修改后结果如下：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A15.jpg" alt="A15"></p><p>第二列变为红色字体，表示改行经过修改；指令也已经发生变化。</p><p>按下 F9 执行程序，弹出消息框：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A16.jpg" alt="A16"></p><p>呀，还是注册不通过~</p><p>按下“确定”按钮，OD中程序中又暂停在了 750F8700 的位置，是不是有点眼熟这个位置？</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A17.jpg" alt="A17"></p><p>唯一不同的在这个地方：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A18.jpg" alt="A18"></p><p>这表示有两个不同的地方调用了 <code>MessageBoxA()</code> 函数，一个是 004013BC，一个是 00401378。</p><p>前者我们已经解决了，后者是新出现的。</p><p>这表示有两个甚至多个验证方法检查我们的注册信息，而且明显 004013BC 处的检查排在 00401378 前面。</p><p>下面跳转到 00401378 附近：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A19.jpg" alt="A19"></p><p>我们逐级向上检查，发现在 00401362 的 <code>PUSH 0</code> 处出现了 “Local call from 00401245”，接着调用了另一个USER32库中的函数 <code>MessageBeep</code>，然后就调用了即将给我们抛出遗憾信息的 <code>MessageBoxA</code> 函数。</p><p>我们跳转到 00401245：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A20.jpg" alt="A20"></p><p>这里首先比较了 EAX 和 EBX 的值，然后根据比较结果进行跳转：</p><ul><li>如果相等，<strong>JE</strong> 指令被执行，跳转到 0040124C 执行 <code>CALL ~.0040134D</code></li><li>如果不等，<strong>JE</strong> 指令不执行，直接执行 <code>CALL ~.00401362</code></li><li>不管怎样，最终都会跳转到 004011E6</li></ul><p>我们知道，如果 EAX 和 EBX 的值如果不相等，程序就会跳转到 00401362 继续执行，从而调用 <code>MessageBoxA</code> 函数使用户感到遗憾。那么如果 EAX 和 EBX 的值如果相等会怎么样？0040134D 又是什么东西？我们定位到 0040134D 瞅一下：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A21.jpg" alt="A21"></p><p>我们可以看到，0040134D ~ 0040135C 区域依然在单纯地调用 <code>MessageBoxA</code> 函数，只是函数参数变得善良了，也就是说，这块区域只有在我们的注册信息有效的前提下才会被调用。而下面的 00401362 ~ 00401378 区域恰好是我们我们注册信息不通过会被执行的指令。</p><p>回到 00401245：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A20.jpg" alt="A20"></p><p>如果我们使 00401241 处的 <strong>CMP</strong> 结果恒成立会怎么样？例如 <code>CMP EAX, EAX</code>。</p><p>那么此时，不管我们怎么输注册信息，都只会跳转 0040134D 执行注册成功的信息。</p><p>修改后的结果如下：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A22.jpg" alt="A22"></p><p>这个模拟程序对注册信息进行了两次验证，我们也进行了两次修改，从而屏蔽掉了有效性检查。</p><h1 id="保存成果"><a href="#保存成果" class="headerlink" title="保存成果"></a>保存成果</h1><p>修改完成后在指令窗口的任意位置右键选择 Copy to executable 中的 All modifications：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A23.jpg" alt="A23"></p><p>选择 Copy all:</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A24.jpg" alt="A24"></p><p>弹出了一个新的指令集页面：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A25.jpg" alt="A25"></p><p>该页面内任意位置右键选择 Save file：</p><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A26.jpg" alt="A26"></p><p>重命名例如 CRACKME2.EXE，保存即可<img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A27.jpg" alt="A27"></p><p>关闭OD，验证破解成果。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/A/A00.jpg&quot; alt=&quot;A00&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="cracking" scheme="http://chenyin.top/categories/cracking/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>汇编 - 标志位和跳转</title>
@@ -61,9 +121,9 @@
     
       <category term="爬虫" scheme="http://chenyin.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="python" scheme="http://chenyin.top/tags/python/"/>
-    
       <category term="requests" scheme="http://chenyin.top/tags/requests/"/>
+    
+      <category term="python" scheme="http://chenyin.top/tags/python/"/>
     
   </entry>
   
@@ -87,9 +147,9 @@
     
       <category term="爬虫" scheme="http://chenyin.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="urllib" scheme="http://chenyin.top/tags/urllib/"/>
-    
       <category term="python" scheme="http://chenyin.top/tags/python/"/>
+    
+      <category term="urllib" scheme="http://chenyin.top/tags/urllib/"/>
     
   </entry>
   
@@ -424,79 +484,6 @@
     
       <category term="R" scheme="http://chenyin.top/categories/R/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Basset：CNN学习新的染色体开放位点</title>
-    <link href="http://chenyin.top/bioinfo/20190423-1702.html"/>
-    <id>http://chenyin.top/bioinfo/20190423-1702.html</id>
-    <published>2019-04-23T07:07:47.000Z</published>
-    <updated>2019-04-23T07:37:11.922Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/25.jpg" alt=""></p><p>尝试着将神经网络的元件与生物学意义联系起来。大胆假设，小心求证！</p><p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4937568/" target="_blank" rel="noopener">PMC</a>   |  <a href="https://genome.cshlp.org/content/early/2016/05/03/gr.200535.115.abstract" target="_blank" rel="noopener">Genome Res.</a>  |  <a href="https://github.com/davek44/Basset" target="_blank" rel="noopener">GitHub</a></p><a id="more"></a><h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>从<a href="https://www.encodeproject.org/" target="_blank" rel="noopener">ENCODE Project Consortium</a>下载125种细胞类型的数据。<br>从<a href="http://www.roadmapepigenomics.org/" target="_blank" rel="noopener">Roadmap Epigenomics Consortium</a>下载39种细胞类型的数据。<br>数据形式为DNase-seq的peak信息，保存在<a href="https://vip.biotrainee.com/d/167-bed" target="_blank" rel="noopener">BED格式</a>的文件中。<br>使用未去重叠（overlap）的peak数据。</p><h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><ol><li>以1%的FDR使用模拟方法修改原始数据集——robustness</li><li>归并重叠的peaks共 $2,071,886$ 个峰，比对到hg19参考基因组<ul><li><strong>标准输入</strong>为每个位点600bp的DNA序列长度</li><li><strong>标准标签</strong>为一个164维的二值向量，该向量表示这个峰（位点）在164种细胞类型中的开放情况（1为开放，0为不开放）</li></ul></li><li>将数据集切分为训练集、测试集和验证集<ul><li>training data：训练模型参数</li><li>testing data：计算序列特异性参数</li><li>validation data：用于early stopping</li></ul></li><li>应模型后续分析需要，使用GENOME v18 reference catalog将位点分为promoter（转录起始位点周围2kb区域）、intragenic（与基因区域发生重叠）、intergenic（位于基因间区域内）三类</li></ol><hr><h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>训练模型和测试模型的用途有细微差别。</p><h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>训练模型是一个3CNN+2FC的简单神经网络，此项目的亮点不在神经网络的设计，而在于将神经网络的元件与生物学意义结合起来，这也是以往项目中我所想不透的地方。训练网络如下：<img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/22.jpg" alt=""></p><p>模型的输入是一个one-hot编码的 $4 \times 600$ 的序列（与处理中已经将所有位点的序列长度截取到了600bp）。</p><p>the first CNN是本模型的重点，它包括了一个卷积层、一个激活层和一个池化层。</p><p>卷积层使用的是300个 $4 \times M$ 的一维卷积核（filter，滤波器），其中 $M$ 长度跟motif长度相当（这里取19b）。作者在这里给每个filter赋予了生命力，认为它们不仅是一种网络元件。因为<u>每个卷积核是基于所有序列优化得来的</u>，所以我们认为卷积核代表了所有序列共有的一种信息，即模式。这是符合思考逻辑的。</p><p>简而言之，每个卷积核可能代表了一种motif，这个motif具体的生物学意义未知。此项目试图从蛋白质结合motif出发去验证卷积核中是否存在相应的结构与之对应。<img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/23.jpg" alt=""></p><p>这是一种不错的假设-验证思想。</p><p>模型的最后一层也就是第二个全连接层的输出是164个节点，分别代表了该600bp的序列在164种类型细胞种的开放情况。参考标准标签计算binary loss进行参数优化。</p><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>测试阶段作者做了很有意思的事情。</p><p>为了计算卷积核（motif）对（预测的）开放性打分结果的影响程度，将第一CNN的输出结果（每个卷积核会将 $4 \times 600$ 的序列转化为（600-19+1）维的向量）全部用其平均值替换，这将消除卷积核的特异性影响。用替换结果进行后续计算，将计算结果与未经替换的预测结果进行比较。计算差异的平方和，这个值作为该卷积核的influence值。</p><p>IC（Information Content）值得原文计算方法如下：<br>$$<br>\mathrm{IC} = \sum_{i,j}{m_{ij}\log_2 m_{ij}} - \sum_{i,j}{ b_j \log_{2}b_{j}}<br>$$<br>写成这样似乎更清楚点：<br>$$<br>\mathrm{IC} = \sum_{i=1}^{19} \sum_{j=1}^4 m_i^{(j)} \log_2 m_i^{(j)} - 19\sum_{j=1}^4 b^{(j)} \log_2 b^{(j)}<br>$$</p><p>其中向量 $b$ 是四个碱基分布的背景值，向量 $m\;(4 \times 19)$ 是motif各个位置的碱基概率分布，等效于一个卷积核。</p><p>有趣的是，除了对卷积核进行上述操作计算IC值influence值，作者还直接从数据库中（CIS-BP数据库）下载已知的蛋白质motif代替卷积核进行计算，最后一同进行比较分析。<img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/24.jpg" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/04/25.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;尝试着将神经网络的元件与生物学意义联系起来。大胆假设，小心求证！&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4937568/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PMC&lt;/a&gt;   |  &lt;a href=&quot;https://genome.cshlp.org/content/early/2016/05/03/gr.200535.115.abstract&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Genome Res.&lt;/a&gt;  |  &lt;a href=&quot;https://github.com/davek44/Basset&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="bioinfo" scheme="http://chenyin.top/categories/bioinfo/"/>
-    
-    
-      <category term="深度学习" scheme="http://chenyin.top/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="卷积神经网络" scheme="http://chenyin.top/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
-      <category term="基因组开放位点" scheme="http://chenyin.top/tags/%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%BC%80%E6%94%BE%E4%BD%8D%E7%82%B9/"/>
-    
-      <category term="paper" scheme="http://chenyin.top/tags/paper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>采样5 - M-H采样解决接受率α过小的问题</title>
-    <link href="http://chenyin.top/stat/20190422-551c.html"/>
-    <id>http://chenyin.top/stat/20190422-551c.html</id>
-    <published>2019-04-22T02:06:51.000Z</published>
-    <updated>2019-04-22T03:13:44.323Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>M-H采样</strong> 是 <strong>Metropolis-Hastings采样</strong> 的简称，这个算法首先由Metropolis提出，被Hastings改进，因此被称之为Metropolis-Hastings采样或M-H采样。</p><p>M-H采样解决了<a href="/stat/20190417-ea8c.html">原始MCMC采样</a>中接受率过小的问题。</p><a id="more"></a><p>对于细致平稳条件<br>$$<br>\pi_i Q_{ij} \alpha_{ij} = \pi_j Q_{ji} \alpha_{ji}<br>$$<br>既然 $\alpha_{ij}​$ 太小，我们就把它扩大到1，多么简单粗暴：<br>$$<br>\alpha(i, j)=\min \left \lbrace \frac{\pi(j) Q(j, i)}{\pi(i) Q(i, j)},\; 1 \right \rbrace<br>$$<br>M-H采样过程如下：</p><ol><li>已知平稳分布 $\pi(x)​$，预设状态转移次数阈值 $n​$ 和采样样本数 $m​$，选定任意的某个马氏链对应的状态转移矩阵 $Q(i,\;j)​$</li><li>从任意简单概率采样得 $x_0$</li><li>从 $t=1$ 到 $t=n+m-1$ 循环采样：<ol><li>从 $q(x|x_{t-1})$ 中采样得到状态 $\ast$ 的采样值 $x^\ast$</li><li>从均匀分布中采样得到 $u \sim uniform(0,\;1)$</li><li>如果 $u \lt \alpha(t-1,\;\ast)=\min \left \lbrace \frac{\pi(\ast) Q(\ast, \;t-1)}{\pi(t-1) Q(t-1,\;\ast)},\; 1 \right \rbrace$ ，则接受采样值 $x^\ast$，这意味着我们接受了状态 $t-1$ 到状态 $\ast$ 的转移，即 $x_t=x^\ast$；否则拒绝转移，即 $x_t=x_{t-1}$</li></ol></li><li>$\left \lbrace x_n,\; x_{n+1},\; \cdots,\; x_{n+m-1} \right \rbrace$ 即为平稳分布对应的采样集</li></ol><p>一般强化先验知识有助于简化计算。如果我们预设的 $Q​$ 是对称矩阵，即 $Q(i,\;j)=Q(j,\;i)​$，那么此时 $\alpha​$ 可以简化为<br>$$<br>\alpha(i,\;j) = \min \left \lbrace \frac{\pi_j}{\pi_i},\; 1 \right \rbrace<br>$$<br>尽管M-H采样解决了[原始MCMMC采样][]过小的问题，它还是有很多缺陷，特别是在特征维度很大时：</p><ol><li>接受概率 $\alpha$ 难以计算，或进行了许多的无用计算（拒绝采样）；</li><li>联合分布难以计算，相比之下条件概率分布计算更容易</li></ol><p><a href="/stat/20190422-dcdd.html">Gibbs采样</a>解决了上面的问题。</p><!-- URL -->]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;M-H采样&lt;/strong&gt; 是 &lt;strong&gt;Metropolis-Hastings采样&lt;/strong&gt; 的简称，这个算法首先由Metropolis提出，被Hastings改进，因此被称之为Metropolis-Hastings采样或M-H采样。&lt;/p&gt;
-&lt;p&gt;M-H采样解决了&lt;a href=&quot;/stat/20190417-ea8c.html&quot;&gt;原始MCMC采样&lt;/a&gt;中接受率过小的问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="stat" scheme="http://chenyin.top/categories/stat/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>采样4 - 细致平稳条件和MCMC采样</title>
-    <link href="http://chenyin.top/stat/20190417-ea8c.html"/>
-    <id>http://chenyin.top/stat/20190417-ea8c.html</id>
-    <published>2019-04-17T03:07:54.000Z</published>
-    <updated>2019-07-09T01:07:01.007Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/07/01.jpg" alt=""><br><a id="more"></a></p><h1 id="细致平稳条件"><a href="#细致平稳条件" class="headerlink" title="细致平稳条件"></a>细致平稳条件</h1><p><strong>&gt; 细致平稳条件（Detailed Banlance Condition）</strong></p><p>当一个系统微观上达到平衡时满足 <strong>细致平稳条件</strong>：$\pi_i​$ 表示系统处于状态 $i​$ 的概率，$P_{i{\to}j}​$ 表示系统从状态 $i​$ 转移到状态 $j​$ 的概率，一个反应（转移）应该与它的逆反应（逆转移）达到平衡，即<br>$$<br>\pi_i P_{i \to j} = \pi_j P_{j \to i} \tag{1}<br>$$<br><a href="https://en.wikipedia.org/wiki/Detailed_balance" target="_blank" rel="noopener">细致平稳条件</a> 是 Ludwig Boltzmann 于1872年提出来的。</p><p><strong>&gt; 马尔可夫链具有平稳分布的充分条件</strong></p><p>假设马尔可夫链的状态分布为 $\pi$，状态转移矩阵为 $P$，如果存在某一个时间节点使得对于任意的状态 $i$ 和 $j$ 有<br>$$<br>\pi_i P_{ij} = \pi_j P_{ji} \tag{2}<br>$$<br>上述细致平稳条件成立，则该马尔可夫链具有<strong>平稳分布</strong> $\pi$（Stationary Distribution）。</p><p>细致平稳条件是马氏链收敛的充分条件，而不是必要条件。</p><blockquote><p>充分性证明：</p><p>因为 $\sum_i \pi_i P_{ij} = \sum_i \pi_j P_{ji} = \pi_j \sum_i P_{ji} = \pi_j$</p><p>所以 $ \sum_i \pi_i P_{ij} = \pi P = \pi $</p></blockquote><p>仅在二状态系统下，细致平稳条件也是马氏链收敛的必要条件，即充要条件。</p><p><strong>&gt; 从目标平稳分布 $\pi(x)$ 出发寻找转移矩阵 $P$</strong></p><p>假设目标平稳分布 $\pi(x)$ 已知，根据细致平稳条件，我们只需要确定一个矩阵 $P$ 作为相应的状态转移概率矩阵，就能确定这样一个马尔可夫链：转移矩阵为 $P$，平稳分布为 $\pi(x)$。</p><p>但是，矩阵 $P$ 的确定并不是一件很容易的事情，MCMC采样算法很巧妙的解决了这个问题。</p><h1 id="MCMC采样"><a href="#MCMC采样" class="headerlink" title="MCMC采样"></a>MCMC采样</h1><p><strong>&gt; 马尔可夫蒙特卡洛采样（Markov Chain Monte Carlo，MCMC）的基本思想</strong></p><p>我们随机确定一个马尔可夫链的状态转移矩阵 $Q$，它并不满足细致平衡条件，即<br>$$<br>\pi_i Q_{ij} \ne \pi_j Q_{ji} \tag{3}<br>$$<br>为了使等式成立，引入非零 $\alpha_{ij}$ 项，即<br>$$<br>\pi_i Q_{ij} \alpha_{ij} = \pi_j Q_{ji} \alpha_{ji} \tag{4}<br>$$<br>取<br>$$<br>\begin{cases}<br>\alpha_{ij} &amp;= \pi_j Q_{ji} \<br>\alpha_{ji} &amp;= \pi_i Q_{ij}<br>\end{cases} \tag{5}<br>$$<br>此时目标平稳分布 $\pi(x)$ 对应的马氏链的状态转移概率矩阵 $P$ 可表示为<br>$$<br>P_{ij} = Q_{ij} \alpha_{ij} \tag{6}<br>$$<br>由(5)式可知，$0 \le \alpha_{ij}^{(k)} \le 1$，对于特定的 $Q_{ij}$，$\alpha_{ij}$ 越小，则相应的 $P_{ij}$ 越小：这可以解释为 $\alpha_{ij}$ 是对 $Q_{ij}$ 的接受率，目标状态转移矩阵 $P$ 可以通过任意一个马尔可夫链的状态转移矩阵 $Q$ 以一定概率 $\alpha$ 接受获得。</p><p><strong>&gt; MCMC采样算法过程</strong></p><blockquote><ol><li>初始化状态分布 $\pi_0$ 并采样 $x_0$</li><li>循环采样直到获得 $m$ 个样本：<ol><li>$t$ 时刻马氏链的状态分布为 $\pi_t$（未知，我们也不关系纯向量的值），从 $Q(x|x_t)$ 采样得样本 $x^*$</li><li>从均匀分布中采样 $u \sim uniform(0,\;1)​$</li><li>如果 $u &lt; \alpha_{x_t \to x^<em>} = \pi_(x^</em>)Q(x^<em>,\;x_t)$ 则接受转移 $x_t \to x^</em>$，即 $x_{t+1}=x^*$；否则不接受转移，即 $x_{t+1}=x_t$</li><li>舍弃第 $0$ 到第 $n-1$ 共 $n$ 个样本，保留第 $n$ 到第 $n+m-1$ 共 $m$ 个样本作为采样样本 </li></ol></li></ol></blockquote><p>上面的 $\alpha_{ij}$ 实际上很小，这导致大部分采样都会被拒绝，这意味着我们的 $n$ 要预设的非常大。</p><p>基于这个困境，<strong>M-H采样</strong> 对 <strong>MCMC采样</strong> 进行了优化。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/07/01.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="stat" scheme="http://chenyin.top/categories/stat/"/>
-    
-    
-      <category term="采样" scheme="http://chenyin.top/tags/%E9%87%87%E6%A0%B7/"/>
     
   </entry>
   

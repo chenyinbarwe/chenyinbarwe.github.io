@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="paper,降维,t-SNE,非线性降维,SNE," />
+  <meta name="keywords" content="paper,降维,非线性降维,SNE,t-SNE," />
 
 
 
@@ -114,7 +114,7 @@
 
 
 <meta name="description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
-<meta name="keywords" content="paper,降维,t-SNE,非线性降维,SNE">
+<meta name="keywords" content="paper,降维,非线性降维,SNE,t-SNE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="降维03 - SNE原理">
 <meta property="og:url" content="http://chenyin.top/ml/20190325-80ae.html">
@@ -123,8 +123,9 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/01.png">
 <meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/lx.jpg">
+<meta property="og:image" content="c:/Users/Lenovo/图片/#博客图片%5C201912%5C02%5C20191202_113224.jpg">
 <meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/08.png">
-<meta property="og:updated_time" content="2019-11-27T09:39:28.782Z">
+<meta property="og:updated_time" content="2019-12-19T07:27:21.546Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="降维03 - SNE原理">
 <meta name="twitter:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
@@ -410,8 +411,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-27T17:39:28+08:00">
-                2019-11-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-19T15:27:21+08:00">
+                2019-12-19
               </time>
             
           </span>
@@ -460,7 +461,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.1k
+                  2.5k
                 </span>
               
 
@@ -504,11 +505,22 @@
 <blockquote>
 <p><a href="https://www.zhihu.com/question/24015486" target="_blank" rel="noopener">流形学习的基本思想</a></p>
 </blockquote>
-<h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p><strong>欧式距离</strong> 计算的是两个点间的直线距离。在 <strong>欧式空间</strong> 中，ju</p>
-<p>部分情况下，高维空间中两个点间的相似性可以用基于欧式距离的<strong>不相似度</strong> $d_{ij}$ 来衡量：<br>$$<br>d_{ij}^2=\frac{||x_i-x_j||^2}{2\sigma_i^2}<br>$$</p>
-<p>SNE用<strong>条件概率</strong>来代替欧式距离度量两个高维数据点间的相似性。即：以点 $x_i$ 为中心，点 $x_i$ 选择 $x_j$ 作为自己邻居的概率记为 $p(x_j|x_i)$，定义<br>$$<br>p_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}}<br>$$</p>
-<p>注意这里对于 $p(x_i|x_i)$ 的理解有点怪异：它表示点 $x_i$ 选择自己作为邻居的概率，显然自己永远不可能是自己的邻居，所以 $p(x_i|x_i)=0$，而不是1。</p>
-<h1 id="确定方差的确定"><a href="#确定方差的确定" class="headerlink" title="确定方差的确定"></a>确定方差的确定</h1><p>上式中的 $\sigma_i^2$ 是以 $x_i$ 为中心的高斯分布的<strong>方差</strong>：不同点周围的点的密度是不一样的，所以每个点的高斯分布对应的方差 $\sigma_i^2$ 也不相同，周围点密度大的中心点对应的方差应该较小。作者定义了<strong>困惑度 k (perplexity)</strong> ：手动指定的超参，代表某个点的有效邻居数，这个值对所有点都是常数。$\sigma_i^2$ 的取值将使得以点 $x_i$ 为中心选择其它所有点作为邻居的分布对应的<strong>熵</strong>等于 $\log{k}$，即<br>$$H(P_i)=-\sum_{j{\ne}i}{p(x_j|x_i)\log_2{p(x_j|x_i)}}=\log_2k$$<br>理论上可以通过上面的式子可以针对每个点 $x_i$ 解出对应的 $\sigma_i^2$。</p>
+<h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>即使是不能直观感受的高维空间中，如果两个点无限靠近，那么它们的 <strong>欧式距离</strong> 也趋近于0。我们可以用 <strong>欧式距离</strong> 来描述高维空间中两个点的相似性。</p>
+<p>对于 $R^n$ 空间中某个点 $x_i$, 我们基于 <strong>欧式距离</strong> 定义任意点 $x_j \in R^n$ 与 $x_i$ 的 <strong>相似度</strong>：<br>$$<br>d^2(x_i,x_j)=\frac{||x_i-x_j||^2}{2\sigma_i^2}<br>$$<br>上式中 $\sigma_i^2$ 是样本空间中除 $x_i$ 外其它所有点到 $x_i$ 距离的 <strong>方差</strong>。</p>
+<p>$d^2(x_i,x_j)$ 是 <strong>标准化</strong> 后的结果，它表示了点 $x_i$ 与点 $x_j$ 的相似程度。</p>
+<p>SNE将 $d^2(x_i,x_j)$ 转化为 <strong>条件概率</strong> 来描述点 $x_i$ 选择点 $x_j$ 作为邻居的概率，记为 $p(x_j|x_i)$：<br>$$<br>P_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}},\ j \ne i<br>$$</p>
+<ul>
+<li>当 $j \ne i$ 时，$p (x_j|x_i)$ 即点 $x_i$ 选择点 $x_j$ 作为邻居的概率，介于 $0 \sim 1$ 之间；</li>
+<li>当 $j=i$ 时，点 $x_i$ 永远不可能成为自己的邻居， $p(x_i|x_i)=0$。</li>
+</ul>
+<p>SNE用 <strong>条件概率</strong> 来代替欧式距离度量两个高维数据点间的相似性。</p>
+<h1 id="确定方差"><a href="#确定方差" class="headerlink" title="确定方差"></a>确定方差</h1><p>相似度中用来标准化的 $\sigma_i^2$ 是样本空间中除 $x_i$ 外其它所有点到 $x_i$ 距离的 <strong>方差</strong>。</p>
+<p>如果 $x_i$ 周围的样本点比较密集，方差较小；$x_i$ 周围样本点比较稀疏，方差较大。</p>
+<p><img src="C:\Users\Lenovo\图片\#博客图片\201912\02\20191202_113224.jpg" alt="20191202_112810"></p>
+<p>距离 $x_i$ 非常远的点，相对于整个样本总体，$x_i$ 选择它作为自己邻居的概率非常小。</p>
+<p>我们考虑样本点 $x_i$ 与哪些样本点相似性比较高，即 $x_i$ 选择哪些样本点作为邻居的概率较高，我们将与 $x_i$ 更可能成为邻居的样本点称为 <strong>有效邻居</strong>。有效邻居实际上是一个定性概念，我们并不清楚 $x_i$ 的有效邻居有多少，因此我们需要规定一个有效邻居数。原文中定义了一个名叫 <strong>困惑度</strong>（Perplexity）的东西， $x_i$ 的困惑度定义为<br>$$<br>K_i = 2^{H(P_i)}<br>$$<br>其中 $H(P_i)$ 是<strong>香农熵</strong>：<br>$$<br>H(P_i) = -\sum_{j{\ne}i}{p_{ij}\log_2{p_{ij}}}=\log_2 K_i<br>$$</p>
+<p>此外，对于那些非常遥远得点，中心点 $x$ 与它们得距离非常大，$x$ 选择它们作为邻居得概率也非常小，在空间维度很大、采样点很多的情况下，忽略它们不失为一种加快计算的有效办法。</p>
+<p>这里为每个点 $x_i$ 定义了一个 <strong>困惑度</strong>（Perplexity）$K_i$，它与以 $x_i$ 为中心、以 $\sigma_i^2$ 为方差的高斯分布的（经验）熵有关：<br>$$<br>K_i = 2^{H(P_i)}<br>$$<br>其中 $H(P_i)$ 是<strong>香农熵</strong>：<br>$$<br>H(P_i) = -\sum_{j{\ne}i}{p_{ij}\log_2{p_{ij}}}=\log_2 K_i<br>$$<br>结合上述式子即可求出方差 $\sigma_i^2$：方差越大，则以点 $x_i$ 为中心的“密集区域”（总体）越大，被选中的有效邻居数就越多，相应的该分布的熵也越大，困惑度越大。这意味着，<strong>困惑度$K_i$</strong>可以用来描述点$x_i$选择的有效邻居数目。我们通过设置超参$K= K_i$来求方差，从而标准化每个分布。困惑度的取值范围一般为 $5 \sim 50$。</p>
 <p><strong>熵 $H(P_i)$ 的理解</strong></p>
 <ul>
 <li><strong>不确定性</strong>：熵本身就意味着不确定性，当区域点密集时，中心点位置的不确定性就小；</li>
@@ -564,7 +576,9 @@
 	
 		<div>
     
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束！<i class="fa fa-paw"></i>没想到吧？-------------</div>
+        <div style="text-align:center;color: red;font-size:16px;">
+            >>>>>>>>>>>>> 转载请注明出处 <<<<<<<<<<<<<
+        </div>
     
 </div>
 	
@@ -578,11 +592,11 @@
           
             <a href="/tags/降维/" rel="tag"><i class="fa fa-tag"></i> 降维</a>
           
-            <a href="/tags/t-SNE/" rel="tag"><i class="fa fa-tag"></i> t-SNE</a>
-          
             <a href="/tags/非线性降维/" rel="tag"><i class="fa fa-tag"></i> 非线性降维</a>
           
             <a href="/tags/SNE/" rel="tag"><i class="fa fa-tag"></i> SNE</a>
+          
+            <a href="/tags/t-SNE/" rel="tag"><i class="fa fa-tag"></i> t-SNE</a>
           
         </div>
       
@@ -693,7 +707,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">95</span>
+                  <span class="site-state-item-count">98</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -704,7 +718,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -746,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#流形"><span class="nav-number">1.</span> <span class="nav-text">流形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义条件概率"><span class="nav-number">2.</span> <span class="nav-text">定义条件概率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#确定方差的确定"><span class="nav-number">3.</span> <span class="nav-text">确定方差的确定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#映射到低维空间"><span class="nav-number">4.</span> <span class="nav-text">映射到低维空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小化损失函数"><span class="nav-number">5.</span> <span class="nav-text">最小化损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#带动量项的梯度更新"><span class="nav-number">5.1.</span> <span class="nav-text">带动量项的梯度更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机抖动"><span class="nav-number">5.2.</span> <span class="nav-text">随机抖动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火"><span class="nav-number">5.3.</span> <span class="nav-text">模拟退火</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#流形"><span class="nav-number">1.</span> <span class="nav-text">流形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义条件概率"><span class="nav-number">2.</span> <span class="nav-text">定义条件概率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#确定方差"><span class="nav-number">3.</span> <span class="nav-text">确定方差</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#映射到低维空间"><span class="nav-number">4.</span> <span class="nav-text">映射到低维空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小化损失函数"><span class="nav-number">5.</span> <span class="nav-text">最小化损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#带动量项的梯度更新"><span class="nav-number">5.1.</span> <span class="nav-text">带动量项的梯度更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机抖动"><span class="nav-number">5.2.</span> <span class="nav-text">随机抖动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火"><span class="nav-number">5.3.</span> <span class="nav-text">模拟退火</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -770,7 +784,7 @@
 <div class="copyright">
 
 &copy; 
-<span itemprop="copyrightYear">2019</span>
+<span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -785,7 +799,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">82.2k</span>
+    <span title="Site words total count">86.2k</span>
   
 </div>
 
