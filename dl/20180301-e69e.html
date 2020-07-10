@@ -121,7 +121,7 @@
 <meta property="og:description" content="什么是TFRecord文件？将一组图像数据和它们对应的标签存在一个二进制文件里，这个文件就是TFRecord文件。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p33k8pinb.bkt.clouddn.com/18-3-1/42164280.jpg">
-<meta property="og:updated_time" content="2019-04-14T16:02:20.853Z">
+<meta property="og:updated_time" content="2020-07-10T08:00:59.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow-基于TFRecord加载图像数据">
 <meta name="twitter:description" content="什么是TFRecord文件？将一组图像数据和它们对应的标签存在一个二进制文件里，这个文件就是TFRecord文件。">
@@ -407,8 +407,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T00:02:20+08:00">
-                2019-04-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-07-10T16:00:59+08:00">
+                2020-07-10
               </time>
             
           </span>
@@ -457,7 +457,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  342
+                  343
                 </span>
               
 
@@ -486,11 +486,11 @@
 <h1 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h1><p>自定义的牙骨项目<a href="https://github.com/barwe/practise/blob/master/TFRecordFileBuilder.py" target="_blank" rel="noopener">数据加载器</a></p>
 <p>核心步骤：</p>
 <ol>
-<li><p>声明一个用于生成TFRecord文件的writer<br><code>with tf.python_io,TFRecordWriter(tfr_fp) as writer: …<br># tfr_fp是生成文件路径</code></p>
+<li><p>声明一个用于生成TFRecord文件的writer<br> <code>with tf.python_io,TFRecordWriter(tfr_fp) as writer: …<br># tfr_fp是生成文件路径</code></p>
 </li>
 <li><p>获取图像的二进制数据：例如 <code>PIL::Image</code> 对象 <code>img</code> 可以使用 <code>img.tobytes()</code> 获取二进制信息</p>
 </li>
-<li>然后套用tensorflow提供的API：<br><img src="http://p33k8pinb.bkt.clouddn.com/18-3-1/42164280.jpg" alt=""></li>
+<li>然后套用tensorflow提供的API：<br> <img src="http://p33k8pinb.bkt.clouddn.com/18-3-1/42164280.jpg" alt=""></li>
 </ol>
 <p>红色下划线为关键API<br>A：标识图像标签的key，加载TFRecord文件的时候会用到<br>B：注意类型对应：图像标签为int类型，图像内容为bytes类型<br>形参 <code>value</code> 的值注意加 <code>[]</code></p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="1-老规矩，先定义队列"><a href="#1-老规矩，先定义队列" class="headerlink" title="1.老规矩，先定义队列"></a>1.老规矩，先定义队列</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">q = tf.train.string_input_producer([tfr_fp])</span><br><span class="line"></span><br><span class="line">这里传入的是 `[tfr_fp]` ，代表建立的实际上是一个文件名队列</span><br></pre></td></tr></table></figure>
@@ -498,7 +498,7 @@
 <h2 id="3-用这个reader读取TFRecord文件的文件名队列得到序列化的样例："><a href="#3-用这个reader读取TFRecord文件的文件名队列得到序列化的样例：" class="headerlink" title="3.用这个reader读取TFRecord文件的文件名队列得到序列化的样例："></a>3.用这个reader读取TFRecord文件的文件名队列得到序列化的样例：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_, serialized_example = reader.read(q)</span><br></pre></td></tr></table></figure>
 <h2 id="4-从样例中解析出图像数据和图像标签"><a href="#4-从样例中解析出图像数据和图像标签" class="headerlink" title="4.从样例中解析出图像数据和图像标签"></a>4.从样例中解析出图像数据和图像标签</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">features = tf.parse_single_example(</span><br><span class="line">	serialized_example,</span><br><span class="line">	features = &#123;</span><br><span class="line">		<span class="string">'label'</span>: tf.FixedLenFeature([], tf.int64),</span><br><span class="line">		<span class="string">'img_raw'</span>: tf.FixedLenFeature([], tf.string)</span><br><span class="line">	&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <h2 id="5-从二进制数据中解码图像"><a href="#5-从二进制数据中解码图像" class="headerlink" title="5.从二进制数据中解码图像"></a>5.从二进制数据中解码图像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = tf.decode_raw(features[&apos;img_raw&apos;], tf.uint8)</span><br><span class="line">img = tf.reshape(img, SHAPE)</span><br></pre></td></tr></table></figure>
-<h2 id="6-千万别忘了在session中开启线程，被坑傻了"><a href="#6-千万别忘了在session中开启线程，被坑傻了" class="headerlink" title="6.千万别忘了在session中开启线程，被坑傻了"></a>6.千万别忘了在session中开启线程，被坑傻了</h2><p><a href="http://barwe.top/deep-learning/2018-01-26/20180126111829/#start_queue" target="_blank" rel="noopener">传送门</a></p>
+<h2 id="6-千万别忘了在session中开启线程，被坑傻了"><a href="#6-千万别忘了在session中开启线程，被坑傻了" class="headerlink" title="6.千万别忘了在session中开启线程，被坑傻了"></a>6.千万别忘了在session中开启线程，被坑傻了</h2><p><a href="/dl/20180126-f29a.html">传送门</a></p>
 
       
     </div>
@@ -639,7 +639,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -731,7 +731,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">86.2k</span>
+    <span title="Site words total count">93.5k</span>
   
 </div>
 
