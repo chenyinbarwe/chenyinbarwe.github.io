@@ -121,9 +121,9 @@
     
       <category term="爬虫" scheme="http://chenyin.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="requests" scheme="http://chenyin.top/tags/requests/"/>
-    
       <category term="python" scheme="http://chenyin.top/tags/python/"/>
+    
+      <category term="requests" scheme="http://chenyin.top/tags/requests/"/>
     
   </entry>
   
@@ -147,9 +147,9 @@
     
       <category term="爬虫" scheme="http://chenyin.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="python" scheme="http://chenyin.top/tags/python/"/>
-    
       <category term="urllib" scheme="http://chenyin.top/tags/urllib/"/>
+    
+      <category term="python" scheme="http://chenyin.top/tags/python/"/>
     
   </entry>
   
