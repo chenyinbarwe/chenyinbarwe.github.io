@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[将SpaceSniffer添加到右键菜单]]></title>
     <url>%2Fos%2F20200818-7e4.html</url>
-    <content type="text"><![CDATA[SpaceSniffer 能够以网格形式展示指定目录的结构层次以及它的子目录和子文件的大小。 这里介绍怎么把应用添加到目录的右键菜单，使得我们可以在任意目录上右键分析这个目录的磁盘空间。效果如下： 下载和安装这是一个绿色包，所以不需要安装 ~ 启动程序直接打开 SpaceSniffer.exe 即可。 需要注意的是，如果待分析的目录中包含需要管理员权限操作的子目录或者子文件，需要以管理员身份启动软件才能正常分析，否则会抛出警告。 启动后依次点击 Help &gt; command line help 可以查看命令行帮助文档： 我们的任意目录右键分析洗盘空间需要用到这个。 观察一下，scan 参数可以指定我们想要分析的目录，如果是在右键上，我们应该通过变量实时获取目标目录。 添加右键入口 首先我们需要一个默认以管理员权限启动的 cmd.exe，cmd.exe 一般位于 C:\WINDOWS\system32 下，找到它然后复制一个新的程序并重命名为 cmda.exe 右键这个 cmda.exe，依次点击 属性 &gt; 兼容性，勾选 以管理员身份运行此程序，然后 确定，记下这个 cmda.exe 的路径 C:\WINDOWS\system32\cmda.exe 打开注册表编辑器（win + r 然后输入 regedit 确定），定位到 HKEY_CLASSES_ROOT\Directory\shell，这个文件夹代表了 一般目录的右键菜单： 可以看到我这里已经添加了四个入口，分别是 cmder, find, git bash 和将要添加的 SpaceSniffer 右键 shell，新建 项，取名为 SpaceSniffer 修改 SpaceSniffer 项的 (默认) 为 使用 SpaceSniffer 分析这个目录的磁盘空间，这个字符串将出现在你的右键菜单中，可个性化修改；在 (默认) 值的同级环境中右键依次点击 新建值 &gt; 字符串值，取名为 Icon。双击 Icon，修改其值为 SpaceSniffer.exe 程序的路径；最后再新建一个 项，取名为 command。最终效果如下： 双击 command 项，修改其默认值为 “C:\WINDOWS\system32\cmda.exe” “/C start D:\Portable\spacesniffer\SpaceSniffer.exe scan %1”： /C 表示执行其它程序 start 不会显示cmd的黑黢黢的窗口 scan 路径 作为 SpaceSniffer.exe 的参数 %1 变量动态获取当前目录路径 真香 ~]]></content>
+    <content type="text"><![CDATA[SpaceSniffer 能够以网格形式展示指定目录的结构层次以及它的子目录和子文件的大小。 这里介绍怎么把应用添加到目录的右键菜单，使得我们可以在任意目录上右键分析这个目录的磁盘空间。效果如下： 下载和安装这是一个绿色包，所以不需要安装 ~ 链接：https://pan.baidu.com/s/186OKHlF_2IJ0VsnwDhvJnQ 提取码：83vc 启动程序直接打开 SpaceSniffer.exe 即可。 需要注意的是，如果待分析的目录中包含需要管理员权限操作的子目录或者子文件，需要以管理员身份启动软件才能正常分析，否则会抛出警告。 启动后依次点击 Help &gt; command line help 可以查看命令行帮助文档： 我们的任意目录右键分析洗盘空间需要用到这个。 观察一下，scan 参数可以指定我们想要分析的目录，如果是在右键上，我们应该通过变量实时获取目标目录。 添加右键入口 首先我们需要一个默认以管理员权限启动的 cmd.exe，cmd.exe 一般位于 C:\WINDOWS\system32 下，找到它然后复制一个新的程序并重命名为 cmda.exe 右键这个 cmda.exe，依次点击 属性 &gt; 兼容性，勾选 以管理员身份运行此程序，然后 确定，记下这个 cmda.exe 的路径 C:\WINDOWS\system32\cmda.exe 打开注册表编辑器（win + r 然后输入 regedit 确定），定位到 HKEY_CLASSES_ROOT\Directory\shell，这个文件夹代表了 一般目录的右键菜单： 可以看到我这里已经添加了四个入口，分别是 cmder, find, git bash 和将要添加的 SpaceSniffer 右键 shell，新建 项，取名为 SpaceSniffer 修改 SpaceSniffer 项的 (默认) 为 使用 SpaceSniffer 分析这个目录的磁盘空间，这个字符串将出现在你的右键菜单中，可个性化修改；在 (默认) 值的同级环境中右键依次点击 新建值 &gt; 字符串值，取名为 Icon。双击 Icon，修改其值为 SpaceSniffer.exe 程序的路径；最后再新建一个 项，取名为 command。最终效果如下： 双击 command 项，修改其默认值为 “C:\WINDOWS\system32\cmda.exe” “/C start D:\Portable\spacesniffer\SpaceSniffer.exe scan %1”： /C 表示执行其它程序 start 不会显示cmd的黑黢黢的窗口 scan 路径 作为 SpaceSniffer.exe 的参数 %1 变量动态获取当前目录路径 真香 ~]]></content>
       <categories>
         <category>os</category>
       </categories>
@@ -225,10 +225,10 @@
         <category>bioinfo</category>
       </categories>
       <tags>
-        <tag>paper</tag>
         <tag>深度学习</tag>
         <tag>卷积神经网络</tag>
         <tag>基因组开放位点</tag>
+        <tag>paper</tag>
       </tags>
   </entry>
   <entry>
