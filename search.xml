@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[将SpaceSniffer添加到右键菜单]]></title>
+    <url>%2Fos%2F20200818-7e4.html</url>
+    <content type="text"><![CDATA[SpaceSniffer 能够以网格形式展示指定目录的结构层次以及它的子目录和子文件的大小。 这里介绍怎么把应用添加到目录的右键菜单，使得我们可以在任意目录上右键分析这个目录的磁盘空间。效果如下： 下载和安装这是一个绿色包，所以不需要安装 ~ 启动程序直接打开 SpaceSniffer.exe 即可。 需要注意的是，如果待分析的目录中包含需要管理员权限操作的子目录或者子文件，需要以管理员身份启动软件才能正常分析，否则会抛出警告。 启动后依次点击 Help &gt; command line help 可以查看命令行帮助文档： 我们的任意目录右键分析洗盘空间需要用到这个。 观察一下，scan 参数可以指定我们想要分析的目录，如果是在右键上，我们应该通过变量实时获取目标目录。 添加右键入口 首先我们需要一个默认以管理员权限启动的 cmd.exe，cmd.exe 一般位于 C:\WINDOWS\system32 下，找到它然后复制一个新的程序并重命名为 cmda.exe 右键这个 cmda.exe，依次点击 属性 &gt; 兼容性，勾选 以管理员身份运行此程序，然后 确定，记下这个 cmda.exe 的路径 C:\WINDOWS\system32\cmda.exe 打开注册表编辑器（win + r 然后输入 regedit 确定），定位到 HKEY_CLASSES_ROOT\Directory\shell，这个文件夹代表了 一般目录的右键菜单： 可以看到我这里已经添加了四个入口，分别是 cmder, find, git bash 和将要添加的 SpaceSniffer 右键 shell，新建 项，取名为 SpaceSniffer 修改 SpaceSniffer 项的 (默认) 为 使用 SpaceSniffer 分析这个目录的磁盘空间，这个字符串将出现在你的右键菜单中，可个性化修改；在 (默认) 值的同级环境中右键依次点击 新建值 &gt; 字符串值，取名为 Icon。双击 Icon，修改其值为 SpaceSniffer.exe 程序的路径；最后再新建一个 项，取名为 command。最终效果如下： 双击 command 项，修改其默认值为 “C:\WINDOWS\system32\cmda.exe” “/C start D:\Portable\spacesniffer\SpaceSniffer.exe scan %1”： /C 表示执行其它程序 start 不会显示cmd的黑黢黢的窗口 scan 路径 作为 SpaceSniffer.exe 的参数 %1 变量动态获取当前目录路径 真香 ~]]></content>
+      <categories>
+        <category>os</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[R-下载github源码并离线安装]]></title>
+    <url>%2FR%2F20200804-fcaf.html</url>
+    <content type="text"><![CDATA[devtools::install_github 虽然好用，但是有时候R不能与github通讯时就很尴尬。 在jupyter中使用R时需要安装IRkernel包： 1devtools::install_github('IRkernel/IRkernel') 但是网络似乎出现了问题，but浏览器中还是可以访问这个repo的： 这时候可以考虑把repo克隆到本地后再离线安装。过程如下： 下载源码： 12345678$ git clone https://github.com/IRkernel/IRkernel.gitCloning into 'IRkernel'...remote: Enumerating objects: 12, done.remote: Counting objects: 100% (12/12), done.remote: Compressing objects: 100% (11/11), done.remote: Total 2359 (delta 3), reused 4 (delta 1), pack-reused 2347Receiving objects: 100% (2359/2359), 694.02 KiB | 30.00 KiB/s, done.Resolving deltas: 100% (1401/1401), done. 编译：需要用到命令行编译，如果git bash中能够检测到R可以直接在git bash中编译和安装 12$ which R/d/Program/R/R-4.0.2/bin/R 12345678910$ R CMD build IRkernel* checking for file 'IRkernel/DESCRIPTION' ... OK* preparing 'IRkernel':* checking DESCRIPTION meta-information ... OK* checking for LF line-endings in source and make files and shell scripts* checking for empty or unneeded directoriesRemoved empty directory 'IRkernel/example-notebooks'Removed empty directory 'IRkernel/tests/testthat/jkt'Removed empty directory 'IRkernel/tests/testthat/njr'* building 'IRkernel_1.1.1.9000.tar.gz' 编译会生成一个以 .tar.gz 结尾的压缩包，安装它即可。 安装：需要用到命令行 12345678910111213141516171819202122232425262728$ R CMD INSTALL IRkernel_1.1.1.9000.tar.gz* installing to library 'D:/Program/R/R-4.0.2/library'* installing *source* package 'IRkernel' ...** using staged installation** R** inst** byte-compile and prepare package for lazy loading** help*** installing help indices converting help for package 'IRkernel' finding HTML links ... ▒▒▒▒ Comm-class html CommManager-class html IRkernel-package html comm_manager html installspec html log html main html** building package indices** testing if installed package can be loaded from temporary location*** arch - i386*** arch - x64** testing if installed package can be loaded from final location*** arch - i386*** arch - x64** testing if installed package keeps a record of temporary installation path* DONE (IRkernel)Making 'packages.html' ... ▒▒▒▒]]></content>
+      <categories>
+        <category>R</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[C++标准库-fstream文件流]]></title>
     <url>%2FCpp%2F20200710-111f.html</url>
     <content type="text"><![CDATA[C++标准库 fstream 用来读写文件。 文件流C++标准库头文件 #include &lt;fstream&gt; 中包含了三个重要的文件流类： fstream：既可以读文件，也可以写文件 ifstream：只能读文件 ofstream：只能写文件 文件读写的基本步骤是： 初始化文件流对象：声明，例如 fstream f 声明了读写文件流对象f 打开文件：调用 open 方法，例如 f.open(&quot;xxx.txt&quot;, ios::in) 读/写文件：读取内容或者写入内容 关闭文件：调用 close 方法，f.close() 声明文件流对象如果只是对文件进行 读 操作，请使用 ifstream；如果只是对文件进行写操作，请使用 ofstream。语法如下： 123std::ifstream in;std::ofstream out;std::fstream in_out; 打开文件open 方法打开open 是三个文件流类的成员方法，可被文件流对象调用以打开文件，实现文件流对象与具体文件的绑定。 open 方法接收两个参数：文件路径，文件操纵模式。 123in.open("xxx.txt", std::ios::in);out.open("yyy.txt", std::ios::app);in_out.open("zzz.txt", std::ios::in | std::ios::out) 读文件流对象的模式默认为 ios::in，可以缺省。 ios标准库 内置了日常所需的文件操纵模式，包括： ios::in 打开文件用于读取 ios::out 打开文件用于写入 ios::ate 文件打开后定位到末尾 ios::app 追加模式，所有写入添加到文件末尾 ios::binary 二进制方式 ios::trunc 如果文件已存在则先删除文件 常见的文件操纵模式组合： 读取文本文件：ios::in 读取二进制文件：ios::in | ios::binary 写入为文本文件，文件存在时覆盖写入：ios::out 写入为文本文件，文件存在时追加写入：ios::out | ios::ate 或者 ios::app 写入为文本文件，文件存在时先删除再写入：ios::out | ios::trunc 写入为二进制文件，文件存在时覆盖写入：ios::out | ios::binary 关于写入文件的三种情形，假设我有一个文件内容如下，想要写入的内容是 Fuzhou 和 Guangzhou： 123NanjingShanghaiShenzhen 文件写入方式 结果 覆盖式 FuzhouGuangzhouShenzhen 追加式 NanjingShanghaiShenzhenFuzhouGuangzhou 删除式 FuzhouGuangzhou 在声明时打开除了使用 open 方法，在声明文件流对象时可以直接打开文件，语法如下： 12std::ifstream in("xxx.txt");std::ofstream out("yyy.txt", std::ios::out); 检查文件打开是否成功通过 if(in_out) 来判断文件是否打开成功。 读取文件在某些编程语言中，文件流对象打开文件后又叫做 文件句柄。文件句柄本身不存储文件的内容，但我们可以从文件句柄访问整个文件的内容或者写入内容到文件。文件句柄相当于程序和文件之间的一个通道。 文件句柄的读取方法很多。 逐个单词读取至string变量流运算符的一个特点就是从空白符后的第一个非空白字符开始，读取到下一个空白符为止。所以只能一个单词一个单词的提取。 常见的空白符有空格、制表符、换行符。 12345678910111213#include &lt;iostream&gt;#include &lt;fstream&gt;#include &lt;vector&gt;using namespace std;int main()&#123; int x; vector&lt;int&gt; vec; ifstream in("data.txt"); if (in) while (in &gt;&gt; x) vec.push_back(x); for (int x : vec) cout&lt;&lt;x&lt;&lt;" "; return 0;&#125; 逐行读取至string变量getline 函数可以按行（换行符分割）读取文件，并将每行的内容保存在字符串类型的变量var里面： 1while (getline(文件句柄fh, 迭代变量var)) &#123; ... &#125; 🐖：var中的行字符串不包含末尾的换行符。 这个getline函数从哪里来的？ getline函数用于从 ifstream 中按行读取文件内容，ifstream 派生自 istream，&lt;istream&gt; 头文件中就定义了这个 getline 函数。 逐行读取至char数组此外，文件输入流本身也提供了一个 getline 方法： 123const int LINE_LENGTH = 100;char var[100];while (in.getline(var, LINE_LENGTH)) &#123; ... &#125; 这个 getline 方法就显得笨重了许多，我们需要先预设一个 LINE_LENGTH，这个值要比文件最长的那一行的长度还要长（假设最长行的长度为99，则这个值最小应该设置为100）。然后我们需要声明一个迭代变量var，它是一个长为 LINE_LENGTH 的 字符数组。 getline 方法的第一个参数是迭代变量，第二个参数是 LINE_LENGTH。 所以这个 getline 方法实际上是将文件的每一行读进了一个等长的字符数组里面。 写入文件流运算符流运算符可以用于写入文本文件，用于二进制文件可能会产生错误。 12ofstream out("output.txt");out &lt;&lt; setw(20) &lt;&lt; setfill('#') &lt;&lt; setiosflags(ios::left) &lt;&lt; "name: " &lt;&lt; "barwe" &lt;&lt; endl; 关闭文件尽管程序结束时会自动关闭打开的文件，但为了安全起见，建议手动关闭。 123in.close();out.close();in_out.close();]]></content>
@@ -44,8 +60,8 @@
       </categories>
       <tags>
         <tag>爬虫</tag>
-        <tag>python</tag>
         <tag>requests</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -57,8 +73,8 @@
       </categories>
       <tags>
         <tag>爬虫</tag>
-        <tag>urllib</tag>
         <tag>python</tag>
+        <tag>urllib</tag>
       </tags>
   </entry>
   <entry>
@@ -209,10 +225,10 @@
         <category>bioinfo</category>
       </categories>
       <tags>
+        <tag>paper</tag>
         <tag>深度学习</tag>
         <tag>卷积神经网络</tag>
         <tag>基因组开放位点</tag>
-        <tag>paper</tag>
       </tags>
   </entry>
   <entry>
@@ -314,9 +330,9 @@
       <tags>
         <tag>paper</tag>
         <tag>降维</tag>
+        <tag>t-SNE</tag>
         <tag>非线性降维</tag>
         <tag>SNE</tag>
-        <tag>t-SNE</tag>
       </tags>
   </entry>
   <entry>
