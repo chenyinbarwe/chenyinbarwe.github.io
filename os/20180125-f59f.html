@@ -120,7 +120,7 @@
 <meta property="og:site_name" content="阔落煮酒">
 <meta property="og:description" content="C盘终极清理！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-14T16:02:20.710Z">
+<meta property="og:updated_time" content="2020-08-27T01:46:39.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="win10系统将C盘的用户文件夹迁移至D盘">
 <meta name="twitter:description" content="C盘终极清理！">
@@ -405,8 +405,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-15T00:02:20+08:00">
-                2019-04-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-08-27T09:46:39+08:00">
+                2020-08-27
               </time>
             
           </span>
@@ -455,7 +455,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  211
+                  213
                 </span>
               
 
@@ -481,11 +481,38 @@
 
       
         <p>C盘终极清理！<a id="more"></a></p>
-<h1 id="一、win10默认禁用管理员账户："><a href="#一、win10默认禁用管理员账户：" class="headerlink" title="一、win10默认禁用管理员账户："></a>一、win10默认禁用管理员账户：</h1><h2 id="1、打开“计算机管理”："><a href="#1、打开“计算机管理”：" class="headerlink" title="1、打开“计算机管理”："></a>1、打开“计算机管理”：</h2><p>① 右键“我的电脑”- 管理</p>
-<p>② cmd - 键入“计算机管理”- 打开</p>
-<h2 id="2、激活管理员账户："><a href="#2、激活管理员账户：" class="headerlink" title="2、激活管理员账户："></a>2、激活管理员账户：</h2><p>@ 右键<strong>“计算机管理（本地）&gt;系统工具&gt;本地用户和组&gt;用户&gt;Administrator”</strong>选择<strong>属性</strong></p>
-<p>@ 去掉“账户已禁用”的对勾</p>
-<h1 id="二、切换至管理员"><a href="#二、切换至管理员" class="headerlink" title="二、切换至管理员"></a>二、切换至管理员</h1><h2 id="1、注销当前用户，切换至Administrator用户"><a href="#1、注销当前用户，切换至Administrator用户" class="headerlink" title="1、注销当前用户，切换至Administrator用户"></a>1、注销当前用户，切换至Administrator用户</h2><h2 id="2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ"><a href="#2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ" class="headerlink" title="2、打开cmd，执行 robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ"></a>2、打开cmd，执行 <code>robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ</code></h2><h2 id="3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！"><a href="#3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！" class="headerlink" title="3、可能需要安装文件解锁工具 LockHunter：程序接口位于右键菜单中！"></a>3、可能需要安装文件解锁工具 <em>LockHunter</em>：程序接口位于右键菜单中！</h2><h2 id="4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面"><a href="#4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面" class="headerlink" title="4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面"></a>4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面</h2><h2 id="5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q"><a href="#5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q" class="headerlink" title="5、删除”C:\Users\USERNAME”：cmd中执行 rmdir &quot;C:\Users\USERNAME&quot; /S /Q"></a>5、删除”C:\Users\USERNAME”：cmd中执行 <code>rmdir &quot;C:\Users\USERNAME&quot; /S /Q</code></h2><h2 id="6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot"><a href="#6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot" class="headerlink" title="6、建立软连接：cmd中执行 mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;"></a>6、建立软连接：cmd中执行 <code>mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;</code></h2>
+<h1 id="激活管理员账户"><a href="#激活管理员账户" class="headerlink" title="激活管理员账户"></a>激活管理员账户</h1><p>win10默认禁用管理员账户。</p>
+<ol>
+<li><p>打开“计算机管理”</p>
+<ol>
+<li>右键“我的电脑”- 管理</li>
+<li>cmd - 键入“计算机管理”- 打开</li>
+</ol>
+</li>
+<li><p>激活管理员账户：</p>
+<ol>
+<li>右键<strong>“计算机管理（本地）&gt;系统工具&gt;本地用户和组&gt;用户&gt;Administrator”</strong>选择<strong>属性</strong></li>
+<li>去掉“账户已禁用”的对勾</li>
+</ol>
+</li>
+</ol>
+<h1 id="切换至管理员"><a href="#切换至管理员" class="headerlink" title="切换至管理员"></a>切换至管理员</h1><ol>
+<li><p>注销当前用户，切换至Administrator用户</p>
+</li>
+<li><p>打开cmd，执行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ`</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可能需要安装文件解锁工具 <strong>LockHunter</strong>：程序接口位于右键菜单中！</p>
+</li>
+<li><p>解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面</p>
+</li>
+<li><p>删除”C:\Users\USERNAME”：cmd中执行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir &quot;C:\Users\USERNAME&quot; /S /Q</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>建立软连接：cmd中执行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
       
     </div>
     
@@ -625,7 +652,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">101</span>
+                  <span class="site-state-item-count">102</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -678,7 +705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、win10默认禁用管理员账户："><span class="nav-number">1.</span> <span class="nav-text">一、win10默认禁用管理员账户：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、打开“计算机管理”："><span class="nav-number">1.1.</span> <span class="nav-text">1、打开“计算机管理”：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、激活管理员账户："><span class="nav-number">1.2.</span> <span class="nav-text">2、激活管理员账户：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、切换至管理员"><span class="nav-number">2.</span> <span class="nav-text">二、切换至管理员</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、注销当前用户，切换至Administrator用户"><span class="nav-number">2.1.</span> <span class="nav-text">1、注销当前用户，切换至Administrator用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、打开cmd，执行-robocopy-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot-E-COPYALL-XJ"><span class="nav-number">2.2.</span> <span class="nav-text">2、打开cmd，执行 robocopy &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot; /E /COPYALL /XJ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、可能需要安装文件解锁工具-LockHunter：程序接口位于右键菜单中！"><span class="nav-number">2.3.</span> <span class="nav-text">3、可能需要安装文件解锁工具 LockHunter：程序接口位于右键菜单中！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、解锁-“C-Users-USERNAME”：右键菜单选择API进入解锁界面"><span class="nav-number">2.4.</span> <span class="nav-text">4、解锁 “C:\Users\USERNAME”：右键菜单选择API进入解锁界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、删除”C-Users-USERNAME”：cmd中执行-rmdir-quot-C-Users-USERNAME-quot-S-Q"><span class="nav-number">2.5.</span> <span class="nav-text">5、删除”C:\Users\USERNAME”：cmd中执行 rmdir &quot;C:\Users\USERNAME&quot; /S /Q</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、建立软连接：cmd中执行-mklink-J-quot-C-Users-USERNAME-quot-quot-D-Users-USERNAME-quot"><span class="nav-number">2.6.</span> <span class="nav-text">6、建立软连接：cmd中执行 mklink /J &quot;C:\Users\USERNAME&quot; &quot;D:\Users\USERNAME&quot;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#激活管理员账户"><span class="nav-number">1.</span> <span class="nav-text">激活管理员账户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#切换至管理员"><span class="nav-number">2.</span> <span class="nav-text">切换至管理员</span></a></li></ol></div>
             
 
           </div>
@@ -717,7 +744,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">94.5k</span>
+    <span title="Site words total count">94.9k</span>
   
 </div>
 

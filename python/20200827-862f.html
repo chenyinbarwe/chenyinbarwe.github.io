@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="决策树," />
+  <meta name="keywords" content="BT, ML" />
 
 
 
@@ -113,23 +113,17 @@
 
 
 
-<meta name="description" content="决策树学习通常包含三个步骤：特征选择、决策树的生成、决策树的修剪。 决策树学习的思想主要来源于：  由Quinlan提出的ID3算法和C4.5算法 由Breiman等人提出的CART算法">
-<meta name="keywords" content="决策树">
+<meta name="description" content="官方的默认源在下载某些包（例如pytorch）时实在是太慢了，建议在新建一个虚拟环境前就换源。 因为不同源的包的默认版本可能不一致，如果中途换源可能会导致许多不必要的麻烦。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="决策树 - ID3和C4.5">
-<meta property="og:url" content="http://chenyin.top/ml/20191117-62c1.html">
+<meta property="og:title" content="实用的conda换源教程">
+<meta property="og:url" content="http://chenyin.top/python/20200827-862f.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="决策树学习通常包含三个步骤：特征选择、决策树的生成、决策树的修剪。 决策树学习的思想主要来源于：  由Quinlan提出的ID3算法和C4.5算法 由Breiman等人提出的CART算法">
+<meta property="og:description" content="官方的默认源在下载某些包（例如pytorch）时实在是太慢了，建议在新建一个虚拟环境前就换源。 因为不同源的包的默认版本可能不一致，如果中途换源可能会导致许多不必要的麻烦。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/12.png">
-<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/11.png">
-<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/13.jpg">
-<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/16.jpg">
-<meta property="og:updated_time" content="2019-11-22T03:47:42.195Z">
+<meta property="og:updated_time" content="2020-08-27T01:39:03.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="决策树 - ID3和C4.5">
-<meta name="twitter:description" content="决策树学习通常包含三个步骤：特征选择、决策树的生成、决策树的修剪。 决策树学习的思想主要来源于：  由Quinlan提出的ID3算法和C4.5算法 由Breiman等人提出的CART算法">
-<meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/12.png">
+<meta name="twitter:title" content="实用的conda换源教程">
+<meta name="twitter:description" content="官方的默认源在下载某些包（例如pytorch）时实在是太慢了，建议在新建一个虚拟环境前就换源。 因为不同源的包的默认版本可能不一致，如果中途换源可能会导致许多不必要的麻烦。">
 
 
 
@@ -159,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://chenyin.top/ml/20191117-62c1.html"/>
+  <link rel="canonical" href="http://chenyin.top/python/20200827-862f.html"/>
 
 
 
 
 
-  <title>决策树 - ID3和C4.5 | 阔落煮酒</title>
+  <title>实用的conda换源教程 | 阔落煮酒</title>
   
 
 
@@ -366,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenyin.top/ml/20191117-62c1.html">
+    <link itemprop="mainEntityOfPage" href="http://chenyin.top/python/20200827-862f.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Barwe">
@@ -383,7 +377,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">决策树 - ID3和C4.5</h2>
+          <h2 class="post-title" itemprop="name headline">实用的conda换源教程</h2>
         
 
         <div class="post-meta">
@@ -395,8 +389,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-17T20:44:27+08:00">
-                2019-11-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-27T09:36:57+08:00">
+                2020-08-27
               </time>
             
 
@@ -411,8 +405,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-22T11:47:42+08:00">
-                2019-11-22
+              <time title="更新于" itemprop="dateModified" datetime="2020-08-27T09:39:03+08:00">
+                2020-08-27
               </time>
             
           </span>
@@ -430,8 +424,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ml/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习与算法基础</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python编程</span>
                   </a>
                 </span>
 
@@ -461,7 +455,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.5k
+                  368
                 </span>
               
 
@@ -486,95 +480,30 @@
       
 
       
-        <p>决策树学习通常包含三个步骤：特征选择、决策树的生成、决策树的修剪。</p>
-<p>决策树学习的思想主要来源于：</p>
-<ul>
-<li>由Quinlan提出的<strong>ID3</strong>算法和<strong>C4.5</strong>算法</li>
-<li>由Breiman等人提出的<strong>CART</strong>算法</li>
-</ul>
+        <p>官方的默认源在下载某些包（例如pytorch）时实在是太慢了，建议在新建一个虚拟环境前就换源。</p>
+<p>因为不同源的包的默认版本可能不一致，如果中途换源可能会导致许多不必要的麻烦。</p>
 <a id="more"></a>
-<h1 id="决策树模型与学习"><a href="#决策树模型与学习" class="headerlink" title="决策树模型与学习"></a>决策树模型与学习</h1><h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><p>决策树由<strong>节点</strong>（node）和<strong>有向边</strong>（directed edge）组成。</p>
-<p>节点分为<strong>内部节点</strong>（表示特征/属性）和<strong>叶子节点</strong>（表示分类）。</p>
-<p><strong>&gt; 决策树与if-then规则</strong></p>
-<p>从根节点到叶子节点对应一条路径，亦即一条<strong>规则</strong>，不同规则间互斥，所有规则组成全体，即<strong>互斥完备性</strong>。</p>
-<p><strong>&gt; 决策树与条件概率分布</strong></p>
-<p>给定<strong>特征</strong>条件下类的条件概率分布。</p>
-<p>决策树分类时强行将样本分到条件概率最大的那一类中去。</p>
-<h2 id="决策树学习"><a href="#决策树学习" class="headerlink" title="决策树学习"></a>决策树学习</h2><p>给定训练数据集<br>$$<br>D = { (x_1, y_1),(x_2,y_2), \cdots, (x_N,y_N) }<br>$$<br>其中</p>
+<p>这里推荐使用清华大学提供的conda源，亲测好使。</p>
+<p>在用户目录（linux为<code>/home/USER/</code>，windows为<code>C:\Users\USER\</code>）下新建 <strong>.condarc</strong> 文件，并改成以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">show_channel_urls: true</span><br><span class="line">channel_priority: disabled</span><br><span class="line">channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/</span><br><span class="line">  - default</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>windows下不允许新建没有文件名的文件（即以点号开头的文件），有以下几种解决办法：</p>
 <ul>
-<li>$x_i=(x_i^{(1)},x_i^{(2)},\cdots,x_i^{(n)})^T$为输入向量（特征向量），$n$为样本的特征维度</li>
-<li>$y_i \in { 1,2,\cdots,K }$为每个样本的<strong>类</strong>标记，$K$为总类数</li>
-<li>$i=1,2,\cdots,N$，$N$为<strong>样本容量</strong></li>
+<li>在cmd中使用 <code>conda config --set show_channel_urls yes</code> 会自动生成.condarc文件</li>
+<li>使用模拟bash环境（例如git-bash或者msys2等）新建：<code>touch .condarc</code></li>
+<li>使用cmd下载：wget <a href="https://barwe.oss-cn-shenzhen.aliyuncs.com/config/.condarc" target="_blank" rel="noopener">https://barwe.oss-cn-shenzhen.aliyuncs.com/config/.condarc</a></li>
 </ul>
-<p>与训练数据集不矛盾的决策树可能有多个，也可能没有；我们需要求矛盾最小、对测试集泛化能力较高的那个决策树。</p>
-<h1 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h1><p>经典的<strong>特征选择</strong>准则有两个：<strong>信息增益</strong>，<strong>信息增益比</strong>。</p>
-<h2 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h2><h3 id="熵-amp-经验熵"><a href="#熵-amp-经验熵" class="headerlink" title="熵&amp;经验熵"></a>熵&amp;经验熵</h3><p>在信息论和概率统计中，<strong>熵</strong>（Entropy）是随机变量不确定性的度量。</p>
-<p>设$X$是有限取值的离散型随机变量，其概率分布为<br>$$<br>P(X=x_i)=p_i \text{, $i=1,2,\cdots,n$}<br>$$<br>随机变量$X$的<strong>熵</strong>为<br>$$<br>H(X)=-\sum_{i=1}^N p_i \log p_i \text{, 特别的 $0 \log 0 = 0$}<br>$$<br>由<strong>熵</strong>的定义可知，随机变量的<strong>熵</strong>（不确定性）与随机变量的取值无关。这其实不难理解：确定性变量是随机性变量的一种特例，对于确定性变量取值1还是1000它们的不确定性应该是一样的，都为0。</p>
-<p><strong>熵</strong>的单位：<strong>bit</strong>（当对数底为2时）或者<strong>nat</strong>（当对数底为$e$时）。</p>
-<p>当随机变量$X$<strong>完全确定</strong>（$P(X=x_k)=1$且$P(X=x_{\text{else}})=0$）或者<strong>完全不确定</strong>（$P(X=x_{\text{any}})=1/n$）时，$H(X)$取得最小值（0）或者最大值（$\log n$）。</p>
-<p>当随机变量只取0、1时<br>$$<br>H(p) = -p \log_2 p - (1-p) \log_2 (1-p)<br>$$<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/12.png" alt=""></p>
-<p>如果此随机变量的熵值通过<strong>极大似然估计</strong>得到，称之为<strong>经验熵</strong>。</p>
-<h3 id="条件熵-amp-经验条件熵"><a href="#条件熵-amp-经验条件熵" class="headerlink" title="条件熵&amp;经验条件熵"></a>条件熵&amp;经验条件熵</h3><p><strong>条件熵</strong>（Conditional Entropy）</p>
-<p>设随机变量$X$和$Y$的联合分布为<br>$$<br>P(X=x_i, Y=y_j) = p_{ij}, i=1,2,\cdots,n;j=1,2,\cdots,m<br>$$<br><strong>条件熵</strong>$H(Y|X)$表示已知随机变量$X$的条件下随机变量$Y$的不确定性<br>$$<br>H(Y|X) = \sum_{i=1}^n [ P(X=x_i) \cdot H(Y|X=x_i) ]<br>$$<br>如果随机变量$X$和$Y$独立，则$H(Y|X=x_i)=H(Y)$，此时条件熵<br>$$<br>H(Y|X) =  \sum_{i=1}^n [ P(X=x_i) \cdot H(Y) ] = H(Y)<br>$$<br>如果随机变量$Y$的<strong>条件熵</strong>通过<strong>极大似然估计</strong>得到，称之为<strong>经验条件熵</strong>。</p>
-<p><strong>经验</strong>之意，即从观察数据中进行推断。</p>
-<p>我们将随机变量Y的熵与已知X条件下Y的条件熵的差称之为<strong>互信息</strong>（Mutual Information）。</p>
-<h3 id="信息增益-1"><a href="#信息增益-1" class="headerlink" title="信息增益"></a>信息增益</h3><p><strong>信息增益</strong>（Information Gain）指，当得知<strong>特征</strong>$X$的信息时，<strong>类</strong>$Y$不确定性减少的程度。</p>
-<p>特征A对训练数据集D的<strong>信息增益</strong>为<br>$$<br>g(D,A) = H(D) - H(D|A)<br>$$<br>决策树中<strong>信息增益</strong>的概念就相当于训练数据集中<strong>类</strong>与<strong>特征</strong>的<strong>互信息</strong>。</p>
-<p>训练数据集中不同的特征具有不同的<strong>信息增益</strong>，信息增益较大的特征具有更强的分类能力。</p>
-<p>计算<strong>信息增益</strong>举例：<br><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/11.png" alt=""></p>
-<p>类别的先验分布：$P(Y=是)=9/15=3/5$, $P(Y=否)=9/15=2/5$</p>
-<p>类别的熵：$H(Y)=-3/5\log3/5-2/5\log2/5 = 0.971$</p>
-<p>该训练数据集有4个特征：年龄、有工作、有自己的房子、信贷情况，分别用A、B、C、D表示。</p>
-<p>以年龄为例计算其对训练数据集的<strong>信息增益</strong>：</p>
-<ol>
-<li><p>随机变量取值数值化（有序分类）：青年 $\to$ 1, 中年 $\to$ 2，老年 $\to$ 3</p>
-</li>
-<li><p>年龄的先验分布: $P(A=1)=P(A=2)=P(A=3)=1/3$</p>
-</li>
-<li><p>训练数据集D在年龄A已知时的条件概率分布：<br>$$<br>\begin{split}<br>P(Y=0|A=1)=3/5, P(Y=1|A=1)=2/5 \\<br>P(Y=0|A=2)=2/5, P(Y=1|A=2)=3/5 \\<br>P(Y=0|A=3)=1/5, P(Y=1|A=3)=4/5<br>\end{split}<br>$$<br>此时<br>$$<br>\begin{split}<br>H(Y|A=1) &amp;= - 3/5 \log_2 3/5 - 2/5 \log_2 2/5 = 0.9709506 \\<br>H(Y|A=2) &amp;= - 2/5 \log_2 2/5 - 3/5 \log_2 3/5 = 0.9709506 \\<br>H(Y|A=3) &amp;= - 1/5 \log_2 1/5 - 4/5 \log_2 4/5 = 0.7219281<br>\end{split}<br>$$</p>
-</li>
-</ol>
-<ol start="4">
-<li><p>训练数据集D在年龄A已知时的条件熵：<br>$$<br>\begin{split}<br>H(Y|A) &amp;= P(A=1)H(Y|A=1) + P(A=2)H(Y|A=2) + P(A=3)H(Y|A=3) \\<br>&amp;= 1/3 \times 0.9709506 + 1/3 \times 0.9709506 + 1/3 \times 0.7219281 \\<br>&amp;= 0.8879431 \\<br>\end{split}<br>$$</p>
-</li>
-<li><p>信息增益<br> $$<br> \begin{split}<br> g(Y,A) &amp;= H(Y) - H(Y|A) \\<br> &amp;= 0.971 - 0.8879431 \\<br> &amp;= 0.083<br> \end{split}<br> $$<br> 同理得<br> $$<br> \begin{split}<br> g(Y,B) &amp;= 0.324 \\<br> g(Y,C) &amp;= 0.420 \\<br> g(Y,D) &amp;= 0.363<br> \end{split}<br> $$<br> 经过比较，特征C（有自己的房子）对训练数据集的<strong>信息增益</strong>最大，所以选择特征C作为最优的分类特征。</p>
-</li>
-</ol>
-<h2 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h2><h3 id="信息增益的偏向性"><a href="#信息增益的偏向性" class="headerlink" title="信息增益的偏向性"></a>信息增益的偏向性</h3><p>根据信息增益的定义$H(D,A)=H(D)-H(D|A)$，如果数据集D中某个特征A的采样值为恒定常数，那么$H(D|A)=0$，即$H(D,A)=H(D)$，此时特征A对数据集D的信息增益达到最大值——D的熵值。那么我们应该选择特征A作为最优划分特征吗？显然不。这是<strong>信息增益</strong>在描述采样值为常数的特征时的弊端。除此之外，<strong>信息增益</strong>在计算连续型随机变量时也会遇到不小的问题。</p>
-<p>所以<strong>信息增益</strong>适合于计算离散特征，并且该随机变量取值的采样数不宜过少。</p>
-<h3 id="信息增益的相对性"><a href="#信息增益的相对性" class="headerlink" title="信息增益的相对性"></a>信息增益的相对性</h3><p>所谓的<strong>信息增益</strong>，字面意思就是确定性的增加量，这个确定性的增加是相对数据集D的熵的，这意味着，D的熵越大，信息增益就可能越大；反之越小。</p>
-<h3 id="信息增益比的定义"><a href="#信息增益比的定义" class="headerlink" title="信息增益比的定义"></a>信息增益比的定义</h3><p>于是，我们将信息增益除以数据集的熵，用相对的确定性增量来描述最优分类特征：<br>$$<br>g_R(D,A) = \frac{g(D,A)}{H(D)} = \frac{H(D)-H(D|A)}{H(D)} = 1 - \frac{H(D|A)}{H(D)}<br>$$</p>
-<h1 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h1><p>决策树学习的两个经典算法：ID3算法、C4.5算法。</p>
-<p>生成算法只能用来生成树，十分容易过拟合。</p>
-<p>生成的树需要进行剪枝，去拟合。</p>
-<h2 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h2><p>算法核心是在决策树的各个节点应用<strong>信息增益</strong>的准则选择特征。</p>
-<p>根据<strong>信息增益</strong>选择特征的方法还是属于极大似然。</p>
-<p><strong>&gt; ID3算法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CONST 信息增益阈值</span><br><span class="line">DEF ID3算法(数据集D, 特征集合A):</span><br><span class="line">    IF D中所有样本属于同一类C:</span><br><span class="line">        T为单节点树，将C作为该节点的类标记，返回T</span><br><span class="line">    ELSE IF A为空：</span><br><span class="line">        T为单节点树，将D中样本数最多的那个类作为该节点的类标记，返回T</span><br><span class="line">    ELSE:</span><br><span class="line">        计算特征集合A中各个特征对数据集D的信息增益，确定信息增益最大的特征Ag</span><br><span class="line">    IF Ag &lt; 信息增益阈值:</span><br><span class="line">        T为单节点树，将D中样本数最多的那个类作为该节点的类标记，返回T</span><br><span class="line">    ELSE:</span><br><span class="line">        FOR 采样值v IN 特征Ag中的所有采样值的集合:</span><br><span class="line">            从数据集D中划分出特征Ag值为v的子集Dv</span><br><span class="line">            T的一个子节点 = 递归调用 ID3算法(数据集Dv, 特征集合&#123;A-Ag&#125;)</span><br><span class="line">        返回T</span><br></pre></td></tr></table></figure>
-<h2 id="C4-5算法"><a href="#C4-5算法" class="headerlink" title="C4.5算法"></a>C4.5算法</h2><p>将ID3算法中的 <strong>信息增益</strong> 替换为 <strong>信息增益比</strong> 即可。</p>
-<p>为什么叫做C4.5算法而不叫ID4算法呢？据说作者发表完ID3算法后此领域过于火爆导致ID4、ID5等名字有人用了。</p>
-<h1 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h1><p>前面提到，决策树的生成算法倾向于拟合训练数据，极易出现过拟合。</p>
-<p><strong>剪枝</strong>（Pruning） 即考虑模型的复杂度，对生成的树进行简化。</p>
-<p><strong>剪枝</strong> 通过极小化 <strong>损失函数</strong> 实现。</p>
-<p><strong>&gt; 剪枝原理</strong></p>
-<p>假设：树$T$的叶子节点的个数为$|T|$，$t$是树$T$的一个叶子节点，该叶子节点有$N_t$个样本点，其中属于第$k$类的样本点有$N_{tk}$个。</p>
-<p>则，叶子节点$t$的经验熵为<br>$$<br>H_t(T) = - \sum_{k=1}^K \frac{N_{tk}}{N_t} \log \frac{N_{tk}}{N_t}<br>$$<br>决策树学习的损失函数为<br>$$<br>L_\alpha(T) = \sum_{t=1}^{|T|} N_t H_t(T) + \alpha |T|<br>$$<br>每个叶子节点的样本数越少、经验熵越小，同时总叶子节点数越少，损失越小。</p>
-<p>这里损失函数由两部分组成：</p>
-<ol>
-<li>决策树模型对数据集的预测误差</li>
-</ol>
-<p>$$<br>L(T) = \sum_{t=1}^{|T|} N_t H_t(T) = - \sum_{t=1}^{|T|} \sum_{k=1}^K N_{tk} \log \frac{N_{tk}}{N_t}<br>$$</p>
-<ol start="2">
-<li>决策树模型的模型复杂度</li>
-</ol>
-<p>$$<br>C(T) = |T|<br>$$</p>
-<p>剪枝的具体实现如下：</p>
-<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/13.jpg" alt=""></p>
-<p>剪枝前的叶子节点集合为{A,B,C,D}，计算其损失函数$L_1$</p>
-<p>剪枝后的叶子节点集合为{E,C,D}，计算其损失函数$L_2$</p>
-<p>因为$L_2 &lt; L_1$，所以我们剪掉以E为根节点的子树，E的 <strong>类别</strong> 标记为样本数最多的那一个。</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/16.jpg" alt=""></p>
-<p>CART算法见&lt; <a href="http://localhost:4002/ml/20191122-edcd.html" target="_blank" rel="noopener">http://localhost:4002/ml/20191122-edcd.html</a> &gt;</p>
+</blockquote>
+<p>换源后需要重启cmd或者terminal才能使用新的源。</p>
+<p><strong>操作源的其它命令</strong></p>
+<p>查看当前使用的源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --show channels</span><br><span class="line">conda config --show-sources</span><br></pre></td></tr></table></figure>
+<p>重置为默认源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --remove-key channels</span><br></pre></td></tr></table></figure>
+<p>手动添加一个源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br></pre></td></tr></table></figure>
+<hr>
+<p>另外，中科大也提供了源，但是在我电脑上不咋好使，用清华源足矣。</p>
 
       
     </div>
@@ -608,12 +537,6 @@
 	
     <!-- <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/决策树/" rel="tag"><i class="fa fa-tag"></i> 决策树</a>
-          
-        </div>
-      
 
       
       
@@ -623,18 +546,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/R/20191112-e00c.html" rel="prev" title="开启搬瓦工VPS的IPv6服务">
-                <i class="fa fa-chevron-left"></i> 开启搬瓦工VPS的IPv6服务
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/R/20191112-e00c.html" rel="next" title="R读取内容为空的文件报错怎么办？">
-                R读取内容为空的文件报错怎么办？ <i class="fa fa-chevron-right"></i>
+              <a href="/os/20200818-7e4.html" rel="next" title="将SpaceSniffer添加到右键菜单">
+                将SpaceSniffer添加到右键菜单 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -692,17 +611,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -764,22 +674,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树模型与学习"><span class="nav-number">1.</span> <span class="nav-text">决策树模型与学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树模型"><span class="nav-number">1.1.</span> <span class="nav-text">决策树模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树学习"><span class="nav-number">1.2.</span> <span class="nav-text">决策树学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特征选择"><span class="nav-number">2.</span> <span class="nav-text">特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信息增益"><span class="nav-number">2.1.</span> <span class="nav-text">信息增益</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#熵-amp-经验熵"><span class="nav-number">2.1.1.</span> <span class="nav-text">熵&amp;经验熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件熵-amp-经验条件熵"><span class="nav-number">2.1.2.</span> <span class="nav-text">条件熵&amp;经验条件熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益-1"><span class="nav-number">2.1.3.</span> <span class="nav-text">信息增益</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息增益比"><span class="nav-number">2.2.</span> <span class="nav-text">信息增益比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益的偏向性"><span class="nav-number">2.2.1.</span> <span class="nav-text">信息增益的偏向性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益的相对性"><span class="nav-number">2.2.2.</span> <span class="nav-text">信息增益的相对性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益比的定义"><span class="nav-number">2.2.3.</span> <span class="nav-text">信息增益比的定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树的生成"><span class="nav-number">3.</span> <span class="nav-text">决策树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ID3算法"><span class="nav-number">3.1.</span> <span class="nav-text">ID3算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C4-5算法"><span class="nav-number">3.2.</span> <span class="nav-text">C4.5算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树的剪枝"><span class="nav-number">4.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
