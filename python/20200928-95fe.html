@@ -113,16 +113,17 @@
 
 
 
-<meta name="description" content="青梅煮水，阔落煮酒">
-<meta property="og:type" content="website">
-<meta property="og:title" content="阔落煮酒">
-<meta property="og:url" content="http://chenyin.top/page/32/index.html">
+<meta name="description" content="当我们实现了某个核心模块（函数）后，可能按照实际情况需要为这个模块添加额外的功能，例如统计程序运行时间、记录日志等等。此时，我们并不希望去修改模块本身的代码（想想都觉得很low），也不希望改变函数的调用方式（不然那么多调用每个都去改岂不是也很low）。装饰器 提供了解决这一问题的方案。简单来说，装饰器可以在核心代码的外面套一层壳，执行这段带壳的代码就能达到我们的目的。我将从一个 Python 渣渣">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高阶函数之装饰器(1)">
+<meta property="og:url" content="http://chenyin.top/python/20200928-95fe.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="青梅煮水，阔落煮酒">
+<meta property="og:description" content="当我们实现了某个核心模块（函数）后，可能按照实际情况需要为这个模块添加额外的功能，例如统计程序运行时间、记录日志等等。此时，我们并不希望去修改模块本身的代码（想想都觉得很low），也不希望改变函数的调用方式（不然那么多调用每个都去改岂不是也很low）。装饰器 提供了解决这一问题的方案。简单来说，装饰器可以在核心代码的外面套一层壳，执行这段带壳的代码就能达到我们的目的。我将从一个 Python 渣渣">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-09-28T10:15:00.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阔落煮酒">
-<meta name="twitter:description" content="青梅煮水，阔落煮酒">
+<meta name="twitter:title" content="高阶函数之装饰器(1)">
+<meta name="twitter:description" content="当我们实现了某个核心模块（函数）后，可能按照实际情况需要为这个模块添加额外的功能，例如统计程序运行时间、记录日志等等。此时，我们并不希望去修改模块本身的代码（想想都觉得很low），也不希望改变函数的调用方式（不然那么多调用每个都去改岂不是也很low）。装饰器 提供了解决这一问题的方案。简单来说，装饰器可以在核心代码的外面套一层壳，执行这段带壳的代码就能达到我们的目的。我将从一个 Python 渣渣">
 
 
 
@@ -152,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://chenyin.top/page/32/"/>
+  <link rel="canonical" href="http://chenyin.top/python/20200928-95fe.html"/>
 
 
 
 
 
-  <title>阔落煮酒</title>
+  <title>高阶函数之装饰器(1) | 阔落煮酒</title>
   
 
 
@@ -178,8 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 		<!-- fork me on github begin -->
 			<!-- 左上角 -->
@@ -283,12 +283,42 @@
         </li>
       
         
+        <li class="menu-item menu-item-reading">
+          <a href="/reading/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            阅读
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-cargo">
           <a href="/cargo/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-truck"></i> <br />
             
             仓库
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            照片
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-download">
+          <a href="/download/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cloud-download"></i> <br />
+            
+            下载
           </a>
         </li>
       
@@ -345,9 +375,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -360,7 +390,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenyin.top/dl/20180125-ff54.html">
+    <link itemprop="mainEntityOfPage" href="http://chenyin.top/python/20200928-95fe.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Barwe">
@@ -377,9 +407,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/dl/20180125-ff54.html" itemprop="url">tensorflow-计算资源控制</a></h2>
+          <h2 class="post-title" itemprop="name headline">高阶函数之装饰器(1)</h2>
         
 
         <div class="post-meta">
@@ -391,8 +419,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T21:23:42+08:00">
-                2018-01-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-28T18:08:51+08:00">
+                2020-09-28
               </time>
             
 
@@ -407,8 +435,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-09-27T15:11:33+08:00">
-                2020-09-27
+              <time title="更新于" itemprop="dateModified" datetime="2020-09-28T18:15:00+08:00">
+                2020-09-28
               </time>
             
           </span>
@@ -426,8 +454,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dl/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python编程</span>
                   </a>
                 </span>
 
@@ -457,7 +485,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  168
+                  1.6k
                 </span>
               
 
@@ -482,16 +510,54 @@
       
 
       
-        
-          <p>控制GPU和CPU的使用。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/dl/20180125-ff54.html" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>当我们实现了某个核心模块（函数）后，可能按照实际情况需要为这个模块添加额外的功能，例如统计程序运行时间、记录日志等等。此时，我们并不希望去修改模块本身的代码（想想都觉得很low），也不希望改变函数的调用方式（不然那么多调用每个都去改岂不是也很low）。<strong>装饰器</strong> 提供了解决这一问题的方案。简单来说，装饰器可以在核心代码的外面套一层壳，执行这段带壳的代码就能达到我们的目的。我将从一个 Python 渣渣的角度理解什么是 <strong>装饰器</strong>。</p>
+<a id="more"></a> 
+<p>套壳这一操作通过 <strong>@语法糖</strong> 实现，@语法糖指定了使用什么壳（装饰器函数的引用），壳的内容通过 <strong>装饰器函数</strong> 定义。</p>
+<p>我们在面向对象编程时用到的 @staticmethod 和 @classmethod 就属于装饰器的一种。</p>
+<p>这里只以最简单的 ”壳“ 理解装饰器的执行逻辑。</p>
+<h1 id="最基础的装饰器"><a href="#最基础的装饰器" class="headerlink" title="最基础的装饰器"></a>最基础的装饰器</h1><p>装饰器会对目标函数进行包装，然后将目标函数名指向包装后的函数定义。一般语法是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(*args, **kwargs)</span>:</span> <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>这里我们将 <code>decorator</code> 称之为 <strong>装饰器函数</strong>，将 <code>func</code> 称之为 <strong>目标函数</strong>。这里我们需要注意的是，使用 @ 语法时不仅仅是在<span style="color:red">定义目标函数</span>，也是在<span style="color:red">调用装饰器函数</span>，搞清楚这一点就能理解 @ 语法的作用机制。</p>
+<p>一般来说，装饰器函数的 <strong>引用</strong> 紧跟在 @ 符号后面，紧接着下一行就是目标函数的定义。装饰器函数只接受一个参数，那就是目标函数。所以说，装饰器函数是一个 <strong>高阶函数</strong>，它以函数引用作为参数，同时返回另一个函数的引用。</p>
+<p>当程序检测到 @ 符号时，会 <strong>调用</strong>（或者叫 <strong>执行</strong>） 装饰器函数，传入目标函数的引用，返回另外一个函数的引用，并将指向原来目标函数的变量（上面的 <code>func</code> 变量）指向返回的新函数。所以上面的示例代码就相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 定义一个函数（具体实现略），并定义一个变量func（函数变量）指向这个函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(*args, **kwargs)</span>:</span> <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 调用装饰器函数，并使func变量指向装饰器返回的那个函数</span></span><br><span class="line">func = decorator(func)</span><br></pre></td></tr></table></figure>
+<p>说完了 @ 符号，我们再来谈谈 <strong>装饰器函数</strong> 本身。上面提到了，装饰器函数接受目标函数作为参数并返回一个新的函数。</p>
+<p>我们之所以称之为 <strong>装饰器</strong>，是因为我们想扩展目标函数的功能，例如统计目标函数的执行时间等等。</p>
+<p>换言之，目标函数定义了模块的核心功能，而某些时候我们需要对该模块做一些拓展，例如统计运行时间。</p>
+<p>所以装饰器函数的基本形式应该是这样的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorator</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="comment">## 我们加上下面这一句可以验证执行到@时是否执行了装饰器函数</span></span><br><span class="line">    print(<span class="string">'run decorator ...'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        <span class="comment">## do something, such as</span></span><br><span class="line">        print(<span class="string">'run wrapper ...'</span>)</span><br><span class="line">        result = func(*args, **kwargs)</span><br><span class="line">        <span class="comment">## do something, such as</span></span><br><span class="line">        print(<span class="string">'wrapper end!'</span>)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">    print(wrapper)</span><br><span class="line">    <span class="keyword">return</span> wrapper</span><br></pre></td></tr></table></figure>
+<p>上面描述了一个装饰器函数的基本模型，它主要定义了两个东西：</p>
+<ul>
+<li>局部的函数变量 func：<code>decorator.&lt;locals&gt;.func</code>，它指向了目标函数</li>
+<li>内嵌的函数 wrapper：<code>decorator.&lt;locals&gt;.wrapper</code>，目标函数的<strong>函数变量</strong>将指向它</li>
+</ul>
+<p>执行 <code>decorator</code> 函数返回了另外一个函数 <code>wrapper</code> 的引用，显然这个函数的 <code>__name__</code> 属性是 wrapper。</p>
+<p>下面是用装饰器修饰目标函数的一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exp</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x ** y</span><br></pre></td></tr></table></figure>
+<p>运行这段代码的输出是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run decorator ...</span><br><span class="line">&lt;function decorator.&lt;locals&gt;.wrapper at 0x0000023AEDADC488&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到，@ 确实执行了装饰器函数 decorator，同时 <strong>定义</strong> 了一个函数 wrapper。</p>
+<p>但是 wrapper 函数并没有执行，我们再次</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(exp(<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line"><span class="comment">#&gt; run wrapper ...</span></span><br><span class="line"><span class="comment">#&gt; wrapper end!</span></span><br><span class="line"><span class="comment">#&gt; 8</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，此时执行了 wrapper 函数，同时返回了计算结果，最终使用 print 函数打印了返回结果。</p>
+<p>检查函数变量 exp 的 <code>__name__</code> 属性，发现不再是 “exp”，而是 “wrapper”：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exp.__name__</span><br><span class="line"><span class="comment">#&gt; 'wrapper'</span></span><br></pre></td></tr></table></figure>
+<h1 id="带参数的装饰器"><a href="#带参数的装饰器" class="headerlink" title="带参数的装饰器"></a>带参数的装饰器</h1><p>此外，还有一种带参数的装饰器，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@auth('barwe')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">access_database</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    print(<span class="string">"访问某个数据库..."</span>)</span><br><span class="line">    </span><br><span class="line">access_database()</span><br></pre></td></tr></table></figure>
+<p>假定的执行结果是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">函数（access_database）准备授权给用户（barwe）...</span><br><span class="line">访问某个数据库...</span><br><span class="line">授权完成!</span><br></pre></td></tr></table></figure>
+<p>我们回忆一下上面提到的规则：@ 后面应紧跟 <strong>装饰器函数</strong> 的引用。这里很明显 <code>auth(&#39;barwe&#39;)</code> 是调用了 auth 函数，而且它的参数是一个字符串。那么可以预见的是，<code>auth(&#39;barwe&#39;)</code> 应该返回一个真正的装饰器函数的引用，然后再解释 @ 符号，再调用一次装饰器函数。另外，从打印结果我们知道，装饰器函数还可以访问 auth 函数的局部变量的值 “barwe”。不难定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">auth</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="comment">#print('start auth ...')</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_auth</span><span class="params">(func)</span>:</span></span><br><span class="line">        <span class="comment">#print('start _auth ...')</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            <span class="comment">#print('start wrapper ...')</span></span><br><span class="line">            print(<span class="string">f'函数（<span class="subst">&#123;func.__name__&#125;</span>）准备授权给用户（<span class="subst">&#123;name&#125;</span>）...'</span>)</span><br><span class="line">            result = func(*args, **kwargs)</span><br><span class="line">            print(<span class="string">'授权完成!'</span>)</span><br><span class="line">            <span class="comment">#print('wrapper end!')</span></span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line">        <span class="comment">#print('_auth end!')</span></span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="comment">#print('auth end!')</span></span><br><span class="line">    <span class="keyword">return</span> _auth</span><br><span class="line"></span><br><span class="line"><span class="meta">@auth('barwe')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">access_database</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    print(<span class="string">"访问某个数据库..."</span>)</span><br></pre></td></tr></table></figure>
+<p>如果去掉上面 print 函数的注释再次执行，就能得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">start auth ...</span><br><span class="line">auth end!</span><br><span class="line">start _auth ...</span><br><span class="line">_auth end!</span><br></pre></td></tr></table></figure>
+<p>这表示先调用了 <code>auth(&#39;barwe&#39;)</code> ，再解释 @ 时又调用了 <code>auth.&lt;locals&gt;._auth(access_database)</code>。</p>
+<p>但是 <code>access_database &lt;- auth.&lt;locals&gt;._auth.&lt;locals&gt;.wrapper</code> 并没有执行！</p>
+<p>我们正式执行修饰后的目标函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">access_database()</span><br></pre></td></tr></table></figure>
+<p>输出结果是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start wrapper ...</span><br><span class="line">函数（access_database）准备授权给用户（barwe）...</span><br><span class="line">访问某个数据库...</span><br><span class="line">授权完成!</span><br><span class="line">wrapper end!</span><br></pre></td></tr></table></figure>
+<p>总结一下，@ 符号会调用一次装饰器函数。如果是带参的装饰器，先执行后面的函数，然后再解释 @，这就要求后面那个函数应该返回一个标准的装饰器函数（即以目标函数为参数，返回对目标函数进行修饰后的新函数）。</p>
+
       
     </div>
     
@@ -499,6 +565,8 @@
     
 
 	<div>
+      
+        
       
 	</div>
 	
@@ -510,190 +578,13 @@
 
 	<div> <!-- 在文章末尾添加“文章结束”标记 -->
 	
-	</div>
-	
-    <!-- <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer> -->
-  </div>
-  
-  
-  
-  </article>
-
-
+		<div>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal index-article-dec" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenyin.top/dl/20180125-ff54.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Barwe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阔落煮酒">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/dl/20180125-ff54.html" itemprop="url">tensorflow-计算资源控制</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T21:23:42+08:00">
-                2018-01-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-09-27T15:12:29+08:00">
-                2020-09-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dl/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  168
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
+        <div style="text-align:center;color:#19caad;font-size:13px;font-family:arial">
+            ----- For reprint please indicate the source -----
         </div>
-      </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>控制GPU和CPU的使用。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/dl/20180125-ff54.html" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-	<div>
-      
-	</div>
-	
-    
-
-    
-
-    
-
-	<div> <!-- 在文章末尾添加“文章结束”标记 -->
+</div>
 	
 	</div>
 	
@@ -701,12 +592,28 @@
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/spider/20200927-204d.html" rel="next" title="在线获取UserAgent">
+                在线获取UserAgent <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer> -->
   </div>
@@ -716,14 +623,11 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -731,6 +635,15 @@
 
 
            
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div>
+    </div>
+
+  
+
+
  
         </div>
         
@@ -751,8 +664,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -771,7 +693,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">312</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -815,6 +737,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#最基础的装饰器"><span class="nav-number">1.</span> <span class="nav-text">最基础的装饰器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#带参数的装饰器"><span class="nav-number">2.</span> <span class="nav-text">带参数的装饰器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -847,7 +785,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">287.4k</span>
+    <span title="Site words total count">97.4k</span>
   
 </div>
 
@@ -972,6 +910,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1000,6 +942,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

@@ -283,12 +283,42 @@
         </li>
       
         
+        <li class="menu-item menu-item-reading">
+          <a href="/reading/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            阅读
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-cargo">
           <a href="/cargo/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-truck"></i> <br />
             
             仓库
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            照片
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-download">
+          <a href="/download/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cloud-download"></i> <br />
+            
+            下载
           </a>
         </li>
       
@@ -398,7 +428,7 @@
       
 	  <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="Site words total count">287.4k</span>
+    <span title="Site words total count">97.4k</span>
   
 </div>
 
@@ -523,22 +553,15 @@
 
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
 <script type="text/javascript">
-
-/* 将字符串转化为hash值 */
-function hash(text) {
-    'use strict';
-    var hash = 5381,index = text.length;
-    while (index) {hash = (hash * 33) ^ text.charCodeAt(--index);}
-    return hash >>> 0;}
-    //cyxr -> 2088297973
 
 /* 检查密码是否正确 */
 function pwCheck(){ 
     var pw = $("#inputPasswd").val();
-    var pwHashed = hash(pw);
-    //if(pwHashed == '2088297973'){ 
-    if(1){ 
+    var pwHashed = md5(pw);
+    if(pwHashed == '065ff65e7f29667b111f983969e8028f'){ 
+    //if(1){ 
         $(".pic-pw-check").hide();
         $(".pic-cover").hide();
         $(".pic-list").show();
