@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="paper,降维,非线性降维,SNE,t-SNE," />
+  <meta name="keywords" content="BT, ML" />
 
 
 
@@ -113,23 +113,16 @@
 
 
 
-<meta name="description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
-<meta name="keywords" content="paper,降维,非线性降维,SNE,t-SNE">
-<meta property="og:type" content="article">
-<meta property="og:title" content="降维03 - SNE原理">
-<meta property="og:url" content="http://chenyin.top/ml/20190325-80ae.html">
+<meta name="description" content="青梅煮水，阔落煮酒">
+<meta property="og:type" content="website">
+<meta property="og:title" content="阔落煮酒">
+<meta property="og:url" content="http://chenyin.top/archives/2020/10/index.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
+<meta property="og:description" content="青梅煮水，阔落煮酒">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/01.png">
-<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/lx.jpg">
-<meta property="og:image" content="c:/Users/Lenovo/图片/#博客图片%5C201912%5C02%5C20191202_113224.jpg">
-<meta property="og:image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/08.png">
-<meta property="og:updated_time" content="2019-12-19T07:27:21.546Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="降维03 - SNE原理">
-<meta name="twitter:description" content="Hinton, G. E., &amp;amp; Roweis, S. T. (2003). Stochastic neighbor embedding. In Advances in neural information processing systems (pp. 857-864).  随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE) 由Hinton在2">
-<meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/01.png">
+<meta name="twitter:title" content="阔落煮酒">
+<meta name="twitter:description" content="青梅煮水，阔落煮酒">
 
 
 
@@ -159,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://chenyin.top/ml/20190325-80ae.html"/>
+  <link rel="canonical" href="http://chenyin.top/archives/2020/10/"/>
 
 
 
 
 
-  <title>降维03 - SNE原理 | 阔落煮酒</title>
+  <title>归档 | 阔落煮酒</title>
   
 
 
@@ -185,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 		<!-- fork me on github begin -->
 			<!-- 左上角 -->
@@ -382,296 +375,75 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+         
+          
+        很好! 目前共计 106 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
-
-  <article class="post post-type-normal index-article-dec" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenyin.top/ml/20190325-80ae.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Barwe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/pic/avatar/cyxr01Binary.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阔落煮酒">
-    </span>
-
-    
-      <header class="post-header">
+      
 
         
         
-          <h2 class="post-title" itemprop="name headline">降维03 - SNE原理</h2>
         
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T20:44:14+08:00">
-                2019-03-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-19T15:27:21+08:00">
-                2019-12-19
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ml/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习与算法基础</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.5k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/01.png" width="100%"></p>
-<blockquote>
-<p><a href="http://papers.nips.cc/paper/2276-stochastic-neighbor-embedding.pdf" target="_blank" rel="noopener">Hinton, G. E., &amp; Roweis, S. T. (2003). <strong>Stochastic neighbor embedding</strong>. In Advances in neural information processing systems (pp. 857-864).</a></p>
-</blockquote>
-<p><strong>随机近邻嵌入算法 (Stochastic Neighbor Embedding, SNE)</strong> 由Hinton在2003年提出来的基于条件概率、只保留局部特征的非线性降维方法。 </p>
-<a id="more"></a>
-<h1 id="流形"><a href="#流形" class="headerlink" title="流形"></a>流形</h1><p>先看一张图</p>
-<p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/lx.jpg" alt=""></p>
-<p>上图描述了一个<strong>曲面</strong>，颜色相同的点聚为一类。</p>
-<p>曲面上有三个点$A$, $B$, $C$，我们将该曲面置于<strong>三维空间</strong>中，曲面上每个点都可以用一个三维坐标$(x,y,z)$表示。</p>
-<p>考虑三维空间中的欧式距离，有$\overline{AC}&lt;\overline{AB}$，这表示相对于$B$点而言，$C$点离$A$点更近。</p>
-<p>但是很明显$A$点更倾向于与$B$点聚为一类。</p>
-<p>我们用曲面上两点间最短线段的长度来表示两点间的距离，如图$\widehat{AB}$和$\widehat{AC}$，有$\widehat{AB} &lt; \widehat{AC}$，这表示在曲面空间上$B$点离$A$点更近。</p>
-<p>我们在三维空间中去描述这个曲面的特征，我们使用的是 <strong>欧式空间</strong>（欧几里得空间）；</p>
-<p>我们直接在曲面上去描述点与点的远近，我们使用的是 <strong>黎曼空间</strong>（流行空间）。</p>
-<p><strong>流行学习</strong> 的观点认为，我们观察到的数据实际上是 <strong>低维流形</strong> 映射到 <strong>高维空间</strong> 中的形式，因为维度间的冗余，高维数据都能用较低的维度去描述。</p>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/24015486" target="_blank" rel="noopener">流形学习的基本思想</a></p>
-</blockquote>
-<h1 id="定义条件概率"><a href="#定义条件概率" class="headerlink" title="定义条件概率"></a>定义条件概率</h1><p>即使是不能直观感受的高维空间中，如果两个点无限靠近，那么它们的 <strong>欧式距离</strong> 也趋近于0。我们可以用 <strong>欧式距离</strong> 来描述高维空间中两个点的相似性。</p>
-<p>对于 $R^n$ 空间中某个点 $x_i$, 我们基于 <strong>欧式距离</strong> 定义任意点 $x_j \in R^n$ 与 $x_i$ 的 <strong>相似度</strong>：<br>$$<br>d^2(x_i,x_j)=\frac{||x_i-x_j||^2}{2\sigma_i^2}<br>$$<br>上式中 $\sigma_i^2$ 是样本空间中除 $x_i$ 外其它所有点到 $x_i$ 距离的 <strong>方差</strong>。</p>
-<p>$d^2(x_i,x_j)$ 是 <strong>标准化</strong> 后的结果，它表示了点 $x_i$ 与点 $x_j$ 的相似程度。</p>
-<p>SNE将 $d^2(x_i,x_j)$ 转化为 <strong>条件概率</strong> 来描述点 $x_i$ 选择点 $x_j$ 作为邻居的概率，记为 $p(x_j|x_i)$：<br>$$<br>P_{ij}=p(x_j|x_i)=\frac{\exp(-d_{ij}^2)}{\sum_{k{\ne}i}{\exp(-d_{ik}^2)}},\ j \ne i<br>$$</p>
-<ul>
-<li>当 $j \ne i$ 时，$p (x_j|x_i)$ 即点 $x_i$ 选择点 $x_j$ 作为邻居的概率，介于 $0 \sim 1$ 之间；</li>
-<li>当 $j=i$ 时，点 $x_i$ 永远不可能成为自己的邻居， $p(x_i|x_i)=0$。</li>
-</ul>
-<p>SNE用 <strong>条件概率</strong> 来代替欧式距离度量两个高维数据点间的相似性。</p>
-<h1 id="确定方差"><a href="#确定方差" class="headerlink" title="确定方差"></a>确定方差</h1><p>相似度中用来标准化的 $\sigma_i^2$ 是样本空间中除 $x_i$ 外其它所有点到 $x_i$ 距离的 <strong>方差</strong>。</p>
-<p>如果 $x_i$ 周围的样本点比较密集，方差较小；$x_i$ 周围样本点比较稀疏，方差较大。</p>
-<p><img src="C:\Users\Lenovo\图片\#博客图片\201912\02\20191202_113224.jpg" alt="20191202_112810"></p>
-<p>距离 $x_i$ 非常远的点，相对于整个样本总体，$x_i$ 选择它作为自己邻居的概率非常小。</p>
-<p>我们考虑样本点 $x_i$ 与哪些样本点相似性比较高，即 $x_i$ 选择哪些样本点作为邻居的概率较高，我们将与 $x_i$ 更可能成为邻居的样本点称为 <strong>有效邻居</strong>。有效邻居实际上是一个定性概念，我们并不清楚 $x_i$ 的有效邻居有多少，因此我们需要规定一个有效邻居数。原文中定义了一个名叫 <strong>困惑度</strong>（Perplexity）的东西， $x_i$ 的困惑度定义为<br>$$<br>K_i = 2^{H(P_i)}<br>$$<br>其中 $H(P_i)$ 是<strong>香农熵</strong>：<br>$$<br>H(P_i) = -\sum_{j{\ne}i}{p_{ij}\log_2{p_{ij}}}=\log_2 K_i<br>$$</p>
-<p>此外，对于那些非常遥远得点，中心点 $x$ 与它们得距离非常大，$x$ 选择它们作为邻居得概率也非常小，在空间维度很大、采样点很多的情况下，忽略它们不失为一种加快计算的有效办法。</p>
-<p>这里为每个点 $x_i$ 定义了一个 <strong>困惑度</strong>（Perplexity）$K_i$，它与以 $x_i$ 为中心、以 $\sigma_i^2$ 为方差的高斯分布的（经验）熵有关：<br>$$<br>K_i = 2^{H(P_i)}<br>$$<br>其中 $H(P_i)$ 是<strong>香农熵</strong>：<br>$$<br>H(P_i) = -\sum_{j{\ne}i}{p_{ij}\log_2{p_{ij}}}=\log_2 K_i<br>$$<br>结合上述式子即可求出方差 $\sigma_i^2$：方差越大，则以点 $x_i$ 为中心的“密集区域”（总体）越大，被选中的有效邻居数就越多，相应的该分布的熵也越大，困惑度越大。这意味着，<strong>困惑度$K_i$</strong>可以用来描述点$x_i$选择的有效邻居数目。我们通过设置超参$K= K_i$来求方差，从而标准化每个分布。困惑度的取值范围一般为 $5 \sim 50$。</p>
-<p><strong>熵 $H(P_i)$ 的理解</strong></p>
-<ul>
-<li><strong>不确定性</strong>：熵本身就意味着不确定性，当区域点密集时，中心点位置的不确定性就小；</li>
-<li><strong>能量</strong>：不确定性大意味着能量大，拉不住中心点，它要到处跑；</li>
-<li><strong>有效邻居数</strong>：点密集时中心点的有效邻居就多。</li>
-</ul>
-<h1 id="映射到低维空间"><a href="#映射到低维空间" class="headerlink" title="映射到低维空间"></a>映射到低维空间</h1><p>在低维空间（二维或者三维）确定一点 $y_i$，它与高维空间的点 $x_i$ 对应，我们手动设置点 $y_i$ 的条件概率分布，即固定以 $y_i$ 为中心点的高斯分布对应的方差为 $\frac12$，当 $j{\ne}i$ 时：<br>$$ q_{ij}=q(y_j|y_i) = \frac {\exp{(-||y_i-y_j||^2)}} {\sum_{k{\ne}i}{\exp{(-||y_i-y_k||^2)}}} $$<br>当j=i时 $q(y_j|y_i)=0$ 。</p>
-<p>此时，如果低维点 $y_i$ 能够正确表示高维点 $x_i$，意味着 $q(y_j|y_i)=p(x_j|x_i)$。为了使两个概率（近似）相等，我们可以最小化<strong>KL散度</strong>。损失函数如下：<br>$$C=\sum_iKL(P_i|Q_i)=\sum_i\sum_jp_{ij}\log\frac{p_{ij}}{q_{ij}}$$</p>
-<ul>
-<li>$P_i$ 表示：给定点 $x_i$，其它所有点的条件概率分布；</li>
-<li>$Q_i$ 表示：给定低维空间映射点 $y_i$，其它所有低维映射点的条件概率分布。</li>
-</ul>
-<p>KL散度又叫<strong>相对熵</strong>，用来度量两个分布间的距离。假设P是真实分布，Q是模型分布，$KL(P|Q)$ 表示用Q表示P分布的数据所需的额外信息。   </p>
-<p><strong>KL散度是不对称的</strong> </p>
-<p>KL散度中包含 $\log\frac{p_{ij}}{q_{ij}}$ 意味着这个映射不是对称的，即：</p>
-<ul>
-<li>使用距离较小的低维点表示距离较大的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于小于0，则损失C较小；</li>
-<li>使用距离较大的低维点表示距离较小的高维点时，$\log\frac{p_{ij}}{q_{ij}}$ 倾向于大于0，则损失C较大。</li>
-</ul>
-<p>这里就存在一个问题：当两个高维点距离很远，而我构造两个距离很近的低维点能够使损失函数更小，却与实际的目的不相符！所以，SNE算法使得高维空间中距离近的点在低维空间中距离仍然很近，但是远的点就嘿嘿嘿了。</p>
-<h1 id="最小化损失函数"><a href="#最小化损失函数" class="headerlink" title="最小化损失函数"></a>最小化损失函数</h1><p>从 $q_{ij}$ 的定义式的分母部分可知，低维空间中点 $y_i$ 选择点 $y_j$ 的概率 $q_{ij}$ 与低维空间中的每一个映射点都有关系（分母起到了normalization的作用），但是求导结果却十分简洁：<br>$$\frac{\partial{C}}{\partial{y_i}}=2\sum_k{(y_i-y_k)[(p_{ik}-q_{ik})+(p_{ki}-q_{ki})]}$$</p>
-<p>想沿着所有点以最陡梯度下降是不现实的，不仅低效，还可能陷入糟糕费解的局部最优。上面的梯度公式右边理论上是针对所有低维映射点进行迭代，但是实际上，相距较远的一堆点间的影响十分小（抽象），在计算时往往可以忽略不计，也就是说：仅仅计算与中心点相距较近的一部分点，即<strong>邻居</strong> ，这也是为什么算法中含有单词neighbour的原因了吧。</p>
-<p>选择中心点的部分较近的邻居参与计算表示，我们只保留了中心点附近区域的特性，而忽略了整体局势，所以说SNE是保留局部特征而非全局特征的算法。这个局部特性主要反应为 $\sigma_i^2$：局部点密集方差小，局部点稀疏方法大。方差确定的方法前面已经陈述了~。</p>
-<h2 id="带动量项的梯度更新"><a href="#带动量项的梯度更新" class="headerlink" title="带动量项的梯度更新"></a>带动量项的梯度更新</h2><p>为了加速优化过程、避免很一般的局部解，可以在每次下降时添加动量项。<strong>动量 (momentum)</strong> 的作用就是在下降到局部最优时，小球仍然具有沿切线方向的分量，这使得小球将继续朝前运动，这会有两种结果：</p>
-<ul>
-<li>小球越过障碍，继续前行；</li>
-<li>小球回退，返回局部最优解；<br><img src="http://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/03/08.png" alt=""><br>具体的，更新公式如下：<br>$$\gamma^{(t)}=\gamma^{(t-1)}-{\eta}\frac{\partial{C}}{\partial{\gamma}}+\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$$</li>
-</ul>
-<p>式中 $\alpha(t)$ 即动量，动量项 ($\alpha(t)(\gamma^{(t-1)}-\gamma^{(t-2)})$) 还与上一次运动幅度有关，直观的看，上一次运动越剧烈，下一次就越刹不住车。</p>
-<h2 id="随机抖动"><a href="#随机抖动" class="headerlink" title="随机抖动"></a>随机抖动</h2><p><strong>随机抖动</strong> (random jitter) 是一种初始化技巧，即将低维空间中的所有数据点初始化在离坐标原点极近的地方。在迭代的过程中，它们将抖抖抖抖抖动直至收敛。尽管还是很慢，不过在节约时间和选择更优局部解时还是有明显提升的。</p>
-<h2 id="模拟退火"><a href="#模拟退火" class="headerlink" title="模拟退火"></a>模拟退火</h2><p>在优化早期给每一步迭代加上高斯噪音，这可以帮助避免不好的局部最优解。随着迭代次数变多，噪音方差将逐渐减小。当方差变化非常慢时，这表明开始形成全局结构。（玄学）</p>
-<p>然而，高斯噪音的数量和衰减速率是十分难以确定的，它们不仅与动量相关，也受学习率的影响。怎么办？多算几次！666</p>
-
-      
-    </div>
-    
-    
-    
-
-	<div>
-      
         
-      
-	</div>
-	
-    
-
-    
-
-    
-
-	<div> <!-- 在文章末尾添加“文章结束”标记 -->
-	
-		<div>
-    
-        <div style="text-align:center;color:#19caad;font-size:13px;font-family:arial">
-            ----- For reprint please indicate the source -----
-        </div>
-    
-</div>
-	
-	</div>
-	
-    <!-- <footer class="post-footer">
-      
-        <div class="post-tags">
           
-            <a href="/tags/paper/" rel="tag"><i class="fa fa-tag"></i> paper</a>
-          
-            <a href="/tags/降维/" rel="tag"><i class="fa fa-tag"></i> 降维</a>
-          
-            <a href="/tags/非线性降维/" rel="tag"><i class="fa fa-tag"></i> 非线性降维</a>
-          
-            <a href="/tags/SNE/" rel="tag"><i class="fa fa-tag"></i> SNE</a>
-          
-            <a href="/tags/t-SNE/" rel="tag"><i class="fa fa-tag"></i> t-SNE</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
+          <div class="collection-title">
             
-              <a href="/ml/20190325-c024.html" rel="prev" title="降维04 - TSNE引领时尚">
-                <i class="fa fa-chevron-left"></i> 降维04 - TSNE引领时尚
-              </a>
+                <h2 class="archive-year" id="archive-year-2020"> 2020 </h2>
             
           </div>
+        
+        
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/ml/20190325-c024.html" rel="next" title="降维02 - 主成分分析 (PCA)">
-                降维02 - 主成分分析 (PCA) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      
-      
-    </footer> -->
-  </div>
-  
-  
-  
+      <h3 class="post-title">
+        
+            <a class="post-title-link" href="/Cpp/20201019-1e61.html" itemprop="url">
+              
+                <span itemprop="name">C++函数模板在分离式编译中的坑</span>
+              
+            </a>
+        
+      </h3>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2020-10-19T15:31:47+08:00"
+              content="2020-10-19" >
+          10-19
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -679,15 +451,6 @@
 
 
            
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0NC8xOTg4NQ=="></div>
-    </div>
-
-  
-
-
  
         </div>
         
@@ -708,17 +471,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -780,22 +534,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#流形"><span class="nav-number">1.</span> <span class="nav-text">流形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义条件概率"><span class="nav-number">2.</span> <span class="nav-text">定义条件概率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#确定方差"><span class="nav-number">3.</span> <span class="nav-text">确定方差</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#映射到低维空间"><span class="nav-number">4.</span> <span class="nav-text">映射到低维空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小化损失函数"><span class="nav-number">5.</span> <span class="nav-text">最小化损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#带动量项的梯度更新"><span class="nav-number">5.1.</span> <span class="nav-text">带动量项的梯度更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机抖动"><span class="nav-number">5.2.</span> <span class="nav-text">随机抖动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火"><span class="nav-number">5.3.</span> <span class="nav-text">模拟退火</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -954,10 +692,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
@@ -986,17 +720,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
