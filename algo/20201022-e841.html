@@ -121,7 +121,7 @@
 <meta property="og:description" content="从左到右有A、B、C三根柱子，其中A柱子上面有从小叠到大的n个圆盘，现要求将A柱子上的圆盘移到C柱子上去，期间只有一个原则：一次只能移到一个盘子且大盘子不能在小盘子上面，求移动的步骤和移动的次数。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://barwe.oss-cn-shenzhen.aliyuncs.com/typora/image-20201022112855233.png">
-<meta property="og:updated_time" content="2020-10-22T06:57:43.012Z">
+<meta property="og:updated_time" content="2020-10-22T07:02:45.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汉诺塔问题">
 <meta name="twitter:description" content="从左到右有A、B、C三根柱子，其中A柱子上面有从小叠到大的n个圆盘，现要求将A柱子上的圆盘移到C柱子上去，期间只有一个原则：一次只能移到一个盘子且大盘子不能在小盘子上面，求移动的步骤和移动的次数。">
@@ -437,7 +437,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-10-22T14:57:43+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-22T15:02:45+08:00">
                 2020-10-22
               </time>
             
@@ -487,7 +487,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  516
+                  515
                 </span>
               
 
@@ -515,7 +515,7 @@
         <p><strong>从左到右有A、B、C三根柱子，其中A柱子上面有从小叠到大的n个圆盘，现要求将A柱子上的圆盘移到C柱子上去，期间只有一个原则：一次只能移到一个盘子且大盘子不能在小盘子上面，求移动的步骤和移动的次数。</strong></p>
 <a id="more"></a>
 <p><img src="https://barwe.oss-cn-shenzhen.aliyuncs.com/typora/image-20201022112855233.png" alt="image-20201022112855233" style="zoom:80%;"></p>
-<p>考虑最后可能的步骤：要想把 n 个圆盘从 A 移动到 C，在移动最大的圆盘时，C 上不能有任何圆盘，A上面只能有一个大圆盘，这就意味着其余的 n-1 个圆盘必须都位于 B 上面。此时我们只需要：将第 n 个圆盘从 A 移动到 C，再将 前 n-1 个圆盘从 B 移动到 C 即可，用函数可表示为：<br>$$<br>\begin{split}<br>\text{move}([1 \dots n], A, C) \ \Leftrightarrow \  &amp; \text{move}([1\dots n-1], A, B) \\</p>
+<p>考虑最后可能的步骤：要想把 n 个圆盘从 A 移动到 C，在移动最大的圆盘时，C 上不能有任何圆盘，A上面只能有一个大圆盘，这就意味着其余的 n-1 个圆盘必须都位于 B 上面。此时我们只需要：将第 n 个圆盘从 A 移动到 C，再将 前 n-1 个圆盘从 B 移动到 C 即可，用函数可表示为：<br>$$<br>\begin{split}<br>\text{move}([1 \dots n], A, C) \ = \  &amp; \text{move}([1\dots n-1], A, B) \\</p>
 <ul>
 <li>\ &amp; \text{move}(n, A, C) \\</li>
 <li>\ &amp; \text{move}([1\dots n-1], B, C)<br>\end{split}<br>$$<br>$\text{move}([1\dots n-1], A, B)$ 表示把前 $n-1$ 个圆盘从 A 移动到 B，它与把前 $n$ 个圆盘从 A 移动到 C 是类似的。后者需要借助 B，而前者需要借助于 C。特别地，当 $n=1$ 时，$\text{move}(1,\ast,\ast)$ 总是等于1。</li>
