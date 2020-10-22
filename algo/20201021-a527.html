@@ -102,7 +102,7 @@
 
 
 
-  <meta name="keywords" content="python模块," />
+  <meta name="keywords" content="BT, ML" />
 
 
 
@@ -113,20 +113,19 @@
 
 
 
-<meta name="description" content="包括time, datetime, calendar, business_calendar, pytz, dateutil等等模块。">
-<meta name="keywords" content="python模块">
+<meta name="description" content="给定一个不含重复元素的整数数组，以此构建最大二叉树。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="时间内建模块">
-<meta property="og:url" content="http://chenyin.top/python/20180728-42ac.html">
+<meta property="og:title" content="最大二叉树">
+<meta property="og:url" content="http://chenyin.top/algo/20201021-a527.html">
 <meta property="og:site_name" content="阔落煮酒">
-<meta property="og:description" content="包括time, datetime, calendar, business_calendar, pytz, dateutil等等模块。">
+<meta property="og:description" content="给定一个不含重复元素的整数数组，以此构建最大二叉树。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/time.jpg">
-<meta property="og:updated_time" content="2019-11-27T08:28:08.550Z">
+<meta property="og:image" content="https://barwe.oss-cn-shenzhen.aliyuncs.com/typora/image-20201013100218048.png">
+<meta property="og:updated_time" content="2020-10-21T07:41:47.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="时间内建模块">
-<meta name="twitter:description" content="包括time, datetime, calendar, business_calendar, pytz, dateutil等等模块。">
-<meta name="twitter:image" content="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/time.jpg">
+<meta name="twitter:title" content="最大二叉树">
+<meta name="twitter:description" content="给定一个不含重复元素的整数数组，以此构建最大二叉树。">
+<meta name="twitter:image" content="https://barwe.oss-cn-shenzhen.aliyuncs.com/typora/image-20201013100218048.png">
 
 
 
@@ -156,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://chenyin.top/python/20180728-42ac.html"/>
+  <link rel="canonical" href="http://chenyin.top/algo/20201021-a527.html"/>
 
 
 
 
 
-  <title>时间内建模块 | 阔落煮酒</title>
+  <title>最大二叉树 | 阔落煮酒</title>
   
 
 
@@ -393,7 +392,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://chenyin.top/python/20180728-42ac.html">
+    <link itemprop="mainEntityOfPage" href="http://chenyin.top/algo/20201021-a527.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Barwe">
@@ -410,7 +409,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">时间内建模块</h2>
+          <h2 class="post-title" itemprop="name headline">最大二叉树</h2>
         
 
         <div class="post-meta">
@@ -422,8 +421,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T10:14:54+08:00">
-                2018-07-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-21T15:26:28+08:00">
+                2020-10-21
               </time>
             
 
@@ -438,8 +437,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-27T16:28:08+08:00">
-                2019-11-27
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-21T15:41:47+08:00">
+                2020-10-21
               </time>
             
           </span>
@@ -457,8 +456,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python编程</span>
+                  <a href="/categories/algo/" itemprop="url" rel="index">
+                    <span itemprop="name">算法笔记</span>
                   </a>
                 </span>
 
@@ -488,7 +487,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  651
+                  681
                 </span>
               
 
@@ -513,90 +512,27 @@
       
 
       
-        <p><img src="https://barwe-blog.oss-cn-shenzhen.aliyuncs.com/img/19/11/time.jpg" alt="time"></p>
-<p>包括time, datetime, calendar, business_calendar, pytz, dateutil等等模块。<a id="more"></a></p>
-<h1 id="time模块"><a href="#time模块" class="headerlink" title="time模块"></a>time模块</h1><p><code>ticks = time.time()</code> 返回一个表示当前时刻的浮点数，<strong>只能表示1970年到2038年</strong>。</p>
-<p><code>struct_time = time.localtime(time.time())</code> 返回本地时间</p>
+        <p>给定一个不含重复元素的整数数组，以此构建最大二叉树。</p>
+<a id="more"></a>
+<p>最大二叉树有如下特点：</p>
 <ul>
-<li>返回时间元组对象 <em>struct_time</em>，并不能自动转化为字符串</li>
-<li>返回例如<pre>time.struct_time(tm_year=2016, tm_mon=4, tm_mday=7, tm_hour=10, tm_min=3, tm_sec=27, tm_wday=3, tm_yday=98, tm_isdst=0)</pre></li>
-<li><em>tm_wday</em> 表示一周的第几天</li>
-<li><em>tm_yday</em> 表示一年的第几天</li>
-<li><em>tm_isdst</em> 表示是否是夏令时</li>
+<li>二叉树的根对应数组中的最大值</li>
+<li>左子树是原数组最大值左边的子数组构建出的最大二叉树</li>
+<li>右子树是原数组最大值右边的子数组构建出的最大二叉树</li>
 </ul>
-<p><code>time.asctime(struct_time)</code> 返回给定时间的字符串表示，只能传入时间元组而不是ticks</p>
-<p><code>time.strftime(FORMAT, STRUCT_TIME)</code> 可以定制时间字符串格式</p>
-<ul>
-<li>时间格式化符号<ul>
-<li>%y (两位数年份00-99)，%Y (四位数年份0000-9999)</li>
-<li>%m (月份01-12)，%d (月中的第几天01-31)</li>
-<li>%H (24小时制00-23)，%I (12小时制01-12)</li>
-<li>%M (分钟数00-59)，%S (秒数00-59)</li>
-<li>%w (周几0-6，0代表周日)，%a (本地简化星期名称，如Sat)，%A (本地完整星期名称，如Saturday)</li>
-<li>%U (一年中的第几周00-53，周日始)，%W (一年中的第几周00-53，周一始)</li>
-<li>%a (本地简化月份名称，如Jul)，%A (本地完整月份名称，如July)</li>
-<li>%j (一年内的第几天001-366)</li>
-<li>%p (值为AM或者PM)</li>
-<li>常用格式：<ul>
-<li>%Y-%m-%d %H:%M:%S</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><code>time.strptime(STRING[, FORMAT])</code> 将字符串转换为struct_time对象。如果STRING是标准的时间字符串可以不用指定FORMAT，否则还是指明的好。</p>
-<p><code>time.mktime(struct_time_object)</code> 将struct_time对象转化为一个浮点数（时间戳）</p>
-<p><code>time.clock()</code> 返回当前CPU时间，用于<strong>计算程序耗时</strong>。</p>
-<hr>
-<h1 id="datetime模块"><a href="#datetime模块" class="headerlink" title="datetime模块"></a>datetime模块</h1><p>是time模块的高级封装，同时解除了time模块对年份（1970 - 2038）的限制。</p>
-<p>datetime模块包含了5个类，实际常用的是datetime类。</p>
-<p><code>ddnow = datetime.datetime.now()</code> 获取当前时间，是一个datetime.datetime对象</p>
-<p><pre>datetime.datetime(2018, 7, 28, 9, 49, 22, 994058)</pre><br>这个可比time模块舒服多了…</p>
-<table>
-<thead>
-<tr>
-<th>API</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ddnow.year</code></td>
-<td>获取相关字段信息，类似的还有<code>.month</code>, <code>.day</code>, <code>.hour</code>, <code>.minute</code>, <code>.second</code>, <code>.tzinfo</code>, <code>.microsecond</code>等等</td>
-</tr>
-<tr>
-<td><code>ddnow.replace(...)</code></td>
-<td>修改上述字段的值</td>
-</tr>
-<tr>
-<td><code>ddnow.strftime(FORMAT)</code></td>
-<td>格式化时间字符串，与<code>time.strftime()</code>作用相同</td>
-</tr>
-<tr>
-<td><code>datetime.datetime.strptime(STRING, FORMAT)</code></td>
-<td>相对的datetime模块也能从时间字符串重构datetime对象</td>
-</tr>
-<tr>
-<td><code>ddnow.date()</code><br><code>ddnow.time()</code></td>
-<td>和datetime模块其他两个类（date，time）交互</td>
-</tr>
-<tr>
-<td><code>ddnow.timetuple()</code></td>
-<td>返回 <em>time.struct_time</em> 对象</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h1 id="calendar模块"><a href="#calendar模块" class="headerlink" title="calendar模块"></a>calendar模块</h1><p>与日历相关</p>
-<hr>
-<h1 id="business-calendar模块"><a href="#business-calendar模块" class="headerlink" title="business_calendar模块"></a>business_calendar模块</h1><p>工作日相关</p>
-<hr>
-<h1 id="pytz模块"><a href="#pytz模块" class="headerlink" title="pytz模块"></a>pytz模块</h1><p>时区相关</p>
-<hr>
-<h1 id="dateutil模块"><a href="#dateutil模块" class="headerlink" title="dateutil模块"></a>dateutil模块</h1><p><code>dateutil.parser</code> 非常强大的时间字符串解析函数，返回datetime.datetime对象</p>
-<p><code>dateutil.rrule</code> 根据定义的规则生成datetime.datetime对象</p>
-<hr>
-<h1 id="pandas-to-datetime"><a href="#pandas-to-datetime" class="headerlink" title="pandas.to_datetime"></a>pandas.to_datetime</h1><p>略</p>
+<p>下面是一个经典例子：</p>
+<p><img src="https://barwe.oss-cn-shenzhen.aliyuncs.com/typora/image-20201013100218048.png" alt="image-20201013100218048" style="zoom:50%;"></p>
+<p>树的构建一般都使用 <strong>递归</strong> 的方式。</p>
+<p>在递归时，为了避免为子数组开辟额外的存储空间，可以选择在原数组上遍历。</p>
+<p><span style="color:blue">maxBiTree.h</span></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MAXBITREE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXBITREE_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 声明一个二叉节点 */</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">BiNode</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    T data; <span class="comment">// 二叉节点的数据</span></span><br><span class="line">    BiNode&lt;T&gt; *left; <span class="comment">// 二叉节点的左子树地址，叶子节点为nullptr</span></span><br><span class="line">    BiNode&lt;T&gt; *right; <span class="comment">// 二叉节点的右子树地址，叶子节点为nullptr</span></span><br><span class="line">    BiNode(T); <span class="comment">// 只能从已有数据初始化一个二叉节点</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 定义一个最大二叉树类 */</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">MaxBiTree</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    BiNode&lt;T&gt; *root; <span class="comment">// 根节点，是一个二叉节点类型</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">construct</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;T&gt;&amp;)</span></span>; <span class="comment">// 给定数组构建最大二叉树</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printPreOrder</span><span class="params">()</span></span>; <span class="comment">// 打印前序遍历结果</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    BiNode&lt;T&gt;* _r_construct(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;T&gt;&amp;, <span class="keyword">int</span>, <span class="keyword">int</span>); <span class="comment">// 递归构建</span></span><br><span class="line">    <span class="keyword">void</span> _r_preorder(<span class="keyword">const</span> BiNode&lt;T&gt;*); <span class="comment">// 递归前序遍历</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p><span style="color:blue">maxBiTree.cpp</span></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"maxBiTree.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; </span></span><br><span class="line"><span class="class"><span class="title">BiNode</span>&lt;T&gt;:</span>:BiNode(T d): data(d) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 递归构建二叉树 */</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt; </span></span><br><span class="line"><span class="class"><span class="title">BiNode</span>&lt;T&gt;* <span class="title">MaxBiTree</span>&lt;T&gt;:</span>:_r_construct(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;T&gt;&amp; vec, <span class="keyword">int</span> begin, <span class="keyword">int</span> end) &#123;</span><br><span class="line">        <span class="keyword">if</span> (begin &gt;= end ) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">int</span> maxv_index = begin;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt; end; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vec[i] &gt; vec[maxv_index]) &#123;</span><br><span class="line">                maxv_index = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        BiNode&lt;T&gt; *node = <span class="keyword">new</span> BiNode&lt;T&gt;(vec[maxv_index]);</span><br><span class="line">        node-&gt;left = _r_construct(vec, begin, maxv_index);</span><br><span class="line">        node-&gt;right = _r_construct(vec, maxv_index+<span class="number">1</span>, end);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">MaxBiTree</span>&lt;T&gt;:</span>:construct(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;T&gt;&amp; vec) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"call _r_construct ..."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    root = _r_construct(vec, <span class="number">0</span>, vec.size());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 递归前序遍历 */</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">MaxBiTree</span>&lt;T&gt;:</span>:_r_preorder(<span class="keyword">const</span> BiNode&lt;T&gt; *node) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; node-&gt;data &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    <span class="keyword">if</span> (node-&gt;left != <span class="literal">nullptr</span>) _r_preorder(node-&gt;left);</span><br><span class="line">    <span class="keyword">if</span> (node-&gt;right != <span class="literal">nullptr</span>) _r_preorder(node-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">MaxBiTree</span>&lt;T&gt;:</span>:printPreOrder()&#123;</span><br><span class="line">    _r_preorder(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Explicit Instantiation */</span></span><br><span class="line"><span class="comment">/* 显式实例化 */</span></span><br><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">BiNode</span>&lt;int&gt;;</span></span><br><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">MaxBiTree</span>&lt;int&gt;;</span></span><br></pre></td></tr></table></figure>
+<p><span style="color:blue">main.cpp</span></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"maxBiTree.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec = &#123;<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">0</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    MaxBiTree&lt;<span class="keyword">int</span>&gt; mbtree;</span><br><span class="line">    mbtree.construct(vec);</span><br><span class="line">    mbtree.printPreOrder();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>测试</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; g++ main.cpp maxBiTree.cpp &amp;&amp; a.exe &amp;&amp; del a.exe</span><br><span class="line">call _r_construct ...</span><br><span class="line">6 3 2 1 5 0</span><br></pre></td></tr></table></figure>
+<p>用这个例子好好复习了一下 C++， emmm</p>
 
       
     </div>
@@ -630,12 +566,6 @@
 	
     <!-- <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/python模块/" rel="tag"><i class="fa fa-tag"></i> python模块</a>
-          
-        </div>
-      
 
       
       
@@ -645,8 +575,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/python/20180724-1605.html" rel="prev" title="python之飘逸的format格式化字符串控制">
-                <i class="fa fa-chevron-left"></i> python之飘逸的format格式化字符串控制
+              <a href="/Cpp/20201019-1e61.html" rel="prev" title="递归-细胞分裂问题">
+                <i class="fa fa-chevron-left"></i> 递归-细胞分裂问题
               </a>
             
           </div>
@@ -655,8 +585,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/python/20180724-1605.html" rel="next" title="logging内建模块（入门）">
-                logging内建模块（入门） <i class="fa fa-chevron-right"></i>
+              <a href="/Cpp/20201019-1e61.html" rel="next" title="C++函数模板在分离式编译中的坑">
+                C++函数模板在分离式编译中的坑 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -714,17 +644,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -786,22 +707,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#time模块"><span class="nav-number">1.</span> <span class="nav-text">time模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#datetime模块"><span class="nav-number">2.</span> <span class="nav-text">datetime模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#calendar模块"><span class="nav-number">3.</span> <span class="nav-text">calendar模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#business-calendar模块"><span class="nav-number">4.</span> <span class="nav-text">business_calendar模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pytz模块"><span class="nav-number">5.</span> <span class="nav-text">pytz模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dateutil模块"><span class="nav-number">6.</span> <span class="nav-text">dateutil模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pandas-to-datetime"><span class="nav-number">7.</span> <span class="nav-text">pandas.to_datetime</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
